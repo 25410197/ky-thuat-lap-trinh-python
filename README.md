@@ -10,6 +10,13 @@ Khởi động backend, PostgreSQL, MinIO và tạo bucket mặc định:
 docker compose -f infra/compose.yaml up -d --build
 ```
 
+Lần đầu chạy (hoặc sau khi có migration mới), chạy migration để tạo bảng và seed dữ liệu mặc định (loại bất
+động sản, tiện ích):
+
+```bash
+docker compose -f infra/compose.yaml exec be alembic upgrade head
+```
+
 Dừng toàn bộ stack:
 
 ```bash
@@ -24,7 +31,7 @@ docker compose -f infra/compose.yaml down
 docker compose -f infra/compose.dev.yaml up -d
 ```
 
-2. Cài thư viện và chạy backend bằng Python 3.10:
+2. Cài thư viện bằng Python 3.10:
 
 ```bash
 cd be
@@ -39,8 +46,17 @@ python -m venv .venv
 
 # Install dependencies
 python -m pip install -r requirements.txt
+```
 
-# Run FastAPI server
+3. Chạy migration để tạo bảng và seed dữ liệu mặc định (lần đầu hoặc khi có migration mới):
+
+```bash
+python -m alembic upgrade head
+```
+
+4. Chạy FastAPI server:
+
+```bash
 python -m uvicorn app.main:app --reload
 ```
 
@@ -71,3 +87,8 @@ docker compose -f infra/compose.dev.yaml down
 - `fe/`: mã nguồn frontend.
 - `infra/`: Dockerfile và cấu hình Docker Compose cho backend, PostgreSQL và MinIO.
 - `docs/`: tài liệu của dự án.
+
+## Tài liệu thêm
+
+- Sơ đồ ERD (bảng, field, quan hệ): `be/docs/erd.md`.
+- Hướng dẫn kết nối DBeaver tới PostgreSQL: `be/docs/setup-dbeaver.md`.
