@@ -21,6 +21,13 @@ def test_swagger_and_openapi_are_available() -> None:
     assert "/api/health" in openapi_response.json()["paths"]
 
 
+def test_health_check_db() -> None:
+    response = client.get("/api/health/db")
+
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok", "service": "postgresql"}
+
+
 def test_cors_allows_default_react_origins() -> None:
     for origin in ("http://localhost:3000", "http://localhost:5173"):
         response = client.options(

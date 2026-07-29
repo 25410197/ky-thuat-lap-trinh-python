@@ -24,6 +24,18 @@ class Settings:
     app_name: str
     app_env: str
     cors_origins: tuple[str, ...]
+    postgres_host: str
+    postgres_port: int
+    postgres_db: str
+    postgres_user: str
+    postgres_password: str
+
+    @property
+    def database_url(self) -> str:
+        return (
+            f"postgresql+psycopg2://{self.postgres_user}:{self.postgres_password}"
+            f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
+        )
 
 
 def get_settings() -> Settings:
@@ -31,4 +43,9 @@ def get_settings() -> Settings:
         app_name=os.getenv("APP_NAME", "Python Course Backend"),
         app_env=os.getenv("APP_ENV", "development"),
         cors_origins=_cors_origins_from_env(),
+        postgres_host=os.getenv("POSTGRES_HOST", "localhost"),
+        postgres_port=int(os.getenv("POSTGRES_PORT", "5432")),
+        postgres_db=os.getenv("POSTGRES_DB", "app"),
+        postgres_user=os.getenv("POSTGRES_USER", "app"),
+        postgres_password=os.getenv("POSTGRES_PASSWORD", "app"),
     )
