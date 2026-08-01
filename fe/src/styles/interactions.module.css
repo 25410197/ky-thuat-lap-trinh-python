@@ -1,0 +1,115 @@
+/* CSS Module dùng chung cho các hiệu ứng hover/pseudo mà Mantine style props không hỗ trợ trực tiếp */
+
+.mutedLink {
+  color: var(--color-brand-muted);
+  transition: color 0.15s ease;
+}
+.mutedLink:hover {
+  color: var(--color-brand);
+}
+
+.goldLink {
+  color: var(--color-gold);
+  transition: opacity 0.15s ease;
+}
+.goldLink:hover {
+  text-decoration: underline;
+}
+
+.footerLink {
+  transition: color 0.15s ease;
+}
+.footerLink:hover {
+  color: var(--color-gold);
+}
+
+.cardLink {
+  display: block;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+.cardLink:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(251, 249, 244, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.aspectRatio43 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.aspectVideo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uploadDropzone {
+  display: flex;
+  height: 256px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed rgba(60, 47, 47, 0.4);
+  border-radius: var(--radius-btn);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.adminNavLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: var(--radius-btn);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-brand-muted);
+  transition: background-color 0.15s ease;
+}
+.adminNavLink:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.adminNavLinkActive {
+  composes: adminNavLink;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--color-brand);
+}
+
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  background: var(--color-surface);
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.amenityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (min-width: 48em) {
+  .amenityGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

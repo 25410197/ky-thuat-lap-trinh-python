@@ -1,0 +1,14 @@
+export const ROUTES = {
+  home: "/",
+  danhSachNhaChoThue: "/danh-sach-nha-cho-thue",
+  chiTietTinDang: (id: string) => `/chi-tiet-tin-dang/${id}`,
+  dangNhap: "/dang-nhap",
+  dangKy: "/dang-ky",
+  tinDangCuaToi: "/tin-dang-cua-toi",
+  dangTin: "/dang-tin",
+  yeuThich: "/yeu-thich",
+  quanTri: "/quan-tri",
+  quanTriTinDang: "/quan-tri/tin-dang",
+  quanTriNguoiDung: "/quan-tri/nguoi-dung",
+  quanTriThongKe: "/quan-tri/thong-ke",
+} as const;
