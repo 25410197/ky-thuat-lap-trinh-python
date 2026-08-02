@@ -1,12 +1,16 @@
 import uuid
 
+import pytest
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
+from app.api.dependencies.auth import get_current_admin_user
 from app.core.security import verify_password
 from app.db.session import SessionLocal
 from app.main import app
 from app.models import NguoiDung
+from app.models.enums import TrangThaiNguoiDung, VaiTroNguoiDung
 
 client = TestClient(app)
 
@@ -115,3 +119,29 @@ def test_lay_thong_tin_ca_nhan_voi_token_hop_le() -> None:
         assert response.json()["email"] == email
     finally:
         _xoa_nguoi_dung(email)
+
+
+def _nguoi_dung_gia(vai_tro: VaiTroNguoiDung) -> NguoiDung:
+    return NguoiDung(
+        id=1,
+        ho_ten="Test",
+        email="test@example.com",
+        mat_khau_hash="x",
+        vai_tro=vai_tro,
+        trang_thai=TrangThaiNguoiDung.HOAT_DONG,
+    )
+
+
+def test_admin_dependency_cho_phep_quan_tri_vien() -> None:
+    admin = _nguoi_dung_gia(VaiTroNguoiDung.QUAN_TRI)
+
+    assert get_current_admin_user(nguoi_dung=admin) is admin
+
+
+def test_admin_dependency_tu_choi_nguoi_dung_thuong() -> None:
+    nguoi_dung = _nguoi_dung_gia(VaiTroNguoiDung.NGUOI_DUNG)
+
+    with pytest.raises(HTTPException) as exc_info:
+        get_current_admin_user(nguoi_dung=nguoi_dung)
+
+    assert exc_info.value.status_code == 403

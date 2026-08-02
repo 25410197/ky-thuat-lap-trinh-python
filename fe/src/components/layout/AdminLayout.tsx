@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Box, Flex, Stack, Text } from "@mantine/core";
 import {
   IconLayoutDashboard,
@@ -13,6 +13,7 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { ROUTES } from "@/constants/routes";
+import { useAuth } from "@/hooks/useAuth";
 import styles from "@/styles/interactions.module.css";
 
 const NAV_ITEMS = [
@@ -24,6 +25,13 @@ const NAV_ITEMS = [
 
 export function AdminLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.push(ROUTES.dangNhap);
+  };
 
   return (
     <Flex mih="100vh">
@@ -74,7 +82,16 @@ export function AdminLayout({ children }: { children: ReactNode }) {
               <IconSettings size={20} stroke={1.75} />
               Cài đặt
             </Flex>
-            <Flex component={Link} href={ROUTES.dangNhap} align="center" gap={12} className={styles.adminNavLink}>
+            <Flex
+              component="button"
+              type="button"
+              onClick={handleLogout}
+              align="center"
+              gap={12}
+              w="100%"
+              className={styles.adminNavLink}
+              style={{ background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
+            >
               <IconLogout size={20} stroke={1.75} />
               Đăng xuất
             </Flex>
