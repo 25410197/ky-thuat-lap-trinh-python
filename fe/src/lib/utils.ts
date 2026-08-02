@@ -6,14 +6,6 @@ export function formatCurrencyVnd(amount: number): string {
   }).format(amount);
 }
 
-export function formatCurrencyVnd(amount: number): string {
-  return new Intl.NumberFormat("vi-VN", {
-    style: "currency",
-    currency: "VND",
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
-
 export function formatDateVi(date: string | Date): string {
   const d = typeof date === "string" ? new Date(date) : date;
   return new Intl.DateTimeFormat("vi-VN", {
