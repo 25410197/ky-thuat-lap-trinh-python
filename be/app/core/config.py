@@ -29,6 +29,8 @@ class Settings:
     postgres_db: str
     postgres_user: str
     postgres_password: str
+    seed_admin_email: str
+    seed_admin_password: str
 
     @property
     def database_url(self) -> str:
@@ -48,4 +50,6 @@ def get_settings() -> Settings:
         postgres_db=os.getenv("POSTGRES_DB", "app"),
         postgres_user=os.getenv("POSTGRES_USER", "app"),
         postgres_password=os.getenv("POSTGRES_PASSWORD", "app"),
+        seed_admin_email=os.getenv("SEED_ADMIN_EMAIL", "admin@example.com"),
+        seed_admin_password=os.getenv("SEED_ADMIN_PASSWORD", "Admin@123"),
     )
