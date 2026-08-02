@@ -31,6 +31,9 @@ class Settings:
     postgres_password: str
     seed_admin_email: str
     seed_admin_password: str
+    jwt_secret_key: str
+    jwt_algorithm: str
+    jwt_access_token_expire_minutes: int
 
     @property
     def database_url(self) -> str:
@@ -52,4 +55,7 @@ def get_settings() -> Settings:
         postgres_password=os.getenv("POSTGRES_PASSWORD", "app"),
         seed_admin_email=os.getenv("SEED_ADMIN_EMAIL", "admin@example.com"),
         seed_admin_password=os.getenv("SEED_ADMIN_PASSWORD", "Admin@123"),
+        jwt_secret_key=os.getenv("JWT_SECRET_KEY", "dev-secret-key-change-me"),
+        jwt_algorithm=os.getenv("JWT_ALGORITHM", "HS256"),
+        jwt_access_token_expire_minutes=int(os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", str(60 * 24 * 7))),
     )
