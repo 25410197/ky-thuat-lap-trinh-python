@@ -17,6 +17,18 @@ Lần đầu chạy (hoặc sau khi có migration mới), chạy migration để
 docker compose -f infra/compose.yaml exec be alembic upgrade head
 ```
 
+Seed dữ liệu mẫu (tài khoản admin, tỉnh/quận/phường, ~40 tin đăng mẫu):
+
+```bash
+docker compose -f infra/compose.yaml exec be python -m app.scripts.seed
+```
+
+Script seed có thể chạy lại nhiều lần an toàn (không tạo trùng dữ liệu). Sau khi seed xong:
+
+- Tài khoản admin: email/mật khẩu lấy từ biến môi trường `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD`
+  (mặc định `admin@example.com` / `Admin@123`, đổi trong `.env` nếu cần).
+- Kiểm tra API trả dữ liệu mẫu: http://localhost:8000/api/rental-posts
+
 Dừng toàn bộ stack:
 
 ```bash
@@ -54,7 +66,13 @@ python -m pip install -r requirements.txt
 python -m alembic upgrade head
 ```
 
-4. Chạy FastAPI server:
+4. Seed dữ liệu mẫu (tài khoản admin, tỉnh/quận/phường, ~40 tin đăng mẫu — chạy lại được nhiều lần an toàn):
+
+```bash
+python -m app.scripts.seed
+```
+
+5. Chạy FastAPI server:
 
 ```bash
 python -m uvicorn app.main:app --reload
@@ -64,6 +82,7 @@ Sau khi khởi động:
 
 - Swagger UI: http://localhost:8000/docs
 - Health check: http://localhost:8000/api/health
+- Danh sách tin đăng mẫu (sau khi seed): http://localhost:8000/api/rental-posts
 - MinIO Console: http://localhost:9001
 
 Dừng hạ tầng bằng lệnh:
