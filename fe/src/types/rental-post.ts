@@ -49,6 +49,27 @@ export interface RentalPostListResponse {
   pageSize: number;
 }
 
+// Khớp đúng dữ liệu thật trả về từ GET /api/rental-posts/{id} (xem be/app/schemas/tin_dang.py).
+export interface RentalPostDetail {
+  id: number;
+  tieuDe: string;
+  moTa: string;
+  giaThue: number;
+  dienTich: number;
+  diaChiChiTiet: string;
+  loaiBatDongSan: string;
+  phuongXa: string;
+  quanHuyen: string;
+  tinhThanh: string;
+  hinhAnh: string[];
+  tienIch: string[];
+  tenNguoiLienHe: string;
+  soDienThoaiLienHe: string;
+  phuongThucLienHeUuTien: "goi_dien" | "nhan_tin";
+  luotXem: number;
+  ngayDang: string;
+}
+
 export interface RentalPostListFilters {
   page?: number;
   pageSize?: number;

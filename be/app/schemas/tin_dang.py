@@ -61,3 +61,25 @@ class DangTinRequest(BaseModel):
     contactMethod: str
     bedrooms: int
     bathrooms: int
+
+
+class TinDangChiTiet(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    id: int
+    tieu_de: Annotated[str, Field(alias="tieuDe")]
+    mo_ta: Annotated[str, Field(alias="moTa")]
+    gia_thue: Annotated[float, Field(alias="giaThue")]
+    dien_tich: Annotated[float, Field(alias="dienTich")]
+    dia_chi_chi_tiet: Annotated[str, Field(alias="diaChiChiTiet")]
+    loai_bat_dong_san: Annotated[str, Field(alias="loaiBatDongSan")]
+    phuong_xa: Annotated[str, Field(alias="phuongXa")]
+    quan_huyen: Annotated[str, Field(alias="quanHuyen")]
+    tinh_thanh: Annotated[str, Field(alias="tinhThanh")]
+    hinh_anh: Annotated[list[str], Field(alias="hinhAnh")]
+    tien_ich: Annotated[list[str], Field(alias="tienIch")]
+    ten_nguoi_lien_he: Annotated[str, Field(alias="tenNguoiLienHe")]
+    so_dien_thoai_lien_he: Annotated[str, Field(alias="soDienThoaiLienHe")]
+    phuong_thuc_lien_he_uu_tien: Annotated[str, Field(alias="phuongThucLienHeUuTien")]
+    luot_xem: Annotated[int, Field(alias="luotXem")]
+    ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
