@@ -1,12 +1,11 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.api.dependencies import get_db, get_current_user
 from app.models import PhuongXa, QuanHuyen, TinDang, NguoiDung, LoaiBatDongSan, TinhThanh, TienIch, HinhAnhTinDang
 from app.models.enums import TrangThaiTinDang, PhuongThucLienHe
-from app.schemas.tin_dang import DanhSachTinDang, TinDangTomTat, TinDangCuaToiResponse, DangTinRequest
-
+from app.schemas.tin_dang import DanhSachTinDang, TinDangTomTat, TinDangCuaToiResponse, DangTinRequest, TinDangChiTiet
 
 router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
 
@@ -223,3 +222,47 @@ def tao_tin_dang_moi(
     db.commit()
 
     return {"message": "Đăng tin thành công!", "id": tin_moi.id}
+
+
+@router.get("/{tin_dang_id}", response_model=TinDangChiTiet)
+def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDangChiTiet:
+    tin = (
+        db.query(TinDang)
+        .options(
+            joinedload(TinDang.loai_bat_dong_san),
+            joinedload(TinDang.phuong_xa)
+            .joinedload(PhuongXa.quan_huyen)
+            .joinedload(QuanHuyen.tinh_thanh),
+            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.tien_ich),
+        )
+        .filter(TinDang.id == tin_dang_id, TinDang.trang_thai == TrangThaiTinDang.DA_DUYET)
+        .first()
+    )
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng")
+
+    tin.luot_xem += 1
+    db.commit()
+
+    anh_sap_xep = sorted(tin.hinh_anh, key=lambda anh: (not anh.la_anh_dai_dien, anh.thu_tu_hien_thi))
+
+    return TinDangChiTiet(
+        id=tin.id,
+        tieu_de=tin.tieu_de,
+        mo_ta=tin.mo_ta,
+        gia_thue=float(tin.gia_thue),
+        dien_tich=float(tin.dien_tich),
+        dia_chi_chi_tiet=tin.dia_chi_chi_tiet,
+        loai_bat_dong_san=tin.loai_bat_dong_san.ten,
+        phuong_xa=tin.phuong_xa.ten,
+        quan_huyen=tin.phuong_xa.quan_huyen.ten,
+        tinh_thanh=tin.phuong_xa.quan_huyen.tinh_thanh.ten,
+        hinh_anh=[anh.duong_dan_anh for anh in anh_sap_xep],
+        tien_ich=[tien_ich.ten for tien_ich in tin.tien_ich],
+        ten_nguoi_lien_he=tin.ten_nguoi_lien_he,
+        so_dien_thoai_lien_he=tin.so_dien_thoai_lien_he,
+        phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
+        luot_xem=tin.luot_xem,
+        ngay_dang=tin.ngay_dang,
+    )

@@ -129,3 +129,47 @@ def test_danh_muc_quan_huyen_tinh_khong_ton_tai_tra_ve_404() -> None:
     response = client.get("/api/tinh-thanh/999999/quan-huyen")
 
     assert response.status_code == 404
+
+
+def test_chi_tiet_tin_dang_tra_ve_key_dang_camelcase() -> None:
+    id_tin = client.get("/api/rental-posts", params={"page_size": 1}).json()["items"][0]["id"]
+
+    response = client.get(f"/api/rental-posts/{id_tin}")
+
+    assert response.status_code == 200
+    body = response.json()
+    for key in (
+        "id",
+        "tieuDe",
+        "moTa",
+        "giaThue",
+        "dienTich",
+        "diaChiChiTiet",
+        "loaiBatDongSan",
+        "phuongXa",
+        "quanHuyen",
+        "tinhThanh",
+        "hinhAnh",
+        "tienIch",
+        "tenNguoiLienHe",
+        "soDienThoaiLienHe",
+        "phuongThucLienHeUuTien",
+        "luotXem",
+        "ngayDang",
+    ):
+        assert key in body
+
+
+def test_chi_tiet_tin_dang_tang_luot_xem_moi_lan_goi() -> None:
+    id_tin = client.get("/api/rental-posts", params={"page_size": 1}).json()["items"][0]["id"]
+
+    luot_xem_truoc = client.get(f"/api/rental-posts/{id_tin}").json()["luotXem"]
+    luot_xem_sau = client.get(f"/api/rental-posts/{id_tin}").json()["luotXem"]
+
+    assert luot_xem_sau == luot_xem_truoc + 1
+
+
+def test_chi_tiet_tin_dang_khong_ton_tai_tra_ve_404() -> None:
+    response = client.get("/api/rental-posts/999999999")
+
+    assert response.status_code == 404

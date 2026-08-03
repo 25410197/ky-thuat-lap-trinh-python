@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/api/api-client";
 import { endpoints } from "@/lib/api/endpoints";
-import type { RentalPost, RentalPostListFilters, RentalPostListResponse } from "@/types/rental-post";
+import type { RentalPost, RentalPostDetail, RentalPostListFilters, RentalPostListResponse } from "@/types/rental-post";
 import type { RentalPostInput } from "../schemas/rental-post.schema";
 
 function buildQueryString(filters: RentalPostListFilters): string {
@@ -26,6 +26,8 @@ export const rentalPostsApi = {
     apiClient.get<RentalPostListResponse>(`${endpoints.rentalPosts.list}${buildQueryString(filters)}`, {
       skipAuth: true,
     }),
+  detail: (id: string) =>
+    apiClient.get<RentalPostDetail>(endpoints.rentalPosts.detail(id), { skipAuth: true }),
   mine: () => {
     return apiClient.get<RentalPost[]>(endpoints.rentalPosts.mine);
   },
