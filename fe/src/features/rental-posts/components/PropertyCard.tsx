@@ -4,14 +4,14 @@ import Link from "next/link";
 import { Box, Stack, Group, Text } from "@mantine/core";
 import { IconBath, IconBed, IconMapPin, IconRulerMeasure } from "@tabler/icons-react";
 import { ROUTES } from "@/constants/routes";
-import { formatCurrencyUsd } from "@/lib/utils";
+import { formatCurrencyVnd } from "@/lib/utils";
 import type { RentalPost } from "@/types/rental-post";
 import styles from "@/styles/interactions.module.css";
 
 interface PropertyCardProps {
   post: Pick<
     RentalPost,
-    "id" | "title" | "priceUsd" | "city" | "bedrooms" | "bathrooms" | "areaM2"
+    "id" | "title" | "priceVnd" | "city" | "bedrooms" | "bathrooms" | "areaM2"
   >;
   badge?: string;
 }
@@ -51,7 +51,7 @@ export function PropertyCard({ post, badge }: PropertyCardProps) {
       </Box>
       <Stack gap={12} p={16}>
         <Text fz="xl" fw={700} c="var(--color-gold)" style={{ fontFamily: "var(--font-heading)" }}>
-          {formatCurrencyUsd(post.priceUsd)}
+          {formatCurrencyVnd(post.priceVnd)}
           <Text component="span" ml={4} fz="sm" fw={400} c="var(--color-text-muted)">
             /tháng
           </Text>

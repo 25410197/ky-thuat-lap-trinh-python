@@ -18,9 +18,18 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    import os
+    from fastapi.staticfiles import StaticFiles
+    from app.api.routes.upload import router as upload_router
+    
+    os.makedirs("static/uploads", exist_ok=True)
+    application.mount("/static", StaticFiles(directory="static"), name="static")
+
     application.include_router(health_router, prefix="/api")
     application.include_router(auth_router, prefix="/api")
     application.include_router(tin_dang_router, prefix="/api")
+    application.include_router(upload_router, prefix="/api")
+    
     return application
 
 
