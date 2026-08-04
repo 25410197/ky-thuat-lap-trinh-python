@@ -12,14 +12,24 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
   const { body, skipAuth, headers, ...rest } = options;
   const token = skipAuth ? null : authStorage.getToken();
 
+  const isFormData = body instanceof FormData;
+  const fetchHeaders: HeadersInit = {
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...headers,
+  };
+  
+  if (!isFormData && !fetchHeaders.hasOwnProperty("Content-Type")) {
+    (fetchHeaders as any)["Content-Type"] = "application/json";
+  } else if (isFormData) {
+    if (fetchHeaders.hasOwnProperty("Content-Type")) {
+      delete (fetchHeaders as any)["Content-Type"];
+    }
+  }
+
   const res = await fetch(`${env.apiUrl}${path}`, {
     ...rest,
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...headers,
-    },
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    headers: fetchHeaders,
+    body: isFormData ? (body as FormData) : (body !== undefined ? JSON.stringify(body) : undefined),
   });
 
   if (!res.ok) {

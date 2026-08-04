@@ -4,7 +4,7 @@ export interface RentalPost {
   id: string;
   title: string;
   description: string;
-  priceUsd: number;
+  priceVnd: number;
   address: string;
   city: string;
   bedrooms: number;

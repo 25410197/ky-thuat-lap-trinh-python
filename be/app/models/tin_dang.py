@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, Enum, ForeignKey, Numeric, String, Text, func
+from sqlalchemy import DateTime, Enum, ForeignKey, Numeric, String, Text, func, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -14,7 +14,10 @@ class TinDang(Base):
     tieu_de: Mapped[str] = mapped_column(String(150), nullable=False)
     mo_ta: Mapped[str] = mapped_column(Text, nullable=False)
     gia_thue: Mapped[float] = mapped_column(Numeric(14, 2), nullable=False)
-    dien_tich: Mapped[float] = mapped_column(Numeric(8, 2), nullable=False)
+    dien_tich: Mapped[float] = mapped_column(Numeric(8, 2),nullable=False)
+    phong_ngu: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    phong_tam: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
     dia_chi_chi_tiet: Mapped[str] = mapped_column(String(255), nullable=False)
 
     loai_bat_dong_san_id: Mapped[int] = mapped_column(

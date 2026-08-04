@@ -1,13 +1,12 @@
 import { Box, Grid, Text, Group } from "@mantine/core";
 import { IconBath, IconBed, IconMapPin, IconRulerMeasure } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
-import { formatCurrencyUsd } from "@/lib/utils";
+import { formatCurrencyVnd } from "@/lib/utils";
 import styles from "@/styles/interactions.module.css";
 
-// Dữ liệu mẫu để dựng giao diện — sẽ thay bằng gọi API rental-posts.detail(id).
 const MOCK_DETAIL = {
   title: "Căn hộ Skyline Loft",
-  priceUsd: 4250,
+  priceVnd: 12000000,
   city: "Trung tâm Manhattan, NY",
   bedrooms: 3,
   bathrooms: 2,
@@ -79,7 +78,7 @@ export function RentalPostDetailView({ id }: { id: string }) {
           }}
         >
           <Text fz={24} fw={700} c="var(--color-gold)" style={{ fontFamily: "var(--font-heading)" }}>
-            {formatCurrencyUsd(MOCK_DETAIL.priceUsd)}
+            {formatCurrencyVnd(MOCK_DETAIL.priceVnd)}
             <Text component="span" ml={4} fz="sm" fw={400} c="var(--color-text-muted)">
               /tháng
             </Text>

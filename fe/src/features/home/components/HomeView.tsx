@@ -8,12 +8,11 @@ import { PropertyCard } from "@/features/rental-posts/components/PropertyCard";
 import { ROUTES } from "@/constants/routes";
 import styles from "@/styles/interactions.module.css";
 
-// Dữ liệu mẫu để dựng giao diện — sẽ thay bằng gọi API rental-posts ở ticket tiếp theo.
 const FEATURED_POSTS = [
   {
     id: "demo-1",
     title: "Căn hộ Skyline Loft",
-    priceUsd: 4250,
+    priceVnd: 12000000,
     city: "Trung tâm Manhattan, NY",
     bedrooms: 3,
     bathrooms: 2,
@@ -23,7 +22,7 @@ const FEATURED_POSTS = [
   {
     id: "demo-2",
     title: "Dinh thự Willow Creek",
-    priceUsd: 8900,
+    priceVnd: 25000000,
     city: "Palo Alto, CA",
     bedrooms: 5,
     bathrooms: 4,
@@ -33,7 +32,7 @@ const FEATURED_POSTS = [
   {
     id: "demo-3",
     title: "Căn hộ Studio Urban Nest",
-    priceUsd: 1800,
+    priceVnd: 8000000,
     city: "Seattle, WA",
     bedrooms: 1,
     bathrooms: 1,
@@ -42,7 +41,7 @@ const FEATURED_POSTS = [
   {
     id: "demo-4",
     title: "Căn hộ Penthouse Beacon Harbor",
-    priceUsd: 12000,
+    priceVnd: 45000000,
     city: "Bãi biển Miami, FL",
     bedrooms: 4,
     bathrooms: 4,

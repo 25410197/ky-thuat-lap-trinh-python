@@ -1,72 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Table, ActionIcon, Group, Text, Anchor } from "@mantine/core";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
-import { notifications } from "@mantine/notifications";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { EmptyState } from "@/components/common/EmptyState";
 import { ROUTES } from "@/constants/routes";
-import { formatCurrencyUsd, formatDateVi } from "@/lib/utils";
+import { formatCurrencyVnd, formatDateVi } from "@/lib/utils";
 import type { RentalPost } from "@/types/rental-post";
+import { ActionIcon, Anchor, Group, Table, Text } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { RentalPostStatusBadge } from "./RentalPostStatusBadge";
-
-// Mock dữ liệu tin đăng của người dùng — sẽ thay bằng gọi rental-posts.mine().
-const MOCK_MY_POSTS: RentalPost[] = [
-  {
-    id: "my-1",
-    title: "Căn hộ Skyline Loft",
-    description: "",
-    priceUsd: 4250,
-    address: "123 Đường Lê Lợi",
-    city: "TP. Hồ Chí Minh",
-    bedrooms: 3,
-    bathrooms: 2,
-    areaM2: 167,
-    coverImageUrl: null,
-    status: "published",
-    ownerId: "me",
-    createdAt: "2026-06-12T00:00:00.000Z",
-  },
-  {
-    id: "my-2",
-    title: "Studio Urban Nest",
-    description: "",
-    priceUsd: 1800,
-    address: "45 Đường Trần Phú",
-    city: "Đà Nẵng",
-    bedrooms: 1,
-    bathrooms: 1,
-    areaM2: 60,
-    coverImageUrl: null,
-    status: "pending",
-    ownerId: "me",
-    createdAt: "2026-07-02T00:00:00.000Z",
-  },
-  {
-    id: "my-3",
-    title: "Nhà phố Vườn Tây",
-    description: "",
-    priceUsd: 2600,
-    address: "78 Đường Nguyễn Trãi",
-    city: "Hà Nội",
-    bedrooms: 2,
-    bathrooms: 2,
-    areaM2: 95,
-    coverImageUrl: null,
-    status: "rejected",
-    ownerId: "me",
-    createdAt: "2026-05-20T00:00:00.000Z",
-  },
-];
+import { rentalPostsApi } from "../api/rental-posts.api";
 
 export function MyListingsTable() {
-  const [posts, setPosts] = useState(MOCK_MY_POSTS);
+  const [posts, setPosts] = useState<RentalPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-
+  useEffect(() => {
+    rentalPostsApi
+      .mine()
+      .then((data) => {
+        setPosts(data);
+      })
+      .catch((err) => {
+        notifications.show({ color: "red", message: "Lỗi tải dữ liệu" });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
   const deletingPost = posts.find((post) => post.id === deletingId) ?? null;
-
   const handleDelete = () => {
     if (!deletingPost) return;
     setPosts((prev) => prev.filter((post) => post.id !== deletingPost.id));
@@ -78,6 +42,13 @@ export function MyListingsTable() {
     setDeletingId(null);
   };
 
+  if (loading) {
+    return (
+      <Text ta="center" mt="xl">
+        Đang tải dữ liệu...
+      </Text>
+    );
+  }
   if (posts.length === 0) {
     return (
       <EmptyState
@@ -116,14 +87,18 @@ export function MyListingsTable() {
                   {post.city}
                 </Text>
               </Table.Td>
-              <Table.Td>{formatCurrencyUsd(post.priceUsd)}</Table.Td>
+              <Table.Td>{formatCurrencyVnd(post.priceVnd)}</Table.Td>
               <Table.Td>
                 <RentalPostStatusBadge status={post.status} />
               </Table.Td>
               <Table.Td>{formatDateVi(post.createdAt)}</Table.Td>
               <Table.Td>
                 <Group gap={8} justify="flex-end">
-                  <ActionIcon variant="subtle" color="brand" aria-label="Sửa tin đăng">
+                  <ActionIcon
+                    variant="subtle"
+                    color="brand"
+                    aria-label="Sửa tin đăng"
+                  >
                     <IconPencil size={18} stroke={1.75} />
                   </ActionIcon>
                   <ActionIcon

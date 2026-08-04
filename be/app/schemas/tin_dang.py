@@ -23,3 +23,36 @@ class DanhSachTinDang(BaseModel):
     total: int
     page: int
     page_size: int
+
+
+class TinDangCuaToiResponse(BaseModel):
+    id: str
+    title: str
+    description: str
+    priceVnd: float
+    address: str
+    city: str
+    bedrooms: int
+    bathrooms: int
+    areaM2: float
+    coverImageUrl: str | None
+    status: str
+    ownerId: str
+    createdAt: str
+
+class DangTinRequest(BaseModel):
+    title: str
+    propertyType: str
+    areaM2: float
+    priceVnd: float
+    province: str
+    ward: str
+    address: str
+    description: str
+    images: list[str] = []
+    amenities: list[str]
+    contactName: str
+    contactPhone: str
+    contactMethod: str
+    bedrooms: int
+    bathrooms: int
