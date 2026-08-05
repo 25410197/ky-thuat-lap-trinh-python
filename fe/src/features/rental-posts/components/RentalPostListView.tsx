@@ -1,46 +1,121 @@
 "use client";
 
-import { useState } from "react";
-import { Group, Box, Text, SimpleGrid } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { Group, Box, Text, SimpleGrid, NumberInput, Loader, Center, Alert, Stack } from "@mantine/core";
+import { useDebouncedValue } from "@mantine/hooks";
+import { IconAlertCircle } from "@tabler/icons-react";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppSelect } from "@/components/ui/AppSelect";
 import { AppPagination } from "@/components/ui/AppPagination";
 import { EmptyState } from "@/components/common/EmptyState";
+import { rentalPostsApi } from "@/features/rental-posts/api/rental-posts.api";
+import { danhMucApi } from "@/features/rental-posts/api/danh-muc.api";
+import type { RentalPostSummary } from "@/types/rental-post";
+import type { LoaiBatDongSan, QuanHuyen, TinhThanh } from "@/types/danh-muc";
 import { PropertyCard } from "./PropertyCard";
 
-// Dữ liệu mẫu để dựng giao diện — sẽ thay bằng gọi API rental-posts (features/rental-posts/api).
-const MOCK_POSTS = [
-  {
-    id: "demo-1",
-    title: "Căn hộ Skyline Loft",
-    priceUsd: 4250,
-    city: "Trung tâm Manhattan, NY",
-    bedrooms: 3,
-    bathrooms: 2,
-    areaM2: 167,
-  },
-  {
-    id: "demo-2",
-    title: "Dinh thự Willow Creek",
-    priceUsd: 8900,
-    city: "Palo Alto, CA",
-    bedrooms: 5,
-    bathrooms: 4,
-    areaM2: 390,
-  },
-  {
-    id: "demo-3",
-    title: "Căn hộ Studio Urban Nest",
-    priceUsd: 1800,
-    city: "Seattle, WA",
-    bedrooms: 1,
-    bathrooms: 1,
-    areaM2: 60,
-  },
-];
+const SO_TIN_MOI_TRANG = 12;
 
 export function RentalPostListView() {
+  const [tuKhoaNhap, setTuKhoaNhap] = useState("");
+  const [tuKhoa] = useDebouncedValue(tuKhoaNhap, 400);
+
+  const [loaiBatDongSanId, setLoaiBatDongSanId] = useState<string | null>(null);
+  const [tinhThanhId, setTinhThanhId] = useState<string | null>(null);
+  const [quanHuyenId, setQuanHuyenId] = useState<string | null>(null);
+  const [giaTu, setGiaTu] = useState<number | "">("");
+  const [giaDen, setGiaDen] = useState<number | "">("");
+  const [dienTichTu, setDienTichTu] = useState<number | "">("");
+  const [dienTichDen, setDienTichDen] = useState<number | "">("");
   const [page, setPage] = useState(1);
+
+  const [danhSachLoai, setDanhSachLoai] = useState<LoaiBatDongSan[]>([]);
+  const [danhSachTinh, setDanhSachTinh] = useState<TinhThanh[]>([]);
+  const [danhSachQuan, setDanhSachQuan] = useState<QuanHuyen[]>([]);
+
+  const [items, setItems] = useState<RentalPostSummary[]>([]);
+  const [total, setTotal] = useState(0);
+  const [dangTai, setDangTai] = useState(true);
+  const [loi, setLoi] = useState<string | null>(null);
+
+  useEffect(() => {
+    danhMucApi
+      .loaiBatDongSan()
+      .then(setDanhSachLoai)
+      .catch(() => setDanhSachLoai([]));
+    danhMucApi
+      .tinhThanh()
+      .then(setDanhSachTinh)
+      .catch(() => setDanhSachTinh([]));
+  }, []);
+
+  useEffect(() => {
+    const danhSachQuanPromise = tinhThanhId
+      ? danhMucApi.quanHuyen(Number(tinhThanhId)).catch((): QuanHuyen[] => [])
+      : Promise.resolve<QuanHuyen[]>([]);
+    danhSachQuanPromise.then(setDanhSachQuan);
+  }, [tinhThanhId]);
+
+  // Reset về trang 1 mỗi khi bộ lọc thay đổi — điều chỉnh trong lúc render theo
+  // hướng dẫn của React thay vì dùng effect riêng (tránh cascading render).
+  const boLocKey = JSON.stringify([
+    tuKhoa,
+    loaiBatDongSanId,
+    tinhThanhId,
+    quanHuyenId,
+    giaTu,
+    giaDen,
+    dienTichTu,
+    dienTichDen,
+  ]);
+  const [boLocKeyDaXuLy, setBoLocKeyDaXuLy] = useState(boLocKey);
+  if (boLocKey !== boLocKeyDaXuLy) {
+    setBoLocKeyDaXuLy(boLocKey);
+    setPage(1);
+  }
+
+  useEffect(() => {
+    let daHuy = false;
+
+    Promise.resolve()
+      .then(() => {
+        setDangTai(true);
+        setLoi(null);
+        return rentalPostsApi.list({
+          page,
+          pageSize: SO_TIN_MOI_TRANG,
+          q: tuKhoa || undefined,
+          loaiBatDongSanId: loaiBatDongSanId ? Number(loaiBatDongSanId) : undefined,
+          tinhThanhId: tinhThanhId ? Number(tinhThanhId) : undefined,
+          quanHuyenId: quanHuyenId ? Number(quanHuyenId) : undefined,
+          giaTu: giaTu === "" ? undefined : giaTu,
+          giaDen: giaDen === "" ? undefined : giaDen,
+          dienTichTu: dienTichTu === "" ? undefined : dienTichTu,
+          dienTichDen: dienTichDen === "" ? undefined : dienTichDen,
+        });
+      })
+      .then((ket_qua) => {
+        if (daHuy) return;
+        setItems(ket_qua.items);
+        setTotal(ket_qua.total);
+      })
+      .catch(() => {
+        if (daHuy) return;
+        setLoi("Không tải được danh sách tin đăng. Vui lòng thử lại.");
+        setItems([]);
+        setTotal(0);
+      })
+      .finally(() => {
+        if (daHuy) return;
+        setDangTai(false);
+      });
+
+    return () => {
+      daHuy = true;
+    };
+  }, [page, tuKhoa, loaiBatDongSanId, tinhThanhId, quanHuyenId, giaTu, giaDen, dienTichTu, dienTichDen]);
+
+  const tongSoTrang = Math.max(1, Math.ceil(total / SO_TIN_MOI_TRANG));
 
   return (
     <Box px={32} py={40}>
@@ -55,35 +130,103 @@ export function RentalPostListView() {
         Danh sách nhà cho thuê
       </Text>
 
-      <Group gap={12} mb={32} align="flex-end">
-        <AppInput style={{ flex: 1 }} label="Tìm kiếm" placeholder="Nhập thành phố, khu phố..." />
-        <AppSelect
-          label="Số phòng ngủ"
-          placeholder="Tất cả"
-          data={["1", "2", "3", "4", "5+"]}
-          clearable
-        />
-        <AppSelect
-          label="Sắp xếp"
-          placeholder="Mới nhất"
-          data={["Giá tăng dần", "Giá giảm dần", "Mới nhất"]}
-        />
-      </Group>
+      <Stack gap={12} mb={32}>
+        <Group gap={12} align="flex-end">
+          <AppInput
+            style={{ flex: 1, minWidth: 220 }}
+            label="Tìm kiếm"
+            placeholder="Nhập tên tin đăng hoặc địa chỉ..."
+            value={tuKhoaNhap}
+            onChange={(event) => setTuKhoaNhap(event.currentTarget.value)}
+          />
+          <AppSelect
+            label="Loại hình"
+            placeholder="Tất cả"
+            data={danhSachLoai.map((loai) => ({ value: String(loai.id), label: loai.ten }))}
+            value={loaiBatDongSanId}
+            onChange={setLoaiBatDongSanId}
+            clearable
+          />
+          <AppSelect
+            label="Tỉnh/Thành"
+            placeholder="Tất cả"
+            data={danhSachTinh.map((tinh) => ({ value: String(tinh.id), label: tinh.ten }))}
+            value={tinhThanhId}
+            onChange={(value) => {
+              setTinhThanhId(value);
+              setQuanHuyenId(null);
+            }}
+            clearable
+          />
+          <AppSelect
+            label="Quận/Huyện"
+            placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
+            data={danhSachQuan.map((quan) => ({ value: String(quan.id), label: quan.ten }))}
+            value={quanHuyenId}
+            onChange={setQuanHuyenId}
+            disabled={!tinhThanhId}
+            clearable
+          />
+        </Group>
+        <Group gap={12} align="flex-end">
+          <NumberInput
+            style={{ flex: 1 }}
+            label="Giá từ (VNĐ)"
+            placeholder="0"
+            value={giaTu}
+            onChange={(value) => setGiaTu(value === "" ? "" : Number(value))}
+            min={0}
+            thousandSeparator=","
+          />
+          <NumberInput
+            style={{ flex: 1 }}
+            label="Giá đến (VNĐ)"
+            placeholder="Không giới hạn"
+            value={giaDen}
+            onChange={(value) => setGiaDen(value === "" ? "" : Number(value))}
+            min={0}
+            thousandSeparator=","
+          />
+          <NumberInput
+            style={{ flex: 1 }}
+            label="Diện tích từ (m²)"
+            placeholder="0"
+            value={dienTichTu}
+            onChange={(value) => setDienTichTu(value === "" ? "" : Number(value))}
+            min={0}
+          />
+          <NumberInput
+            style={{ flex: 1 }}
+            label="Diện tích đến (m²)"
+            placeholder="Không giới hạn"
+            value={dienTichDen}
+            onChange={(value) => setDienTichDen(value === "" ? "" : Number(value))}
+            min={0}
+          />
+        </Group>
+      </Stack>
 
-      {MOCK_POSTS.length === 0 ? (
-        <EmptyState
-          title="Không tìm thấy tin đăng"
-          description="Thử điều chỉnh bộ lọc tìm kiếm."
-        />
+      {loi ? (
+        <Alert color="red" icon={<IconAlertCircle size={18} />} mb={24}>
+          {loi}
+        </Alert>
+      ) : null}
+
+      {dangTai ? (
+        <Center py={80}>
+          <Loader color="brand" />
+        </Center>
+      ) : items.length === 0 ? (
+        <EmptyState title="Không tìm thấy tin đăng" description="Thử điều chỉnh bộ lọc tìm kiếm." />
       ) : (
         <>
           <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={24}>
-            {MOCK_POSTS.map((post) => (
+            {items.map((post) => (
               <PropertyCard key={post.id} post={post} />
             ))}
           </SimpleGrid>
           <Group justify="center" mt={40}>
-            <AppPagination total={5} value={page} onChange={setPage} />
+            <AppPagination total={tongSoTrang} value={page} onChange={setPage} />
           </Group>
         </>
       )}
