@@ -10,6 +10,11 @@ export const endpoints = {
     detail: (id: string) => `/rental-posts/${id}`,
     mine: "/rental-posts/me",
   },
+  danhMuc: {
+    loaiBatDongSan: "/loai-bat-dong-san",
+    tinhThanh: "/tinh-thanh",
+    quanHuyen: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/quan-huyen`,
+  },
   favorites: {
     list: "/favorites",
     toggle: (rentalPostId: string) => `/favorites/${rentalPostId}`,

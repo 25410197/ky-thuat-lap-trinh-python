@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Query
-from sqlalchemy import func
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.api.dependencies import get_db, get_current_user
@@ -15,9 +15,46 @@ router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
 def danh_sach_tin_dang(
     page: int = Query(1, ge=1),
     page_size: int = Query(12, ge=1, le=50),
+    q: str | None = Query(None, description="Tìm theo tiêu đề hoặc địa chỉ"),
+    loai_bat_dong_san_id: int | None = Query(None),
+    tinh_thanh_id: int | None = Query(None),
+    quan_huyen_id: int | None = Query(None),
+    gia_tu: float | None = Query(None, ge=0),
+    gia_den: float | None = Query(None, ge=0),
+    dien_tich_tu: float | None = Query(None, ge=0),
+    dien_tich_den: float | None = Query(None, ge=0),
     db: Session = Depends(get_db),
 ) -> DanhSachTinDang:
-    bo_loc = TinDang.trang_thai == TrangThaiTinDang.DA_DUYET
+    dieu_kien = [TinDang.trang_thai == TrangThaiTinDang.DA_DUYET]
+
+    if q:
+        tu_khoa = f"%{q.strip()}%"
+        dieu_kien.append(or_(TinDang.tieu_de.ilike(tu_khoa), TinDang.dia_chi_chi_tiet.ilike(tu_khoa)))
+    if loai_bat_dong_san_id is not None:
+        dieu_kien.append(TinDang.loai_bat_dong_san_id == loai_bat_dong_san_id)
+    if gia_tu is not None:
+        dieu_kien.append(TinDang.gia_thue >= gia_tu)
+    if gia_den is not None:
+        dieu_kien.append(TinDang.gia_thue <= gia_den)
+    if dien_tich_tu is not None:
+        dieu_kien.append(TinDang.dien_tich >= dien_tich_tu)
+    if dien_tich_den is not None:
+        dieu_kien.append(TinDang.dien_tich <= dien_tich_den)
+
+    if quan_huyen_id is not None:
+        dieu_kien.append(
+            TinDang.phuong_xa_id.in_(select(PhuongXa.id).where(PhuongXa.quan_huyen_id == quan_huyen_id))
+        )
+    elif tinh_thanh_id is not None:
+        dieu_kien.append(
+            TinDang.phuong_xa_id.in_(
+                select(PhuongXa.id)
+                .join(QuanHuyen, PhuongXa.quan_huyen_id == QuanHuyen.id)
+                .where(QuanHuyen.tinh_thanh_id == tinh_thanh_id)
+            )
+        )
+
+    bo_loc = and_(*dieu_kien)
 
     total = db.query(func.count(TinDang.id)).filter(bo_loc).scalar() or 0
 
