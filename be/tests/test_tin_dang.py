@@ -1,8 +1,51 @@
-from fastapi.testclient import TestClient
+import uuid
 
+from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
+
+from app.db.session import SessionLocal
 from app.main import app
+from app.models import LoaiBatDongSan, NguoiDung, PhuongXa, TinDang
+from app.models.enums import TrangThaiTinDang
 
 client = TestClient(app)
+
+
+def _tao_tin_dang_voi_trang_thai(tieu_de: str, trang_thai: TrangThaiTinDang) -> int:
+    db: Session = SessionLocal()
+    try:
+        admin = db.query(NguoiDung).first()
+        loai = db.query(LoaiBatDongSan).first()
+        phuong = db.query(PhuongXa).first()
+
+        tin = TinDang(
+            tieu_de=tieu_de,
+            mo_ta="Tin đăng dùng để kiểm thử lọc trạng thái",
+            gia_thue=3_000_000,
+            dien_tich=25,
+            dia_chi_chi_tiet="Địa chỉ kiểm thử",
+            loai_bat_dong_san_id=loai.id,
+            phuong_xa_id=phuong.id,
+            nguoi_dang_id=admin.id,
+            ten_nguoi_lien_he="Người kiểm thử",
+            so_dien_thoai_lien_he="0900000000",
+            trang_thai=trang_thai,
+        )
+        db.add(tin)
+        db.commit()
+        db.refresh(tin)
+        return tin.id
+    finally:
+        db.close()
+
+
+def _xoa_tin_dang(*id_list: int) -> None:
+    db: Session = SessionLocal()
+    try:
+        db.query(TinDang).filter(TinDang.id.in_(id_list)).delete(synchronize_session=False)
+        db.commit()
+    finally:
+        db.close()
 
 
 def test_danh_sach_tin_dang_tra_ve_key_dang_camelcase() -> None:
@@ -173,3 +216,35 @@ def test_chi_tiet_tin_dang_khong_ton_tai_tra_ve_404() -> None:
     response = client.get("/api/rental-posts/999999999")
 
     assert response.status_code == 404
+
+
+def test_danh_sach_tin_dang_chi_tra_ve_tin_da_duyet() -> None:
+    marker = f"KiemThuTrangThai-{uuid.uuid4().hex[:8]}"
+    id_list = []
+    try:
+        id_duoc_duyet = _tao_tin_dang_voi_trang_thai(f"{marker} đã duyệt", TrangThaiTinDang.DA_DUYET)
+        id_list.append(id_duoc_duyet)
+        for trang_thai in (
+            TrangThaiTinDang.CHO_DUYET,
+            TrangThaiTinDang.BI_KHOA,
+            TrangThaiTinDang.AN,
+            TrangThaiTinDang.DA_XOA,
+        ):
+            id_list.append(_tao_tin_dang_voi_trang_thai(f"{marker} {trang_thai.value}", trang_thai))
+
+        response = client.get("/api/rental-posts", params={"q": marker, "page_size": 50})
+
+        assert response.status_code == 200
+        body = response.json()
+        assert body["total"] == 1
+        assert [item["id"] for item in body["items"]] == [id_duoc_duyet]
+    finally:
+        _xoa_tin_dang(*id_list)
+
+
+def test_danh_sach_tin_dang_sap_xep_theo_ngay_dang_moi_nhat() -> None:
+    response = client.get("/api/rental-posts", params={"page_size": 50})
+
+    assert response.status_code == 200
+    ngay_dang_list = [item["ngayDang"] for item in response.json()["items"]]
+    assert ngay_dang_list == sorted(ngay_dang_list, reverse=True)
