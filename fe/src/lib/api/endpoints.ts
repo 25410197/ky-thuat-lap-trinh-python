@@ -8,6 +8,8 @@ export const endpoints = {
   rentalPosts: {
     list: "/rental-posts",
     detail: (id: string) => `/rental-posts/${id}`,
+    update: (id: string) => `/rental-posts/${id}`,
+    edit: (id: string) => `/rental-posts/${id}/chinh-sua`,
     mine: "/rental-posts/me",
   },
   danhMuc: {

@@ -5,6 +5,7 @@ export const ROUTES = {
   dangNhap: "/dang-nhap",
   dangKy: "/dang-ky",
   tinDangCuaToi: "/tin-dang-cua-toi",
+  suaTinDang: (id: string) => `/tin-dang-cua-toi/${id}/chinh-sua`,
   dangTin: "/dang-tin",
   yeuThich: "/yeu-thich",
   quanTri: "/quan-tri",

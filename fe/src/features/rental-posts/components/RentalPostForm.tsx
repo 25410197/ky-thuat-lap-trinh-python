@@ -72,8 +72,10 @@ function FormSection({
   );
 }
 
-export function RentalPostForm() {
+export function RentalPostForm({ postId }: { postId?: string }) {
+  const isEditMode = Boolean(postId);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingTinCu, setIsLoadingTinCu] = useState(isEditMode);
   const router = useRouter();
   const form = useForm<RentalPostInput>({
     initialValues: {
@@ -114,6 +116,23 @@ export function RentalPostForm() {
       .then(setDanhSachTinh)
       .catch(() => setDanhSachTinh([]));
   }, []);
+
+  useEffect(() => {
+    if (!postId) return;
+    rentalPostsApi
+      .getForEdit(postId)
+      .then((tinCu) => {
+        const { status: _status, ...values } = tinCu as RentalPostInput & { status?: string };
+        form.setValues(values);
+      })
+      .catch(() => {
+        notifications.show({ color: "red", message: "Không tải được dữ liệu tin đăng để chỉnh sửa!" });
+      })
+      .finally(() => {
+        setIsLoadingTinCu(false);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postId]);
 
   useEffect(() => {
     if (!form.values.provinceId) {
@@ -189,26 +208,30 @@ export function RentalPostForm() {
 
   const handleSubmit = form.onSubmit((values) => {
     setIsLoading(true);
-    rentalPostsApi
-      .create(values)
-      .then((res) => {
+    const luuTin = isEditMode && postId ? rentalPostsApi.update(postId, values) : rentalPostsApi.create(values);
+    luuTin
+      .then(() => {
         notifications.show({
           color: "green",
-          title: "Đăng tin thành công!",
+          title: isEditMode ? "Cập nhật tin đăng thành công!" : "Đăng tin thành công!",
           message: "Tin của bạn đang chờ quản trị viên duyệt.",
         });
         router.push("/tin-dang-cua-toi");
       })
-      .catch((err) => {
+      .catch(() => {
         notifications.show({
           color: "red",
-          message: "Có lỗi xảy ra khi đăng tin!",
+          message: isEditMode ? "Có lỗi xảy ra khi cập nhật tin đăng!" : "Có lỗi xảy ra khi đăng tin!",
         });
       })
       .finally(() => {
         setIsLoading(false);
       });
   });
+
+  if (isLoadingTinCu) {
+    return <Text ta="center">Đang tải dữ liệu tin đăng...</Text>;
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -573,7 +596,7 @@ export function RentalPostForm() {
 
             <Stack gap={12}>
               <AppButton type="submit" size="lg" fullWidth loading={isLoading}>
-                Đăng tin ngay
+                {isEditMode ? "Lưu thay đổi" : "Đăng tin ngay"}
               </AppButton>
               <AppButton
                 variant="outline"

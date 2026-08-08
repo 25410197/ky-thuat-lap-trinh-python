@@ -95,6 +95,8 @@ export function MyListingsTable() {
               <Table.Td>
                 <Group gap={8} justify="flex-end">
                   <ActionIcon
+                    component={Link}
+                    href={ROUTES.suaTinDang(post.id)}
                     variant="subtle"
                     color="brand"
                     aria-label="Sửa tin đăng"

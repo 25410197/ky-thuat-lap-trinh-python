@@ -41,6 +41,17 @@ export const rentalPostsApi = {
       anhPhu: galleryImages,
     });
   },
+  getForEdit: (id: string) =>
+    apiClient.get<RentalPostInput & { status: string }>(endpoints.rentalPosts.edit(id)),
+  update: (id: string, data: RentalPostInput) => {
+    const { provinceId: _provinceId, wardId, coverImage, galleryImages, ...rest } = data;
+    return apiClient.put<{ message: string; id: number }>(endpoints.rentalPosts.update(id), {
+      ...rest,
+      phuongXaMoiId: Number(wardId),
+      anhChinh: coverImage,
+      anhPhu: galleryImages,
+    });
+  },
   uploadImages: (files: File[]) => {
     const formData = new FormData();
     files.forEach((file) => formData.append("files", file));

@@ -16,9 +16,32 @@ from app.models import (
     phuong_xa_anh_xa,
 )
 from app.models.enums import TrangThaiTinDang, PhuongThucLienHe
-from app.schemas.tin_dang import DanhSachTinDang, TinDangTomTat, TinDangCuaToiResponse, DangTinRequest, TinDangChiTiet
+from app.schemas.tin_dang import (
+    DanhSachTinDang,
+    TinDangTomTat,
+    TinDangCuaToiResponse,
+    DangTinRequest,
+    TinDangChiTiet,
+    TinDangSuaResponse,
+)
 
 router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
+
+_TRANG_THAI_SANG_STATUS_EN = {
+    TrangThaiTinDang.CHO_DUYET: "pending",
+    TrangThaiTinDang.DA_DUYET: "published",
+    TrangThaiTinDang.BI_KHOA: "rejected",
+    TrangThaiTinDang.AN: "archived",
+    TrangThaiTinDang.DA_XOA: "deleted",
+}
+
+
+def _kiem_tra_chu_tin(tin: TinDang, nguoi_dung: NguoiDung) -> None:
+    if tin.nguoi_dang_id != nguoi_dung.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Bạn không có quyền chỉnh sửa tin đăng này.",
+        )
 
 
 @router.get("", response_model=DanhSachTinDang)
@@ -138,14 +161,7 @@ def danh_sach_tin_dang_cua_toi(
 
     ket_qua = []
     for tin in rows:
-        status_map = {
-            "cho_duyet": "pending",
-            "da_duyet": "published",
-            "bi_khoa": "rejected",
-            "an": "archived",
-            "da_xoa": "archived"
-        }
-        status_en = status_map.get(tin.trang_thai, "pending")
+        status_en = _TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending")
 
         anh_dai_dien = next((anh.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien), None)
         if not anh_dai_dien and tin.hinh_anh:
@@ -243,6 +259,141 @@ def tao_tin_dang_moi(
     db.commit()
 
     return {"message": "Đăng tin thành công!", "id": tin_moi.id}
+
+
+@router.get("/{tin_dang_id}/chinh-sua", response_model=TinDangSuaResponse)
+def lay_tin_dang_de_sua(
+    tin_dang_id: int,
+    db: Session = Depends(get_db),
+    nguoi_dung: NguoiDung = Depends(get_current_user),
+) -> TinDangSuaResponse:
+    tin = (
+        db.query(TinDang)
+        .options(
+            joinedload(TinDang.loai_bat_dong_san),
+            joinedload(TinDang.phuong_xa).joinedload(PhuongXa.xa_phuong_moi),
+            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.tien_ich),
+        )
+        .filter(TinDang.id == tin_dang_id)
+        .first()
+    )
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    _kiem_tra_chu_tin(tin, nguoi_dung)
+
+    anh_sap_xep = sorted(tin.hinh_anh, key=lambda anh: (not anh.la_anh_dai_dien, anh.thu_tu_hien_thi))
+    anh_chinh = next(
+        (anh.duong_dan_anh for anh in anh_sap_xep if anh.la_anh_dai_dien),
+        anh_sap_xep[0].duong_dan_anh if anh_sap_xep else "",
+    )
+    anh_phu = [anh.duong_dan_anh for anh in anh_sap_xep if not anh.la_anh_dai_dien]
+
+    # Tin đăng lưu theo địa giới CŨ (phuong_xa_id) — quy đổi ngược sang xã/phường MỚI để đổ vào form.
+    xa_moi = tin.phuong_xa.xa_phuong_moi[0] if tin.phuong_xa.xa_phuong_moi else None
+
+    return TinDangSuaResponse(
+        id=tin.id,
+        title=tin.tieu_de,
+        propertyType=tin.loai_bat_dong_san.ten,
+        areaM2=float(tin.dien_tich),
+        priceVnd=float(tin.gia_thue),
+        provinceId=str(xa_moi.tinh_thanh_id) if xa_moi else "",
+        wardId=str(xa_moi.id) if xa_moi else "",
+        address=tin.dia_chi_chi_tiet,
+        description=tin.mo_ta,
+        coverImage=anh_chinh,
+        galleryImages=anh_phu,
+        amenities=[tien_ich.ten for tien_ich in tin.tien_ich],
+        contactName=tin.ten_nguoi_lien_he,
+        contactPhone=tin.so_dien_thoai_lien_he,
+        contactMethod="call" if tin.phuong_thuc_lien_he_uu_tien == PhuongThucLienHe.GOI_DIEN else "zalo",
+        bedrooms=tin.phong_ngu,
+        bathrooms=tin.phong_tam,
+        status=_TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending"),
+    )
+
+
+@router.put("/{tin_dang_id}")
+def cap_nhat_tin_dang(
+    tin_dang_id: int,
+    du_lieu: DangTinRequest,
+    db: Session = Depends(get_db),
+    nguoi_dung: NguoiDung = Depends(get_current_user),
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    _kiem_tra_chu_tin(tin, nguoi_dung)
+
+    loai_bds = db.query(LoaiBatDongSan).filter(LoaiBatDongSan.ten == du_lieu.propertyType).first()
+    if not loai_bds:
+        loai_bds = LoaiBatDongSan(ten=du_lieu.propertyType)
+        db.add(loai_bds)
+        db.flush()
+
+    xa_moi = db.get(PhuongXaMoi, du_lieu.phuongXaMoiId)
+    if xa_moi is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy xã/phường.")
+    if not xa_moi.phuong_xa_cu:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Xã/phường này chưa có dữ liệu địa giới tương ứng, vui lòng chọn xã/phường khác.",
+        )
+    phuong = xa_moi.phuong_xa_cu[0]
+
+    danh_sach_tien_ich = []
+    for ten_ti in du_lieu.amenities:
+        ti = db.query(TienIch).filter(TienIch.ten == ten_ti).first()
+        if not ti:
+            ti = TienIch(ten=ten_ti)
+            db.add(ti)
+            db.flush()
+        danh_sach_tien_ich.append(ti)
+
+    phuong_thuc = PhuongThucLienHe.GOI_DIEN if du_lieu.contactMethod == "call" else PhuongThucLienHe.NHAN_TIN
+
+    tin.tieu_de = du_lieu.title
+    tin.mo_ta = du_lieu.description
+    tin.gia_thue = du_lieu.priceVnd
+    tin.dien_tich = du_lieu.areaM2
+    tin.phong_ngu = du_lieu.bedrooms
+    tin.phong_tam = du_lieu.bathrooms
+    tin.dia_chi_chi_tiet = du_lieu.address
+    tin.loai_bat_dong_san_id = loai_bds.id
+    tin.phuong_xa_id = phuong.id
+    tin.ten_nguoi_lien_he = du_lieu.contactName
+    tin.so_dien_thoai_lien_he = du_lieu.contactPhone
+    tin.phuong_thuc_lien_he_uu_tien = phuong_thuc
+    tin.tien_ich = danh_sach_tien_ich
+
+    # Tin đã duyệt mà bị sửa nội dung thì phải duyệt lại từ đầu.
+    if tin.trang_thai == TrangThaiTinDang.DA_DUYET:
+        tin.trang_thai = TrangThaiTinDang.CHO_DUYET
+
+    tin.hinh_anh.clear()
+    db.flush()
+    db.add(
+        HinhAnhTinDang(
+            tin_dang_id=tin.id,
+            duong_dan_anh=du_lieu.anhChinh,
+            thu_tu_hien_thi=0,
+            la_anh_dai_dien=True,
+        )
+    )
+    for i, url in enumerate(du_lieu.anhPhu, start=1):
+        db.add(
+            HinhAnhTinDang(
+                tin_dang_id=tin.id,
+                duong_dan_anh=url,
+                thu_tu_hien_thi=i,
+                la_anh_dai_dien=False,
+            )
+        )
+
+    db.commit()
+
+    return {"message": "Cập nhật tin đăng thành công!", "id": tin.id}
 
 
 @router.get("/{tin_dang_id}", response_model=TinDangChiTiet)

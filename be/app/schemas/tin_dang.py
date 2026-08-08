@@ -63,6 +63,29 @@ class DangTinRequest(BaseModel):
     bathrooms: int
 
 
+class TinDangSuaResponse(BaseModel):
+    """Dữ liệu để đổ vào form chỉnh sửa — chỉ chủ tin mới xem được, không phụ thuộc trạng thái duyệt."""
+
+    id: int
+    title: str
+    propertyType: str
+    areaM2: float
+    priceVnd: float
+    provinceId: str
+    wardId: str
+    address: str
+    description: str
+    coverImage: str
+    galleryImages: list[str] = []
+    amenities: list[str]
+    contactName: str
+    contactPhone: str
+    contactMethod: str
+    bedrooms: int
+    bathrooms: int
+    status: str
+
+
 class TinDangChiTiet(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
