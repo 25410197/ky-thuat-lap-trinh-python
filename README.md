@@ -104,3 +104,8 @@ docker compose -f infra/compose.dev.yaml down
 
 - Sơ đồ ERD (bảng, field, quan hệ): `be/docs/erd.md`.
 - Hướng dẫn kết nối DBeaver tới PostgreSQL: `be/docs/setup-dbeaver.md`.
+
+Đăng nhập MinIO Console tại http://localhost:9001 bằng:
+
+- Username: minioadmin
+- Password: minioadmin

@@ -50,11 +50,11 @@ class DangTinRequest(BaseModel):
     propertyType: str
     areaM2: float
     priceVnd: float
-    province: str
-    ward: str
+    phuongXaMoiId: int
     address: str
     description: str
-    images: list[str] = []
+    anhChinh: str
+    anhPhu: list[str] = []
     amenities: list[str]
     contactName: str
     contactPhone: str

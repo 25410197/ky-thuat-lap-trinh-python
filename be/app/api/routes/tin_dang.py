@@ -181,23 +181,15 @@ def tao_tin_dang_moi(
         db.add(loai_bds)
         db.flush()
 
-    tinh = db.query(TinhThanh).filter(TinhThanh.ten == du_lieu.province).first()
-    if not tinh:
-        tinh = TinhThanh(ten=du_lieu.province)
-        db.add(tinh)
-        db.flush()
-        
-    quan = db.query(QuanHuyen).filter(QuanHuyen.ten == f"Trực thuộc {du_lieu.province}", QuanHuyen.tinh_thanh_id == tinh.id).first()
-    if not quan:
-        quan = QuanHuyen(ten=f"Trực thuộc {du_lieu.province}", tinh_thanh_id=tinh.id)
-        db.add(quan)
-        db.flush()
-
-    phuong = db.query(PhuongXa).filter(PhuongXa.ten == du_lieu.ward, PhuongXa.quan_huyen_id == quan.id).first()
-    if not phuong:
-        phuong = PhuongXa(ten=du_lieu.ward, quan_huyen_id=quan.id)
-        db.add(phuong)
-        db.flush()
+    xa_moi = db.get(PhuongXaMoi, du_lieu.phuongXaMoiId)
+    if xa_moi is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy xã/phường.")
+    if not xa_moi.phuong_xa_cu:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Xã/phường này chưa có dữ liệu địa giới tương ứng, vui lòng chọn xã/phường khác.",
+        )
+    phuong = xa_moi.phuong_xa_cu[0]
 
     danh_sach_tien_ich = []
     for ten_ti in du_lieu.amenities:
@@ -230,14 +222,23 @@ def tao_tin_dang_moi(
     db.add(tin_moi)
     db.flush()
 
-    for i, url in enumerate(du_lieu.images):
-        anh = HinhAnhTinDang(
+    db.add(
+        HinhAnhTinDang(
             tin_dang_id=tin_moi.id,
-            duong_dan_anh=url,
-            thu_tu_hien_thi=i,
-            la_anh_dai_dien=(i == 0)
+            duong_dan_anh=du_lieu.anhChinh,
+            thu_tu_hien_thi=0,
+            la_anh_dai_dien=True,
         )
-        db.add(anh)
+    )
+    for i, url in enumerate(du_lieu.anhPhu, start=1):
+        db.add(
+            HinhAnhTinDang(
+                tin_dang_id=tin_moi.id,
+                duong_dan_anh=url,
+                thu_tu_hien_thi=i,
+                la_anh_dai_dien=False,
+            )
+        )
         
     db.commit()
 
