@@ -22,8 +22,10 @@ import { IconCloudUpload, IconPhoto, IconUpload, IconX, IconTrash } from "@table
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { Image, Group } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { rentalPostsApi } from "../api/rental-posts.api";
+import { danhMucApi } from "../api/danh-muc.api";
+import type { PhuongXaMoi, TinhThanh } from "@/types/danh-muc";
 import {
   rentalPostSchema,
   type RentalPostInput,
@@ -36,13 +38,7 @@ const PROPERTY_TYPES = [
   "Phòng trọ",
   "Văn phòng",
 ];
-const PROVINCES = [
-  "Hà Nội",
-  "TP. Hồ Chí Minh",
-  "Đà Nẵng",
-  "Cần Thơ",
-  "Hải Phòng",
-];
+const SO_ANH_PHU_TOI_DA = 19;
 const AMENITIES = [
   "WiFi Miễn phí",
   "Chỗ đậu xe",
@@ -85,11 +81,12 @@ export function RentalPostForm() {
       propertyType: "",
       areaM2: 0,
       priceVnd: 0,
-      province: "",
-      ward: "",
+      provinceId: "",
+      wardId: "",
       address: "",
       description: "",
-      images: [],
+      coverImage: "",
+      galleryImages: [],
       amenities: [],
       contactName: "",
       contactPhone: "",
@@ -108,28 +105,86 @@ export function RentalPostForm() {
     },
   });
 
-  const [isUploading, setIsUploading] = useState(false);
+  const [danhSachTinh, setDanhSachTinh] = useState<TinhThanh[]>([]);
+  const [danhSachXaPhuong, setDanhSachXaPhuong] = useState<PhuongXaMoi[]>([]);
 
-  const handleDropFiles = (files: File[]) => {
-    setIsUploading(true);
+  useEffect(() => {
+    danhMucApi
+      .tinhThanh()
+      .then(setDanhSachTinh)
+      .catch(() => setDanhSachTinh([]));
+  }, []);
+
+  useEffect(() => {
+    if (!form.values.provinceId) {
+      setDanhSachXaPhuong([]);
+      return;
+    }
+    danhMucApi
+      .xaPhuongMoi(Number(form.values.provinceId))
+      .then(setDanhSachXaPhuong)
+      .catch(() => setDanhSachXaPhuong([]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.values.provinceId]);
+
+  const [isUploadingCover, setIsUploadingCover] = useState(false);
+  const [isUploadingGallery, setIsUploadingGallery] = useState(false);
+
+  const handleDropCoverImage = (files: File[]) => {
+    const file = files[0];
+    if (!file) return;
+    setIsUploadingCover(true);
     rentalPostsApi
-      .uploadImages(files)
+      .uploadImages([file])
       .then((res) => {
-        const currentImages = form.values.images || [];
-        form.setFieldValue("images", [...currentImages, ...res.urls]);
-        notifications.show({ color: "green", message: "Đã tải ảnh thành công!" });
+        form.setFieldValue("coverImage", res.urls[0]);
+        notifications.show({ color: "green", message: "Đã tải ảnh chính thành công!" });
       })
-      .catch((err) => {
-        notifications.show({ color: "red", message: "Tải ảnh thất bại!" });
+      .catch(() => {
+        notifications.show({ color: "red", message: "Tải ảnh chính thất bại!" });
       })
       .finally(() => {
-        setIsUploading(false);
+        setIsUploadingCover(false);
       });
   };
 
-  const handleRemoveImage = (indexToRemove: number) => {
-    const currentImages = form.values.images || [];
-    form.setFieldValue("images", currentImages.filter((_, idx) => idx !== indexToRemove));
+  const handleRemoveCoverImage = () => {
+    form.setFieldValue("coverImage", "");
+  };
+
+  const handleDropGalleryFiles = (files: File[]) => {
+    const soConTrong = SO_ANH_PHU_TOI_DA - (form.values.galleryImages?.length || 0);
+    const filesHopLe = files.slice(0, soConTrong);
+    if (filesHopLe.length < files.length) {
+      notifications.show({
+        color: "yellow",
+        message: `Chỉ nhận thêm được ${filesHopLe.length} ảnh (tối đa ${SO_ANH_PHU_TOI_DA} ảnh phụ).`,
+      });
+    }
+    if (filesHopLe.length === 0) return;
+
+    setIsUploadingGallery(true);
+    rentalPostsApi
+      .uploadImages(filesHopLe)
+      .then((res) => {
+        const currentImages = form.values.galleryImages || [];
+        form.setFieldValue("galleryImages", [...currentImages, ...res.urls]);
+        notifications.show({ color: "green", message: "Đã tải ảnh thành công!" });
+      })
+      .catch(() => {
+        notifications.show({ color: "red", message: "Tải ảnh thất bại!" });
+      })
+      .finally(() => {
+        setIsUploadingGallery(false);
+      });
+  };
+
+  const handleRemoveGalleryImage = (indexToRemove: number) => {
+    const currentImages = form.values.galleryImages || [];
+    form.setFieldValue(
+      "galleryImages",
+      currentImages.filter((_, idx) => idx !== indexToRemove),
+    );
   };
 
   const handleSubmit = form.onSubmit((values) => {
@@ -227,15 +282,25 @@ export function RentalPostForm() {
                   <AppSelect
                     label="Tỉnh / Thành phố"
                     placeholder="Chọn Tỉnh/Thành"
-                    data={PROVINCES}
-                    {...form.getInputProps("province")}
+                    data={danhSachTinh.map((tinh) => ({ value: String(tinh.id), label: tinh.ten }))}
+                    searchable
+                    nothingFoundMessage="Không tìm thấy"
+                    {...form.getInputProps("provinceId")}
+                    onChange={(value) => {
+                      form.setFieldValue("provinceId", value ?? "");
+                      form.setFieldValue("wardId", "");
+                    }}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, sm: 6 }}>
-                  <AppInput
+                  <AppSelect
                     label="Phường / Xã"
-                    placeholder="Chọn Phường/Xã"
-                    {...form.getInputProps("ward")}
+                    placeholder={form.values.provinceId ? "Chọn Phường/Xã" : "Chọn tỉnh/thành trước"}
+                    data={danhSachXaPhuong.map((xa) => ({ value: String(xa.id), label: xa.ten }))}
+                    disabled={!form.values.provinceId}
+                    searchable
+                    nothingFoundMessage="Không tìm thấy"
+                    {...form.getInputProps("wardId")}
                   />
                 </Grid.Col>
                 <Grid.Col span={12}>
@@ -278,17 +343,95 @@ export function RentalPostForm() {
             </FormSection>
 
             <FormSection title="Hình ảnh tài sản">
+              <Text size="sm" fw={700} tt="uppercase" c="dimmed" mb={12}>
+                Ảnh chính (ảnh đại diện)
+              </Text>
+              {form.values.coverImage ? (
+                <Box
+                  pos="relative"
+                  maw={280}
+                  style={{
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  <Image
+                    src={form.values.coverImage}
+                    radius="md"
+                    style={{ aspectRatio: "4/3" }}
+                    fit="cover"
+                    alt="Ảnh đại diện"
+                  />
+                  <ActionIcon
+                    variant="white"
+                    color="red"
+                    size="md"
+                    radius="xl"
+                    pos="absolute"
+                    top={4}
+                    right={4}
+                    onClick={handleRemoveCoverImage}
+                    style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
+                  >
+                    <IconTrash size={16} stroke={2} />
+                  </ActionIcon>
+                </Box>
+              ) : (
+                <Dropzone
+                  onDrop={handleDropCoverImage}
+                  accept={IMAGE_MIME_TYPE}
+                  maxSize={5 * 1024 ** 2}
+                  maxFiles={1}
+                  loading={isUploadingCover}
+                  style={{
+                    border: form.errors.coverImage ? "1px solid red" : "2px dashed var(--color-brand-muted)",
+                    padding: "32px",
+                    borderRadius: "8px",
+                    textAlign: "center",
+                  }}
+                >
+                  <Group justify="center" gap="xl" style={{ minHeight: 100, pointerEvents: "none" }}>
+                    <Dropzone.Accept>
+                      <IconUpload size={40} color="var(--mantine-color-blue-6)" stroke={1.5} />
+                    </Dropzone.Accept>
+                    <Dropzone.Reject>
+                      <IconX size={40} color="var(--mantine-color-red-6)" stroke={1.5} />
+                    </Dropzone.Reject>
+                    <Dropzone.Idle>
+                      <IconPhoto size={40} color="var(--mantine-color-dimmed)" stroke={1.5} />
+                    </Dropzone.Idle>
+                    <Box>
+                      <Text size="lg" inline c="var(--color-brand)" fw={600} mb={4}>
+                        Kéo thả ảnh chính vào đây
+                      </Text>
+                      <Text size="sm" c="dimmed" inline>
+                        Hoặc click để chọn từ thiết bị (Tối đa 5MB)
+                      </Text>
+                    </Box>
+                  </Group>
+                </Dropzone>
+              )}
+              {form.errors.coverImage && (
+                <Text c="red" size="sm" mt={8}>
+                  {form.errors.coverImage}
+                </Text>
+              )}
+
+              <Text size="sm" fw={700} tt="uppercase" c="dimmed" mt={32} mb={12}>
+                Ảnh phụ
+              </Text>
               <Text size="sm" c="dimmed" mb={16}>
-                Tải lên tối đa 20 hình ảnh. Hình ảnh đầu tiên sẽ được dùng làm
-                ảnh đại diện. Khuyến nghị sử dụng ảnh ngang, độ phân giải cao.
+                Tải lên tối đa {SO_ANH_PHU_TOI_DA} hình ảnh phụ, không tính ảnh chính.
               </Text>
               <Dropzone
-                onDrop={handleDropFiles}
+                onDrop={handleDropGalleryFiles}
                 accept={IMAGE_MIME_TYPE}
                 maxSize={5 * 1024 ** 2}
-                loading={isUploading}
+                loading={isUploadingGallery}
+                disabled={(form.values.galleryImages?.length || 0) >= SO_ANH_PHU_TOI_DA}
                 style={{
-                  border: form.errors.images ? "1px solid red" : "2px dashed var(--color-brand-muted)",
+                  border: "2px dashed var(--color-brand-muted)",
                   padding: "40px",
                   borderRadius: "8px",
                   textAlign: "center"
@@ -304,7 +447,7 @@ export function RentalPostForm() {
                   <Dropzone.Idle>
                     <IconPhoto size={50} color="var(--mantine-color-dimmed)" stroke={1.5} />
                   </Dropzone.Idle>
-                  
+
                   <Box>
                     <Text size="xl" inline c="var(--color-brand)" fw={600} mb={8}>
                       Kéo thả ảnh vào đây
@@ -315,23 +458,18 @@ export function RentalPostForm() {
                   </Box>
                 </Group>
               </Dropzone>
-              {form.errors.images && (
-                <Text c="red" size="sm" mt={8}>
-                  {form.errors.images}
-                </Text>
-              )}
-              {form.values.images && form.values.images.length > 0 && (
+              {form.values.galleryImages && form.values.galleryImages.length > 0 && (
                 <Box mt={24}>
                   <Text size="sm" fw={600} mb={12} c="var(--color-brand)">
-                    Ảnh đã tải lên ({form.values.images.length}/20)
+                    Ảnh phụ đã tải lên ({form.values.galleryImages.length}/{SO_ANH_PHU_TOI_DA})
                   </Text>
                   <SimpleGrid cols={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="sm">
-                    {form.values.images.map((url, index) => (
-                      <Box 
-                        key={index} 
-                        pos="relative" 
-                        style={{ 
-                          borderRadius: '8px', 
+                    {form.values.galleryImages.map((url, index) => (
+                      <Box
+                        key={index}
+                        pos="relative"
+                        style={{
+                          borderRadius: '8px',
                           overflow: 'hidden',
                           boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                           transition: 'all 0.2s ease',
@@ -346,38 +484,22 @@ export function RentalPostForm() {
                           e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
                         }}
                       >
-                        <Image 
-                          src={`http://localhost:8000${url}`} 
-                          radius="md" 
+                        <Image
+                          src={url}
+                          radius="md"
                           style={{ aspectRatio: '4/3' }}
-                          fit="cover" 
-                          alt={`Ảnh nhà ${index + 1}`}
+                          fit="cover"
+                          alt={`Ảnh phụ ${index + 1}`}
                         />
-                        {/* Lớp phủ mờ phía trên để chữ dễ đọc */}
-                        <Box 
-                          pos="absolute" 
-                          top={0} 
-                          left={0} 
-                          right={0} 
-                          h={60} 
-                          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)', pointerEvents: 'none' }} 
-                        />
-                        
-                        {index === 0 && (
-                          <Box pos="absolute" bottom={6} left={6} bg="var(--color-brand)" c="white" px={6} py={2} style={{ borderRadius: 4, fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
-                            Ảnh đại diện
-                          </Box>
-                        )}
-                        
-                        <ActionIcon 
-                          variant="white" 
-                          color="red" 
-                          size="md" 
+                        <ActionIcon
+                          variant="white"
+                          color="red"
+                          size="md"
                           radius="xl"
-                          pos="absolute" 
-                          top={4} 
+                          pos="absolute"
+                          top={4}
                           right={4}
-                          onClick={() => handleRemoveImage(index)}
+                          onClick={() => handleRemoveGalleryImage(index)}
                           style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.15)', transition: 'transform 0.1s' }}
                           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                           onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}

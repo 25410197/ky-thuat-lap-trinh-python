@@ -34,6 +34,12 @@ class Settings:
     jwt_secret_key: str
     jwt_algorithm: str
     jwt_access_token_expire_minutes: int
+    minio_endpoint: str
+    minio_public_endpoint: str
+    minio_use_ssl: bool
+    minio_access_key: str
+    minio_secret_key: str
+    minio_bucket: str
 
     @property
     def database_url(self) -> str:
@@ -58,4 +64,10 @@ def get_settings() -> Settings:
         jwt_secret_key=os.getenv("JWT_SECRET_KEY", "dev-secret-key-change-me"),
         jwt_algorithm=os.getenv("JWT_ALGORITHM", "HS256"),
         jwt_access_token_expire_minutes=int(os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", str(60 * 24 * 7))),
+        minio_endpoint=os.getenv("MINIO_ENDPOINT", "localhost:9000"),
+        minio_public_endpoint=os.getenv("MINIO_PUBLIC_ENDPOINT", "localhost:9000"),
+        minio_use_ssl=os.getenv("MINIO_USE_SSL", "false").lower() == "true",
+        minio_access_key=os.getenv("MINIO_ROOT_USER", "minioadmin"),
+        minio_secret_key=os.getenv("MINIO_ROOT_PASSWORD", "minioadmin"),
+        minio_bucket=os.getenv("MINIO_BUCKET", "app-files"),
     )

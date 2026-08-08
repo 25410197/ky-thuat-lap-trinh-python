@@ -33,10 +33,13 @@ export const rentalPostsApi = {
     return apiClient.get<RentalPost[]>(endpoints.rentalPosts.mine);
   },
   create: (data: RentalPostInput) => {
-    return apiClient.post<{ message: string; id: number }>(
-      endpoints.rentalPosts.list,
-      data,
-    );
+    const { provinceId: _provinceId, wardId, coverImage, galleryImages, ...rest } = data;
+    return apiClient.post<{ message: string; id: number }>(endpoints.rentalPosts.list, {
+      ...rest,
+      phuongXaMoiId: Number(wardId),
+      anhChinh: coverImage,
+      anhPhu: galleryImages,
+    });
   },
   uploadImages: (files: File[]) => {
     const formData = new FormData();
