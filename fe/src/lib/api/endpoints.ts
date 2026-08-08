@@ -18,6 +18,10 @@ export const endpoints = {
     quanHuyen: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/quan-huyen`,
     xaPhuongMoi: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/xa-phuong-moi`,
   },
+  imageLibrary: {
+    list: "/image-library",
+    detail: (id: number) => `/image-library/${id}`,
+  },
   favorites: {
     list: "/favorites",
     toggle: (rentalPostId: string) => `/favorites/${rentalPostId}`,

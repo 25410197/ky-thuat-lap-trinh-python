@@ -26,6 +26,7 @@ from app.core.config import get_settings
 from app.core.security import hash_password
 from app.db.session import SessionLocal
 from app.models import (
+    AnhThuVien,
     BaoCao,
     HinhAnhTinDang,
     LoaiBatDongSan,
@@ -167,6 +168,7 @@ def _xoa_du_lieu_cu(db: Session) -> None:
     db.query(BaoCao).delete()
     db.query(TinYeuThich).delete()
     db.query(HinhAnhTinDang).delete()
+    db.query(AnhThuVien).delete()
     db.execute(tin_dang_tien_ich.delete())
     db.query(TinDang).delete()
     db.execute(phuong_xa_anh_xa.delete())
@@ -306,10 +308,20 @@ def seed_tin_dang(
         db.flush()
 
         for thu_tu in range(2):
+            url = f"https://picsum.photos/seed/tin-dang-{tin_dang.id}-{thu_tu}/800/600"
+            anh_thu_vien = AnhThuVien(
+                nguoi_dung_id=nguoi_dang.id,
+                ten_doi_tuong=f"tin-dang-{tin_dang.id}-{thu_tu}.jpg",
+                duong_dan_anh=url,
+                ten_tep_goc=f"tin-dang-{tin_dang.id}-{thu_tu}.jpg",
+                dung_luong=0,
+            )
+            db.add(anh_thu_vien)
+            db.flush()
             db.add(
                 HinhAnhTinDang(
                     tin_dang_id=tin_dang.id,
-                    duong_dan_anh=f"https://picsum.photos/seed/tin-dang-{tin_dang.id}-{thu_tu}/800/600",
+                    anh_thu_vien_id=anh_thu_vien.id,
                     thu_tu_hien_thi=thu_tu,
                     la_anh_dai_dien=(thu_tu == 0),
                 )

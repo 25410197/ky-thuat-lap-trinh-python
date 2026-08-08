@@ -18,14 +18,14 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import { IconCloudUpload, IconPhoto, IconUpload, IconX, IconTrash } from "@tabler/icons-react";
-import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
-import { Image, Group } from "@mantine/core";
+import { IconPhoto, IconTrash } from "@tabler/icons-react";
+import { Image } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { rentalPostsApi } from "../api/rental-posts.api";
 import { danhMucApi } from "../api/danh-muc.api";
 import type { PhuongXaMoi, TinhThanh } from "@/types/danh-muc";
+import { ImageLibraryPickerModal } from "@/features/image-library/components/ImageLibraryPickerModal";
 import {
   rentalPostSchema,
   type RentalPostInput,
@@ -87,7 +87,7 @@ export function RentalPostForm({ postId }: { postId?: string }) {
       wardId: "",
       address: "",
       description: "",
-      coverImage: "",
+      coverImage: null,
       galleryImages: [],
       amenities: [],
       contactName: "",
@@ -98,11 +98,15 @@ export function RentalPostForm({ postId }: { postId?: string }) {
     },
     validate: (values) => {
       const parsed = rentalPostSchema.safeParse(values);
-      if (parsed.success) return {};
       const errors: Record<string, string> = {};
-      parsed.error.issues.forEach((issue) => {
-        errors[issue.path.join(".")] = issue.message;
-      });
+      if (!parsed.success) {
+        parsed.error.issues.forEach((issue) => {
+          errors[issue.path.join(".")] = issue.message;
+        });
+      }
+      if (!values.coverImage) {
+        errors.coverImage = "Vui lòng chọn ảnh chính";
+      }
       return errors;
     },
   });
@@ -146,56 +150,11 @@ export function RentalPostForm({ postId }: { postId?: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.values.provinceId]);
 
-  const [isUploadingCover, setIsUploadingCover] = useState(false);
-  const [isUploadingGallery, setIsUploadingGallery] = useState(false);
-
-  const handleDropCoverImage = (files: File[]) => {
-    const file = files[0];
-    if (!file) return;
-    setIsUploadingCover(true);
-    rentalPostsApi
-      .uploadImages([file])
-      .then((res) => {
-        form.setFieldValue("coverImage", res.urls[0]);
-        notifications.show({ color: "green", message: "Đã tải ảnh chính thành công!" });
-      })
-      .catch(() => {
-        notifications.show({ color: "red", message: "Tải ảnh chính thất bại!" });
-      })
-      .finally(() => {
-        setIsUploadingCover(false);
-      });
-  };
+  const [coverPickerOpened, setCoverPickerOpened] = useState(false);
+  const [galleryPickerOpened, setGalleryPickerOpened] = useState(false);
 
   const handleRemoveCoverImage = () => {
-    form.setFieldValue("coverImage", "");
-  };
-
-  const handleDropGalleryFiles = (files: File[]) => {
-    const soConTrong = SO_ANH_PHU_TOI_DA - (form.values.galleryImages?.length || 0);
-    const filesHopLe = files.slice(0, soConTrong);
-    if (filesHopLe.length < files.length) {
-      notifications.show({
-        color: "yellow",
-        message: `Chỉ nhận thêm được ${filesHopLe.length} ảnh (tối đa ${SO_ANH_PHU_TOI_DA} ảnh phụ).`,
-      });
-    }
-    if (filesHopLe.length === 0) return;
-
-    setIsUploadingGallery(true);
-    rentalPostsApi
-      .uploadImages(filesHopLe)
-      .then((res) => {
-        const currentImages = form.values.galleryImages || [];
-        form.setFieldValue("galleryImages", [...currentImages, ...res.urls]);
-        notifications.show({ color: "green", message: "Đã tải ảnh thành công!" });
-      })
-      .catch(() => {
-        notifications.show({ color: "red", message: "Tải ảnh thất bại!" });
-      })
-      .finally(() => {
-        setIsUploadingGallery(false);
-      });
+    form.setFieldValue("coverImage", null);
   };
 
   const handleRemoveGalleryImage = (indexToRemove: number) => {
@@ -380,7 +339,7 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                   }}
                 >
                   <Image
-                    src={form.values.coverImage}
+                    src={form.values.coverImage.url}
                     radius="md"
                     style={{ aspectRatio: "4/3" }}
                     fit="cover"
@@ -401,39 +360,30 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                   </ActionIcon>
                 </Box>
               ) : (
-                <Dropzone
-                  onDrop={handleDropCoverImage}
-                  accept={IMAGE_MIME_TYPE}
-                  maxSize={5 * 1024 ** 2}
-                  maxFiles={1}
-                  loading={isUploadingCover}
+                <Box
+                  component="button"
+                  type="button"
+                  onClick={() => setCoverPickerOpened(true)}
                   style={{
                     border: form.errors.coverImage ? "1px solid red" : "2px dashed var(--color-brand-muted)",
                     padding: "32px",
                     borderRadius: "8px",
                     textAlign: "center",
+                    width: "100%",
+                    background: "none",
+                    cursor: "pointer",
                   }}
                 >
-                  <Group justify="center" gap="xl" style={{ minHeight: 100, pointerEvents: "none" }}>
-                    <Dropzone.Accept>
-                      <IconUpload size={40} color="var(--mantine-color-blue-6)" stroke={1.5} />
-                    </Dropzone.Accept>
-                    <Dropzone.Reject>
-                      <IconX size={40} color="var(--mantine-color-red-6)" stroke={1.5} />
-                    </Dropzone.Reject>
-                    <Dropzone.Idle>
-                      <IconPhoto size={40} color="var(--mantine-color-dimmed)" stroke={1.5} />
-                    </Dropzone.Idle>
-                    <Box>
-                      <Text size="lg" inline c="var(--color-brand)" fw={600} mb={4}>
-                        Kéo thả ảnh chính vào đây
-                      </Text>
-                      <Text size="sm" c="dimmed" inline>
-                        Hoặc click để chọn từ thiết bị (Tối đa 5MB)
-                      </Text>
-                    </Box>
-                  </Group>
-                </Dropzone>
+                  <Stack align="center" gap="xs">
+                    <IconPhoto size={40} color="var(--mantine-color-dimmed)" stroke={1.5} />
+                    <Text size="lg" c="var(--color-brand)" fw={600}>
+                      Chọn ảnh chính từ thư viện
+                    </Text>
+                    <Text size="sm" c="dimmed">
+                      Chọn ảnh có sẵn hoặc tải ảnh mới ngay trong thư viện
+                    </Text>
+                  </Stack>
+                </Box>
               )}
               {form.errors.coverImage && (
                 <Text c="red" size="sm" mt={8}>
@@ -445,51 +395,25 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                 Ảnh phụ
               </Text>
               <Text size="sm" c="dimmed" mb={16}>
-                Tải lên tối đa {SO_ANH_PHU_TOI_DA} hình ảnh phụ, không tính ảnh chính.
+                Chọn tối đa {SO_ANH_PHU_TOI_DA} ảnh phụ từ thư viện, không tính ảnh chính.
               </Text>
-              <Dropzone
-                onDrop={handleDropGalleryFiles}
-                accept={IMAGE_MIME_TYPE}
-                maxSize={5 * 1024 ** 2}
-                loading={isUploadingGallery}
+              <AppButton
+                type="button"
+                variant="outline"
+                onClick={() => setGalleryPickerOpened(true)}
                 disabled={(form.values.galleryImages?.length || 0) >= SO_ANH_PHU_TOI_DA}
-                style={{
-                  border: "2px dashed var(--color-brand-muted)",
-                  padding: "40px",
-                  borderRadius: "8px",
-                  textAlign: "center"
-                }}
               >
-                <Group justify="center" gap="xl" style={{ minHeight: 120, pointerEvents: 'none' }}>
-                  <Dropzone.Accept>
-                    <IconUpload size={50} color="var(--mantine-color-blue-6)" stroke={1.5} />
-                  </Dropzone.Accept>
-                  <Dropzone.Reject>
-                    <IconX size={50} color="var(--mantine-color-red-6)" stroke={1.5} />
-                  </Dropzone.Reject>
-                  <Dropzone.Idle>
-                    <IconPhoto size={50} color="var(--mantine-color-dimmed)" stroke={1.5} />
-                  </Dropzone.Idle>
-
-                  <Box>
-                    <Text size="xl" inline c="var(--color-brand)" fw={600} mb={8}>
-                      Kéo thả ảnh vào đây
-                    </Text>
-                    <Text size="sm" c="dimmed" inline>
-                      Hoặc click để chọn từ thiết bị (Tối đa 5MB)
-                    </Text>
-                  </Box>
-                </Group>
-              </Dropzone>
+                Thêm ảnh phụ từ thư viện
+              </AppButton>
               {form.values.galleryImages && form.values.galleryImages.length > 0 && (
                 <Box mt={24}>
                   <Text size="sm" fw={600} mb={12} c="var(--color-brand)">
-                    Ảnh phụ đã tải lên ({form.values.galleryImages.length}/{SO_ANH_PHU_TOI_DA})
+                    Ảnh phụ đã chọn ({form.values.galleryImages.length}/{SO_ANH_PHU_TOI_DA})
                   </Text>
                   <SimpleGrid cols={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="sm">
-                    {form.values.galleryImages.map((url, index) => (
+                    {form.values.galleryImages.map((anh, index) => (
                       <Box
-                        key={index}
+                        key={anh.id}
                         pos="relative"
                         style={{
                           borderRadius: '8px',
@@ -508,7 +432,7 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                         }}
                       >
                         <Image
-                          src={url}
+                          src={anh.url}
                           radius="md"
                           style={{ aspectRatio: '4/3' }}
                           fit="cover"
@@ -534,6 +458,27 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                   </SimpleGrid>
                 </Box>
               )}
+
+              <ImageLibraryPickerModal
+                opened={coverPickerOpened}
+                onClose={() => setCoverPickerOpened(false)}
+                mode="single"
+                onConfirm={(selected) => {
+                  form.setFieldValue("coverImage", selected[0] ?? null);
+                  setCoverPickerOpened(false);
+                }}
+              />
+              <ImageLibraryPickerModal
+                opened={galleryPickerOpened}
+                onClose={() => setGalleryPickerOpened(false)}
+                mode="multiple"
+                maxSelect={SO_ANH_PHU_TOI_DA - (form.values.galleryImages?.length || 0)}
+                onConfirm={(selected) => {
+                  const currentImages = form.values.galleryImages || [];
+                  form.setFieldValue("galleryImages", [...currentImages, ...selected]);
+                  setGalleryPickerOpened(false);
+                }}
+              />
             </FormSection>
           </Stack>
         </Grid.Col>

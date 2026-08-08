@@ -31,7 +31,7 @@ export function PropertyCard({ post, badge }: PropertyCardProps) {
         border: "1px solid var(--color-border)",
       }}
     >
-      <Box className={styles.aspectRatio43} bg="var(--color-surface-muted)">
+      <Box className={styles.aspectVideo} bg="var(--color-surface-muted)">
         {post.anhDaiDien ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

@@ -37,8 +37,8 @@ export const rentalPostsApi = {
     return apiClient.post<{ message: string; id: number }>(endpoints.rentalPosts.list, {
       ...rest,
       phuongXaMoiId: Number(wardId),
-      anhChinh: coverImage,
-      anhPhu: galleryImages,
+      anhChinhId: coverImage?.id,
+      anhPhuId: galleryImages.map((anh) => anh.id),
     });
   },
   getForEdit: (id: string) =>
@@ -48,14 +48,8 @@ export const rentalPostsApi = {
     return apiClient.put<{ message: string; id: number }>(endpoints.rentalPosts.update(id), {
       ...rest,
       phuongXaMoiId: Number(wardId),
-      anhChinh: coverImage,
-      anhPhu: galleryImages,
+      anhChinhId: coverImage?.id,
+      anhPhuId: galleryImages.map((anh) => anh.id),
     });
-  },
-  uploadImages: (files: File[]) => {
-    const formData = new FormData();
-    files.forEach((file) => formData.append("files", file));
-
-    return apiClient.post<{ urls: string[] }>("/upload/images", formData);
   },
 };

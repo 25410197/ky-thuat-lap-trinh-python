@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Group, Container, ActionIcon, Box, Text, Avatar, Menu, UnstyledButton } from "@mantine/core";
-import { IconHeart, IconSearch, IconChevronDown, IconList, IconLayoutDashboard, IconLogout } from "@tabler/icons-react";
+import { IconHeart, IconSearch, IconChevronDown, IconList, IconLayoutDashboard, IconLogout, IconPhoto } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { ROUTES } from "@/constants/routes";
 import { ROLES } from "@/constants/roles";
@@ -95,6 +95,9 @@ export function Header() {
                   <Menu.Label>{user.fullName}</Menu.Label>
                   <Menu.Item component={Link} href={ROUTES.tinDangCuaToi} leftSection={<IconList size={16} />}>
                     Tin đăng của tôi
+                  </Menu.Item>
+                  <Menu.Item component={Link} href={ROUTES.thuVienAnh} leftSection={<IconPhoto size={16} />}>
+                    Thư viện ảnh
                   </Menu.Item>
                   <Menu.Item component={Link} href={ROUTES.yeuThich} leftSection={<IconHeart size={16} />}>
                     Tin yêu thích

@@ -24,6 +24,7 @@ import { danhMucApi } from "@/features/rental-posts/api/danh-muc.api";
 import type { RentalPostSummary } from "@/types/rental-post";
 import type { LoaiBatDongSan, PhuongXaMoi, QuanHuyen, TinhThanh } from "@/types/danh-muc";
 import { PropertyCard } from "./PropertyCard";
+import styles from "@/styles/interactions.module.css";
 
 const SO_TIN_MOI_TRANG = 12;
 
@@ -183,16 +184,24 @@ export function RentalPostListView() {
         Danh sách nhà cho thuê
       </Text>
 
-      <Stack gap={12} mb={32}>
+      <Box
+        className={styles.stickyFilterBar}
+        mx={-32}
+        px={32}
+        py={16}
+        mb={24}
+        style={{ borderBottom: "1px solid var(--color-border)" }}
+      >
         <Group gap={12} align="flex-end">
           <AppInput
-            style={{ flex: 1, minWidth: 220 }}
+            style={{ flex: "1 1 240px", minWidth: 180, maxWidth: 320 }}
             label="Tìm kiếm"
             placeholder="Nhập tên tin đăng hoặc địa chỉ..."
             value={tuKhoaNhap}
             onChange={(event) => setTuKhoaNhap(event.currentTarget.value)}
           />
           <AppSelect
+            style={{ flex: "1 1 140px", maxWidth: 180 }}
             label="Loại hình"
             placeholder="Tất cả"
             data={danhSachLoai.map((loai) => ({ value: String(loai.id), label: loai.ten }))}
@@ -201,6 +210,7 @@ export function RentalPostListView() {
             clearable
           />
           <AppSelect
+            style={{ flex: "1 1 140px", maxWidth: 180 }}
             label="Tỉnh/Thành"
             placeholder="Tất cả"
             data={danhSachTinh.map((tinh) => ({ value: String(tinh.id), label: tinh.ten }))}
@@ -214,8 +224,9 @@ export function RentalPostListView() {
           />
           {cheDoDiaGioi === "cu" ? (
             <AppSelect
+              style={{ flex: "1 1 140px", maxWidth: 180 }}
               label="Quận/Huyện"
-              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
+              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh trước"}
               data={danhSachQuan.map((quan) => ({ value: String(quan.id), label: quan.ten }))}
               value={quanHuyenId}
               onChange={setQuanHuyenId}
@@ -226,8 +237,9 @@ export function RentalPostListView() {
             />
           ) : (
             <AppSelect
-              label="Xã/Phường (sau sáp nhập)"
-              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
+              style={{ flex: "1 1 140px", maxWidth: 180 }}
+              label="Xã/Phường (mới)"
+              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh trước"}
               data={danhSachXaMoi.map((xa) => ({ value: String(xa.id), label: xa.ten }))}
               value={phuongXaMoiId}
               onChange={setPhuongXaMoiId}
@@ -237,21 +249,24 @@ export function RentalPostListView() {
               clearable
             />
           )}
+          <Stack gap={4}>
+            <Text fz="sm" fw={500}>
+              Địa giới
+            </Text>
+            <SegmentedControl
+              size="sm"
+              value={cheDoDiaGioi}
+              onChange={(value) => doiCheDoDiaGioi(value as CheDoDiaGioi)}
+              data={[
+                { label: "Trước sáp nhập", value: "cu" },
+                { label: "Sau sáp nhập", value: "moi" },
+              ]}
+            />
+          </Stack>
         </Group>
-        <Group gap={12} align="center">
-          <Text fz="sm" c="var(--color-text-muted)">
-            Địa giới hành chính
-          </Text>
-          <SegmentedControl
-            size="sm"
-            value={cheDoDiaGioi}
-            onChange={(value) => doiCheDoDiaGioi(value as CheDoDiaGioi)}
-            data={[
-              { label: "Trước sáp nhập (Tỉnh/Huyện/Xã)", value: "cu" },
-              { label: "Sau sáp nhập (Tỉnh/Xã)", value: "moi" },
-            ]}
-          />
-        </Group>
+      </Box>
+
+      <Stack gap={12} mb={32}>
         <Group gap={12} align="flex-end">
           <NumberInput
             style={{ flex: 1 }}
@@ -304,7 +319,7 @@ export function RentalPostListView() {
         <EmptyState title="Không tìm thấy tin đăng" description="Thử điều chỉnh bộ lọc tìm kiếm." />
       ) : (
         <>
-          <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing={24}>
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 3, xl: 5 }} spacing={24}>
             {items.map((post) => (
               <PropertyCard key={post.id} post={post} />
             ))}

@@ -37,3 +37,4 @@ class NguoiDung(Base):
     bao_cao_da_gui: Mapped[list["BaoCao"]] = relationship(
         back_populates="nguoi_bao_cao", foreign_keys="BaoCao.nguoi_bao_cao_id"
     )
+    anh_thu_vien: Mapped[list["AnhThuVien"]] = relationship(back_populates="nguoi_dung")

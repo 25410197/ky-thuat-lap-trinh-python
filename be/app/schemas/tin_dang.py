@@ -53,14 +53,21 @@ class DangTinRequest(BaseModel):
     phuongXaMoiId: int
     address: str
     description: str
-    anhChinh: str
-    anhPhu: list[str] = []
+    anhChinhId: int
+    anhPhuId: list[int] = []
     amenities: list[str]
     contactName: str
     contactPhone: str
     contactMethod: str
     bedrooms: int
     bathrooms: int
+
+
+class AnhThuVienChonResponse(BaseModel):
+    """Ảnh đã chọn cho tin đăng — vừa đủ ID để submit lại, vừa đủ URL để hiển thị preview."""
+
+    id: int
+    url: str
 
 
 class TinDangSuaResponse(BaseModel):
@@ -75,8 +82,8 @@ class TinDangSuaResponse(BaseModel):
     wardId: str
     address: str
     description: str
-    coverImage: str
-    galleryImages: list[str] = []
+    coverImage: AnhThuVienChonResponse
+    galleryImages: list[AnhThuVienChonResponse] = []
     amenities: list[str]
     contactName: str
     contactPhone: str

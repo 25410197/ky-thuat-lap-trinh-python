@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes.auth import router as auth_router
 from app.api.routes.danh_muc import router as danh_muc_router
 from app.api.routes.health import router as health_router
+from app.api.routes.thu_vien_anh import router as thu_vien_anh_router
 from app.api.routes.tin_dang import router as tin_dang_router
 from app.core.config import get_settings
 
@@ -19,14 +20,12 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    from app.api.routes.upload import router as upload_router
-
     application.include_router(health_router, prefix="/api")
     application.include_router(auth_router, prefix="/api")
     application.include_router(danh_muc_router, prefix="/api")
     application.include_router(tin_dang_router, prefix="/api")
-    application.include_router(upload_router, prefix="/api")
-    
+    application.include_router(thu_vien_anh_router, prefix="/api")
+
     return application
 
 

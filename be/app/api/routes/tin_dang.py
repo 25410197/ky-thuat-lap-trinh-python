@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.api.dependencies import get_db, get_current_user
 from app.models import (
+    AnhThuVien,
     PhuongXa,
     PhuongXaMoi,
     QuanHuyen,
@@ -17,6 +18,7 @@ from app.models import (
 )
 from app.models.enums import TrangThaiTinDang, PhuongThucLienHe
 from app.schemas.tin_dang import (
+    AnhThuVienChonResponse,
     DanhSachTinDang,
     TinDangTomTat,
     TinDangCuaToiResponse,
@@ -41,6 +43,43 @@ def _kiem_tra_chu_tin(tin: TinDang, nguoi_dung: NguoiDung) -> None:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Bạn không có quyền chỉnh sửa tin đăng này.",
+        )
+
+
+def _tao_hinh_anh_tu_thu_vien(
+    db: Session, tin_dang_id: int, nguoi_dung: NguoiDung, anh_chinh_id: int, anh_phu_id: list[int]
+) -> None:
+    """Kiểm tra các ID ảnh có thuộc thư viện của người dùng không, rồi tạo dòng nối HinhAnhTinDang."""
+    tat_ca_id = [anh_chinh_id, *anh_phu_id]
+    anh_theo_id = {
+        anh.id: anh
+        for anh in db.query(AnhThuVien)
+        .filter(AnhThuVien.id.in_(tat_ca_id), AnhThuVien.nguoi_dung_id == nguoi_dung.id)
+        .all()
+    }
+    thieu = [id_ for id_ in tat_ca_id if id_ not in anh_theo_id]
+    if thieu:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Không tìm thấy ảnh trong thư viện của bạn.",
+        )
+
+    db.add(
+        HinhAnhTinDang(
+            tin_dang_id=tin_dang_id,
+            anh_thu_vien_id=anh_chinh_id,
+            thu_tu_hien_thi=0,
+            la_anh_dai_dien=True,
+        )
+    )
+    for i, anh_id in enumerate(anh_phu_id, start=1):
+        db.add(
+            HinhAnhTinDang(
+                tin_dang_id=tin_dang_id,
+                anh_thu_vien_id=anh_id,
+                thu_tu_hien_thi=i,
+                la_anh_dai_dien=False,
+            )
         )
 
 
@@ -107,7 +146,7 @@ def danh_sach_tin_dang(
             joinedload(TinDang.phuong_xa)
             .joinedload(PhuongXa.quan_huyen)
             .joinedload(QuanHuyen.tinh_thanh),
-            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
             joinedload(TinDang.tien_ich),
         )
         .filter(bo_loc)
@@ -129,8 +168,8 @@ def danh_sach_tin_dang(
             quan_huyen=tin.phuong_xa.quan_huyen.ten,
             tinh_thanh=tin.phuong_xa.quan_huyen.tinh_thanh.ten,
             anh_dai_dien=next(
-                (anh.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien),
-                tin.hinh_anh[0].duong_dan_anh if tin.hinh_anh else None,
+                (anh.anh_thu_vien.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien),
+                tin.hinh_anh[0].anh_thu_vien.duong_dan_anh if tin.hinh_anh else None,
             ),
             tien_ich=[tien_ich.ten for tien_ich in tin.tien_ich],
             ngay_dang=tin.ngay_dang,
@@ -152,7 +191,7 @@ def danh_sach_tin_dang_cua_toi(
             joinedload(TinDang.phuong_xa)
             .joinedload(PhuongXa.quan_huyen)
             .joinedload(QuanHuyen.tinh_thanh),
-            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
         )
         .filter(TinDang.nguoi_dang_id == nguoi_dung.id)
         .order_by(TinDang.ngay_dang.desc())
@@ -163,9 +202,11 @@ def danh_sach_tin_dang_cua_toi(
     for tin in rows:
         status_en = _TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending")
 
-        anh_dai_dien = next((anh.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien), None)
+        anh_dai_dien = next(
+            (anh.anh_thu_vien.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien), None
+        )
         if not anh_dai_dien and tin.hinh_anh:
-            anh_dai_dien = tin.hinh_anh[0].duong_dan_anh
+            anh_dai_dien = tin.hinh_anh[0].anh_thu_vien.duong_dan_anh
 
         ket_qua.append(TinDangCuaToiResponse(
             id=str(tin.id),
@@ -238,24 +279,8 @@ def tao_tin_dang_moi(
     db.add(tin_moi)
     db.flush()
 
-    db.add(
-        HinhAnhTinDang(
-            tin_dang_id=tin_moi.id,
-            duong_dan_anh=du_lieu.anhChinh,
-            thu_tu_hien_thi=0,
-            la_anh_dai_dien=True,
-        )
-    )
-    for i, url in enumerate(du_lieu.anhPhu, start=1):
-        db.add(
-            HinhAnhTinDang(
-                tin_dang_id=tin_moi.id,
-                duong_dan_anh=url,
-                thu_tu_hien_thi=i,
-                la_anh_dai_dien=False,
-            )
-        )
-        
+    _tao_hinh_anh_tu_thu_vien(db, tin_moi.id, nguoi_dung, du_lieu.anhChinhId, du_lieu.anhPhuId)
+
     db.commit()
 
     return {"message": "Đăng tin thành công!", "id": tin_moi.id}
@@ -272,7 +297,7 @@ def lay_tin_dang_de_sua(
         .options(
             joinedload(TinDang.loai_bat_dong_san),
             joinedload(TinDang.phuong_xa).joinedload(PhuongXa.xa_phuong_moi),
-            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
             joinedload(TinDang.tien_ich),
         )
         .filter(TinDang.id == tin_dang_id)
@@ -283,11 +308,15 @@ def lay_tin_dang_de_sua(
     _kiem_tra_chu_tin(tin, nguoi_dung)
 
     anh_sap_xep = sorted(tin.hinh_anh, key=lambda anh: (not anh.la_anh_dai_dien, anh.thu_tu_hien_thi))
-    anh_chinh = next(
-        (anh.duong_dan_anh for anh in anh_sap_xep if anh.la_anh_dai_dien),
-        anh_sap_xep[0].duong_dan_anh if anh_sap_xep else "",
+    anh_chinh_row = next((anh for anh in anh_sap_xep if anh.la_anh_dai_dien), None) or (
+        anh_sap_xep[0] if anh_sap_xep else None
     )
-    anh_phu = [anh.duong_dan_anh for anh in anh_sap_xep if not anh.la_anh_dai_dien]
+    anh_chinh = AnhThuVienChonResponse(id=anh_chinh_row.anh_thu_vien_id, url=anh_chinh_row.anh_thu_vien.duong_dan_anh)
+    anh_phu = [
+        AnhThuVienChonResponse(id=anh.anh_thu_vien_id, url=anh.anh_thu_vien.duong_dan_anh)
+        for anh in anh_sap_xep
+        if not anh.la_anh_dai_dien
+    ]
 
     # Tin đăng lưu theo địa giới CŨ (phuong_xa_id) — quy đổi ngược sang xã/phường MỚI để đổ vào form.
     xa_moi = tin.phuong_xa.xa_phuong_moi[0] if tin.phuong_xa.xa_phuong_moi else None
@@ -373,23 +402,7 @@ def cap_nhat_tin_dang(
 
     tin.hinh_anh.clear()
     db.flush()
-    db.add(
-        HinhAnhTinDang(
-            tin_dang_id=tin.id,
-            duong_dan_anh=du_lieu.anhChinh,
-            thu_tu_hien_thi=0,
-            la_anh_dai_dien=True,
-        )
-    )
-    for i, url in enumerate(du_lieu.anhPhu, start=1):
-        db.add(
-            HinhAnhTinDang(
-                tin_dang_id=tin.id,
-                duong_dan_anh=url,
-                thu_tu_hien_thi=i,
-                la_anh_dai_dien=False,
-            )
-        )
+    _tao_hinh_anh_tu_thu_vien(db, tin.id, nguoi_dung, du_lieu.anhChinhId, du_lieu.anhPhuId)
 
     db.commit()
 
@@ -405,7 +418,7 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
             joinedload(TinDang.phuong_xa)
             .joinedload(PhuongXa.quan_huyen)
             .joinedload(QuanHuyen.tinh_thanh),
-            joinedload(TinDang.hinh_anh),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
             joinedload(TinDang.tien_ich),
         )
         .filter(TinDang.id == tin_dang_id, TinDang.trang_thai == TrangThaiTinDang.DA_DUYET)
@@ -430,7 +443,7 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         phuong_xa=tin.phuong_xa.ten,
         quan_huyen=tin.phuong_xa.quan_huyen.ten,
         tinh_thanh=tin.phuong_xa.quan_huyen.tinh_thanh.ten,
-        hinh_anh=[anh.duong_dan_anh for anh in anh_sap_xep],
+        hinh_anh=[anh.anh_thu_vien.duong_dan_anh for anh in anh_sap_xep],
         tien_ich=[tien_ich.ten for tien_ich in tin.tien_ich],
         ten_nguoi_lien_he=tin.ten_nguoi_lien_he,
         so_dien_thoai_lien_he=tin.so_dien_thoai_lien_he,

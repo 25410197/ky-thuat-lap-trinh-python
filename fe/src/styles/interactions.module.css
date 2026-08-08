@@ -41,10 +41,12 @@
   backdrop-filter: blur(6px);
 }
 
-.aspectRatio43 {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
+.stickyFilterBar {
+  position: sticky;
+  top: 80px;
+  z-index: 30;
+  background: rgba(251, 249, 244, 0.92);
+  backdrop-filter: blur(6px);
 }
 
 .aspectVideo {

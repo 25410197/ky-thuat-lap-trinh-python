@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.db.session import SessionLocal
 from app.main import app
 from app.models import (
+    AnhThuVien,
     HinhAnhTinDang,
     LoaiBatDongSan,
     NguoiDung,
@@ -46,6 +47,26 @@ def _tao_tin_dang_voi_trang_thai(
             trang_thai=trang_thai,
         )
         db.add(tin)
+        db.flush()
+
+        anh_thu_vien = AnhThuVien(
+            nguoi_dung_id=chu_tin.id,
+            ten_doi_tuong=f"test-{uuid.uuid4().hex[:8]}.jpg",
+            duong_dan_anh="https://example.com/anh-mac-dinh.jpg",
+            ten_tep_goc="anh-mac-dinh.jpg",
+            dung_luong=1000,
+        )
+        db.add(anh_thu_vien)
+        db.flush()
+        db.add(
+            HinhAnhTinDang(
+                tin_dang_id=tin.id,
+                anh_thu_vien_id=anh_thu_vien.id,
+                thu_tu_hien_thi=0,
+                la_anh_dai_dien=True,
+            )
+        )
+
         db.commit()
         db.refresh(tin)
         return tin.id
@@ -66,8 +87,34 @@ def _dang_ky_va_lay_token() -> tuple[int, str]:
 def _xoa_nguoi_dung_theo_id(*id_list: int) -> None:
     db: Session = SessionLocal()
     try:
+        db.query(AnhThuVien).filter(AnhThuVien.nguoi_dung_id.in_(id_list)).delete(
+            synchronize_session=False
+        )
         db.query(NguoiDung).filter(NguoiDung.id.in_(id_list)).delete(synchronize_session=False)
         db.commit()
+    finally:
+        db.close()
+
+
+def _tao_anh_thu_vien(nguoi_dung_id: int, so_luong: int = 1) -> list[int]:
+    db: Session = SessionLocal()
+    try:
+        danh_sach = []
+        for _ in range(so_luong):
+            ten = f"test-{uuid.uuid4().hex[:8]}.jpg"
+            anh = AnhThuVien(
+                nguoi_dung_id=nguoi_dung_id,
+                ten_doi_tuong=ten,
+                duong_dan_anh=f"https://example.com/{ten}",
+                ten_tep_goc=ten,
+                dung_luong=1000,
+            )
+            db.add(anh)
+            danh_sach.append(anh)
+        db.commit()
+        for anh in danh_sach:
+            db.refresh(anh)
+        return [anh.id for anh in danh_sach]
     finally:
         db.close()
 
@@ -82,7 +129,7 @@ def _lay_phuong_xa_moi_id_hop_le() -> int:
         db.close()
 
 
-def _payload_sua_tin(phuong_xa_moi_id: int) -> dict:
+def _payload_sua_tin(phuong_xa_moi_id: int, anh_chinh_id: int, anh_phu_id: list[int] | None = None) -> dict:
     return {
         "title": "Tin đăng đã được chỉnh sửa",
         "propertyType": "Căn hộ",
@@ -91,8 +138,8 @@ def _payload_sua_tin(phuong_xa_moi_id: int) -> dict:
         "phuongXaMoiId": phuong_xa_moi_id,
         "address": "Địa chỉ sau khi sửa",
         "description": "Mô tả sau khi chỉnh sửa tin đăng",
-        "anhChinh": "https://example.com/anh-chinh-moi.jpg",
-        "anhPhu": ["https://example.com/anh-phu-1.jpg"],
+        "anhChinhId": anh_chinh_id,
+        "anhPhuId": anh_phu_id or [],
         "amenities": ["WiFi Miễn phí"],
         "contactName": "Người liên hệ mới",
         "contactPhone": "0911111111",
@@ -105,11 +152,19 @@ def _payload_sua_tin(phuong_xa_moi_id: int) -> dict:
 def _xoa_tin_dang(*id_list: int) -> None:
     db: Session = SessionLocal()
     try:
+        anh_thu_vien_id_list = [
+            row.anh_thu_vien_id
+            for row in db.query(HinhAnhTinDang).filter(HinhAnhTinDang.tin_dang_id.in_(id_list)).all()
+        ]
         db.query(HinhAnhTinDang).filter(HinhAnhTinDang.tin_dang_id.in_(id_list)).delete(
             synchronize_session=False
         )
         db.execute(tin_dang_tien_ich.delete().where(tin_dang_tien_ich.c.tin_dang_id.in_(id_list)))
         db.query(TinDang).filter(TinDang.id.in_(id_list)).delete(synchronize_session=False)
+        if anh_thu_vien_id_list:
+            db.query(AnhThuVien).filter(AnhThuVien.id.in_(anh_thu_vien_id_list)).delete(
+                synchronize_session=False
+            )
         db.commit()
     finally:
         db.close()
@@ -437,16 +492,38 @@ def test_lay_tin_de_sua_tra_ve_du_lieu_hien_tai_cho_chu_tin() -> None:
 
 
 def test_sua_tin_dang_khong_ton_tai_tra_ve_404() -> None:
-    _chu_id, token = _dang_ky_va_lay_token()
+    chu_id, token = _dang_ky_va_lay_token()
     try:
+        anh_chinh_id = _tao_anh_thu_vien(chu_id)[0]
         response = client.put(
             "/api/rental-posts/999999999",
-            json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le()),
+            json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le(), anh_chinh_id),
             headers={"Authorization": f"Bearer {token}"},
         )
         assert response.status_code == 404
     finally:
-        _xoa_nguoi_dung_theo_id(_chu_id)
+        _xoa_nguoi_dung_theo_id(chu_id)
+
+
+def test_sua_tin_dang_anh_khong_thuoc_thu_vien_cua_minh_tra_ve_404() -> None:
+    chu_id, token = _dang_ky_va_lay_token()
+    nguoi_khac_id, _token_nguoi_khac = _dang_ky_va_lay_token()
+    try:
+        id_tin = _tao_tin_dang_voi_trang_thai(
+            f"KiemThuSua-{uuid.uuid4().hex[:8]}", TrangThaiTinDang.CHO_DUYET, nguoi_dang_id=chu_id
+        )
+        anh_cua_nguoi_khac = _tao_anh_thu_vien(nguoi_khac_id)[0]
+        try:
+            response = client.put(
+                f"/api/rental-posts/{id_tin}",
+                json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le(), anh_cua_nguoi_khac),
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            assert response.status_code == 404
+        finally:
+            _xoa_tin_dang(id_tin)
+    finally:
+        _xoa_nguoi_dung_theo_id(chu_id, nguoi_khac_id)
 
 
 def test_sua_tin_dang_khong_phai_chu_tin_bi_tu_choi() -> None:
@@ -456,10 +533,11 @@ def test_sua_tin_dang_khong_phai_chu_tin_bi_tu_choi() -> None:
         id_tin = _tao_tin_dang_voi_trang_thai(
             f"KiemThuSua-{uuid.uuid4().hex[:8]}", TrangThaiTinDang.DA_DUYET, nguoi_dang_id=chu_id
         )
+        anh_chinh_id = _tao_anh_thu_vien(chu_id)[0]
         try:
             response = client.put(
                 f"/api/rental-posts/{id_tin}",
-                json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le()),
+                json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le(), anh_chinh_id),
                 headers={"Authorization": f"Bearer {token_nguoi_khac}"},
             )
             assert response.status_code == 403
@@ -482,8 +560,9 @@ def test_sua_tin_dang_thanh_cong_cap_nhat_noi_dung() -> None:
         id_tin = _tao_tin_dang_voi_trang_thai(
             f"KiemThuSua-{uuid.uuid4().hex[:8]}", TrangThaiTinDang.CHO_DUYET, nguoi_dang_id=chu_id
         )
+        anh_chinh_id, anh_phu_id = _tao_anh_thu_vien(chu_id, so_luong=2)
         try:
-            payload = _payload_sua_tin(_lay_phuong_xa_moi_id_hop_le())
+            payload = _payload_sua_tin(_lay_phuong_xa_moi_id_hop_le(), anh_chinh_id, [anh_phu_id])
             response = client.put(
                 f"/api/rental-posts/{id_tin}",
                 json=payload,
@@ -497,8 +576,11 @@ def test_sua_tin_dang_thanh_cong_cap_nhat_noi_dung() -> None:
                 assert tin.tieu_de == payload["title"]
                 assert tin.dia_chi_chi_tiet == payload["address"]
                 assert float(tin.gia_thue) == payload["priceVnd"]
-                assert [anh.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien] == [
-                    payload["anhChinh"]
+                assert [anh.anh_thu_vien_id for anh in tin.hinh_anh if anh.la_anh_dai_dien] == [
+                    anh_chinh_id
+                ]
+                assert [anh.anh_thu_vien_id for anh in tin.hinh_anh if not anh.la_anh_dai_dien] == [
+                    anh_phu_id
                 ]
             finally:
                 db.close()
@@ -514,10 +596,11 @@ def test_sua_tin_da_duyet_bi_chuyen_ve_cho_duyet() -> None:
         id_tin = _tao_tin_dang_voi_trang_thai(
             f"KiemThuSua-{uuid.uuid4().hex[:8]}", TrangThaiTinDang.DA_DUYET, nguoi_dang_id=chu_id
         )
+        anh_chinh_id = _tao_anh_thu_vien(chu_id)[0]
         try:
             response = client.put(
                 f"/api/rental-posts/{id_tin}",
-                json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le()),
+                json=_payload_sua_tin(_lay_phuong_xa_moi_id_hop_le(), anh_chinh_id),
                 headers={"Authorization": f"Bearer {token}"},
             )
             assert response.status_code == 200
