@@ -3,6 +3,22 @@ import { endpoints } from "@/lib/api/endpoints";
 import type { RentalPost, RentalPostDetail, RentalPostListFilters, RentalPostListResponse } from "@/types/rental-post";
 import type { RentalPostInput } from "../schemas/rental-post.schema";
 
+export interface TinChoDuyet {
+  tieuDe: string;
+  nguoiDang: string;
+  hinhAnh: string[];
+  ngayDang: string;
+  loaiBatDongSan: string;
+  trangThai: string;
+}
+
+export interface DanhSachChoDuyetResponse {
+  items: TinChoDuyet[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
 function buildQueryString(filters: RentalPostListFilters): string {
   const params = new URLSearchParams();
 
@@ -52,4 +68,8 @@ export const rentalPostsApi = {
       anhPhuId: galleryImages.map((anh) => anh.id),
     });
   },
+  choDuyet: (page = 1, pageSize = 12) =>
+    apiClient.get<DanhSachChoDuyetResponse>(
+      `${endpoints.rentalPosts.choDuyet}?page=${page}&page_size=${pageSize}`
+    ),
 };

@@ -25,6 +25,8 @@ from app.schemas.tin_dang import (
     DangTinRequest,
     TinDangChiTiet,
     TinDangSuaResponse,
+    DanhSachTinChoDuyet,
+    TinChoDuyetTomTat,
 )
 
 router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
@@ -409,6 +411,49 @@ def cap_nhat_tin_dang(
     return {"message": "Cập nhật tin đăng thành công!", "id": tin.id}
 
 
+
+@router.get("/cho-duyet", response_model=DanhSachTinChoDuyet)
+def danh_sach_tin_dang_cho_duyet(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(12, ge=1, le=50),
+    db: Session = Depends(get_db)) -> DanhSachTinChoDuyet:
+
+    filter = (TinDang.trang_thai == TrangThaiTinDang.CHO_DUYET)
+    total = db.query(func.count(TinDang.id)).filter(filter).scalar() or 0
+
+    rows = (
+        db.query(TinDang)
+        .options(
+            joinedload(TinDang.nguoi_dang),
+            joinedload(TinDang.loai_bat_dong_san),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
+        )
+        .filter(filter)
+        .order_by(TinDang.ngay_dang)
+        .offset((page - 1) * page_size)
+        .limit(page_size)
+        .all()
+    )
+
+    items = [
+        TinChoDuyetTomTat(
+            tieu_de=tin.tieu_de,
+            loai_bat_dong_san=tin.loai_bat_dong_san.ten,
+            hinh_anh=[
+                anh.anh_thu_vien.duong_dan_anh
+                for anh in sorted(tin.hinh_anh, key=lambda a: (not a.la_anh_dai_dien, a.thu_tu_hien_thi))
+                if anh.anh_thu_vien
+            ],
+            ngay_dang=tin.ngay_dang,
+            trang_thai=tin.trang_thai.value,
+            nguoi_dang=tin.nguoi_dang.ho_ten,
+        )
+        for tin in rows
+    ]
+
+    return DanhSachTinChoDuyet(items=items, total=total, page=page, page_size=page_size)
+
+
 @router.get("/{tin_dang_id}", response_model=TinDangChiTiet)
 def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDangChiTiet:
     tin = (
@@ -450,4 +495,4 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
         luot_xem=tin.luot_xem,
         ngay_dang=tin.ngay_dang,
-    )
+    )

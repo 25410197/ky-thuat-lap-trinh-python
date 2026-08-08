@@ -113,3 +113,21 @@ class TinDangChiTiet(BaseModel):
     phuong_thuc_lien_he_uu_tien: Annotated[str, Field(alias="phuongThucLienHeUuTien")]
     luot_xem: Annotated[int, Field(alias="luotXem")]
     ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
+
+class TinChoDuyetTomTat(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    tieu_de: Annotated[str, Field(alias="tieuDe")]
+    nguoi_dang: Annotated[str, Field(alias="nguoiDang")]
+    hinh_anh: Annotated[list[str], Field(alias="hinhAnh")]
+    ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
+    loai_bat_dong_san: Annotated[str, Field(alias="loaiBatDongSan")]
+    trang_thai: Annotated[str, Field(alias="trangThai")]
+
+class DanhSachTinChoDuyet(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    items: list[TinChoDuyetTomTat]
+    total: int
+    page: int
+    page_size: Annotated[int, Field(alias="pageSize")]
+
