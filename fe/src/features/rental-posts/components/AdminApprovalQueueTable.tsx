@@ -1,72 +1,65 @@
 "use client";
 
-import { useState } from "react";
-import { Table, ActionIcon, Group, Text, Badge, Box } from "@mantine/core";
+import { useState, useEffect } from "react";
+import { Table, ActionIcon, Group, Text, Badge, Box, Skeleton, Image, Center } from "@mantine/core";
 import { IconCheck, IconX, IconEye } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { AppPagination } from "@/components/ui/AppPagination";
+import { rentalPostsApi, type TinChoDuyet } from "../api/rental-posts.api";
 
-type QueueStatus = "Chờ phê duyệt" | "Bị gắn cờ";
+const PAGE_SIZE = 12;
 
-interface QueueItem {
-  id: string;
-  code: string;
-  name: string;
-  owner: string;
-  submittedAt: string;
-  type: string;
-  status: QueueStatus;
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("vi-VN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 }
 
-// Dữ liệu lấy đúng từ Figma (bảng "Hàng đợi Phê duyệt Danh sách", màn "Quản trị hệ thống").
-const INITIAL_QUEUE: QueueItem[] = [
-  {
-    id: "1",
-    code: "UL-98231",
-    name: "The Zenith Penthouse",
-    owner: "Marcus V. Sterling",
-    submittedAt: "24 tháng 10, 2024",
-    type: "Khu dân cư",
-    status: "Chờ phê duyệt",
-  },
-  {
-    id: "2",
-    code: "UL-98442",
-    name: "Meadowview Estates",
-    owner: "Sarah Jenkins",
-    submittedAt: "23 tháng 10, 2024",
-    type: "Khu dân cư",
-    status: "Bị gắn cờ",
-  },
-  {
-    id: "3",
-    code: "UL-98110",
-    name: "Industrial Hub B-4",
-    owner: "Urban Logistics Inc.",
-    submittedAt: "23 tháng 10, 2024",
-    type: "Thương mại",
-    status: "Chờ phê duyệt",
-  },
-];
-
 export function AdminApprovalQueueTable() {
-  const [items, setItems] = useState(INITIAL_QUEUE);
-  const [pendingAction, setPendingAction] = useState<{ item: QueueItem; type: "approve" | "reject" } | null>(
-    null
-  );
+  const [items, setItems] = useState<TinChoDuyet[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [pendingAction, setPendingAction] = useState<{
+    item: TinChoDuyet;
+    type: "approve" | "reject";
+  } | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    rentalPostsApi
+      .choDuyet(page, PAGE_SIZE)
+      .then((data) => {
+        setItems(data.items);
+        setTotal(data.total);
+      })
+      .catch(() => {
+        notifications.show({
+          color: "red",
+          title: "Lỗi",
+          message: "Không thể tải danh sách tin chờ duyệt.",
+        });
+      })
+      .finally(() => setLoading(false));
+  }, [page]);
 
   const resolveAction = () => {
     if (!pendingAction) return;
     const { item, type } = pendingAction;
-    setItems((prev) => prev.filter((row) => row.id !== item.id));
+    // TODO: gọi API approve/reject thực sự khi có endpoint
+    setItems((prev) => prev.filter((row) => row !== item));
     notifications.show({
       color: type === "approve" ? "green" : "red",
-      title: type === "approve" ? "Đã duyệt tin đăng (demo)" : "Đã từ chối tin đăng (demo)",
-      message: `"${item.name}" (${item.code})`,
+      title: type === "approve" ? "Đã duyệt tin đăng" : "Đã từ chối tin đăng",
+      message: `"${item.tieuDe}"`,
     });
     setPendingAction(null);
   };
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
 
   return (
     <Box
@@ -98,81 +91,107 @@ export function AdminApprovalQueueTable() {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {items.map((item) => (
-            <Table.Tr key={item.id}>
-              <Table.Td>
-                <Group gap={12} wrap="nowrap">
-                  <Box
-                    w={48}
-                    h={48}
-                    bg="var(--color-surface-muted)"
-                    style={{ flexShrink: 0, borderRadius: 2 }}
-                  />
-                  <div>
-                    <Text fw={600} c="var(--color-brand)">
-                      {item.name}
-                    </Text>
-                    <Text size="xs" c="dimmed">
-                      ID: {item.code}
-                    </Text>
-                  </div>
-                </Group>
-              </Table.Td>
-              <Table.Td>{item.owner}</Table.Td>
-              <Table.Td>{item.submittedAt}</Table.Td>
-              <Table.Td>
-                <Badge variant="light" color="gray" radius="sm">
-                  {item.type}
-                </Badge>
-              </Table.Td>
-              <Table.Td>
-                <Badge
-                  variant="light"
-                  color={item.status === "Bị gắn cờ" ? "red" : "gray"}
-                  radius="sm"
-                >
-                  {item.status}
-                </Badge>
-              </Table.Td>
-              <Table.Td>
-                <Group gap={8} justify="flex-end">
-                  <ActionIcon
-                    variant="subtle"
-                    color="green"
-                    aria-label="Duyệt tin đăng"
-                    onClick={() => setPendingAction({ item, type: "approve" })}
-                  >
-                    <IconCheck size={18} stroke={1.75} />
-                  </ActionIcon>
-                  <ActionIcon
-                    variant="subtle"
-                    color="red"
-                    aria-label="Từ chối tin đăng"
-                    onClick={() => setPendingAction({ item, type: "reject" })}
-                  >
-                    <IconX size={18} stroke={1.75} />
-                  </ActionIcon>
-                  <ActionIcon variant="subtle" color="brand" aria-label="Xem chi tiết">
-                    <IconEye size={18} stroke={1.75} />
-                  </ActionIcon>
-                </Group>
+          {loading ? (
+            Array.from({ length: 5 }).map((_, i) => (
+              <Table.Tr key={i}>
+                <Table.Td><Skeleton h={40} radius="sm" /></Table.Td>
+                <Table.Td><Skeleton h={16} w={120} radius="sm" /></Table.Td>
+                <Table.Td><Skeleton h={16} w={100} radius="sm" /></Table.Td>
+                <Table.Td><Skeleton h={22} w={80} radius="sm" /></Table.Td>
+                <Table.Td><Skeleton h={22} w={90} radius="sm" /></Table.Td>
+                <Table.Td><Skeleton h={28} w={90} radius="sm" ml="auto" /></Table.Td>
+              </Table.Tr>
+            ))
+          ) : items.length === 0 ? (
+            <Table.Tr>
+              <Table.Td colSpan={6}>
+                <Center py={32}>
+                  <Text c="dimmed">Không có tin đăng nào đang chờ duyệt.</Text>
+                </Center>
               </Table.Td>
             </Table.Tr>
-          ))}
+          ) : (
+            items.map((item, index) => (
+              <Table.Tr key={index}>
+                <Table.Td>
+                  <Group gap={12} wrap="nowrap">
+                    <Box
+                      w={48}
+                      h={48}
+                      bg="var(--color-surface-muted)"
+                      style={{ flexShrink: 0, borderRadius: 2, overflow: "hidden" }}
+                    >
+                      {item.hinhAnh?.[0] && (
+                        <Image
+                          src={item.hinhAnh[0]}
+                          alt={item.tieuDe}
+                          w={48}
+                          h={48}
+                          fit="cover"
+                        />
+                      )}
+                    </Box>
+                    <div>
+                      <Text fw={600} c="var(--color-brand)">
+                        {item.tieuDe}
+                      </Text>
+                    </div>
+                  </Group>
+                </Table.Td>
+                <Table.Td>{item.nguoiDang}</Table.Td>
+                <Table.Td>{formatDate(item.ngayDang)}</Table.Td>
+                <Table.Td>
+                  <Badge variant="light" color="gray" radius="sm">
+                    {item.loaiBatDongSan}
+                  </Badge>
+                </Table.Td>
+                <Table.Td>
+                  <Badge variant="light" color="yellow" radius="sm">
+                    Chờ phê duyệt
+                  </Badge>
+                </Table.Td>
+                <Table.Td>
+                  <Group gap={8} justify="flex-end">
+                    <ActionIcon
+                      variant="subtle"
+                      color="green"
+                      aria-label="Duyệt tin đăng"
+                      onClick={() => setPendingAction({ item, type: "approve" })}
+                    >
+                      <IconCheck size={18} stroke={1.75} />
+                    </ActionIcon>
+                    <ActionIcon
+                      variant="subtle"
+                      color="red"
+                      aria-label="Từ chối tin đăng"
+                      onClick={() => setPendingAction({ item, type: "reject" })}
+                    >
+                      <IconX size={18} stroke={1.75} />
+                    </ActionIcon>
+                    <ActionIcon variant="subtle" color="brand" aria-label="Xem chi tiết">
+                      <IconEye size={18} stroke={1.75} />
+                    </ActionIcon>
+                  </Group>
+                </Table.Td>
+              </Table.Tr>
+            ))
+          )}
         </Table.Tbody>
       </Table>
 
       <Group justify="space-between" p={16} style={{ borderTop: "1px solid var(--color-border)" }}>
         <Text size="sm" c="dimmed">
-          Hiển thị {items.length} trong số 48 danh sách đang chờ duyệt
+          {loading ? "Đang tải..." : `Hiển thị ${items.length} trong số ${total} tin chờ duyệt`}
         </Text>
-        <AppPagination total={16} value={1} />
+        {totalPages > 1 && (
+          <AppPagination total={totalPages} value={page} onChange={setPage} />
+        )}
       </Group>
 
       <ConfirmDialog
         opened={pendingAction !== null}
         title={pendingAction?.type === "approve" ? "Duyệt tin đăng?" : "Từ chối tin đăng?"}
-        description={`"${pendingAction?.item.name}" (${pendingAction?.item.code})`}
+        description={`"${pendingAction?.item.tieuDe}"`}
         confirmLabel={pendingAction?.type === "approve" ? "Duyệt" : "Từ chối"}
         danger={pendingAction?.type === "reject"}
         onConfirm={resolveAction}
