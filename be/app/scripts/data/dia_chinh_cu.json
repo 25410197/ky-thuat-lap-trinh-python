@@ -1,0 +1,3763 @@
+[
+ {
+  "ten": "Thành phố Hà Nội",
+  "ma_hanh_chinh": "1",
+  "quan_huyen": [
+   {
+    "ten": "Quận Ba Đình",
+    "ma_hanh_chinh": "1",
+    "phuong_xa": [
+     {
+      "ten": "Phường Phúc Xá",
+      "ma_hanh_chinh": "1"
+     },
+     {
+      "ten": "Phường Trúc Bạch",
+      "ma_hanh_chinh": "4"
+     },
+     {
+      "ten": "Phường Vĩnh Phúc",
+      "ma_hanh_chinh": "6"
+     },
+     {
+      "ten": "Phường Cống Vị",
+      "ma_hanh_chinh": "7"
+     },
+     {
+      "ten": "Phường Liễu Giai",
+      "ma_hanh_chinh": "8"
+     },
+     {
+      "ten": "Phường Quán Thánh",
+      "ma_hanh_chinh": "13"
+     },
+     {
+      "ten": "Phường Ngọc Hà",
+      "ma_hanh_chinh": "16"
+     },
+     {
+      "ten": "Phường Điện Biên",
+      "ma_hanh_chinh": "19"
+     },
+     {
+      "ten": "Phường Đội Cấn",
+      "ma_hanh_chinh": "22"
+     },
+     {
+      "ten": "Phường Ngọc Khánh",
+      "ma_hanh_chinh": "25"
+     },
+     {
+      "ten": "Phường Kim Mã",
+      "ma_hanh_chinh": "28"
+     },
+     {
+      "ten": "Phường Giảng Võ",
+      "ma_hanh_chinh": "31"
+     },
+     {
+      "ten": "Phường Thành Công",
+      "ma_hanh_chinh": "34"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Hoàn Kiếm",
+    "ma_hanh_chinh": "2",
+    "phuong_xa": [
+     {
+      "ten": "Phường Phúc Tân",
+      "ma_hanh_chinh": "37"
+     },
+     {
+      "ten": "Phường Đồng Xuân",
+      "ma_hanh_chinh": "40"
+     },
+     {
+      "ten": "Phường Hàng Mã",
+      "ma_hanh_chinh": "43"
+     },
+     {
+      "ten": "Phường Hàng Buồm",
+      "ma_hanh_chinh": "46"
+     },
+     {
+      "ten": "Phường Hàng Đào",
+      "ma_hanh_chinh": "49"
+     },
+     {
+      "ten": "Phường Hàng Bồ",
+      "ma_hanh_chinh": "52"
+     },
+     {
+      "ten": "Phường Cửa Đông",
+      "ma_hanh_chinh": "55"
+     },
+     {
+      "ten": "Phường Lý Thái Tổ",
+      "ma_hanh_chinh": "58"
+     },
+     {
+      "ten": "Phường Hàng Bạc",
+      "ma_hanh_chinh": "61"
+     },
+     {
+      "ten": "Phường Hàng Gai",
+      "ma_hanh_chinh": "64"
+     },
+     {
+      "ten": "Phường Chương Dương",
+      "ma_hanh_chinh": "67"
+     },
+     {
+      "ten": "Phường Hàng Trống",
+      "ma_hanh_chinh": "70"
+     },
+     {
+      "ten": "Phường Cửa Nam",
+      "ma_hanh_chinh": "73"
+     },
+     {
+      "ten": "Phường Hàng Bông",
+      "ma_hanh_chinh": "76"
+     },
+     {
+      "ten": "Phường Tràng Tiền",
+      "ma_hanh_chinh": "79"
+     },
+     {
+      "ten": "Phường Trần Hưng Đạo",
+      "ma_hanh_chinh": "82"
+     },
+     {
+      "ten": "Phường Phan Chu Trinh",
+      "ma_hanh_chinh": "85"
+     },
+     {
+      "ten": "Phường Hàng Bài",
+      "ma_hanh_chinh": "88"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Tây Hồ",
+    "ma_hanh_chinh": "3",
+    "phuong_xa": [
+     {
+      "ten": "Phường Phú Thượng",
+      "ma_hanh_chinh": "91"
+     },
+     {
+      "ten": "Phường Nhật Tân",
+      "ma_hanh_chinh": "94"
+     },
+     {
+      "ten": "Phường Tứ Liên",
+      "ma_hanh_chinh": "97"
+     },
+     {
+      "ten": "Phường Quảng An",
+      "ma_hanh_chinh": "100"
+     },
+     {
+      "ten": "Phường Xuân La",
+      "ma_hanh_chinh": "103"
+     },
+     {
+      "ten": "Phường Yên Phụ",
+      "ma_hanh_chinh": "106"
+     },
+     {
+      "ten": "Phường Bưởi",
+      "ma_hanh_chinh": "109"
+     },
+     {
+      "ten": "Phường Thụy Khuê",
+      "ma_hanh_chinh": "112"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Long Biên",
+    "ma_hanh_chinh": "4",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thượng Thanh",
+      "ma_hanh_chinh": "115"
+     },
+     {
+      "ten": "Phường Ngọc Thụy",
+      "ma_hanh_chinh": "118"
+     },
+     {
+      "ten": "Phường Giang Biên",
+      "ma_hanh_chinh": "121"
+     },
+     {
+      "ten": "Phường Đức Giang",
+      "ma_hanh_chinh": "124"
+     },
+     {
+      "ten": "Phường Việt Hưng",
+      "ma_hanh_chinh": "127"
+     },
+     {
+      "ten": "Phường Gia Thụy",
+      "ma_hanh_chinh": "130"
+     },
+     {
+      "ten": "Phường Ngọc Lâm",
+      "ma_hanh_chinh": "133"
+     },
+     {
+      "ten": "Phường Phúc Lợi",
+      "ma_hanh_chinh": "136"
+     },
+     {
+      "ten": "Phường Bồ Đề",
+      "ma_hanh_chinh": "139"
+     },
+     {
+      "ten": "Phường Long Biên",
+      "ma_hanh_chinh": "145"
+     },
+     {
+      "ten": "Phường Thạch Bàn",
+      "ma_hanh_chinh": "148"
+     },
+     {
+      "ten": "Phường Phúc Đồng",
+      "ma_hanh_chinh": "151"
+     },
+     {
+      "ten": "Phường Cự Khối",
+      "ma_hanh_chinh": "154"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Cầu Giấy",
+    "ma_hanh_chinh": "5",
+    "phuong_xa": [
+     {
+      "ten": "Phường Nghĩa Đô",
+      "ma_hanh_chinh": "157"
+     },
+     {
+      "ten": "Phường Nghĩa Tân",
+      "ma_hanh_chinh": "160"
+     },
+     {
+      "ten": "Phường Mai Dịch",
+      "ma_hanh_chinh": "163"
+     },
+     {
+      "ten": "Phường Dịch Vọng",
+      "ma_hanh_chinh": "166"
+     },
+     {
+      "ten": "Phường Dịch Vọng Hậu",
+      "ma_hanh_chinh": "167"
+     },
+     {
+      "ten": "Phường Quan Hoa",
+      "ma_hanh_chinh": "169"
+     },
+     {
+      "ten": "Phường Yên Hoà",
+      "ma_hanh_chinh": "172"
+     },
+     {
+      "ten": "Phường Trung Hoà",
+      "ma_hanh_chinh": "175"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Đống Đa",
+    "ma_hanh_chinh": "6",
+    "phuong_xa": [
+     {
+      "ten": "Phường Cát Linh",
+      "ma_hanh_chinh": "178"
+     },
+     {
+      "ten": "Phường Văn Miếu - Quốc Tử Giám",
+      "ma_hanh_chinh": "181"
+     },
+     {
+      "ten": "Phường Láng Thượng",
+      "ma_hanh_chinh": "187"
+     },
+     {
+      "ten": "Phường Ô Chợ Dừa",
+      "ma_hanh_chinh": "190"
+     },
+     {
+      "ten": "Phường Văn Chương",
+      "ma_hanh_chinh": "193"
+     },
+     {
+      "ten": "Phường Hàng Bột",
+      "ma_hanh_chinh": "196"
+     },
+     {
+      "ten": "Phường Láng Hạ",
+      "ma_hanh_chinh": "199"
+     },
+     {
+      "ten": "Phường Khâm Thiên",
+      "ma_hanh_chinh": "202"
+     },
+     {
+      "ten": "Phường Thổ Quan",
+      "ma_hanh_chinh": "205"
+     },
+     {
+      "ten": "Phường Nam Đồng",
+      "ma_hanh_chinh": "208"
+     },
+     {
+      "ten": "Phường Quang Trung",
+      "ma_hanh_chinh": "214"
+     },
+     {
+      "ten": "Phường Trung Liệt",
+      "ma_hanh_chinh": "217"
+     },
+     {
+      "ten": "Phường Phương Liên - Trung Tự",
+      "ma_hanh_chinh": "226"
+     },
+     {
+      "ten": "Phường Kim Liên",
+      "ma_hanh_chinh": "229"
+     },
+     {
+      "ten": "Phường Phương Mai",
+      "ma_hanh_chinh": "232"
+     },
+     {
+      "ten": "Phường Thịnh Quang",
+      "ma_hanh_chinh": "235"
+     },
+     {
+      "ten": "Phường Khương Thượng",
+      "ma_hanh_chinh": "238"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Hai Bà Trưng",
+    "ma_hanh_chinh": "7",
+    "phuong_xa": [
+     {
+      "ten": "Phường Nguyễn Du",
+      "ma_hanh_chinh": "241"
+     },
+     {
+      "ten": "Phường Bạch Đằng",
+      "ma_hanh_chinh": "244"
+     },
+     {
+      "ten": "Phường Phạm Đình Hổ",
+      "ma_hanh_chinh": "247"
+     },
+     {
+      "ten": "Phường Lê Đại Hành",
+      "ma_hanh_chinh": "256"
+     },
+     {
+      "ten": "Phường Đồng Nhân",
+      "ma_hanh_chinh": "259"
+     },
+     {
+      "ten": "Phường Phố Huế",
+      "ma_hanh_chinh": "262"
+     },
+     {
+      "ten": "Phường Thanh Lương",
+      "ma_hanh_chinh": "268"
+     },
+     {
+      "ten": "Phường Thanh Nhàn",
+      "ma_hanh_chinh": "271"
+     },
+     {
+      "ten": "Phường Bách Khoa",
+      "ma_hanh_chinh": "277"
+     },
+     {
+      "ten": "Phường Đồng Tâm",
+      "ma_hanh_chinh": "280"
+     },
+     {
+      "ten": "Phường Vĩnh Tuy",
+      "ma_hanh_chinh": "283"
+     },
+     {
+      "ten": "Phường Quỳnh Mai",
+      "ma_hanh_chinh": "289"
+     },
+     {
+      "ten": "Phường Bạch Mai",
+      "ma_hanh_chinh": "292"
+     },
+     {
+      "ten": "Phường Minh Khai",
+      "ma_hanh_chinh": "295"
+     },
+     {
+      "ten": "Phường Trương Định",
+      "ma_hanh_chinh": "298"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Hoàng Mai",
+    "ma_hanh_chinh": "8",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thanh Trì",
+      "ma_hanh_chinh": "301"
+     },
+     {
+      "ten": "Phường Vĩnh Hưng",
+      "ma_hanh_chinh": "304"
+     },
+     {
+      "ten": "Phường Định Công",
+      "ma_hanh_chinh": "307"
+     },
+     {
+      "ten": "Phường Mai Động",
+      "ma_hanh_chinh": "310"
+     },
+     {
+      "ten": "Phường Tương Mai",
+      "ma_hanh_chinh": "313"
+     },
+     {
+      "ten": "Phường Đại Kim",
+      "ma_hanh_chinh": "316"
+     },
+     {
+      "ten": "Phường Tân Mai",
+      "ma_hanh_chinh": "319"
+     },
+     {
+      "ten": "Phường Hoàng Văn Thụ",
+      "ma_hanh_chinh": "322"
+     },
+     {
+      "ten": "Phường Giáp Bát",
+      "ma_hanh_chinh": "325"
+     },
+     {
+      "ten": "Phường Lĩnh Nam",
+      "ma_hanh_chinh": "328"
+     },
+     {
+      "ten": "Phường Thịnh Liệt",
+      "ma_hanh_chinh": "331"
+     },
+     {
+      "ten": "Phường Trần Phú",
+      "ma_hanh_chinh": "334"
+     },
+     {
+      "ten": "Phường Hoàng Liệt",
+      "ma_hanh_chinh": "337"
+     },
+     {
+      "ten": "Phường Yên Sở",
+      "ma_hanh_chinh": "340"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Thanh Xuân",
+    "ma_hanh_chinh": "9",
+    "phuong_xa": [
+     {
+      "ten": "Phường Nhân Chính",
+      "ma_hanh_chinh": "343"
+     },
+     {
+      "ten": "Phường Thượng Đình",
+      "ma_hanh_chinh": "346"
+     },
+     {
+      "ten": "Phường Khương Trung",
+      "ma_hanh_chinh": "349"
+     },
+     {
+      "ten": "Phường Khương Mai",
+      "ma_hanh_chinh": "352"
+     },
+     {
+      "ten": "Phường Thanh Xuân Trung",
+      "ma_hanh_chinh": "355"
+     },
+     {
+      "ten": "Phường Phương Liệt",
+      "ma_hanh_chinh": "358"
+     },
+     {
+      "ten": "Phường Khương Đình",
+      "ma_hanh_chinh": "364"
+     },
+     {
+      "ten": "Phường Thanh Xuân Bắc",
+      "ma_hanh_chinh": "367"
+     },
+     {
+      "ten": "Phường Hạ Đình",
+      "ma_hanh_chinh": "373"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Sóc Sơn",
+    "ma_hanh_chinh": "16",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Sóc Sơn",
+      "ma_hanh_chinh": "376"
+     },
+     {
+      "ten": "Xã Bắc Sơn",
+      "ma_hanh_chinh": "379"
+     },
+     {
+      "ten": "Xã Minh Trí",
+      "ma_hanh_chinh": "382"
+     },
+     {
+      "ten": "Xã Hồng Kỳ",
+      "ma_hanh_chinh": "385"
+     },
+     {
+      "ten": "Xã Nam Sơn",
+      "ma_hanh_chinh": "388"
+     },
+     {
+      "ten": "Xã Trung Giã",
+      "ma_hanh_chinh": "391"
+     },
+     {
+      "ten": "Xã Tân Hưng",
+      "ma_hanh_chinh": "394"
+     },
+     {
+      "ten": "Xã Minh Phú",
+      "ma_hanh_chinh": "397"
+     },
+     {
+      "ten": "Xã Phù Linh",
+      "ma_hanh_chinh": "400"
+     },
+     {
+      "ten": "Xã Bắc Phú",
+      "ma_hanh_chinh": "403"
+     },
+     {
+      "ten": "Xã Tân Minh",
+      "ma_hanh_chinh": "406"
+     },
+     {
+      "ten": "Xã Quang Tiến",
+      "ma_hanh_chinh": "409"
+     },
+     {
+      "ten": "Xã Hiền Ninh",
+      "ma_hanh_chinh": "412"
+     },
+     {
+      "ten": "Xã Tân Dân",
+      "ma_hanh_chinh": "415"
+     },
+     {
+      "ten": "Xã Tiên Dược",
+      "ma_hanh_chinh": "418"
+     },
+     {
+      "ten": "Xã Việt Long",
+      "ma_hanh_chinh": "421"
+     },
+     {
+      "ten": "Xã Xuân Giang",
+      "ma_hanh_chinh": "424"
+     },
+     {
+      "ten": "Xã Mai Đình",
+      "ma_hanh_chinh": "427"
+     },
+     {
+      "ten": "Xã Đức Hoà",
+      "ma_hanh_chinh": "430"
+     },
+     {
+      "ten": "Xã Thanh Xuân",
+      "ma_hanh_chinh": "433"
+     },
+     {
+      "ten": "Xã Đông Xuân",
+      "ma_hanh_chinh": "436"
+     },
+     {
+      "ten": "Xã Kim Lũ",
+      "ma_hanh_chinh": "439"
+     },
+     {
+      "ten": "Xã Phú Cường",
+      "ma_hanh_chinh": "442"
+     },
+     {
+      "ten": "Xã Phú Minh",
+      "ma_hanh_chinh": "445"
+     },
+     {
+      "ten": "Xã Phù Lỗ",
+      "ma_hanh_chinh": "448"
+     },
+     {
+      "ten": "Xã Xuân Thu",
+      "ma_hanh_chinh": "451"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Đông Anh",
+    "ma_hanh_chinh": "17",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Đông Anh",
+      "ma_hanh_chinh": "454"
+     },
+     {
+      "ten": "Xã Xuân Nộn",
+      "ma_hanh_chinh": "457"
+     },
+     {
+      "ten": "Xã Thuỵ Lâm",
+      "ma_hanh_chinh": "460"
+     },
+     {
+      "ten": "Xã Bắc Hồng",
+      "ma_hanh_chinh": "463"
+     },
+     {
+      "ten": "Xã Nguyên Khê",
+      "ma_hanh_chinh": "466"
+     },
+     {
+      "ten": "Xã Nam Hồng",
+      "ma_hanh_chinh": "469"
+     },
+     {
+      "ten": "Xã Tiên Dương",
+      "ma_hanh_chinh": "472"
+     },
+     {
+      "ten": "Xã Vân Hà",
+      "ma_hanh_chinh": "475"
+     },
+     {
+      "ten": "Xã Uy Nỗ",
+      "ma_hanh_chinh": "478"
+     },
+     {
+      "ten": "Xã Vân Nội",
+      "ma_hanh_chinh": "481"
+     },
+     {
+      "ten": "Xã Liên Hà",
+      "ma_hanh_chinh": "484"
+     },
+     {
+      "ten": "Xã Việt Hùng",
+      "ma_hanh_chinh": "487"
+     },
+     {
+      "ten": "Xã Kim Nỗ",
+      "ma_hanh_chinh": "490"
+     },
+     {
+      "ten": "Xã Kim Chung",
+      "ma_hanh_chinh": "493"
+     },
+     {
+      "ten": "Xã Dục Tú",
+      "ma_hanh_chinh": "496"
+     },
+     {
+      "ten": "Xã Đại Mạch",
+      "ma_hanh_chinh": "499"
+     },
+     {
+      "ten": "Xã Vĩnh Ngọc",
+      "ma_hanh_chinh": "502"
+     },
+     {
+      "ten": "Xã Cổ Loa",
+      "ma_hanh_chinh": "505"
+     },
+     {
+      "ten": "Xã Hải Bối",
+      "ma_hanh_chinh": "508"
+     },
+     {
+      "ten": "Xã Xuân Canh",
+      "ma_hanh_chinh": "511"
+     },
+     {
+      "ten": "Xã Võng La",
+      "ma_hanh_chinh": "514"
+     },
+     {
+      "ten": "Xã Tàm Xá",
+      "ma_hanh_chinh": "517"
+     },
+     {
+      "ten": "Xã Mai Lâm",
+      "ma_hanh_chinh": "520"
+     },
+     {
+      "ten": "Xã Đông Hội",
+      "ma_hanh_chinh": "523"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Gia Lâm",
+    "ma_hanh_chinh": "18",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Yên Viên",
+      "ma_hanh_chinh": "526"
+     },
+     {
+      "ten": "Xã Yên Thường",
+      "ma_hanh_chinh": "529"
+     },
+     {
+      "ten": "Xã Yên Viên",
+      "ma_hanh_chinh": "532"
+     },
+     {
+      "ten": "Xã Ninh Hiệp",
+      "ma_hanh_chinh": "535"
+     },
+     {
+      "ten": "Xã Thiên Đức",
+      "ma_hanh_chinh": "541"
+     },
+     {
+      "ten": "Xã Phù Đổng",
+      "ma_hanh_chinh": "544"
+     },
+     {
+      "ten": "Xã Lệ Chi",
+      "ma_hanh_chinh": "550"
+     },
+     {
+      "ten": "Xã Cổ Bi",
+      "ma_hanh_chinh": "553"
+     },
+     {
+      "ten": "Xã Đặng Xá",
+      "ma_hanh_chinh": "556"
+     },
+     {
+      "ten": "Xã Phú Sơn",
+      "ma_hanh_chinh": "562"
+     },
+     {
+      "ten": "Thị trấn Trâu Quỳ",
+      "ma_hanh_chinh": "565"
+     },
+     {
+      "ten": "Xã Dương Quang",
+      "ma_hanh_chinh": "568"
+     },
+     {
+      "ten": "Xã Dương Xá",
+      "ma_hanh_chinh": "571"
+     },
+     {
+      "ten": "Xã Đa Tốn",
+      "ma_hanh_chinh": "577"
+     },
+     {
+      "ten": "Xã Kiêu Kỵ",
+      "ma_hanh_chinh": "580"
+     },
+     {
+      "ten": "Xã Bát Tràng",
+      "ma_hanh_chinh": "583"
+     },
+     {
+      "ten": "Xã Kim Đức",
+      "ma_hanh_chinh": "589"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Nam Từ Liêm",
+    "ma_hanh_chinh": "19",
+    "phuong_xa": [
+     {
+      "ten": "Phường Cầu Diễn",
+      "ma_hanh_chinh": "592"
+     },
+     {
+      "ten": "Phường Xuân Phương",
+      "ma_hanh_chinh": "622"
+     },
+     {
+      "ten": "Phường Phương Canh",
+      "ma_hanh_chinh": "623"
+     },
+     {
+      "ten": "Phường Mỹ Đình 1",
+      "ma_hanh_chinh": "625"
+     },
+     {
+      "ten": "Phường Mỹ Đình 2",
+      "ma_hanh_chinh": "626"
+     },
+     {
+      "ten": "Phường Tây Mỗ",
+      "ma_hanh_chinh": "628"
+     },
+     {
+      "ten": "Phường Mễ Trì",
+      "ma_hanh_chinh": "631"
+     },
+     {
+      "ten": "Phường Phú Đô",
+      "ma_hanh_chinh": "632"
+     },
+     {
+      "ten": "Phường Đại Mỗ",
+      "ma_hanh_chinh": "634"
+     },
+     {
+      "ten": "Phường Trung Văn",
+      "ma_hanh_chinh": "637"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Thanh Trì",
+    "ma_hanh_chinh": "20",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Văn Điển",
+      "ma_hanh_chinh": "640"
+     },
+     {
+      "ten": "Xã Tân Triều",
+      "ma_hanh_chinh": "643"
+     },
+     {
+      "ten": "Xã Thanh Liệt",
+      "ma_hanh_chinh": "646"
+     },
+     {
+      "ten": "Xã Tả Thanh Oai",
+      "ma_hanh_chinh": "649"
+     },
+     {
+      "ten": "Xã Hữu Hoà",
+      "ma_hanh_chinh": "652"
+     },
+     {
+      "ten": "Xã Tam Hiệp",
+      "ma_hanh_chinh": "655"
+     },
+     {
+      "ten": "Xã Tứ Hiệp",
+      "ma_hanh_chinh": "658"
+     },
+     {
+      "ten": "Xã Yên Mỹ",
+      "ma_hanh_chinh": "661"
+     },
+     {
+      "ten": "Xã Vĩnh Quỳnh",
+      "ma_hanh_chinh": "664"
+     },
+     {
+      "ten": "Xã Ngũ Hiệp",
+      "ma_hanh_chinh": "667"
+     },
+     {
+      "ten": "Xã Duyên Hà",
+      "ma_hanh_chinh": "670"
+     },
+     {
+      "ten": "Xã Ngọc Hồi",
+      "ma_hanh_chinh": "673"
+     },
+     {
+      "ten": "Xã Vạn Phúc",
+      "ma_hanh_chinh": "676"
+     },
+     {
+      "ten": "Xã Đại áng",
+      "ma_hanh_chinh": "679"
+     },
+     {
+      "ten": "Xã Liên Ninh",
+      "ma_hanh_chinh": "682"
+     },
+     {
+      "ten": "Xã Đông Mỹ",
+      "ma_hanh_chinh": "685"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Bắc Từ Liêm",
+    "ma_hanh_chinh": "21",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thượng Cát",
+      "ma_hanh_chinh": "595"
+     },
+     {
+      "ten": "Phường Liên Mạc",
+      "ma_hanh_chinh": "598"
+     },
+     {
+      "ten": "Phường Đông Ngạc",
+      "ma_hanh_chinh": "601"
+     },
+     {
+      "ten": "Phường Đức Thắng",
+      "ma_hanh_chinh": "602"
+     },
+     {
+      "ten": "Phường Thụy Phương",
+      "ma_hanh_chinh": "604"
+     },
+     {
+      "ten": "Phường Tây Tựu",
+      "ma_hanh_chinh": "607"
+     },
+     {
+      "ten": "Phường Xuân Đỉnh",
+      "ma_hanh_chinh": "610"
+     },
+     {
+      "ten": "Phường Xuân Tảo",
+      "ma_hanh_chinh": "611"
+     },
+     {
+      "ten": "Phường Minh Khai",
+      "ma_hanh_chinh": "613"
+     },
+     {
+      "ten": "Phường Cổ Nhuế 1",
+      "ma_hanh_chinh": "616"
+     },
+     {
+      "ten": "Phường Cổ Nhuế 2",
+      "ma_hanh_chinh": "617"
+     },
+     {
+      "ten": "Phường Phú Diễn",
+      "ma_hanh_chinh": "619"
+     },
+     {
+      "ten": "Phường Phúc Diễn",
+      "ma_hanh_chinh": "620"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Mê Linh",
+    "ma_hanh_chinh": "250",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Chi Đông",
+      "ma_hanh_chinh": "8973"
+     },
+     {
+      "ten": "Xã Đại Thịnh",
+      "ma_hanh_chinh": "8974"
+     },
+     {
+      "ten": "Xã Kim Hoa",
+      "ma_hanh_chinh": "8977"
+     },
+     {
+      "ten": "Xã Thạch Đà",
+      "ma_hanh_chinh": "8980"
+     },
+     {
+      "ten": "Xã Tiến Thắng",
+      "ma_hanh_chinh": "8983"
+     },
+     {
+      "ten": "Xã Tự Lập",
+      "ma_hanh_chinh": "8986"
+     },
+     {
+      "ten": "Thị trấn Quang Minh",
+      "ma_hanh_chinh": "8989"
+     },
+     {
+      "ten": "Xã Thanh Lâm",
+      "ma_hanh_chinh": "8992"
+     },
+     {
+      "ten": "Xã Tam Đồng",
+      "ma_hanh_chinh": "8995"
+     },
+     {
+      "ten": "Xã Liên Mạc",
+      "ma_hanh_chinh": "8998"
+     },
+     {
+      "ten": "Xã Chu Phan",
+      "ma_hanh_chinh": "9004"
+     },
+     {
+      "ten": "Xã Tiến Thịnh",
+      "ma_hanh_chinh": "9007"
+     },
+     {
+      "ten": "Xã Mê Linh",
+      "ma_hanh_chinh": "9010"
+     },
+     {
+      "ten": "Xã Văn Khê",
+      "ma_hanh_chinh": "9013"
+     },
+     {
+      "ten": "Xã Hoàng Kim",
+      "ma_hanh_chinh": "9016"
+     },
+     {
+      "ten": "Xã Tiền Phong",
+      "ma_hanh_chinh": "9019"
+     },
+     {
+      "ten": "Xã Tráng Việt",
+      "ma_hanh_chinh": "9022"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Hà Đông",
+    "ma_hanh_chinh": "268",
+    "phuong_xa": [
+     {
+      "ten": "Phường Quang Trung",
+      "ma_hanh_chinh": "9538"
+     },
+     {
+      "ten": "Phường Mộ Lao",
+      "ma_hanh_chinh": "9541"
+     },
+     {
+      "ten": "Phường Văn Quán",
+      "ma_hanh_chinh": "9542"
+     },
+     {
+      "ten": "Phường Vạn Phúc",
+      "ma_hanh_chinh": "9544"
+     },
+     {
+      "ten": "Phường La Khê",
+      "ma_hanh_chinh": "9551"
+     },
+     {
+      "ten": "Phường Phú La",
+      "ma_hanh_chinh": "9552"
+     },
+     {
+      "ten": "Phường Phúc La",
+      "ma_hanh_chinh": "9553"
+     },
+     {
+      "ten": "Phường Hà Cầu",
+      "ma_hanh_chinh": "9556"
+     },
+     {
+      "ten": "Phường Yên Nghĩa",
+      "ma_hanh_chinh": "9562"
+     },
+     {
+      "ten": "Phường Kiến Hưng",
+      "ma_hanh_chinh": "9565"
+     },
+     {
+      "ten": "Phường Phú Lãm",
+      "ma_hanh_chinh": "9568"
+     },
+     {
+      "ten": "Phường Phú Lương",
+      "ma_hanh_chinh": "9571"
+     },
+     {
+      "ten": "Phường Dương Nội",
+      "ma_hanh_chinh": "9886"
+     },
+     {
+      "ten": "Phường Đồng Mai",
+      "ma_hanh_chinh": "10117"
+     },
+     {
+      "ten": "Phường Biên Giang",
+      "ma_hanh_chinh": "10123"
+     }
+    ]
+   },
+   {
+    "ten": "Thị xã Sơn Tây",
+    "ma_hanh_chinh": "269",
+    "phuong_xa": [
+     {
+      "ten": "Phường Ngô Quyền",
+      "ma_hanh_chinh": "9574"
+     },
+     {
+      "ten": "Phường Phú Thịnh",
+      "ma_hanh_chinh": "9577"
+     },
+     {
+      "ten": "Phường Sơn Lộc",
+      "ma_hanh_chinh": "9586"
+     },
+     {
+      "ten": "Phường Xuân Khanh",
+      "ma_hanh_chinh": "9589"
+     },
+     {
+      "ten": "Xã Đường Lâm",
+      "ma_hanh_chinh": "9592"
+     },
+     {
+      "ten": "Phường Viên Sơn",
+      "ma_hanh_chinh": "9595"
+     },
+     {
+      "ten": "Xã Xuân Sơn",
+      "ma_hanh_chinh": "9598"
+     },
+     {
+      "ten": "Phường Trung Hưng",
+      "ma_hanh_chinh": "9601"
+     },
+     {
+      "ten": "Xã Thanh Mỹ",
+      "ma_hanh_chinh": "9604"
+     },
+     {
+      "ten": "Phường Trung Sơn Trầm",
+      "ma_hanh_chinh": "9607"
+     },
+     {
+      "ten": "Xã Kim Sơn",
+      "ma_hanh_chinh": "9610"
+     },
+     {
+      "ten": "Xã Sơn Đông",
+      "ma_hanh_chinh": "9613"
+     },
+     {
+      "ten": "Xã Cổ Đông",
+      "ma_hanh_chinh": "9616"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Ba Vì",
+    "ma_hanh_chinh": "271",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Tây Đằng",
+      "ma_hanh_chinh": "9619"
+     },
+     {
+      "ten": "Xã Phú Cường",
+      "ma_hanh_chinh": "9625"
+     },
+     {
+      "ten": "Xã Cổ Đô",
+      "ma_hanh_chinh": "9628"
+     },
+     {
+      "ten": "Xã Vạn Thắng",
+      "ma_hanh_chinh": "9634"
+     },
+     {
+      "ten": "Xã Phong Vân",
+      "ma_hanh_chinh": "9640"
+     },
+     {
+      "ten": "Xã Phú Đông",
+      "ma_hanh_chinh": "9643"
+     },
+     {
+      "ten": "Xã Phú Hồng",
+      "ma_hanh_chinh": "9646"
+     },
+     {
+      "ten": "Xã Phú Châu",
+      "ma_hanh_chinh": "9649"
+     },
+     {
+      "ten": "Xã Thái Hòa",
+      "ma_hanh_chinh": "9652"
+     },
+     {
+      "ten": "Xã Đồng Thái",
+      "ma_hanh_chinh": "9655"
+     },
+     {
+      "ten": "Xã Phú Sơn",
+      "ma_hanh_chinh": "9658"
+     },
+     {
+      "ten": "Xã Minh Châu",
+      "ma_hanh_chinh": "9661"
+     },
+     {
+      "ten": "Xã Vật Lại",
+      "ma_hanh_chinh": "9664"
+     },
+     {
+      "ten": "Xã Chu Minh",
+      "ma_hanh_chinh": "9667"
+     },
+     {
+      "ten": "Xã Tòng Bạt",
+      "ma_hanh_chinh": "9670"
+     },
+     {
+      "ten": "Xã Cẩm Lĩnh",
+      "ma_hanh_chinh": "9673"
+     },
+     {
+      "ten": "Xã Sơn Đà",
+      "ma_hanh_chinh": "9676"
+     },
+     {
+      "ten": "Xã Đông Quang",
+      "ma_hanh_chinh": "9679"
+     },
+     {
+      "ten": "Xã Tiên Phong",
+      "ma_hanh_chinh": "9682"
+     },
+     {
+      "ten": "Xã Thụy An",
+      "ma_hanh_chinh": "9685"
+     },
+     {
+      "ten": "Xã Cam Thượng",
+      "ma_hanh_chinh": "9688"
+     },
+     {
+      "ten": "Xã Thuần Mỹ",
+      "ma_hanh_chinh": "9691"
+     },
+     {
+      "ten": "Xã Tản Lĩnh",
+      "ma_hanh_chinh": "9694"
+     },
+     {
+      "ten": "Xã Ba Trại",
+      "ma_hanh_chinh": "9697"
+     },
+     {
+      "ten": "Xã Minh Quang",
+      "ma_hanh_chinh": "9700"
+     },
+     {
+      "ten": "Xã Ba Vì",
+      "ma_hanh_chinh": "9703"
+     },
+     {
+      "ten": "Xã Vân Hòa",
+      "ma_hanh_chinh": "9706"
+     },
+     {
+      "ten": "Xã Yên Bài",
+      "ma_hanh_chinh": "9709"
+     },
+     {
+      "ten": "Xã Khánh Thượng",
+      "ma_hanh_chinh": "9712"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Phúc Thọ",
+    "ma_hanh_chinh": "272",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Phúc Thọ",
+      "ma_hanh_chinh": "9715"
+     },
+     {
+      "ten": "Xã Vân Phúc",
+      "ma_hanh_chinh": "9721"
+     },
+     {
+      "ten": "Xã Nam Hà",
+      "ma_hanh_chinh": "9724"
+     },
+     {
+      "ten": "Xã Xuân Đình",
+      "ma_hanh_chinh": "9727"
+     },
+     {
+      "ten": "Xã Sen Phương",
+      "ma_hanh_chinh": "9733"
+     },
+     {
+      "ten": "Xã Võng Xuyên",
+      "ma_hanh_chinh": "9739"
+     },
+     {
+      "ten": "Xã Tích Lộc",
+      "ma_hanh_chinh": "9742"
+     },
+     {
+      "ten": "Xã Long Thượng",
+      "ma_hanh_chinh": "9745"
+     },
+     {
+      "ten": "Xã Hát Môn",
+      "ma_hanh_chinh": "9751"
+     },
+     {
+      "ten": "Xã Thanh Đa",
+      "ma_hanh_chinh": "9757"
+     },
+     {
+      "ten": "Xã Trạch Mỹ Lộc",
+      "ma_hanh_chinh": "9760"
+     },
+     {
+      "ten": "Xã Phúc Hòa",
+      "ma_hanh_chinh": "9763"
+     },
+     {
+      "ten": "Xã Ngọc Tảo",
+      "ma_hanh_chinh": "9766"
+     },
+     {
+      "ten": "Xã Phụng Thượng",
+      "ma_hanh_chinh": "9769"
+     },
+     {
+      "ten": "Xã Tam Thuấn",
+      "ma_hanh_chinh": "9772"
+     },
+     {
+      "ten": "Xã Tam Hiệp",
+      "ma_hanh_chinh": "9775"
+     },
+     {
+      "ten": "Xã Hiệp Thuận",
+      "ma_hanh_chinh": "9778"
+     },
+     {
+      "ten": "Xã Liên Hiệp",
+      "ma_hanh_chinh": "9781"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Đan Phượng",
+    "ma_hanh_chinh": "273",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Phùng",
+      "ma_hanh_chinh": "9784"
+     },
+     {
+      "ten": "Xã Trung Châu",
+      "ma_hanh_chinh": "9787"
+     },
+     {
+      "ten": "Xã Thọ An",
+      "ma_hanh_chinh": "9790"
+     },
+     {
+      "ten": "Xã Thọ Xuân",
+      "ma_hanh_chinh": "9793"
+     },
+     {
+      "ten": "Xã Hồng Hà",
+      "ma_hanh_chinh": "9796"
+     },
+     {
+      "ten": "Xã Liên Hồng",
+      "ma_hanh_chinh": "9799"
+     },
+     {
+      "ten": "Xã Liên Hà",
+      "ma_hanh_chinh": "9802"
+     },
+     {
+      "ten": "Xã Hạ Mỗ",
+      "ma_hanh_chinh": "9805"
+     },
+     {
+      "ten": "Xã Liên Trung",
+      "ma_hanh_chinh": "9808"
+     },
+     {
+      "ten": "Xã Phương Đình",
+      "ma_hanh_chinh": "9811"
+     },
+     {
+      "ten": "Xã Thượng Mỗ",
+      "ma_hanh_chinh": "9814"
+     },
+     {
+      "ten": "Xã Tân Hội",
+      "ma_hanh_chinh": "9817"
+     },
+     {
+      "ten": "Xã Tân Lập",
+      "ma_hanh_chinh": "9820"
+     },
+     {
+      "ten": "Xã Đan Phượng",
+      "ma_hanh_chinh": "9823"
+     },
+     {
+      "ten": "Xã Đồng Tháp",
+      "ma_hanh_chinh": "9826"
+     },
+     {
+      "ten": "Xã Song Phượng",
+      "ma_hanh_chinh": "9829"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Hoài Đức",
+    "ma_hanh_chinh": "274",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Trạm Trôi",
+      "ma_hanh_chinh": "9832"
+     },
+     {
+      "ten": "Xã Đức Thượng",
+      "ma_hanh_chinh": "9835"
+     },
+     {
+      "ten": "Xã Minh Khai",
+      "ma_hanh_chinh": "9838"
+     },
+     {
+      "ten": "Xã Dương Liễu",
+      "ma_hanh_chinh": "9841"
+     },
+     {
+      "ten": "Xã Di Trạch",
+      "ma_hanh_chinh": "9844"
+     },
+     {
+      "ten": "Xã Đức Giang",
+      "ma_hanh_chinh": "9847"
+     },
+     {
+      "ten": "Xã Cát Quế",
+      "ma_hanh_chinh": "9850"
+     },
+     {
+      "ten": "Xã Kim Chung",
+      "ma_hanh_chinh": "9853"
+     },
+     {
+      "ten": "Xã Yên Sở",
+      "ma_hanh_chinh": "9856"
+     },
+     {
+      "ten": "Xã Sơn Đồng",
+      "ma_hanh_chinh": "9859"
+     },
+     {
+      "ten": "Xã Vân Canh",
+      "ma_hanh_chinh": "9862"
+     },
+     {
+      "ten": "Xã Đắc Sở",
+      "ma_hanh_chinh": "9865"
+     },
+     {
+      "ten": "Xã Lại Yên",
+      "ma_hanh_chinh": "9868"
+     },
+     {
+      "ten": "Xã Tiền Yên",
+      "ma_hanh_chinh": "9871"
+     },
+     {
+      "ten": "Xã Song Phương",
+      "ma_hanh_chinh": "9874"
+     },
+     {
+      "ten": "Xã An Khánh",
+      "ma_hanh_chinh": "9877"
+     },
+     {
+      "ten": "Xã An Thượng",
+      "ma_hanh_chinh": "9880"
+     },
+     {
+      "ten": "Xã Vân Côn",
+      "ma_hanh_chinh": "9883"
+     },
+     {
+      "ten": "Xã La Phù",
+      "ma_hanh_chinh": "9889"
+     },
+     {
+      "ten": "Xã Đông La",
+      "ma_hanh_chinh": "9892"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Quốc Oai",
+    "ma_hanh_chinh": "275",
+    "phuong_xa": [
+     {
+      "ten": "Xã Đông Xuân",
+      "ma_hanh_chinh": "4939"
+     },
+     {
+      "ten": "Thị trấn Quốc Oai",
+      "ma_hanh_chinh": "9895"
+     },
+     {
+      "ten": "Xã Sài Sơn",
+      "ma_hanh_chinh": "9898"
+     },
+     {
+      "ten": "Xã Phượng Sơn",
+      "ma_hanh_chinh": "9904"
+     },
+     {
+      "ten": "Xã Ngọc Liệp",
+      "ma_hanh_chinh": "9907"
+     },
+     {
+      "ten": "Xã Ngọc Mỹ",
+      "ma_hanh_chinh": "9910"
+     },
+     {
+      "ten": "Xã Thạch Thán",
+      "ma_hanh_chinh": "9916"
+     },
+     {
+      "ten": "Xã Đồng Quang",
+      "ma_hanh_chinh": "9919"
+     },
+     {
+      "ten": "Xã Phú Cát",
+      "ma_hanh_chinh": "9922"
+     },
+     {
+      "ten": "Xã Tuyết Nghĩa",
+      "ma_hanh_chinh": "9925"
+     },
+     {
+      "ten": "Xã Liệp Nghĩa",
+      "ma_hanh_chinh": "9928"
+     },
+     {
+      "ten": "Xã Cộng Hòa",
+      "ma_hanh_chinh": "9931"
+     },
+     {
+      "ten": "Xã Hưng Đạo",
+      "ma_hanh_chinh": "9934"
+     },
+     {
+      "ten": "Xã Phú Mãn",
+      "ma_hanh_chinh": "9940"
+     },
+     {
+      "ten": "Xã Cấn Hữu",
+      "ma_hanh_chinh": "9943"
+     },
+     {
+      "ten": "Xã Hòa Thạch",
+      "ma_hanh_chinh": "9949"
+     },
+     {
+      "ten": "Xã Đông Yên",
+      "ma_hanh_chinh": "9952"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Thạch Thất",
+    "ma_hanh_chinh": "276",
+    "phuong_xa": [
+     {
+      "ten": "Xã Yên Trung",
+      "ma_hanh_chinh": "4927"
+     },
+     {
+      "ten": "Xã Yên Bình",
+      "ma_hanh_chinh": "4930"
+     },
+     {
+      "ten": "Xã Tiến Xuân",
+      "ma_hanh_chinh": "4936"
+     },
+     {
+      "ten": "Thị trấn Liên Quan",
+      "ma_hanh_chinh": "9955"
+     },
+     {
+      "ten": "Xã Đại Đồng",
+      "ma_hanh_chinh": "9958"
+     },
+     {
+      "ten": "Xã Cẩm Yên",
+      "ma_hanh_chinh": "9961"
+     },
+     {
+      "ten": "Xã Lại Thượng",
+      "ma_hanh_chinh": "9964"
+     },
+     {
+      "ten": "Xã Phú Kim",
+      "ma_hanh_chinh": "9967"
+     },
+     {
+      "ten": "Xã Hương Ngải",
+      "ma_hanh_chinh": "9970"
+     },
+     {
+      "ten": "Xã Lam Sơn",
+      "ma_hanh_chinh": "9973"
+     },
+     {
+      "ten": "Xã Kim Quan",
+      "ma_hanh_chinh": "9976"
+     },
+     {
+      "ten": "Xã Bình Yên",
+      "ma_hanh_chinh": "9982"
+     },
+     {
+      "ten": "Xã Thạch Hoà",
+      "ma_hanh_chinh": "9988"
+     },
+     {
+      "ten": "Xã Cần Kiệm",
+      "ma_hanh_chinh": "9991"
+     },
+     {
+      "ten": "Xã Phùng Xá",
+      "ma_hanh_chinh": "9997"
+     },
+     {
+      "ten": "Xã Tân Xã",
+      "ma_hanh_chinh": "10000"
+     },
+     {
+      "ten": "Xã Thạch Xá",
+      "ma_hanh_chinh": "10003"
+     },
+     {
+      "ten": "Xã Quang Trung",
+      "ma_hanh_chinh": "10006"
+     },
+     {
+      "ten": "Xã Hạ Bằng",
+      "ma_hanh_chinh": "10009"
+     },
+     {
+      "ten": "Xã Đồng Trúc",
+      "ma_hanh_chinh": "10012"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Chương Mỹ",
+    "ma_hanh_chinh": "277",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Chúc Sơn",
+      "ma_hanh_chinh": "10015"
+     },
+     {
+      "ten": "Thị trấn Xuân Mai",
+      "ma_hanh_chinh": "10018"
+     },
+     {
+      "ten": "Xã Phụng Châu",
+      "ma_hanh_chinh": "10021"
+     },
+     {
+      "ten": "Xã Tiên Phương",
+      "ma_hanh_chinh": "10024"
+     },
+     {
+      "ten": "Xã Đông Sơn",
+      "ma_hanh_chinh": "10027"
+     },
+     {
+      "ten": "Xã Đông Phương Yên",
+      "ma_hanh_chinh": "10030"
+     },
+     {
+      "ten": "Xã Phú Nghĩa",
+      "ma_hanh_chinh": "10033"
+     },
+     {
+      "ten": "Xã Trường Yên",
+      "ma_hanh_chinh": "10039"
+     },
+     {
+      "ten": "Xã Ngọc Hòa",
+      "ma_hanh_chinh": "10042"
+     },
+     {
+      "ten": "Xã Thủy Xuân Tiên",
+      "ma_hanh_chinh": "10045"
+     },
+     {
+      "ten": "Xã Thanh Bình",
+      "ma_hanh_chinh": "10048"
+     },
+     {
+      "ten": "Xã Trung Hòa",
+      "ma_hanh_chinh": "10051"
+     },
+     {
+      "ten": "Xã Đại Yên",
+      "ma_hanh_chinh": "10054"
+     },
+     {
+      "ten": "Xã Thụy Hương",
+      "ma_hanh_chinh": "10057"
+     },
+     {
+      "ten": "Xã Tốt Động",
+      "ma_hanh_chinh": "10060"
+     },
+     {
+      "ten": "Xã Lam Điền",
+      "ma_hanh_chinh": "10063"
+     },
+     {
+      "ten": "Xã Tân Tiến",
+      "ma_hanh_chinh": "10066"
+     },
+     {
+      "ten": "Xã Nam Phương Tiến",
+      "ma_hanh_chinh": "10069"
+     },
+     {
+      "ten": "Xã Hợp Đồng",
+      "ma_hanh_chinh": "10072"
+     },
+     {
+      "ten": "Xã Hoàng Văn Thụ",
+      "ma_hanh_chinh": "10075"
+     },
+     {
+      "ten": "Xã Hoàng Diệu",
+      "ma_hanh_chinh": "10078"
+     },
+     {
+      "ten": "Xã Hữu Văn",
+      "ma_hanh_chinh": "10081"
+     },
+     {
+      "ten": "Xã Quảng Bị",
+      "ma_hanh_chinh": "10084"
+     },
+     {
+      "ten": "Xã Mỹ Lương",
+      "ma_hanh_chinh": "10087"
+     },
+     {
+      "ten": "Xã Thượng Vực",
+      "ma_hanh_chinh": "10090"
+     },
+     {
+      "ten": "Xã Hồng Phú",
+      "ma_hanh_chinh": "10096"
+     },
+     {
+      "ten": "Xã Trần Phú",
+      "ma_hanh_chinh": "10099"
+     },
+     {
+      "ten": "Xã Văn Võ",
+      "ma_hanh_chinh": "10102"
+     },
+     {
+      "ten": "Xã Đồng Lạc",
+      "ma_hanh_chinh": "10105"
+     },
+     {
+      "ten": "Xã Hòa Phú",
+      "ma_hanh_chinh": "10108"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Thanh Oai",
+    "ma_hanh_chinh": "278",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Kim Bài",
+      "ma_hanh_chinh": "10114"
+     },
+     {
+      "ten": "Xã Cự Khê",
+      "ma_hanh_chinh": "10120"
+     },
+     {
+      "ten": "Xã Bích Hòa",
+      "ma_hanh_chinh": "10126"
+     },
+     {
+      "ten": "Xã Mỹ Hưng",
+      "ma_hanh_chinh": "10129"
+     },
+     {
+      "ten": "Xã Cao Viên",
+      "ma_hanh_chinh": "10132"
+     },
+     {
+      "ten": "Xã Bình Minh",
+      "ma_hanh_chinh": "10135"
+     },
+     {
+      "ten": "Xã Tam Hưng",
+      "ma_hanh_chinh": "10138"
+     },
+     {
+      "ten": "Xã Thanh Cao",
+      "ma_hanh_chinh": "10141"
+     },
+     {
+      "ten": "Xã Thanh Thùy",
+      "ma_hanh_chinh": "10144"
+     },
+     {
+      "ten": "Xã Thanh Mai",
+      "ma_hanh_chinh": "10147"
+     },
+     {
+      "ten": "Xã Thanh Văn",
+      "ma_hanh_chinh": "10150"
+     },
+     {
+      "ten": "Xã Đỗ Động",
+      "ma_hanh_chinh": "10153"
+     },
+     {
+      "ten": "Xã Kim An",
+      "ma_hanh_chinh": "10156"
+     },
+     {
+      "ten": "Xã Kim Thư",
+      "ma_hanh_chinh": "10159"
+     },
+     {
+      "ten": "Xã Phương Trung",
+      "ma_hanh_chinh": "10162"
+     },
+     {
+      "ten": "Xã Tân Ước",
+      "ma_hanh_chinh": "10165"
+     },
+     {
+      "ten": "Xã Dân Hòa",
+      "ma_hanh_chinh": "10168"
+     },
+     {
+      "ten": "Xã Liên Châu",
+      "ma_hanh_chinh": "10171"
+     },
+     {
+      "ten": "Xã Cao Xuân Dương",
+      "ma_hanh_chinh": "10174"
+     },
+     {
+      "ten": "Xã Hồng Dương",
+      "ma_hanh_chinh": "10180"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Thường Tín",
+    "ma_hanh_chinh": "279",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Thường Tín",
+      "ma_hanh_chinh": "10183"
+     },
+     {
+      "ten": "Xã Ninh Sở",
+      "ma_hanh_chinh": "10186"
+     },
+     {
+      "ten": "Xã Nhị Khê",
+      "ma_hanh_chinh": "10189"
+     },
+     {
+      "ten": "Xã Duyên Thái",
+      "ma_hanh_chinh": "10192"
+     },
+     {
+      "ten": "Xã Khánh Hà",
+      "ma_hanh_chinh": "10195"
+     },
+     {
+      "ten": "Xã Hòa Bình",
+      "ma_hanh_chinh": "10198"
+     },
+     {
+      "ten": "Xã Văn Bình",
+      "ma_hanh_chinh": "10201"
+     },
+     {
+      "ten": "Xã Hiền Giang",
+      "ma_hanh_chinh": "10204"
+     },
+     {
+      "ten": "Xã Hồng Vân",
+      "ma_hanh_chinh": "10207"
+     },
+     {
+      "ten": "Xã Vân Tảo",
+      "ma_hanh_chinh": "10210"
+     },
+     {
+      "ten": "Xã Liên Phương",
+      "ma_hanh_chinh": "10213"
+     },
+     {
+      "ten": "Xã Văn Phú",
+      "ma_hanh_chinh": "10216"
+     },
+     {
+      "ten": "Xã Tự Nhiên",
+      "ma_hanh_chinh": "10219"
+     },
+     {
+      "ten": "Xã Tiền Phong",
+      "ma_hanh_chinh": "10222"
+     },
+     {
+      "ten": "Xã Hà Hồi",
+      "ma_hanh_chinh": "10225"
+     },
+     {
+      "ten": "Xã Nguyễn Trãi",
+      "ma_hanh_chinh": "10231"
+     },
+     {
+      "ten": "Xã Quất Động",
+      "ma_hanh_chinh": "10234"
+     },
+     {
+      "ten": "Xã Chương Dương",
+      "ma_hanh_chinh": "10237"
+     },
+     {
+      "ten": "Xã Tân Minh",
+      "ma_hanh_chinh": "10240"
+     },
+     {
+      "ten": "Xã Lê Lợi",
+      "ma_hanh_chinh": "10243"
+     },
+     {
+      "ten": "Xã Thắng Lợi",
+      "ma_hanh_chinh": "10246"
+     },
+     {
+      "ten": "Xã Dũng Tiến",
+      "ma_hanh_chinh": "10249"
+     },
+     {
+      "ten": "Xã Nghiêm Xuyên",
+      "ma_hanh_chinh": "10255"
+     },
+     {
+      "ten": "Xã Tô Hiệu",
+      "ma_hanh_chinh": "10258"
+     },
+     {
+      "ten": "Xã Văn Tự",
+      "ma_hanh_chinh": "10261"
+     },
+     {
+      "ten": "Xã Vạn Nhất",
+      "ma_hanh_chinh": "10264"
+     },
+     {
+      "ten": "Xã Minh Cường",
+      "ma_hanh_chinh": "10267"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Phú Xuyên",
+    "ma_hanh_chinh": "280",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Phú Minh",
+      "ma_hanh_chinh": "10270"
+     },
+     {
+      "ten": "Thị trấn Phú Xuyên",
+      "ma_hanh_chinh": "10273"
+     },
+     {
+      "ten": "Xã Hồng Minh",
+      "ma_hanh_chinh": "10276"
+     },
+     {
+      "ten": "Xã Phượng Dực",
+      "ma_hanh_chinh": "10279"
+     },
+     {
+      "ten": "Xã Nam Tiến",
+      "ma_hanh_chinh": "10282"
+     },
+     {
+      "ten": "Xã Văn Hoàng",
+      "ma_hanh_chinh": "10291"
+     },
+     {
+      "ten": "Xã Phú Túc",
+      "ma_hanh_chinh": "10294"
+     },
+     {
+      "ten": "Xã Hồng Thái",
+      "ma_hanh_chinh": "10300"
+     },
+     {
+      "ten": "Xã Hoàng Long",
+      "ma_hanh_chinh": "10303"
+     },
+     {
+      "ten": "Xã Nam Phong",
+      "ma_hanh_chinh": "10312"
+     },
+     {
+      "ten": "Xã Tân Dân",
+      "ma_hanh_chinh": "10315"
+     },
+     {
+      "ten": "Xã Quang Hà",
+      "ma_hanh_chinh": "10318"
+     },
+     {
+      "ten": "Xã Chuyên Mỹ",
+      "ma_hanh_chinh": "10321"
+     },
+     {
+      "ten": "Xã Khai Thái",
+      "ma_hanh_chinh": "10324"
+     },
+     {
+      "ten": "Xã Phúc Tiến",
+      "ma_hanh_chinh": "10327"
+     },
+     {
+      "ten": "Xã Vân Từ",
+      "ma_hanh_chinh": "10330"
+     },
+     {
+      "ten": "Xã Tri Thủy",
+      "ma_hanh_chinh": "10333"
+     },
+     {
+      "ten": "Xã Đại Xuyên",
+      "ma_hanh_chinh": "10336"
+     },
+     {
+      "ten": "Xã Phú Yên",
+      "ma_hanh_chinh": "10339"
+     },
+     {
+      "ten": "Xã Bạch Hạ",
+      "ma_hanh_chinh": "10342"
+     },
+     {
+      "ten": "Xã Quang Lãng",
+      "ma_hanh_chinh": "10345"
+     },
+     {
+      "ten": "Xã Châu Can",
+      "ma_hanh_chinh": "10348"
+     },
+     {
+      "ten": "Xã Minh Tân",
+      "ma_hanh_chinh": "10351"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Ứng Hòa",
+    "ma_hanh_chinh": "281",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Vân Đình",
+      "ma_hanh_chinh": "10354"
+     },
+     {
+      "ten": "Xã Hoa Viên",
+      "ma_hanh_chinh": "10363"
+     },
+     {
+      "ten": "Xã Quảng Phú Cầu",
+      "ma_hanh_chinh": "10366"
+     },
+     {
+      "ten": "Xã Trường Thịnh",
+      "ma_hanh_chinh": "10369"
+     },
+     {
+      "ten": "Xã Liên Bạt",
+      "ma_hanh_chinh": "10375"
+     },
+     {
+      "ten": "Xã Cao Sơn Tiến",
+      "ma_hanh_chinh": "10378"
+     },
+     {
+      "ten": "Xã Phương Tú",
+      "ma_hanh_chinh": "10384"
+     },
+     {
+      "ten": "Xã Trung Tú",
+      "ma_hanh_chinh": "10387"
+     },
+     {
+      "ten": "Xã Đồng Tân",
+      "ma_hanh_chinh": "10390"
+     },
+     {
+      "ten": "Xã Tảo Dương Văn",
+      "ma_hanh_chinh": "10393"
+     },
+     {
+      "ten": "Xã Thái Hòa",
+      "ma_hanh_chinh": "10396"
+     },
+     {
+      "ten": "Xã Minh Đức",
+      "ma_hanh_chinh": "10399"
+     },
+     {
+      "ten": "Xã Trầm Lộng",
+      "ma_hanh_chinh": "10402"
+     },
+     {
+      "ten": "Xã Kim Đường",
+      "ma_hanh_chinh": "10411"
+     },
+     {
+      "ten": "Xã Hòa Phú",
+      "ma_hanh_chinh": "10417"
+     },
+     {
+      "ten": "Xã Đại Hùng",
+      "ma_hanh_chinh": "10423"
+     },
+     {
+      "ten": "Xã Đông Lỗ",
+      "ma_hanh_chinh": "10426"
+     },
+     {
+      "ten": "Xã Phù Lưu",
+      "ma_hanh_chinh": "10429"
+     },
+     {
+      "ten": "Xã Đại Cường",
+      "ma_hanh_chinh": "10432"
+     },
+     {
+      "ten": "Xã Bình Lưu Quang",
+      "ma_hanh_chinh": "10435"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Mỹ Đức",
+    "ma_hanh_chinh": "282",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Đại Nghĩa",
+      "ma_hanh_chinh": "10441"
+     },
+     {
+      "ten": "Xã Đồng Tâm",
+      "ma_hanh_chinh": "10444"
+     },
+     {
+      "ten": "Xã Thượng Lâm",
+      "ma_hanh_chinh": "10447"
+     },
+     {
+      "ten": "Xã Tuy Lai",
+      "ma_hanh_chinh": "10450"
+     },
+     {
+      "ten": "Xã Phúc Lâm",
+      "ma_hanh_chinh": "10453"
+     },
+     {
+      "ten": "Xã Mỹ Xuyên",
+      "ma_hanh_chinh": "10459"
+     },
+     {
+      "ten": "Xã An Mỹ",
+      "ma_hanh_chinh": "10462"
+     },
+     {
+      "ten": "Xã Hồng Sơn",
+      "ma_hanh_chinh": "10465"
+     },
+     {
+      "ten": "Xã Lê Thanh",
+      "ma_hanh_chinh": "10468"
+     },
+     {
+      "ten": "Xã Xuy Xá",
+      "ma_hanh_chinh": "10471"
+     },
+     {
+      "ten": "Xã Phùng Xá",
+      "ma_hanh_chinh": "10474"
+     },
+     {
+      "ten": "Xã Phù Lưu Tế",
+      "ma_hanh_chinh": "10477"
+     },
+     {
+      "ten": "Xã Đại Hưng",
+      "ma_hanh_chinh": "10480"
+     },
+     {
+      "ten": "Xã Vạn Tín",
+      "ma_hanh_chinh": "10483"
+     },
+     {
+      "ten": "Xã Hương Sơn",
+      "ma_hanh_chinh": "10489"
+     },
+     {
+      "ten": "Xã Hùng Tiến",
+      "ma_hanh_chinh": "10492"
+     },
+     {
+      "ten": "Xã An Tiến",
+      "ma_hanh_chinh": "10495"
+     },
+     {
+      "ten": "Xã Hợp Tiến",
+      "ma_hanh_chinh": "10498"
+     },
+     {
+      "ten": "Xã Hợp Thanh",
+      "ma_hanh_chinh": "10501"
+     },
+     {
+      "ten": "Xã An Phú",
+      "ma_hanh_chinh": "10504"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "ten": "Thành phố Đà Nẵng",
+  "ma_hanh_chinh": "48",
+  "quan_huyen": [
+   {
+    "ten": "Quận Liên Chiểu",
+    "ma_hanh_chinh": "490",
+    "phuong_xa": [
+     {
+      "ten": "Phường Hòa Hiệp Bắc",
+      "ma_hanh_chinh": "20194"
+     },
+     {
+      "ten": "Phường Hòa Hiệp Nam",
+      "ma_hanh_chinh": "20195"
+     },
+     {
+      "ten": "Phường Hòa Khánh Bắc",
+      "ma_hanh_chinh": "20197"
+     },
+     {
+      "ten": "Phường Hòa Khánh Nam",
+      "ma_hanh_chinh": "20198"
+     },
+     {
+      "ten": "Phường Hòa Minh",
+      "ma_hanh_chinh": "20200"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Thanh Khê",
+    "ma_hanh_chinh": "491",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thanh Khê Tây",
+      "ma_hanh_chinh": "20206"
+     },
+     {
+      "ten": "Phường Thanh Khê Đông",
+      "ma_hanh_chinh": "20207"
+     },
+     {
+      "ten": "Phường Xuân Hà",
+      "ma_hanh_chinh": "20209"
+     },
+     {
+      "ten": "Phường Chính Gián",
+      "ma_hanh_chinh": "20215"
+     },
+     {
+      "ten": "Phường Thạc Gián",
+      "ma_hanh_chinh": "20218"
+     },
+     {
+      "ten": "Phường An Khê",
+      "ma_hanh_chinh": "20224"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Hải Châu",
+    "ma_hanh_chinh": "492",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thanh Bình",
+      "ma_hanh_chinh": "20227"
+     },
+     {
+      "ten": "Phường Thuận Phước",
+      "ma_hanh_chinh": "20230"
+     },
+     {
+      "ten": "Phường Thạch Thang",
+      "ma_hanh_chinh": "20233"
+     },
+     {
+      "ten": "Phường Hải Châu",
+      "ma_hanh_chinh": "20236"
+     },
+     {
+      "ten": "Phường Phước Ninh",
+      "ma_hanh_chinh": "20242"
+     },
+     {
+      "ten": "Phường Hòa Thuận Tây",
+      "ma_hanh_chinh": "20245"
+     },
+     {
+      "ten": "Phường Bình Thuận",
+      "ma_hanh_chinh": "20254"
+     },
+     {
+      "ten": "Phường Hòa Cường Bắc",
+      "ma_hanh_chinh": "20257"
+     },
+     {
+      "ten": "Phường Hòa Cường Nam",
+      "ma_hanh_chinh": "20258"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Sơn Trà",
+    "ma_hanh_chinh": "493",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thọ Quang",
+      "ma_hanh_chinh": "20263"
+     },
+     {
+      "ten": "Phường Nại Hiên Đông",
+      "ma_hanh_chinh": "20266"
+     },
+     {
+      "ten": "Phường Mân Thái",
+      "ma_hanh_chinh": "20269"
+     },
+     {
+      "ten": "Phường An Hải Bắc",
+      "ma_hanh_chinh": "20272"
+     },
+     {
+      "ten": "Phường Phước Mỹ",
+      "ma_hanh_chinh": "20275"
+     },
+     {
+      "ten": "Phường An Hải Nam",
+      "ma_hanh_chinh": "20278"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Ngũ Hành Sơn",
+    "ma_hanh_chinh": "494",
+    "phuong_xa": [
+     {
+      "ten": "Phường Mỹ An",
+      "ma_hanh_chinh": "20284"
+     },
+     {
+      "ten": "Phường Khuê Mỹ",
+      "ma_hanh_chinh": "20285"
+     },
+     {
+      "ten": "Phường Hoà Quý",
+      "ma_hanh_chinh": "20287"
+     },
+     {
+      "ten": "Phường Hoà Hải",
+      "ma_hanh_chinh": "20290"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Cẩm Lệ",
+    "ma_hanh_chinh": "495",
+    "phuong_xa": [
+     {
+      "ten": "Phường Khuê Trung",
+      "ma_hanh_chinh": "20260"
+     },
+     {
+      "ten": "Phường Hòa Phát",
+      "ma_hanh_chinh": "20305"
+     },
+     {
+      "ten": "Phường Hòa An",
+      "ma_hanh_chinh": "20306"
+     },
+     {
+      "ten": "Phường Hòa Thọ Tây",
+      "ma_hanh_chinh": "20311"
+     },
+     {
+      "ten": "Phường Hòa Thọ Đông",
+      "ma_hanh_chinh": "20312"
+     },
+     {
+      "ten": "Phường Hòa Xuân",
+      "ma_hanh_chinh": "20314"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Hòa Vang",
+    "ma_hanh_chinh": "497",
+    "phuong_xa": [
+     {
+      "ten": "Xã Hòa Bắc",
+      "ma_hanh_chinh": "20293"
+     },
+     {
+      "ten": "Xã Hòa Liên",
+      "ma_hanh_chinh": "20296"
+     },
+     {
+      "ten": "Xã Hòa Ninh",
+      "ma_hanh_chinh": "20299"
+     },
+     {
+      "ten": "Xã Hòa Sơn",
+      "ma_hanh_chinh": "20302"
+     },
+     {
+      "ten": "Xã Hòa Nhơn",
+      "ma_hanh_chinh": "20308"
+     },
+     {
+      "ten": "Xã Hòa Phú",
+      "ma_hanh_chinh": "20317"
+     },
+     {
+      "ten": "Xã Hòa Phong",
+      "ma_hanh_chinh": "20320"
+     },
+     {
+      "ten": "Xã Hòa Châu",
+      "ma_hanh_chinh": "20323"
+     },
+     {
+      "ten": "Xã Hòa Tiến",
+      "ma_hanh_chinh": "20326"
+     },
+     {
+      "ten": "Xã Hòa Phước",
+      "ma_hanh_chinh": "20329"
+     },
+     {
+      "ten": "Xã Hòa Khương",
+      "ma_hanh_chinh": "20332"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Hoàng Sa",
+    "ma_hanh_chinh": "498",
+    "phuong_xa": []
+   }
+  ]
+ },
+ {
+  "ten": "Thành phố Hồ Chí Minh",
+  "ma_hanh_chinh": "79",
+  "quan_huyen": [
+   {
+    "ten": "Quận 1",
+    "ma_hanh_chinh": "760",
+    "phuong_xa": [
+     {
+      "ten": "Phường Tân Định",
+      "ma_hanh_chinh": "26734"
+     },
+     {
+      "ten": "Phường Đa Kao",
+      "ma_hanh_chinh": "26737"
+     },
+     {
+      "ten": "Phường Bến Nghé",
+      "ma_hanh_chinh": "26740"
+     },
+     {
+      "ten": "Phường Bến Thành",
+      "ma_hanh_chinh": "26743"
+     },
+     {
+      "ten": "Phường Nguyễn Thái Bình",
+      "ma_hanh_chinh": "26746"
+     },
+     {
+      "ten": "Phường Phạm Ngũ Lão",
+      "ma_hanh_chinh": "26749"
+     },
+     {
+      "ten": "Phường Cầu Ông Lãnh",
+      "ma_hanh_chinh": "26752"
+     },
+     {
+      "ten": "Phường Cô Giang",
+      "ma_hanh_chinh": "26755"
+     },
+     {
+      "ten": "Phường Nguyễn Cư Trinh",
+      "ma_hanh_chinh": "26758"
+     },
+     {
+      "ten": "Phường Cầu Kho",
+      "ma_hanh_chinh": "26761"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 12",
+    "ma_hanh_chinh": "761",
+    "phuong_xa": [
+     {
+      "ten": "Phường Thạnh Xuân",
+      "ma_hanh_chinh": "26764"
+     },
+     {
+      "ten": "Phường Thạnh Lộc",
+      "ma_hanh_chinh": "26767"
+     },
+     {
+      "ten": "Phường Hiệp Thành",
+      "ma_hanh_chinh": "26770"
+     },
+     {
+      "ten": "Phường Thới An",
+      "ma_hanh_chinh": "26773"
+     },
+     {
+      "ten": "Phường Tân Chánh Hiệp",
+      "ma_hanh_chinh": "26776"
+     },
+     {
+      "ten": "Phường An Phú Đông",
+      "ma_hanh_chinh": "26779"
+     },
+     {
+      "ten": "Phường Tân Thới Hiệp",
+      "ma_hanh_chinh": "26782"
+     },
+     {
+      "ten": "Phường Trung Mỹ Tây",
+      "ma_hanh_chinh": "26785"
+     },
+     {
+      "ten": "Phường Tân Hưng Thuận",
+      "ma_hanh_chinh": "26787"
+     },
+     {
+      "ten": "Phường Đông Hưng Thuận",
+      "ma_hanh_chinh": "26788"
+     },
+     {
+      "ten": "Phường Tân Thới Nhất",
+      "ma_hanh_chinh": "26791"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Gò Vấp",
+    "ma_hanh_chinh": "764",
+    "phuong_xa": [
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "26872"
+     },
+     {
+      "ten": "Phường 17",
+      "ma_hanh_chinh": "26875"
+     },
+     {
+      "ten": "Phường 6",
+      "ma_hanh_chinh": "26876"
+     },
+     {
+      "ten": "Phường 16",
+      "ma_hanh_chinh": "26878"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "26881"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "26882"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "26884"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "26887"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "26890"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "26898"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "26899"
+     },
+     {
+      "ten": "Phường 3",
+      "ma_hanh_chinh": "26902"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Bình Thạnh",
+    "ma_hanh_chinh": "765",
+    "phuong_xa": [
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "26905"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "26908"
+     },
+     {
+      "ten": "Phường 27",
+      "ma_hanh_chinh": "26911"
+     },
+     {
+      "ten": "Phường 26",
+      "ma_hanh_chinh": "26914"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "26917"
+     },
+     {
+      "ten": "Phường 25",
+      "ma_hanh_chinh": "26920"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "26923"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "26926"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "26935"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "26941"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "26944"
+     },
+     {
+      "ten": "Phường 17",
+      "ma_hanh_chinh": "26950"
+     },
+     {
+      "ten": "Phường 22",
+      "ma_hanh_chinh": "26956"
+     },
+     {
+      "ten": "Phường 19",
+      "ma_hanh_chinh": "26959"
+     },
+     {
+      "ten": "Phường 28",
+      "ma_hanh_chinh": "26962"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Tân Bình",
+    "ma_hanh_chinh": "766",
+    "phuong_xa": [
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "26965"
+     },
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "26968"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "26971"
+     },
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "26974"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "26977"
+     },
+     {
+      "ten": "Phường 3",
+      "ma_hanh_chinh": "26980"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "26983"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "26986"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "26989"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "26992"
+     },
+     {
+      "ten": "Phường 6",
+      "ma_hanh_chinh": "26995"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "26998"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27001"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27004"
+     },
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27007"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Tân Phú",
+    "ma_hanh_chinh": "767",
+    "phuong_xa": [
+     {
+      "ten": "Phường Tân Sơn Nhì",
+      "ma_hanh_chinh": "27010"
+     },
+     {
+      "ten": "Phường Tây Thạnh",
+      "ma_hanh_chinh": "27013"
+     },
+     {
+      "ten": "Phường Sơn Kỳ",
+      "ma_hanh_chinh": "27016"
+     },
+     {
+      "ten": "Phường Tân Quý",
+      "ma_hanh_chinh": "27019"
+     },
+     {
+      "ten": "Phường Tân Thành",
+      "ma_hanh_chinh": "27022"
+     },
+     {
+      "ten": "Phường Phú Thọ Hòa",
+      "ma_hanh_chinh": "27025"
+     },
+     {
+      "ten": "Phường Phú Thạnh",
+      "ma_hanh_chinh": "27028"
+     },
+     {
+      "ten": "Phường Phú Trung",
+      "ma_hanh_chinh": "27031"
+     },
+     {
+      "ten": "Phường Hòa Thạnh",
+      "ma_hanh_chinh": "27034"
+     },
+     {
+      "ten": "Phường Hiệp Tân",
+      "ma_hanh_chinh": "27037"
+     },
+     {
+      "ten": "Phường Tân Thới Hòa",
+      "ma_hanh_chinh": "27040"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Phú Nhuận",
+    "ma_hanh_chinh": "768",
+    "phuong_xa": [
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27043"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "27046"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27049"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "27052"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27058"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27061"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "27064"
+     },
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27067"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "27070"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "27073"
+     },
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "27085"
+     }
+    ]
+   },
+   {
+    "ten": "Thành phố Thủ Đức",
+    "ma_hanh_chinh": "769",
+    "phuong_xa": [
+     {
+      "ten": "Phường Linh Xuân",
+      "ma_hanh_chinh": "26794"
+     },
+     {
+      "ten": "Phường Bình Chiểu",
+      "ma_hanh_chinh": "26797"
+     },
+     {
+      "ten": "Phường Linh Trung",
+      "ma_hanh_chinh": "26800"
+     },
+     {
+      "ten": "Phường Tam Bình",
+      "ma_hanh_chinh": "26803"
+     },
+     {
+      "ten": "Phường Tam Phú",
+      "ma_hanh_chinh": "26806"
+     },
+     {
+      "ten": "Phường Hiệp Bình Phước",
+      "ma_hanh_chinh": "26809"
+     },
+     {
+      "ten": "Phường Hiệp Bình Chánh",
+      "ma_hanh_chinh": "26812"
+     },
+     {
+      "ten": "Phường Linh Chiểu",
+      "ma_hanh_chinh": "26815"
+     },
+     {
+      "ten": "Phường Linh Tây",
+      "ma_hanh_chinh": "26818"
+     },
+     {
+      "ten": "Phường Linh Đông",
+      "ma_hanh_chinh": "26821"
+     },
+     {
+      "ten": "Phường Bình Thọ",
+      "ma_hanh_chinh": "26824"
+     },
+     {
+      "ten": "Phường Trường Thọ",
+      "ma_hanh_chinh": "26827"
+     },
+     {
+      "ten": "Phường Long Bình",
+      "ma_hanh_chinh": "26830"
+     },
+     {
+      "ten": "Phường Long Thạnh Mỹ",
+      "ma_hanh_chinh": "26833"
+     },
+     {
+      "ten": "Phường Tân Phú",
+      "ma_hanh_chinh": "26836"
+     },
+     {
+      "ten": "Phường Hiệp Phú",
+      "ma_hanh_chinh": "26839"
+     },
+     {
+      "ten": "Phường Tăng Nhơn Phú A",
+      "ma_hanh_chinh": "26842"
+     },
+     {
+      "ten": "Phường Tăng Nhơn Phú B",
+      "ma_hanh_chinh": "26845"
+     },
+     {
+      "ten": "Phường Phước Long B",
+      "ma_hanh_chinh": "26848"
+     },
+     {
+      "ten": "Phường Phước Long A",
+      "ma_hanh_chinh": "26851"
+     },
+     {
+      "ten": "Phường Trường Thạnh",
+      "ma_hanh_chinh": "26854"
+     },
+     {
+      "ten": "Phường Long Phước",
+      "ma_hanh_chinh": "26857"
+     },
+     {
+      "ten": "Phường Long Trường",
+      "ma_hanh_chinh": "26860"
+     },
+     {
+      "ten": "Phường Phước Bình",
+      "ma_hanh_chinh": "26863"
+     },
+     {
+      "ten": "Phường Phú Hữu",
+      "ma_hanh_chinh": "26866"
+     },
+     {
+      "ten": "Phường Thảo Điền",
+      "ma_hanh_chinh": "27088"
+     },
+     {
+      "ten": "Phường An Phú",
+      "ma_hanh_chinh": "27091"
+     },
+     {
+      "ten": "Phường An Khánh",
+      "ma_hanh_chinh": "27094"
+     },
+     {
+      "ten": "Phường Bình Trưng Đông",
+      "ma_hanh_chinh": "27097"
+     },
+     {
+      "ten": "Phường Bình Trưng Tây",
+      "ma_hanh_chinh": "27100"
+     },
+     {
+      "ten": "Phường Cát Lái",
+      "ma_hanh_chinh": "27109"
+     },
+     {
+      "ten": "Phường Thạnh Mỹ Lợi",
+      "ma_hanh_chinh": "27112"
+     },
+     {
+      "ten": "Phường An Lợi Đông",
+      "ma_hanh_chinh": "27115"
+     },
+     {
+      "ten": "Phường Thủ Thiêm",
+      "ma_hanh_chinh": "27118"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 3",
+    "ma_hanh_chinh": "770",
+    "phuong_xa": [
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27127"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "27130"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "27133"
+     },
+     {
+      "ten": "Phường Võ Thị Sáu",
+      "ma_hanh_chinh": "27139"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27142"
+     },
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27148"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "27151"
+     },
+     {
+      "ten": "Phường 3",
+      "ma_hanh_chinh": "27154"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27157"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27160"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 10",
+    "ma_hanh_chinh": "771",
+    "phuong_xa": [
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27163"
+     },
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "27166"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27169"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "27172"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "27178"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27181"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27184"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "27187"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27190"
+     },
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27193"
+     },
+     {
+      "ten": "Phường 6",
+      "ma_hanh_chinh": "27202"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 11",
+    "ma_hanh_chinh": "772",
+    "phuong_xa": [
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27208"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "27211"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27214"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "27217"
+     },
+     {
+      "ten": "Phường 3",
+      "ma_hanh_chinh": "27220"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "27223"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "27229"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "27238"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27247"
+     },
+     {
+      "ten": "Phường 16",
+      "ma_hanh_chinh": "27253"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 4",
+    "ma_hanh_chinh": "773",
+    "phuong_xa": [
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "27259"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27265"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "27271"
+     },
+     {
+      "ten": "Phường 18",
+      "ma_hanh_chinh": "27277"
+     },
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27283"
+     },
+     {
+      "ten": "Phường 3",
+      "ma_hanh_chinh": "27286"
+     },
+     {
+      "ten": "Phường 16",
+      "ma_hanh_chinh": "27289"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27292"
+     },
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27295"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27298"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 5",
+    "ma_hanh_chinh": "774",
+    "phuong_xa": [
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27301"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27304"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27307"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "27310"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "27316"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27325"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "27328"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27331"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "27334"
+     },
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "27343"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 6",
+    "ma_hanh_chinh": "775",
+    "phuong_xa": [
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27346"
+     },
+     {
+      "ten": "Phường 13",
+      "ma_hanh_chinh": "27349"
+     },
+     {
+      "ten": "Phường 9",
+      "ma_hanh_chinh": "27352"
+     },
+     {
+      "ten": "Phường 12",
+      "ma_hanh_chinh": "27358"
+     },
+     {
+      "ten": "Phường 2",
+      "ma_hanh_chinh": "27361"
+     },
+     {
+      "ten": "Phường 11",
+      "ma_hanh_chinh": "27364"
+     },
+     {
+      "ten": "Phường 8",
+      "ma_hanh_chinh": "27376"
+     },
+     {
+      "ten": "Phường 1",
+      "ma_hanh_chinh": "27379"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "27382"
+     },
+     {
+      "ten": "Phường 10",
+      "ma_hanh_chinh": "27385"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 8",
+    "ma_hanh_chinh": "776",
+    "phuong_xa": [
+     {
+      "ten": "Phường Rạch Ông",
+      "ma_hanh_chinh": "27397"
+     },
+     {
+      "ten": "Phường Hưng Phú",
+      "ma_hanh_chinh": "27403"
+     },
+     {
+      "ten": "Phường 4",
+      "ma_hanh_chinh": "27409"
+     },
+     {
+      "ten": "Phường Xóm Củi",
+      "ma_hanh_chinh": "27415"
+     },
+     {
+      "ten": "Phường 5",
+      "ma_hanh_chinh": "27418"
+     },
+     {
+      "ten": "Phường 14",
+      "ma_hanh_chinh": "27421"
+     },
+     {
+      "ten": "Phường 6",
+      "ma_hanh_chinh": "27424"
+     },
+     {
+      "ten": "Phường 15",
+      "ma_hanh_chinh": "27427"
+     },
+     {
+      "ten": "Phường 16",
+      "ma_hanh_chinh": "27430"
+     },
+     {
+      "ten": "Phường 7",
+      "ma_hanh_chinh": "27433"
+     }
+    ]
+   },
+   {
+    "ten": "Quận Bình Tân",
+    "ma_hanh_chinh": "777",
+    "phuong_xa": [
+     {
+      "ten": "Phường Bình Hưng Hòa",
+      "ma_hanh_chinh": "27436"
+     },
+     {
+      "ten": "Phường Bình Hưng Hoà A",
+      "ma_hanh_chinh": "27439"
+     },
+     {
+      "ten": "Phường Bình Hưng Hoà B",
+      "ma_hanh_chinh": "27442"
+     },
+     {
+      "ten": "Phường Bình Trị Đông",
+      "ma_hanh_chinh": "27445"
+     },
+     {
+      "ten": "Phường Bình Trị Đông A",
+      "ma_hanh_chinh": "27448"
+     },
+     {
+      "ten": "Phường Bình Trị Đông B",
+      "ma_hanh_chinh": "27451"
+     },
+     {
+      "ten": "Phường Tân Tạo",
+      "ma_hanh_chinh": "27454"
+     },
+     {
+      "ten": "Phường Tân Tạo A",
+      "ma_hanh_chinh": "27457"
+     },
+     {
+      "ten": "Phường An Lạc",
+      "ma_hanh_chinh": "27460"
+     },
+     {
+      "ten": "Phường An Lạc A",
+      "ma_hanh_chinh": "27463"
+     }
+    ]
+   },
+   {
+    "ten": "Quận 7",
+    "ma_hanh_chinh": "778",
+    "phuong_xa": [
+     {
+      "ten": "Phường Tân Thuận Đông",
+      "ma_hanh_chinh": "27466"
+     },
+     {
+      "ten": "Phường Tân Thuận Tây",
+      "ma_hanh_chinh": "27469"
+     },
+     {
+      "ten": "Phường Tân Kiểng",
+      "ma_hanh_chinh": "27472"
+     },
+     {
+      "ten": "Phường Tân Hưng",
+      "ma_hanh_chinh": "27475"
+     },
+     {
+      "ten": "Phường Bình Thuận",
+      "ma_hanh_chinh": "27478"
+     },
+     {
+      "ten": "Phường Tân Quy",
+      "ma_hanh_chinh": "27481"
+     },
+     {
+      "ten": "Phường Phú Thuận",
+      "ma_hanh_chinh": "27484"
+     },
+     {
+      "ten": "Phường Tân Phú",
+      "ma_hanh_chinh": "27487"
+     },
+     {
+      "ten": "Phường Tân Phong",
+      "ma_hanh_chinh": "27490"
+     },
+     {
+      "ten": "Phường Phú Mỹ",
+      "ma_hanh_chinh": "27493"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Củ Chi",
+    "ma_hanh_chinh": "783",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Củ Chi",
+      "ma_hanh_chinh": "27496"
+     },
+     {
+      "ten": "Xã Phú Mỹ Hưng",
+      "ma_hanh_chinh": "27499"
+     },
+     {
+      "ten": "Xã An Phú",
+      "ma_hanh_chinh": "27502"
+     },
+     {
+      "ten": "Xã Trung Lập Thượng",
+      "ma_hanh_chinh": "27505"
+     },
+     {
+      "ten": "Xã An Nhơn Tây",
+      "ma_hanh_chinh": "27508"
+     },
+     {
+      "ten": "Xã Nhuận Đức",
+      "ma_hanh_chinh": "27511"
+     },
+     {
+      "ten": "Xã Phạm Văn Cội",
+      "ma_hanh_chinh": "27514"
+     },
+     {
+      "ten": "Xã Phú Hòa Đông",
+      "ma_hanh_chinh": "27517"
+     },
+     {
+      "ten": "Xã Trung Lập Hạ",
+      "ma_hanh_chinh": "27520"
+     },
+     {
+      "ten": "Xã Trung An",
+      "ma_hanh_chinh": "27523"
+     },
+     {
+      "ten": "Xã Phước Thạnh",
+      "ma_hanh_chinh": "27526"
+     },
+     {
+      "ten": "Xã Phước Hiệp",
+      "ma_hanh_chinh": "27529"
+     },
+     {
+      "ten": "Xã Tân An Hội",
+      "ma_hanh_chinh": "27532"
+     },
+     {
+      "ten": "Xã Phước Vĩnh An",
+      "ma_hanh_chinh": "27535"
+     },
+     {
+      "ten": "Xã Thái Mỹ",
+      "ma_hanh_chinh": "27538"
+     },
+     {
+      "ten": "Xã Tân Thạnh Tây",
+      "ma_hanh_chinh": "27541"
+     },
+     {
+      "ten": "Xã Hòa Phú",
+      "ma_hanh_chinh": "27544"
+     },
+     {
+      "ten": "Xã Tân Thạnh Đông",
+      "ma_hanh_chinh": "27547"
+     },
+     {
+      "ten": "Xã Bình Mỹ",
+      "ma_hanh_chinh": "27550"
+     },
+     {
+      "ten": "Xã Tân Phú Trung",
+      "ma_hanh_chinh": "27553"
+     },
+     {
+      "ten": "Xã Tân Thông Hội",
+      "ma_hanh_chinh": "27556"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Hóc Môn",
+    "ma_hanh_chinh": "784",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Hóc Môn",
+      "ma_hanh_chinh": "27559"
+     },
+     {
+      "ten": "Xã Tân Hiệp",
+      "ma_hanh_chinh": "27562"
+     },
+     {
+      "ten": "Xã Nhị Bình",
+      "ma_hanh_chinh": "27565"
+     },
+     {
+      "ten": "Xã Đông Thạnh",
+      "ma_hanh_chinh": "27568"
+     },
+     {
+      "ten": "Xã Tân Thới Nhì",
+      "ma_hanh_chinh": "27571"
+     },
+     {
+      "ten": "Xã Thới Tam Thôn",
+      "ma_hanh_chinh": "27574"
+     },
+     {
+      "ten": "Xã Xuân Thới Sơn",
+      "ma_hanh_chinh": "27577"
+     },
+     {
+      "ten": "Xã Tân Xuân",
+      "ma_hanh_chinh": "27580"
+     },
+     {
+      "ten": "Xã Xuân Thới Đông",
+      "ma_hanh_chinh": "27583"
+     },
+     {
+      "ten": "Xã Trung Chánh",
+      "ma_hanh_chinh": "27586"
+     },
+     {
+      "ten": "Xã Xuân Thới Thượng",
+      "ma_hanh_chinh": "27589"
+     },
+     {
+      "ten": "Xã Bà Điểm",
+      "ma_hanh_chinh": "27592"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Bình Chánh",
+    "ma_hanh_chinh": "785",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Tân Túc",
+      "ma_hanh_chinh": "27595"
+     },
+     {
+      "ten": "Xã Phạm Văn Hai",
+      "ma_hanh_chinh": "27598"
+     },
+     {
+      "ten": "Xã Vĩnh Lộc A",
+      "ma_hanh_chinh": "27601"
+     },
+     {
+      "ten": "Xã Vĩnh Lộc B",
+      "ma_hanh_chinh": "27604"
+     },
+     {
+      "ten": "Xã Bình Lợi",
+      "ma_hanh_chinh": "27607"
+     },
+     {
+      "ten": "Xã Lê Minh Xuân",
+      "ma_hanh_chinh": "27610"
+     },
+     {
+      "ten": "Xã Tân Nhựt",
+      "ma_hanh_chinh": "27613"
+     },
+     {
+      "ten": "Xã Tân Kiên",
+      "ma_hanh_chinh": "27616"
+     },
+     {
+      "ten": "Xã Bình Hưng",
+      "ma_hanh_chinh": "27619"
+     },
+     {
+      "ten": "Xã Phong Phú",
+      "ma_hanh_chinh": "27622"
+     },
+     {
+      "ten": "Xã An Phú Tây",
+      "ma_hanh_chinh": "27625"
+     },
+     {
+      "ten": "Xã Hưng Long",
+      "ma_hanh_chinh": "27628"
+     },
+     {
+      "ten": "Xã Đa Phước",
+      "ma_hanh_chinh": "27631"
+     },
+     {
+      "ten": "Xã Tân Quý Tây",
+      "ma_hanh_chinh": "27634"
+     },
+     {
+      "ten": "Xã Bình Chánh",
+      "ma_hanh_chinh": "27637"
+     },
+     {
+      "ten": "Xã Quy Đức",
+      "ma_hanh_chinh": "27640"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Nhà Bè",
+    "ma_hanh_chinh": "786",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Nhà Bè",
+      "ma_hanh_chinh": "27643"
+     },
+     {
+      "ten": "Xã Phước Kiển",
+      "ma_hanh_chinh": "27646"
+     },
+     {
+      "ten": "Xã Phước Lộc",
+      "ma_hanh_chinh": "27649"
+     },
+     {
+      "ten": "Xã Nhơn Đức",
+      "ma_hanh_chinh": "27652"
+     },
+     {
+      "ten": "Xã Phú Xuân",
+      "ma_hanh_chinh": "27655"
+     },
+     {
+      "ten": "Xã Long Thới",
+      "ma_hanh_chinh": "27658"
+     },
+     {
+      "ten": "Xã Hiệp Phước",
+      "ma_hanh_chinh": "27661"
+     }
+    ]
+   },
+   {
+    "ten": "Huyện Cần Giờ",
+    "ma_hanh_chinh": "787",
+    "phuong_xa": [
+     {
+      "ten": "Thị trấn Cần Thạnh",
+      "ma_hanh_chinh": "27664"
+     },
+     {
+      "ten": "Xã Bình Khánh",
+      "ma_hanh_chinh": "27667"
+     },
+     {
+      "ten": "Xã Tam Thôn Hiệp",
+      "ma_hanh_chinh": "27670"
+     },
+     {
+      "ten": "Xã An Thới Đông",
+      "ma_hanh_chinh": "27673"
+     },
+     {
+      "ten": "Xã Thạnh An",
+      "ma_hanh_chinh": "27676"
+     },
+     {
+      "ten": "Xã Long Hòa",
+      "ma_hanh_chinh": "27679"
+     },
+     {
+      "ten": "Xã Lý Nhơn",
+      "ma_hanh_chinh": "27682"
+     }
+    ]
+   }
+  ]
+ }
+]

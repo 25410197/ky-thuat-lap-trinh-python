@@ -1,11 +1,18 @@
 """Seed dữ liệu mẫu: admin, loại BĐS, tiện ích, tỉnh/quận/phường, tin đăng.
 
+Dữ liệu hành chính (tỉnh/quận/huyện/phường/xã) là dữ liệu THẬT cho Hà Nội, Đà Nẵng,
+TP.HCM — cả cấu trúc trước và sau đợt sáp nhập 07/2025, lấy từ Provinces Open API và
+lưu sẵn trong app/scripts/data/ (xem app/scripts/data/README.md để biết nguồn + giới hạn).
+
 Chạy: python -m app.scripts.seed
-An toàn khi chạy lại nhiều lần (get-or-create cho dữ liệu tra cứu và admin;
-tin đăng mẫu chỉ được tạo nếu bảng tin_dang đang trống).
+An toàn khi chạy lại nhiều lần cho dữ liệu tra cứu và admin (get-or-create). Riêng dữ liệu
+hành chính + tin đăng mẫu sẽ được XÓA VÀ TẠO LẠI mỗi lần chạy — vì đây là dữ liệu demo,
+không phải dữ liệu người dùng thật, và cần luôn khớp với dữ liệu nguồn mới nhất.
 """
 
+import json
 import random
+from pathlib import Path
 
 from sqlalchemy.orm import Session
 
@@ -13,14 +20,19 @@ from app.core.config import get_settings
 from app.core.security import hash_password
 from app.db.session import SessionLocal
 from app.models import (
+    BaoCao,
     HinhAnhTinDang,
     LoaiBatDongSan,
     NguoiDung,
     PhuongXa,
+    PhuongXaMoi,
     QuanHuyen,
     TienIch,
     TinDang,
+    TinYeuThich,
     TinhThanh,
+    phuong_xa_anh_xa,
+    tin_dang_tien_ich,
 )
 from app.models.enums import (
     PhuongThucLienHe,
@@ -30,6 +42,7 @@ from app.models.enums import (
 )
 
 RANDOM_SEED = 42
+DATA_DIR = Path(__file__).parent / "data"
 
 LOAI_BAT_DONG_SAN_MAC_DINH = [
     {"ten": "Phòng trọ", "mo_ta": "Phòng cho thuê trong nhà trọ, khép kín hoặc chung chủ"},
@@ -45,23 +58,6 @@ TIEN_ICH_MAC_DINH = [
     "Nội thất cơ bản",
     "Máy lạnh",
 ]
-
-# tỉnh -> quận -> [phường]
-DIA_DIEM_MAU = {
-    "Thành phố Hồ Chí Minh": {
-        "Quận 1": ["Phường Bến Nghé", "Phường Bến Thành", "Phường Đa Kao"],
-        "Quận 3": ["Phường 6", "Phường 7", "Phường Võ Thị Sáu"],
-        "Thành phố Thủ Đức": ["Phường Linh Trung", "Phường Bình Thọ"],
-    },
-    "Hà Nội": {
-        "Quận Ba Đình": ["Phường Điện Biên", "Phường Kim Mã"],
-        "Quận Cầu Giấy": ["Phường Dịch Vọng", "Phường Nghĩa Đô"],
-    },
-    "Đà Nẵng": {
-        "Quận Hải Châu": ["Phường Hải Châu 1", "Phường Thạch Thang"],
-        "Quận Thanh Khê": ["Phường Thanh Khê Tây", "Phường Xuân Hà"],
-    },
-}
 
 KHOANG_GIA_DIEN_TICH = {
     "Phòng trọ": {"gia": (1_500_000, 4_000_000), "dien_tich": (16, 30)},
@@ -119,42 +115,108 @@ def seed_tien_ich(db: Session) -> list[TienIch]:
     return ket_qua
 
 
+def _doc_json(ten_file: str):
+    with open(DATA_DIR / ten_file, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _xoa_du_lieu_cu(db: Session) -> None:
+    """Xóa tin đăng mẫu + dữ liệu hành chính cũ để seed lại từ đầu bằng dữ liệu thật.
+
+    Đây là dữ liệu demo (không phải dữ liệu người dùng thật) nên mỗi lần chạy seed sẽ
+    reset toàn bộ thay vì get-or-create, đảm bảo luôn khớp với dữ liệu nguồn mới nhất
+    trong app/scripts/data/.
+    """
+    print("Xóa tin đăng mẫu + dữ liệu hành chính cũ...")
+    db.query(BaoCao).delete()
+    db.query(TinYeuThich).delete()
+    db.query(HinhAnhTinDang).delete()
+    db.execute(tin_dang_tien_ich.delete())
+    db.query(TinDang).delete()
+    db.execute(phuong_xa_anh_xa.delete())
+    db.query(PhuongXaMoi).delete()
+    db.query(PhuongXa).delete()
+    db.query(QuanHuyen).delete()
+    db.query(TinhThanh).delete()
+    db.flush()
+
+
 def seed_dia_diem(db: Session) -> list[PhuongXa]:
-    danh_sach_phuong = []
-    for ten_tinh, quan_huyen_map in DIA_DIEM_MAU.items():
-        tinh = db.query(TinhThanh).filter(TinhThanh.ten == ten_tinh).first()
-        if not tinh:
-            tinh = TinhThanh(ten=ten_tinh)
+    """Seed dữ liệu hành chính thật cho Hà Nội, Đà Nẵng, TP.HCM — cả cấu trúc CŨ (trước
+    sáp nhập 07/2025, 3 cấp: tỉnh/huyện/xã) và MỚI (sau sáp nhập, 2 cấp: tỉnh/xã), kèm
+    bảng ánh xạ N-N giữa phường/xã cũ và xã/phường mới. Xem app/scripts/data/README.md.
+    """
+    dia_chinh_cu = _doc_json("dia_chinh_cu.json")
+    dia_chinh_moi = _doc_json("dia_chinh_moi.json")
+    anh_xa = _doc_json("anh_xa_cu_moi.json")
+
+    tinh_thanh_theo_ten: dict[str, TinhThanh] = {}
+    phuong_xa_theo_ma: dict[str, PhuongXa] = {}
+    phuong_xa_moi_theo_ma: dict[str, PhuongXaMoi] = {}
+
+    for tinh_data in dia_chinh_cu:
+        tinh = TinhThanh(ten=tinh_data["ten"])
+        db.add(tinh)
+        db.flush()
+        tinh_thanh_theo_ten[tinh_data["ten"]] = tinh
+
+        for quan_data in tinh_data["quan_huyen"]:
+            quan = QuanHuyen(ten=quan_data["ten"], tinh_thanh_id=tinh.id)
+            db.add(quan)
+            db.flush()
+
+            for phuong_data in quan_data["phuong_xa"]:
+                phuong = PhuongXa(
+                    ten=phuong_data["ten"],
+                    ma_hanh_chinh=phuong_data["ma_hanh_chinh"],
+                    quan_huyen_id=quan.id,
+                )
+                db.add(phuong)
+                db.flush()
+                phuong_xa_theo_ma[phuong_data["ma_hanh_chinh"]] = phuong
+
+    # Xã/phường MỚI thuộc thẳng tỉnh — dùng lại đúng TinhThanh vừa tạo ở trên vì tên
+    # 3 tỉnh này không đổi qua đợt sáp nhập (chỉ mở rộng địa giới + bỏ cấp huyện).
+    for tinh_data in dia_chinh_moi:
+        tinh = tinh_thanh_theo_ten.get(tinh_data["ten"])
+        if tinh is None:
+            tinh = TinhThanh(ten=tinh_data["ten"])
             db.add(tinh)
             db.flush()
-            print(f"  + Tạo tỉnh/thành: {tinh.ten}")
+            tinh_thanh_theo_ten[tinh_data["ten"]] = tinh
 
-        for ten_quan, ten_phuong_list in quan_huyen_map.items():
-            quan = (
-                db.query(QuanHuyen)
-                .filter(QuanHuyen.ten == ten_quan, QuanHuyen.tinh_thanh_id == tinh.id)
-                .first()
+        for xa_data in tinh_data["xa_phuong"]:
+            xa_moi = PhuongXaMoi(
+                ten=xa_data["ten"],
+                ma_hanh_chinh=xa_data["ma_hanh_chinh"],
+                tinh_thanh_id=tinh.id,
             )
-            if not quan:
-                quan = QuanHuyen(ten=ten_quan, tinh_thanh_id=tinh.id)
-                db.add(quan)
-                db.flush()
-                print(f"    + Tạo quận/huyện: {quan.ten}")
+            db.add(xa_moi)
+            db.flush()
+            phuong_xa_moi_theo_ma[xa_data["ma_hanh_chinh"]] = xa_moi
 
-            for ten_phuong in ten_phuong_list:
-                phuong = (
-                    db.query(PhuongXa)
-                    .filter(PhuongXa.ten == ten_phuong, PhuongXa.quan_huyen_id == quan.id)
-                    .first()
-                )
-                if not phuong:
-                    phuong = PhuongXa(ten=ten_phuong, quan_huyen_id=quan.id)
-                    db.add(phuong)
-                    db.flush()
-                    print(f"      + Tạo phường/xã: {phuong.ten}")
-                danh_sach_phuong.append(phuong)
+    hang_anh_xa = []
+    so_bo_qua = 0
+    for cap in anh_xa:
+        phuong = phuong_xa_theo_ma.get(cap["phuong_xa_cu"])
+        xa_moi = phuong_xa_moi_theo_ma.get(cap["phuong_xa_moi"])
+        if phuong is None or xa_moi is None:
+            so_bo_qua += 1
+            continue
+        hang_anh_xa.append({"phuong_xa_id": phuong.id, "phuong_xa_moi_id": xa_moi.id})
+    if hang_anh_xa:
+        db.execute(phuong_xa_anh_xa.insert(), hang_anh_xa)
 
-    return danh_sach_phuong
+    n_quan = sum(len(t["quan_huyen"]) for t in dia_chinh_cu)
+    print(
+        f"  + Tạo {len(tinh_thanh_theo_ten)} tỉnh/thành, {n_quan} quận/huyện, "
+        f"{len(phuong_xa_theo_ma)} phường/xã (cũ), {len(phuong_xa_moi_theo_ma)} xã/phường (mới), "
+        f"{len(hang_anh_xa)} cặp ánh xạ."
+    )
+    if so_bo_qua:
+        print(f"  ! Bỏ qua {so_bo_qua} cặp ánh xạ không khớp dữ liệu (thuộc tỉnh ngoài phạm vi seed).")
+
+    return list(phuong_xa_theo_ma.values())
 
 
 def seed_tin_dang(
@@ -164,10 +226,6 @@ def seed_tin_dang(
     danh_sach_tien_ich: list[TienIch],
     danh_sach_phuong: list[PhuongXa],
 ) -> None:
-    if db.query(TinDang).count() > 0:
-        print("  · Đã có tin đăng, bỏ qua seed tin đăng mẫu.")
-        return
-
     rng = random.Random(RANDOM_SEED)
 
     for i in range(1, SO_TIN_DANG_CAN_SEED + 1):
@@ -224,7 +282,9 @@ def main() -> None:
         print("Seed tiện ích...")
         danh_sach_tien_ich = seed_tien_ich(db)
 
-        print("Seed tỉnh/quận/phường...")
+        _xoa_du_lieu_cu(db)
+
+        print("Seed tỉnh/quận/phường (dữ liệu thật, cả cũ và mới)...")
         danh_sach_phuong = seed_dia_diem(db)
 
         print("Seed tin đăng mẫu...")

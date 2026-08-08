@@ -92,7 +92,7 @@ export function RentalPostDetailView({ id }: { id: string }) {
     );
   }
 
-  const diaChi = `${post.phuongXa}, ${post.quanHuyen}, ${post.tinhThanh}`;
+  const diaChi = `${post.diaChiChiTiet}, ${post.phuongXa}, ${post.quanHuyen}, ${post.tinhThanh}`;
   const anhHienThi = post.hinhAnh[anhDangChon] ?? null;
 
   return (

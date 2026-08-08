@@ -1,0 +1,6242 @@
+[
+ {
+  "phuong_xa_cu": "4",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "13",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "16",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "19",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "22",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "28",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "112",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "40",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "55",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "73",
+  "phuong_xa_moi": "4"
+ },
+ {
+  "phuong_xa_cu": "6",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "7",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "8",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "16",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "22",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "25",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "28",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "157",
+  "phuong_xa_moi": "8"
+ },
+ {
+  "phuong_xa_cu": "7",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "25",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "28",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "31",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "34",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "178",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "199",
+  "phuong_xa_moi": "25"
+ },
+ {
+  "phuong_xa_cu": "40",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "43",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "46",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "49",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "52",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "55",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "58",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "61",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "64",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "70",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "73",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "76",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "79",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "19",
+  "phuong_xa_moi": "70"
+ },
+ {
+  "phuong_xa_cu": "70",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "73",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "76",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "79",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "82",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "85",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "88",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "241",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "247",
+  "phuong_xa_moi": "82"
+ },
+ {
+  "phuong_xa_cu": "91",
+  "phuong_xa_moi": "91"
+ },
+ {
+  "phuong_xa_cu": "103",
+  "phuong_xa_moi": "91"
+ },
+ {
+  "phuong_xa_cu": "601",
+  "phuong_xa_moi": "91"
+ },
+ {
+  "phuong_xa_cu": "610",
+  "phuong_xa_moi": "91"
+ },
+ {
+  "phuong_xa_cu": "611",
+  "phuong_xa_moi": "91"
+ },
+ {
+  "phuong_xa_cu": "37",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "67",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "1",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "91",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "94",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "97",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "100",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "106",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "268",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "244",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "118",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "139",
+  "phuong_xa_moi": "97"
+ },
+ {
+  "phuong_xa_cu": "91",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "94",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "97",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "100",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "103",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "106",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "109",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "112",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "157",
+  "phuong_xa_moi": "103"
+ },
+ {
+  "phuong_xa_cu": "115",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "118",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "124",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "130",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "133",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "139",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "145",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "151",
+  "phuong_xa_moi": "118"
+ },
+ {
+  "phuong_xa_cu": "115",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "121",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "124",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "127",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "130",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "136",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "151",
+  "phuong_xa_moi": "127"
+ },
+ {
+  "phuong_xa_cu": "121",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "127",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "136",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "148",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "151",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "553",
+  "phuong_xa_moi": "136"
+ },
+ {
+  "phuong_xa_cu": "130",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "139",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "145",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "148",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "151",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "154",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "583",
+  "phuong_xa_moi": "145"
+ },
+ {
+  "phuong_xa_cu": "157",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "160",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "163",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "166",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "167",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "169",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "611",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "616",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "103",
+  "phuong_xa_moi": "160"
+ },
+ {
+  "phuong_xa_cu": "166",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "167",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "169",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "172",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "625",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "626",
+  "phuong_xa_moi": "166"
+ },
+ {
+  "phuong_xa_cu": "172",
+  "phuong_xa_moi": "175"
+ },
+ {
+  "phuong_xa_cu": "175",
+  "phuong_xa_moi": "175"
+ },
+ {
+  "phuong_xa_cu": "343",
+  "phuong_xa_moi": "175"
+ },
+ {
+  "phuong_xa_cu": "631",
+  "phuong_xa_moi": "175"
+ },
+ {
+  "phuong_xa_cu": "178",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "181",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "190",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "196",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "217",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "19",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "34",
+  "phuong_xa_moi": "190"
+ },
+ {
+  "phuong_xa_cu": "187",
+  "phuong_xa_moi": "199"
+ },
+ {
+  "phuong_xa_cu": "199",
+  "phuong_xa_moi": "199"
+ },
+ {
+  "phuong_xa_cu": "25",
+  "phuong_xa_moi": "199"
+ },
+ {
+  "phuong_xa_cu": "181",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "193",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "196",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "202",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "205",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "208",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "226",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "19",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "73",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "241",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "256",
+  "phuong_xa_moi": "226"
+ },
+ {
+  "phuong_xa_cu": "208",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "214",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "217",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "226",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "229",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "232",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "238",
+  "phuong_xa_moi": "229"
+ },
+ {
+  "phuong_xa_cu": "190",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "199",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "208",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "214",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "217",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "235",
+  "phuong_xa_moi": "235"
+ },
+ {
+  "phuong_xa_cu": "241",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "244",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "247",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "256",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "259",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "262",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "271",
+  "phuong_xa_moi": "256"
+ },
+ {
+  "phuong_xa_cu": "268",
+  "phuong_xa_moi": "283"
+ },
+ {
+  "phuong_xa_cu": "283",
+  "phuong_xa_moi": "283"
+ },
+ {
+  "phuong_xa_cu": "304",
+  "phuong_xa_moi": "283"
+ },
+ {
+  "phuong_xa_cu": "310",
+  "phuong_xa_moi": "283"
+ },
+ {
+  "phuong_xa_cu": "256",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "271",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "277",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "280",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "289",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "292",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "295",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "298",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "232",
+  "phuong_xa_moi": "292"
+ },
+ {
+  "phuong_xa_cu": "301",
+  "phuong_xa_moi": "301"
+ },
+ {
+  "phuong_xa_cu": "304",
+  "phuong_xa_moi": "301"
+ },
+ {
+  "phuong_xa_cu": "328",
+  "phuong_xa_moi": "301"
+ },
+ {
+  "phuong_xa_cu": "283",
+  "phuong_xa_moi": "301"
+ },
+ {
+  "phuong_xa_cu": "307",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "316",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "325",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "331",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "337",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "643",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "646",
+  "phuong_xa_moi": "316"
+ },
+ {
+  "phuong_xa_cu": "304",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "310",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "313",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "319",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "322",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "325",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "280",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "295",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "298",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "358",
+  "phuong_xa_moi": "322"
+ },
+ {
+  "phuong_xa_cu": "301",
+  "phuong_xa_moi": "328"
+ },
+ {
+  "phuong_xa_cu": "328",
+  "phuong_xa_moi": "328"
+ },
+ {
+  "phuong_xa_cu": "334",
+  "phuong_xa_moi": "328"
+ },
+ {
+  "phuong_xa_cu": "340",
+  "phuong_xa_moi": "328"
+ },
+ {
+  "phuong_xa_cu": "268",
+  "phuong_xa_moi": "328"
+ },
+ {
+  "phuong_xa_cu": "304",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "313",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "319",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "322",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "325",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "328",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "331",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "334",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "337",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "340",
+  "phuong_xa_moi": "331"
+ },
+ {
+  "phuong_xa_cu": "316",
+  "phuong_xa_moi": "337"
+ },
+ {
+  "phuong_xa_cu": "337",
+  "phuong_xa_moi": "337"
+ },
+ {
+  "phuong_xa_cu": "640",
+  "phuong_xa_moi": "337"
+ },
+ {
+  "phuong_xa_cu": "646",
+  "phuong_xa_moi": "337"
+ },
+ {
+  "phuong_xa_cu": "655",
+  "phuong_xa_moi": "337"
+ },
+ {
+  "phuong_xa_cu": "331",
+  "phuong_xa_moi": "340"
+ },
+ {
+  "phuong_xa_cu": "334",
+  "phuong_xa_moi": "340"
+ },
+ {
+  "phuong_xa_cu": "337",
+  "phuong_xa_moi": "340"
+ },
+ {
+  "phuong_xa_cu": "340",
+  "phuong_xa_moi": "340"
+ },
+ {
+  "phuong_xa_cu": "658",
+  "phuong_xa_moi": "340"
+ },
+ {
+  "phuong_xa_cu": "349",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "352",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "358",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "364",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "307",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "331",
+  "phuong_xa_moi": "352"
+ },
+ {
+  "phuong_xa_cu": "346",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "349",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "355",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "364",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "373",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "316",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "643",
+  "phuong_xa_moi": "364"
+ },
+ {
+  "phuong_xa_cu": "343",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "346",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "355",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "367",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "637",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "175",
+  "phuong_xa_moi": "367"
+ },
+ {
+  "phuong_xa_cu": "376",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "400",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "406",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "409",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "418",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "427",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "436",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "445",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "448",
+  "phuong_xa_moi": "376"
+ },
+ {
+  "phuong_xa_cu": "382",
+  "phuong_xa_moi": "382"
+ },
+ {
+  "phuong_xa_cu": "397",
+  "phuong_xa_moi": "382"
+ },
+ {
+  "phuong_xa_cu": "415",
+  "phuong_xa_moi": "382"
+ },
+ {
+  "phuong_xa_cu": "379",
+  "phuong_xa_moi": "385"
+ },
+ {
+  "phuong_xa_cu": "385",
+  "phuong_xa_moi": "385"
+ },
+ {
+  "phuong_xa_cu": "388",
+  "phuong_xa_moi": "385"
+ },
+ {
+  "phuong_xa_cu": "391",
+  "phuong_xa_moi": "385"
+ },
+ {
+  "phuong_xa_cu": "394",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "403",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "421",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "424",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "430",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "439",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "451",
+  "phuong_xa_moi": "430"
+ },
+ {
+  "phuong_xa_cu": "409",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "412",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "427",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "433",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "442",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "445",
+  "phuong_xa_moi": "433"
+ },
+ {
+  "phuong_xa_cu": "454",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "472",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "478",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "484",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "487",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "496",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "502",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "505",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "511",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "517",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "520",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "523",
+  "phuong_xa_moi": "454"
+ },
+ {
+  "phuong_xa_cu": "454",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "457",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "463",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "466",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "469",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "472",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "481",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "502",
+  "phuong_xa_moi": "466"
+ },
+ {
+  "phuong_xa_cu": "454",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "457",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "460",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "466",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "475",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "478",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "484",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "487",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "496",
+  "phuong_xa_moi": "475"
+ },
+ {
+  "phuong_xa_cu": "490",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "493",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "499",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "508",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "514",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "9019",
+  "phuong_xa_moi": "493"
+ },
+ {
+  "phuong_xa_cu": "490",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "493",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "502",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "508",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "511",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "517",
+  "phuong_xa_moi": "508"
+ },
+ {
+  "phuong_xa_cu": "526",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "529",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "532",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "535",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "541",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "544",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "553",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "556",
+  "phuong_xa_moi": "541"
+ },
+ {
+  "phuong_xa_cu": "550",
+  "phuong_xa_moi": "562"
+ },
+ {
+  "phuong_xa_cu": "553",
+  "phuong_xa_moi": "562"
+ },
+ {
+  "phuong_xa_cu": "562",
+  "phuong_xa_moi": "562"
+ },
+ {
+  "phuong_xa_cu": "568",
+  "phuong_xa_moi": "562"
+ },
+ {
+  "phuong_xa_cu": "553",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "562",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "565",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "571",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "577",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "580",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "583",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "148",
+  "phuong_xa_moi": "565"
+ },
+ {
+  "phuong_xa_cu": "565",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "577",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "583",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "589",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "148",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "154",
+  "phuong_xa_moi": "577"
+ },
+ {
+  "phuong_xa_cu": "592",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "625",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "626",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "631",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "632",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "163",
+  "phuong_xa_moi": "592"
+ },
+ {
+  "phuong_xa_cu": "595",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "598",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "604",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "607",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "613",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "617",
+  "phuong_xa_moi": "598"
+ },
+ {
+  "phuong_xa_cu": "601",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "602",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "604",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "610",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "613",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "617",
+  "phuong_xa_moi": "602"
+ },
+ {
+  "phuong_xa_cu": "610",
+  "phuong_xa_moi": "611"
+ },
+ {
+  "phuong_xa_cu": "611",
+  "phuong_xa_moi": "611"
+ },
+ {
+  "phuong_xa_cu": "616",
+  "phuong_xa_moi": "611"
+ },
+ {
+  "phuong_xa_cu": "103",
+  "phuong_xa_moi": "611"
+ },
+ {
+  "phuong_xa_cu": "607",
+  "phuong_xa_moi": "613"
+ },
+ {
+  "phuong_xa_cu": "613",
+  "phuong_xa_moi": "613"
+ },
+ {
+  "phuong_xa_cu": "9853",
+  "phuong_xa_moi": "613"
+ },
+ {
+  "phuong_xa_cu": "616",
+  "phuong_xa_moi": "619"
+ },
+ {
+  "phuong_xa_cu": "619",
+  "phuong_xa_moi": "619"
+ },
+ {
+  "phuong_xa_cu": "620",
+  "phuong_xa_moi": "619"
+ },
+ {
+  "phuong_xa_cu": "163",
+  "phuong_xa_moi": "619"
+ },
+ {
+  "phuong_xa_cu": "622",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "623",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "628",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "634",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "613",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "620",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "9862",
+  "phuong_xa_moi": "622"
+ },
+ {
+  "phuong_xa_cu": "628",
+  "phuong_xa_moi": "634"
+ },
+ {
+  "phuong_xa_cu": "634",
+  "phuong_xa_moi": "634"
+ },
+ {
+  "phuong_xa_cu": "9886",
+  "phuong_xa_moi": "634"
+ },
+ {
+  "phuong_xa_cu": "9877",
+  "phuong_xa_moi": "634"
+ },
+ {
+  "phuong_xa_cu": "631",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "632",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "634",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "637",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "9541",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "9886",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "175",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "343",
+  "phuong_xa_moi": "637"
+ },
+ {
+  "phuong_xa_cu": "640",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "658",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "661",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "664",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "667",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "670",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "340",
+  "phuong_xa_moi": "640"
+ },
+ {
+  "phuong_xa_cu": "643",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "646",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "649",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "316",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "367",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "373",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "9542",
+  "phuong_xa_moi": "643"
+ },
+ {
+  "phuong_xa_cu": "640",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "649",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "652",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "655",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "664",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "9565",
+  "phuong_xa_moi": "664"
+ },
+ {
+  "phuong_xa_cu": "673",
+  "phuong_xa_moi": "679"
+ },
+ {
+  "phuong_xa_cu": "679",
+  "phuong_xa_moi": "679"
+ },
+ {
+  "phuong_xa_cu": "682",
+  "phuong_xa_moi": "679"
+ },
+ {
+  "phuong_xa_cu": "10192",
+  "phuong_xa_moi": "679"
+ },
+ {
+  "phuong_xa_cu": "10195",
+  "phuong_xa_moi": "679"
+ },
+ {
+  "phuong_xa_cu": "661",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "667",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "670",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "676",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "682",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "685",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "10186",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "10192",
+  "phuong_xa_moi": "685"
+ },
+ {
+  "phuong_xa_cu": "4939",
+  "phuong_xa_moi": "4930"
+ },
+ {
+  "phuong_xa_cu": "4927",
+  "phuong_xa_moi": "4930"
+ },
+ {
+  "phuong_xa_cu": "4930",
+  "phuong_xa_moi": "4930"
+ },
+ {
+  "phuong_xa_cu": "4936",
+  "phuong_xa_moi": "4930"
+ },
+ {
+  "phuong_xa_cu": "9988",
+  "phuong_xa_moi": "4930"
+ },
+ {
+  "phuong_xa_cu": "8973",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "8974",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "8977",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "8989",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "8992",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "9010",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "9019",
+  "phuong_xa_moi": "8974"
+ },
+ {
+  "phuong_xa_cu": "8980",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "8998",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9004",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9007",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9013",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9016",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9787",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9790",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9793",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "9796",
+  "phuong_xa_moi": "8980"
+ },
+ {
+  "phuong_xa_cu": "8974",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8977",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8980",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8983",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8986",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8992",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8995",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "9013",
+  "phuong_xa_moi": "8995"
+ },
+ {
+  "phuong_xa_cu": "8974",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9010",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9013",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9019",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9022",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "499",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9796",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9799",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9802",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9808",
+  "phuong_xa_moi": "9022"
+ },
+ {
+  "phuong_xa_cu": "9538",
+  "phuong_xa_moi": "9552"
+ },
+ {
+  "phuong_xa_cu": "9552",
+  "phuong_xa_moi": "9552"
+ },
+ {
+  "phuong_xa_cu": "9556",
+  "phuong_xa_moi": "9552"
+ },
+ {
+  "phuong_xa_cu": "9565",
+  "phuong_xa_moi": "9552"
+ },
+ {
+  "phuong_xa_cu": "9571",
+  "phuong_xa_moi": "9552"
+ },
+ {
+  "phuong_xa_cu": "9538",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9541",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9542",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9544",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9551",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9553",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9556",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "634",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "643",
+  "phuong_xa_moi": "9556"
+ },
+ {
+  "phuong_xa_cu": "9562",
+  "phuong_xa_moi": "9562"
+ },
+ {
+  "phuong_xa_cu": "10117",
+  "phuong_xa_moi": "9562"
+ },
+ {
+  "phuong_xa_cu": "9565",
+  "phuong_xa_moi": "9568"
+ },
+ {
+  "phuong_xa_cu": "9568",
+  "phuong_xa_moi": "9568"
+ },
+ {
+  "phuong_xa_cu": "9571",
+  "phuong_xa_moi": "9568"
+ },
+ {
+  "phuong_xa_cu": "10120",
+  "phuong_xa_moi": "9568"
+ },
+ {
+  "phuong_xa_cu": "652",
+  "phuong_xa_moi": "9568"
+ },
+ {
+  "phuong_xa_cu": "9574",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9577",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9586",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9592",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9595",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9601",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9604",
+  "phuong_xa_moi": "9574"
+ },
+ {
+  "phuong_xa_cu": "9586",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9589",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9598",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9601",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9604",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9607",
+  "phuong_xa_moi": "9604"
+ },
+ {
+  "phuong_xa_cu": "9610",
+  "phuong_xa_moi": "9616"
+ },
+ {
+  "phuong_xa_cu": "9613",
+  "phuong_xa_moi": "9616"
+ },
+ {
+  "phuong_xa_cu": "9616",
+  "phuong_xa_moi": "9616"
+ },
+ {
+  "phuong_xa_cu": "9619",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9667",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9679",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9682",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9685",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9688",
+  "phuong_xa_moi": "9619"
+ },
+ {
+  "phuong_xa_cu": "9625",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9628",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9634",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9640",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9643",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9646",
+  "phuong_xa_moi": "9634"
+ },
+ {
+  "phuong_xa_cu": "9619",
+  "phuong_xa_moi": "9661"
+ },
+ {
+  "phuong_xa_cu": "9661",
+  "phuong_xa_moi": "9661"
+ },
+ {
+  "phuong_xa_cu": "9667",
+  "phuong_xa_moi": "9661"
+ },
+ {
+  "phuong_xa_cu": "9649",
+  "phuong_xa_moi": "9664"
+ },
+ {
+  "phuong_xa_cu": "9652",
+  "phuong_xa_moi": "9664"
+ },
+ {
+  "phuong_xa_cu": "9655",
+  "phuong_xa_moi": "9664"
+ },
+ {
+  "phuong_xa_cu": "9658",
+  "phuong_xa_moi": "9664"
+ },
+ {
+  "phuong_xa_cu": "9664",
+  "phuong_xa_moi": "9664"
+ },
+ {
+  "phuong_xa_cu": "9670",
+  "phuong_xa_moi": "9676"
+ },
+ {
+  "phuong_xa_cu": "9673",
+  "phuong_xa_moi": "9676"
+ },
+ {
+  "phuong_xa_cu": "9676",
+  "phuong_xa_moi": "9676"
+ },
+ {
+  "phuong_xa_cu": "9691",
+  "phuong_xa_moi": "9676"
+ },
+ {
+  "phuong_xa_cu": "9700",
+  "phuong_xa_moi": "9676"
+ },
+ {
+  "phuong_xa_cu": "9673",
+  "phuong_xa_moi": "9694"
+ },
+ {
+  "phuong_xa_cu": "9685",
+  "phuong_xa_moi": "9694"
+ },
+ {
+  "phuong_xa_cu": "9694",
+  "phuong_xa_moi": "9694"
+ },
+ {
+  "phuong_xa_cu": "9697",
+  "phuong_xa_moi": "9694"
+ },
+ {
+  "phuong_xa_cu": "9700",
+  "phuong_xa_moi": "9700"
+ },
+ {
+  "phuong_xa_cu": "9703",
+  "phuong_xa_moi": "9700"
+ },
+ {
+  "phuong_xa_cu": "9712",
+  "phuong_xa_moi": "9700"
+ },
+ {
+  "phuong_xa_cu": "9706",
+  "phuong_xa_moi": "9706"
+ },
+ {
+  "phuong_xa_cu": "9709",
+  "phuong_xa_moi": "9706"
+ },
+ {
+  "phuong_xa_cu": "9988",
+  "phuong_xa_moi": "9706"
+ },
+ {
+  "phuong_xa_cu": "9715",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9742",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9745",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9760",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9763",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9769",
+  "phuong_xa_moi": "9715"
+ },
+ {
+  "phuong_xa_cu": "9721",
+  "phuong_xa_moi": "9739"
+ },
+ {
+  "phuong_xa_cu": "9724",
+  "phuong_xa_moi": "9739"
+ },
+ {
+  "phuong_xa_cu": "9727",
+  "phuong_xa_moi": "9739"
+ },
+ {
+  "phuong_xa_cu": "9733",
+  "phuong_xa_moi": "9739"
+ },
+ {
+  "phuong_xa_cu": "9739",
+  "phuong_xa_moi": "9739"
+ },
+ {
+  "phuong_xa_cu": "9751",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9757",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9766",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9772",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9775",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9778",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9781",
+  "phuong_xa_moi": "9772"
+ },
+ {
+  "phuong_xa_cu": "9784",
+  "phuong_xa_moi": "9784"
+ },
+ {
+  "phuong_xa_cu": "9814",
+  "phuong_xa_moi": "9784"
+ },
+ {
+  "phuong_xa_cu": "9823",
+  "phuong_xa_moi": "9784"
+ },
+ {
+  "phuong_xa_cu": "9826",
+  "phuong_xa_moi": "9784"
+ },
+ {
+  "phuong_xa_cu": "9829",
+  "phuong_xa_moi": "9784"
+ },
+ {
+  "phuong_xa_cu": "9787",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9790",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9793",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9796",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9811",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9007",
+  "phuong_xa_moi": "9787"
+ },
+ {
+  "phuong_xa_cu": "9796",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9799",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9802",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9805",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9808",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9817",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9820",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9013",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "607",
+  "phuong_xa_moi": "9817"
+ },
+ {
+  "phuong_xa_cu": "9832",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9835",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9844",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9847",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9853",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "607",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9820",
+  "phuong_xa_moi": "9832"
+ },
+ {
+  "phuong_xa_cu": "9838",
+  "phuong_xa_moi": "9856"
+ },
+ {
+  "phuong_xa_cu": "9841",
+  "phuong_xa_moi": "9856"
+ },
+ {
+  "phuong_xa_cu": "9850",
+  "phuong_xa_moi": "9856"
+ },
+ {
+  "phuong_xa_cu": "9856",
+  "phuong_xa_moi": "9856"
+ },
+ {
+  "phuong_xa_cu": "9865",
+  "phuong_xa_moi": "9856"
+ },
+ {
+  "phuong_xa_cu": "9859",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9862",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9868",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9871",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9874",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9877",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9880",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9883",
+  "phuong_xa_moi": "9871"
+ },
+ {
+  "phuong_xa_cu": "9874",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9877",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9880",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9883",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9889",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9892",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9886",
+  "phuong_xa_moi": "9877"
+ },
+ {
+  "phuong_xa_cu": "9551",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "9552",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "9562",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "9886",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "634",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "9889",
+  "phuong_xa_moi": "9886"
+ },
+ {
+  "phuong_xa_cu": "9895",
+  "phuong_xa_moi": "9895"
+ },
+ {
+  "phuong_xa_cu": "9898",
+  "phuong_xa_moi": "9895"
+ },
+ {
+  "phuong_xa_cu": "9904",
+  "phuong_xa_moi": "9895"
+ },
+ {
+  "phuong_xa_cu": "9910",
+  "phuong_xa_moi": "9895"
+ },
+ {
+  "phuong_xa_cu": "9916",
+  "phuong_xa_moi": "9895"
+ },
+ {
+  "phuong_xa_cu": "9943",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "9925",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "9928",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "9907",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "9910",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "10006",
+  "phuong_xa_moi": "9910"
+ },
+ {
+  "phuong_xa_cu": "9919",
+  "phuong_xa_moi": "9931"
+ },
+ {
+  "phuong_xa_cu": "9931",
+  "phuong_xa_moi": "9931"
+ },
+ {
+  "phuong_xa_cu": "9934",
+  "phuong_xa_moi": "9931"
+ },
+ {
+  "phuong_xa_cu": "9922",
+  "phuong_xa_moi": "9952"
+ },
+ {
+  "phuong_xa_cu": "9940",
+  "phuong_xa_moi": "9952"
+ },
+ {
+  "phuong_xa_cu": "9949",
+  "phuong_xa_moi": "9952"
+ },
+ {
+  "phuong_xa_cu": "9952",
+  "phuong_xa_moi": "9952"
+ },
+ {
+  "phuong_xa_cu": "9955",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9958",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9961",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9964",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9967",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9976",
+  "phuong_xa_moi": "9955"
+ },
+ {
+  "phuong_xa_cu": "9982",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "9991",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "10000",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "10009",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "10012",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "9922",
+  "phuong_xa_moi": "9982"
+ },
+ {
+  "phuong_xa_cu": "4936",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "9982",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "9988",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "10000",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "10009",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "9616",
+  "phuong_xa_moi": "9988"
+ },
+ {
+  "phuong_xa_cu": "9970",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "9973",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "9997",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "10003",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "10006",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "9895",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "9904",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "9907",
+  "phuong_xa_moi": "10003"
+ },
+ {
+  "phuong_xa_cu": "10015",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10021",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10024",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10042",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10054",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10057",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10117",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10123",
+  "phuong_xa_moi": "10015"
+ },
+ {
+  "phuong_xa_cu": "10027",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10030",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10033",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10039",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10048",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10051",
+  "phuong_xa_moi": "10030"
+ },
+ {
+  "phuong_xa_cu": "10018",
+  "phuong_xa_moi": "10045"
+ },
+ {
+  "phuong_xa_cu": "10045",
+  "phuong_xa_moi": "10045"
+ },
+ {
+  "phuong_xa_cu": "10066",
+  "phuong_xa_moi": "10045"
+ },
+ {
+  "phuong_xa_cu": "10069",
+  "phuong_xa_moi": "10045"
+ },
+ {
+  "phuong_xa_cu": "10060",
+  "phuong_xa_moi": "10072"
+ },
+ {
+  "phuong_xa_cu": "10063",
+  "phuong_xa_moi": "10072"
+ },
+ {
+  "phuong_xa_cu": "10072",
+  "phuong_xa_moi": "10072"
+ },
+ {
+  "phuong_xa_cu": "10078",
+  "phuong_xa_moi": "10072"
+ },
+ {
+  "phuong_xa_cu": "10084",
+  "phuong_xa_moi": "10072"
+ },
+ {
+  "phuong_xa_cu": "10066",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10075",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10081",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10087",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10099",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10444",
+  "phuong_xa_moi": "10081"
+ },
+ {
+  "phuong_xa_cu": "10090",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10096",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10102",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10105",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10108",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10159",
+  "phuong_xa_moi": "10096"
+ },
+ {
+  "phuong_xa_cu": "10114",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10147",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10153",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10156",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10159",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10162",
+  "phuong_xa_moi": "10114"
+ },
+ {
+  "phuong_xa_cu": "10120",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10126",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10132",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10135",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10141",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "9571",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10063",
+  "phuong_xa_moi": "10126"
+ },
+ {
+  "phuong_xa_cu": "10129",
+  "phuong_xa_moi": "10144"
+ },
+ {
+  "phuong_xa_cu": "10138",
+  "phuong_xa_moi": "10144"
+ },
+ {
+  "phuong_xa_cu": "10144",
+  "phuong_xa_moi": "10144"
+ },
+ {
+  "phuong_xa_cu": "10150",
+  "phuong_xa_moi": "10144"
+ },
+ {
+  "phuong_xa_cu": "10165",
+  "phuong_xa_moi": "10180"
+ },
+ {
+  "phuong_xa_cu": "10168",
+  "phuong_xa_moi": "10180"
+ },
+ {
+  "phuong_xa_cu": "10171",
+  "phuong_xa_moi": "10180"
+ },
+ {
+  "phuong_xa_cu": "10174",
+  "phuong_xa_moi": "10180"
+ },
+ {
+  "phuong_xa_cu": "10180",
+  "phuong_xa_moi": "10180"
+ },
+ {
+  "phuong_xa_cu": "10183",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10189",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10195",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10198",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10201",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10204",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10216",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10222",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "679",
+  "phuong_xa_moi": "10183"
+ },
+ {
+  "phuong_xa_cu": "10186",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10192",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10207",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10210",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10213",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10225",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "685",
+  "phuong_xa_moi": "10210"
+ },
+ {
+  "phuong_xa_cu": "10231",
+  "phuong_xa_moi": "10231"
+ },
+ {
+  "phuong_xa_cu": "10234",
+  "phuong_xa_moi": "10231"
+ },
+ {
+  "phuong_xa_cu": "10240",
+  "phuong_xa_moi": "10231"
+ },
+ {
+  "phuong_xa_cu": "10249",
+  "phuong_xa_moi": "10231"
+ },
+ {
+  "phuong_xa_cu": "10255",
+  "phuong_xa_moi": "10231"
+ },
+ {
+  "phuong_xa_cu": "10219",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10237",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10243",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10246",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10258",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10264",
+  "phuong_xa_moi": "10237"
+ },
+ {
+  "phuong_xa_cu": "10270",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10273",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10282",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10300",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10312",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10318",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10258",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10261",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10264",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10267",
+  "phuong_xa_moi": "10273"
+ },
+ {
+  "phuong_xa_cu": "10276",
+  "phuong_xa_moi": "10279"
+ },
+ {
+  "phuong_xa_cu": "10279",
+  "phuong_xa_moi": "10279"
+ },
+ {
+  "phuong_xa_cu": "10291",
+  "phuong_xa_moi": "10279"
+ },
+ {
+  "phuong_xa_cu": "10294",
+  "phuong_xa_moi": "10279"
+ },
+ {
+  "phuong_xa_cu": "10303",
+  "phuong_xa_moi": "10279"
+ },
+ {
+  "phuong_xa_cu": "10315",
+  "phuong_xa_moi": "10330"
+ },
+ {
+  "phuong_xa_cu": "10321",
+  "phuong_xa_moi": "10330"
+ },
+ {
+  "phuong_xa_cu": "10330",
+  "phuong_xa_moi": "10330"
+ },
+ {
+  "phuong_xa_cu": "10339",
+  "phuong_xa_moi": "10330"
+ },
+ {
+  "phuong_xa_cu": "10348",
+  "phuong_xa_moi": "10330"
+ },
+ {
+  "phuong_xa_cu": "10324",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10327",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10333",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10336",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10342",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10345",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10351",
+  "phuong_xa_moi": "10342"
+ },
+ {
+  "phuong_xa_cu": "10354",
+  "phuong_xa_moi": "10354"
+ },
+ {
+  "phuong_xa_cu": "10378",
+  "phuong_xa_moi": "10354"
+ },
+ {
+  "phuong_xa_cu": "10384",
+  "phuong_xa_moi": "10354"
+ },
+ {
+  "phuong_xa_cu": "10393",
+  "phuong_xa_moi": "10354"
+ },
+ {
+  "phuong_xa_cu": "10363",
+  "phuong_xa_moi": "10369"
+ },
+ {
+  "phuong_xa_cu": "10366",
+  "phuong_xa_moi": "10369"
+ },
+ {
+  "phuong_xa_cu": "10369",
+  "phuong_xa_moi": "10369"
+ },
+ {
+  "phuong_xa_cu": "10375",
+  "phuong_xa_moi": "10369"
+ },
+ {
+  "phuong_xa_cu": "10387",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10390",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10399",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10402",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10411",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10423",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10426",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10432",
+  "phuong_xa_moi": "10402"
+ },
+ {
+  "phuong_xa_cu": "10396",
+  "phuong_xa_moi": "10417"
+ },
+ {
+  "phuong_xa_cu": "10417",
+  "phuong_xa_moi": "10417"
+ },
+ {
+  "phuong_xa_cu": "10429",
+  "phuong_xa_moi": "10417"
+ },
+ {
+  "phuong_xa_cu": "10435",
+  "phuong_xa_moi": "10417"
+ },
+ {
+  "phuong_xa_cu": "10441",
+  "phuong_xa_moi": "10441"
+ },
+ {
+  "phuong_xa_cu": "10477",
+  "phuong_xa_moi": "10441"
+ },
+ {
+  "phuong_xa_cu": "10480",
+  "phuong_xa_moi": "10441"
+ },
+ {
+  "phuong_xa_cu": "10501",
+  "phuong_xa_moi": "10441"
+ },
+ {
+  "phuong_xa_cu": "10504",
+  "phuong_xa_moi": "10441"
+ },
+ {
+  "phuong_xa_cu": "10444",
+  "phuong_xa_moi": "10459"
+ },
+ {
+  "phuong_xa_cu": "10447",
+  "phuong_xa_moi": "10459"
+ },
+ {
+  "phuong_xa_cu": "10450",
+  "phuong_xa_moi": "10459"
+ },
+ {
+  "phuong_xa_cu": "10453",
+  "phuong_xa_moi": "10459"
+ },
+ {
+  "phuong_xa_cu": "10459",
+  "phuong_xa_moi": "10459"
+ },
+ {
+  "phuong_xa_cu": "10462",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10465",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10468",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10471",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10474",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10498",
+  "phuong_xa_moi": "10465"
+ },
+ {
+  "phuong_xa_cu": "10483",
+  "phuong_xa_moi": "10489"
+ },
+ {
+  "phuong_xa_cu": "10489",
+  "phuong_xa_moi": "10489"
+ },
+ {
+  "phuong_xa_cu": "10492",
+  "phuong_xa_moi": "10489"
+ },
+ {
+  "phuong_xa_cu": "10495",
+  "phuong_xa_moi": "10489"
+ },
+ {
+  "phuong_xa_cu": "20194",
+  "phuong_xa_moi": "20194"
+ },
+ {
+  "phuong_xa_cu": "20195",
+  "phuong_xa_moi": "20194"
+ },
+ {
+  "phuong_xa_cu": "20293",
+  "phuong_xa_moi": "20194"
+ },
+ {
+  "phuong_xa_cu": "20296",
+  "phuong_xa_moi": "20194"
+ },
+ {
+  "phuong_xa_cu": "20197",
+  "phuong_xa_moi": "20197"
+ },
+ {
+  "phuong_xa_cu": "20296",
+  "phuong_xa_moi": "20197"
+ },
+ {
+  "phuong_xa_cu": "20198",
+  "phuong_xa_moi": "20200"
+ },
+ {
+  "phuong_xa_cu": "20200",
+  "phuong_xa_moi": "20200"
+ },
+ {
+  "phuong_xa_cu": "20302",
+  "phuong_xa_moi": "20200"
+ },
+ {
+  "phuong_xa_cu": "20206",
+  "phuong_xa_moi": "20209"
+ },
+ {
+  "phuong_xa_cu": "20207",
+  "phuong_xa_moi": "20209"
+ },
+ {
+  "phuong_xa_cu": "20209",
+  "phuong_xa_moi": "20209"
+ },
+ {
+  "phuong_xa_cu": "20215",
+  "phuong_xa_moi": "20209"
+ },
+ {
+  "phuong_xa_cu": "20218",
+  "phuong_xa_moi": "20209"
+ },
+ {
+  "phuong_xa_cu": "20227",
+  "phuong_xa_moi": "20242"
+ },
+ {
+  "phuong_xa_cu": "20230",
+  "phuong_xa_moi": "20242"
+ },
+ {
+  "phuong_xa_cu": "20233",
+  "phuong_xa_moi": "20242"
+ },
+ {
+  "phuong_xa_cu": "20236",
+  "phuong_xa_moi": "20242"
+ },
+ {
+  "phuong_xa_cu": "20242",
+  "phuong_xa_moi": "20242"
+ },
+ {
+  "phuong_xa_cu": "20245",
+  "phuong_xa_moi": "20257"
+ },
+ {
+  "phuong_xa_cu": "20254",
+  "phuong_xa_moi": "20257"
+ },
+ {
+  "phuong_xa_cu": "20257",
+  "phuong_xa_moi": "20257"
+ },
+ {
+  "phuong_xa_cu": "20258",
+  "phuong_xa_moi": "20257"
+ },
+ {
+  "phuong_xa_cu": "20260",
+  "phuong_xa_moi": "20260"
+ },
+ {
+  "phuong_xa_cu": "20311",
+  "phuong_xa_moi": "20260"
+ },
+ {
+  "phuong_xa_cu": "20312",
+  "phuong_xa_moi": "20260"
+ },
+ {
+  "phuong_xa_cu": "20263",
+  "phuong_xa_moi": "20263"
+ },
+ {
+  "phuong_xa_cu": "20266",
+  "phuong_xa_moi": "20263"
+ },
+ {
+  "phuong_xa_cu": "20269",
+  "phuong_xa_moi": "20263"
+ },
+ {
+  "phuong_xa_cu": "20272",
+  "phuong_xa_moi": "20275"
+ },
+ {
+  "phuong_xa_cu": "20275",
+  "phuong_xa_moi": "20275"
+ },
+ {
+  "phuong_xa_cu": "20278",
+  "phuong_xa_moi": "20275"
+ },
+ {
+  "phuong_xa_cu": "20284",
+  "phuong_xa_moi": "20285"
+ },
+ {
+  "phuong_xa_cu": "20285",
+  "phuong_xa_moi": "20285"
+ },
+ {
+  "phuong_xa_cu": "20287",
+  "phuong_xa_moi": "20285"
+ },
+ {
+  "phuong_xa_cu": "20290",
+  "phuong_xa_moi": "20285"
+ },
+ {
+  "phuong_xa_cu": "20224",
+  "phuong_xa_moi": "20305"
+ },
+ {
+  "phuong_xa_cu": "20305",
+  "phuong_xa_moi": "20305"
+ },
+ {
+  "phuong_xa_cu": "20306",
+  "phuong_xa_moi": "20305"
+ },
+ {
+  "phuong_xa_cu": "20299",
+  "phuong_xa_moi": "20308"
+ },
+ {
+  "phuong_xa_cu": "20308",
+  "phuong_xa_moi": "20308"
+ },
+ {
+  "phuong_xa_cu": "20314",
+  "phuong_xa_moi": "20314"
+ },
+ {
+  "phuong_xa_cu": "20323",
+  "phuong_xa_moi": "20314"
+ },
+ {
+  "phuong_xa_cu": "20329",
+  "phuong_xa_moi": "20314"
+ },
+ {
+  "phuong_xa_cu": "20317",
+  "phuong_xa_moi": "20320"
+ },
+ {
+  "phuong_xa_cu": "20320",
+  "phuong_xa_moi": "20320"
+ },
+ {
+  "phuong_xa_cu": "20326",
+  "phuong_xa_moi": "20332"
+ },
+ {
+  "phuong_xa_cu": "20332",
+  "phuong_xa_moi": "20332"
+ },
+ {
+  "phuong_xa_cu": "20335",
+  "phuong_xa_moi": "20335"
+ },
+ {
+  "phuong_xa_cu": "20362",
+  "phuong_xa_moi": "20335"
+ },
+ {
+  "phuong_xa_cu": "20375",
+  "phuong_xa_moi": "20335"
+ },
+ {
+  "phuong_xa_cu": "20341",
+  "phuong_xa_moi": "20341"
+ },
+ {
+  "phuong_xa_cu": "20347",
+  "phuong_xa_moi": "20341"
+ },
+ {
+  "phuong_xa_cu": "20353",
+  "phuong_xa_moi": "20341"
+ },
+ {
+  "phuong_xa_cu": "20344",
+  "phuong_xa_moi": "20350"
+ },
+ {
+  "phuong_xa_cu": "20350",
+  "phuong_xa_moi": "20350"
+ },
+ {
+  "phuong_xa_cu": "20389",
+  "phuong_xa_moi": "20350"
+ },
+ {
+  "phuong_xa_cu": "20356",
+  "phuong_xa_moi": "20356"
+ },
+ {
+  "phuong_xa_cu": "20359",
+  "phuong_xa_moi": "20356"
+ },
+ {
+  "phuong_xa_cu": "20371",
+  "phuong_xa_moi": "20356"
+ },
+ {
+  "phuong_xa_cu": "20364",
+  "phuong_xa_moi": "20364"
+ },
+ {
+  "phuong_xa_cu": "20374",
+  "phuong_xa_moi": "20364"
+ },
+ {
+  "phuong_xa_cu": "20386",
+  "phuong_xa_moi": "20364"
+ },
+ {
+  "phuong_xa_cu": "20365",
+  "phuong_xa_moi": "20380"
+ },
+ {
+  "phuong_xa_cu": "20368",
+  "phuong_xa_moi": "20380"
+ },
+ {
+  "phuong_xa_cu": "20377",
+  "phuong_xa_moi": "20380"
+ },
+ {
+  "phuong_xa_cu": "20380",
+  "phuong_xa_moi": "20380"
+ },
+ {
+  "phuong_xa_cu": "20387",
+  "phuong_xa_moi": "20392"
+ },
+ {
+  "phuong_xa_cu": "20392",
+  "phuong_xa_moi": "20392"
+ },
+ {
+  "phuong_xa_cu": "20395",
+  "phuong_xa_moi": "20392"
+ },
+ {
+  "phuong_xa_cu": "20401",
+  "phuong_xa_moi": "20401"
+ },
+ {
+  "phuong_xa_cu": "20407",
+  "phuong_xa_moi": "20401"
+ },
+ {
+  "phuong_xa_cu": "20419",
+  "phuong_xa_moi": "20401"
+ },
+ {
+  "phuong_xa_cu": "20422",
+  "phuong_xa_moi": "20401"
+ },
+ {
+  "phuong_xa_cu": "20398",
+  "phuong_xa_moi": "20410"
+ },
+ {
+  "phuong_xa_cu": "20404",
+  "phuong_xa_moi": "20410"
+ },
+ {
+  "phuong_xa_cu": "20410",
+  "phuong_xa_moi": "20410"
+ },
+ {
+  "phuong_xa_cu": "20425",
+  "phuong_xa_moi": "20410"
+ },
+ {
+  "phuong_xa_cu": "20428",
+  "phuong_xa_moi": "20410"
+ },
+ {
+  "phuong_xa_cu": "20413",
+  "phuong_xa_moi": "20413"
+ },
+ {
+  "phuong_xa_cu": "20416",
+  "phuong_xa_moi": "20413"
+ },
+ {
+  "phuong_xa_cu": "20431",
+  "phuong_xa_moi": "20413"
+ },
+ {
+  "phuong_xa_cu": "20434",
+  "phuong_xa_moi": "20434"
+ },
+ {
+  "phuong_xa_cu": "20437",
+  "phuong_xa_moi": "20443"
+ },
+ {
+  "phuong_xa_cu": "20440",
+  "phuong_xa_moi": "20443"
+ },
+ {
+  "phuong_xa_cu": "20443",
+  "phuong_xa_moi": "20443"
+ },
+ {
+  "phuong_xa_cu": "20446",
+  "phuong_xa_moi": "20443"
+ },
+ {
+  "phuong_xa_cu": "20449",
+  "phuong_xa_moi": "20455"
+ },
+ {
+  "phuong_xa_cu": "20452",
+  "phuong_xa_moi": "20455"
+ },
+ {
+  "phuong_xa_cu": "20455",
+  "phuong_xa_moi": "20455"
+ },
+ {
+  "phuong_xa_cu": "20464",
+  "phuong_xa_moi": "20455"
+ },
+ {
+  "phuong_xa_cu": "20458",
+  "phuong_xa_moi": "20458"
+ },
+ {
+  "phuong_xa_cu": "20461",
+  "phuong_xa_moi": "20458"
+ },
+ {
+  "phuong_xa_cu": "20467",
+  "phuong_xa_moi": "20467"
+ },
+ {
+  "phuong_xa_cu": "20470",
+  "phuong_xa_moi": "20467"
+ },
+ {
+  "phuong_xa_cu": "20488",
+  "phuong_xa_moi": "20467"
+ },
+ {
+  "phuong_xa_cu": "20491",
+  "phuong_xa_moi": "20467"
+ },
+ {
+  "phuong_xa_cu": "20473",
+  "phuong_xa_moi": "20476"
+ },
+ {
+  "phuong_xa_cu": "20476",
+  "phuong_xa_moi": "20476"
+ },
+ {
+  "phuong_xa_cu": "20479",
+  "phuong_xa_moi": "20476"
+ },
+ {
+  "phuong_xa_cu": "20482",
+  "phuong_xa_moi": "20485"
+ },
+ {
+  "phuong_xa_cu": "20485",
+  "phuong_xa_moi": "20485"
+ },
+ {
+  "phuong_xa_cu": "20494",
+  "phuong_xa_moi": "20494"
+ },
+ {
+  "phuong_xa_cu": "20497",
+  "phuong_xa_moi": "20494"
+ },
+ {
+  "phuong_xa_cu": "20500",
+  "phuong_xa_moi": "20500"
+ },
+ {
+  "phuong_xa_cu": "20521",
+  "phuong_xa_moi": "20500"
+ },
+ {
+  "phuong_xa_cu": "20524",
+  "phuong_xa_moi": "20500"
+ },
+ {
+  "phuong_xa_cu": "20547",
+  "phuong_xa_moi": "20500"
+ },
+ {
+  "phuong_xa_cu": "20548",
+  "phuong_xa_moi": "20500"
+ },
+ {
+  "phuong_xa_cu": "20503",
+  "phuong_xa_moi": "20506"
+ },
+ {
+  "phuong_xa_cu": "20506",
+  "phuong_xa_moi": "20506"
+ },
+ {
+  "phuong_xa_cu": "20509",
+  "phuong_xa_moi": "20506"
+ },
+ {
+  "phuong_xa_cu": "20512",
+  "phuong_xa_moi": "20515"
+ },
+ {
+  "phuong_xa_cu": "20515",
+  "phuong_xa_moi": "20515"
+ },
+ {
+  "phuong_xa_cu": "20518",
+  "phuong_xa_moi": "20515"
+ },
+ {
+  "phuong_xa_cu": "20536",
+  "phuong_xa_moi": "20539"
+ },
+ {
+  "phuong_xa_cu": "20539",
+  "phuong_xa_moi": "20539"
+ },
+ {
+  "phuong_xa_cu": "20545",
+  "phuong_xa_moi": "20539"
+ },
+ {
+  "phuong_xa_cu": "20527",
+  "phuong_xa_moi": "20542"
+ },
+ {
+  "phuong_xa_cu": "20530",
+  "phuong_xa_moi": "20542"
+ },
+ {
+  "phuong_xa_cu": "20533",
+  "phuong_xa_moi": "20542"
+ },
+ {
+  "phuong_xa_cu": "20542",
+  "phuong_xa_moi": "20542"
+ },
+ {
+  "phuong_xa_cu": "20551",
+  "phuong_xa_moi": "20551"
+ },
+ {
+  "phuong_xa_cu": "20593",
+  "phuong_xa_moi": "20551"
+ },
+ {
+  "phuong_xa_cu": "20596",
+  "phuong_xa_moi": "20551"
+ },
+ {
+  "phuong_xa_cu": "20554",
+  "phuong_xa_moi": "20557"
+ },
+ {
+  "phuong_xa_cu": "20557",
+  "phuong_xa_moi": "20557"
+ },
+ {
+  "phuong_xa_cu": "20560",
+  "phuong_xa_moi": "20557"
+ },
+ {
+  "phuong_xa_cu": "20566",
+  "phuong_xa_moi": "20569"
+ },
+ {
+  "phuong_xa_cu": "20569",
+  "phuong_xa_moi": "20569"
+ },
+ {
+  "phuong_xa_cu": "20572",
+  "phuong_xa_moi": "20569"
+ },
+ {
+  "phuong_xa_cu": "20561",
+  "phuong_xa_moi": "20575"
+ },
+ {
+  "phuong_xa_cu": "20562",
+  "phuong_xa_moi": "20575"
+ },
+ {
+  "phuong_xa_cu": "20575",
+  "phuong_xa_moi": "20575"
+ },
+ {
+  "phuong_xa_cu": "20563",
+  "phuong_xa_moi": "20579"
+ },
+ {
+  "phuong_xa_cu": "20578",
+  "phuong_xa_moi": "20579"
+ },
+ {
+  "phuong_xa_cu": "20579",
+  "phuong_xa_moi": "20579"
+ },
+ {
+  "phuong_xa_cu": "20580",
+  "phuong_xa_moi": "20579"
+ },
+ {
+  "phuong_xa_cu": "20581",
+  "phuong_xa_moi": "20579"
+ },
+ {
+  "phuong_xa_cu": "20584",
+  "phuong_xa_moi": "20587"
+ },
+ {
+  "phuong_xa_cu": "20587",
+  "phuong_xa_moi": "20587"
+ },
+ {
+  "phuong_xa_cu": "20590",
+  "phuong_xa_moi": "20587"
+ },
+ {
+  "phuong_xa_cu": "20599",
+  "phuong_xa_moi": "20599"
+ },
+ {
+  "phuong_xa_cu": "20626",
+  "phuong_xa_moi": "20599"
+ },
+ {
+  "phuong_xa_cu": "20632",
+  "phuong_xa_moi": "20599"
+ },
+ {
+  "phuong_xa_cu": "20605",
+  "phuong_xa_moi": "20611"
+ },
+ {
+  "phuong_xa_cu": "20608",
+  "phuong_xa_moi": "20611"
+ },
+ {
+  "phuong_xa_cu": "20611",
+  "phuong_xa_moi": "20611"
+ },
+ {
+  "phuong_xa_cu": "20614",
+  "phuong_xa_moi": "20611"
+ },
+ {
+  "phuong_xa_cu": "20617",
+  "phuong_xa_moi": "20623"
+ },
+ {
+  "phuong_xa_cu": "20620",
+  "phuong_xa_moi": "20623"
+ },
+ {
+  "phuong_xa_cu": "20623",
+  "phuong_xa_moi": "20623"
+ },
+ {
+  "phuong_xa_cu": "20629",
+  "phuong_xa_moi": "20635"
+ },
+ {
+  "phuong_xa_cu": "20635",
+  "phuong_xa_moi": "20635"
+ },
+ {
+  "phuong_xa_cu": "20638",
+  "phuong_xa_moi": "20635"
+ },
+ {
+  "phuong_xa_cu": "20641",
+  "phuong_xa_moi": "20641"
+ },
+ {
+  "phuong_xa_cu": "20677",
+  "phuong_xa_moi": "20641"
+ },
+ {
+  "phuong_xa_cu": "20683",
+  "phuong_xa_moi": "20641"
+ },
+ {
+  "phuong_xa_cu": "20686",
+  "phuong_xa_moi": "20641"
+ },
+ {
+  "phuong_xa_cu": "20689",
+  "phuong_xa_moi": "20641"
+ },
+ {
+  "phuong_xa_cu": "20644",
+  "phuong_xa_moi": "20650"
+ },
+ {
+  "phuong_xa_cu": "20647",
+  "phuong_xa_moi": "20650"
+ },
+ {
+  "phuong_xa_cu": "20650",
+  "phuong_xa_moi": "20650"
+ },
+ {
+  "phuong_xa_cu": "20651",
+  "phuong_xa_moi": "20650"
+ },
+ {
+  "phuong_xa_cu": "20656",
+  "phuong_xa_moi": "20656"
+ },
+ {
+  "phuong_xa_cu": "20671",
+  "phuong_xa_moi": "20656"
+ },
+ {
+  "phuong_xa_cu": "20659",
+  "phuong_xa_moi": "20662"
+ },
+ {
+  "phuong_xa_cu": "20662",
+  "phuong_xa_moi": "20662"
+ },
+ {
+  "phuong_xa_cu": "20665",
+  "phuong_xa_moi": "20662"
+ },
+ {
+  "phuong_xa_cu": "20680",
+  "phuong_xa_moi": "20662"
+ },
+ {
+  "phuong_xa_cu": "20668",
+  "phuong_xa_moi": "20669"
+ },
+ {
+  "phuong_xa_cu": "20669",
+  "phuong_xa_moi": "20669"
+ },
+ {
+  "phuong_xa_cu": "20692",
+  "phuong_xa_moi": "20669"
+ },
+ {
+  "phuong_xa_cu": "20695",
+  "phuong_xa_moi": "20695"
+ },
+ {
+  "phuong_xa_cu": "20698",
+  "phuong_xa_moi": "20698"
+ },
+ {
+  "phuong_xa_cu": "20699",
+  "phuong_xa_moi": "20698"
+ },
+ {
+  "phuong_xa_cu": "20704",
+  "phuong_xa_moi": "20704"
+ },
+ {
+  "phuong_xa_cu": "20705",
+  "phuong_xa_moi": "20704"
+ },
+ {
+  "phuong_xa_cu": "20701",
+  "phuong_xa_moi": "20707"
+ },
+ {
+  "phuong_xa_cu": "20707",
+  "phuong_xa_moi": "20707"
+ },
+ {
+  "phuong_xa_cu": "20702",
+  "phuong_xa_moi": "20710"
+ },
+ {
+  "phuong_xa_cu": "20710",
+  "phuong_xa_moi": "20710"
+ },
+ {
+  "phuong_xa_cu": "20713",
+  "phuong_xa_moi": "20710"
+ },
+ {
+  "phuong_xa_cu": "20716",
+  "phuong_xa_moi": "20716"
+ },
+ {
+  "phuong_xa_cu": "20719",
+  "phuong_xa_moi": "20716"
+ },
+ {
+  "phuong_xa_cu": "20722",
+  "phuong_xa_moi": "20722"
+ },
+ {
+  "phuong_xa_cu": "20725",
+  "phuong_xa_moi": "20722"
+ },
+ {
+  "phuong_xa_cu": "20728",
+  "phuong_xa_moi": "20728"
+ },
+ {
+  "phuong_xa_cu": "20729",
+  "phuong_xa_moi": "20728"
+ },
+ {
+  "phuong_xa_cu": "20731",
+  "phuong_xa_moi": "20734"
+ },
+ {
+  "phuong_xa_cu": "20734",
+  "phuong_xa_moi": "20734"
+ },
+ {
+  "phuong_xa_cu": "20737",
+  "phuong_xa_moi": "20734"
+ },
+ {
+  "phuong_xa_cu": "20740",
+  "phuong_xa_moi": "20740"
+ },
+ {
+  "phuong_xa_cu": "20743",
+  "phuong_xa_moi": "20740"
+ },
+ {
+  "phuong_xa_cu": "20746",
+  "phuong_xa_moi": "20752"
+ },
+ {
+  "phuong_xa_cu": "20749",
+  "phuong_xa_moi": "20752"
+ },
+ {
+  "phuong_xa_cu": "20752",
+  "phuong_xa_moi": "20752"
+ },
+ {
+  "phuong_xa_cu": "20764",
+  "phuong_xa_moi": "20767"
+ },
+ {
+  "phuong_xa_cu": "20767",
+  "phuong_xa_moi": "20767"
+ },
+ {
+  "phuong_xa_cu": "20785",
+  "phuong_xa_moi": "20767"
+ },
+ {
+  "phuong_xa_cu": "20788",
+  "phuong_xa_moi": "20767"
+ },
+ {
+  "phuong_xa_cu": "20770",
+  "phuong_xa_moi": "20770"
+ },
+ {
+  "phuong_xa_cu": "20773",
+  "phuong_xa_moi": "20770"
+ },
+ {
+  "phuong_xa_cu": "20776",
+  "phuong_xa_moi": "20770"
+ },
+ {
+  "phuong_xa_cu": "20758",
+  "phuong_xa_moi": "20779"
+ },
+ {
+  "phuong_xa_cu": "20779",
+  "phuong_xa_moi": "20779"
+ },
+ {
+  "phuong_xa_cu": "20782",
+  "phuong_xa_moi": "20779"
+ },
+ {
+  "phuong_xa_cu": "20791",
+  "phuong_xa_moi": "20791"
+ },
+ {
+  "phuong_xa_cu": "20800",
+  "phuong_xa_moi": "20791"
+ },
+ {
+  "phuong_xa_cu": "20803",
+  "phuong_xa_moi": "20791"
+ },
+ {
+  "phuong_xa_cu": "20824",
+  "phuong_xa_moi": "20791"
+ },
+ {
+  "phuong_xa_cu": "20794",
+  "phuong_xa_moi": "20794"
+ },
+ {
+  "phuong_xa_cu": "20797",
+  "phuong_xa_moi": "20794"
+ },
+ {
+  "phuong_xa_cu": "20806",
+  "phuong_xa_moi": "20794"
+ },
+ {
+  "phuong_xa_cu": "20809",
+  "phuong_xa_moi": "20794"
+ },
+ {
+  "phuong_xa_cu": "20812",
+  "phuong_xa_moi": "20794"
+ },
+ {
+  "phuong_xa_cu": "20815",
+  "phuong_xa_moi": "20818"
+ },
+ {
+  "phuong_xa_cu": "20818",
+  "phuong_xa_moi": "20818"
+ },
+ {
+  "phuong_xa_cu": "20821",
+  "phuong_xa_moi": "20818"
+ },
+ {
+  "phuong_xa_cu": "20827",
+  "phuong_xa_moi": "20827"
+ },
+ {
+  "phuong_xa_cu": "20842",
+  "phuong_xa_moi": "20827"
+ },
+ {
+  "phuong_xa_cu": "20836",
+  "phuong_xa_moi": "20836"
+ },
+ {
+  "phuong_xa_cu": "20839",
+  "phuong_xa_moi": "20836"
+ },
+ {
+  "phuong_xa_cu": "20851",
+  "phuong_xa_moi": "20836"
+ },
+ {
+  "phuong_xa_cu": "20833",
+  "phuong_xa_moi": "20848"
+ },
+ {
+  "phuong_xa_cu": "20845",
+  "phuong_xa_moi": "20848"
+ },
+ {
+  "phuong_xa_cu": "20848",
+  "phuong_xa_moi": "20848"
+ },
+ {
+  "phuong_xa_cu": "20854",
+  "phuong_xa_moi": "20854"
+ },
+ {
+  "phuong_xa_cu": "20881",
+  "phuong_xa_moi": "20854"
+ },
+ {
+  "phuong_xa_cu": "20884",
+  "phuong_xa_moi": "20854"
+ },
+ {
+  "phuong_xa_cu": "20887",
+  "phuong_xa_moi": "20854"
+ },
+ {
+  "phuong_xa_cu": "20857",
+  "phuong_xa_moi": "20857"
+ },
+ {
+  "phuong_xa_cu": "20860",
+  "phuong_xa_moi": "20857"
+ },
+ {
+  "phuong_xa_cu": "20866",
+  "phuong_xa_moi": "20857"
+ },
+ {
+  "phuong_xa_cu": "20869",
+  "phuong_xa_moi": "20875"
+ },
+ {
+  "phuong_xa_cu": "20872",
+  "phuong_xa_moi": "20875"
+ },
+ {
+  "phuong_xa_cu": "20875",
+  "phuong_xa_moi": "20875"
+ },
+ {
+  "phuong_xa_cu": "20878",
+  "phuong_xa_moi": "20878"
+ },
+ {
+  "phuong_xa_cu": "20890",
+  "phuong_xa_moi": "20878"
+ },
+ {
+  "phuong_xa_cu": "20893",
+  "phuong_xa_moi": "20878"
+ },
+ {
+  "phuong_xa_cu": "20896",
+  "phuong_xa_moi": "20878"
+ },
+ {
+  "phuong_xa_cu": "20899",
+  "phuong_xa_moi": "20900"
+ },
+ {
+  "phuong_xa_cu": "20900",
+  "phuong_xa_moi": "20900"
+ },
+ {
+  "phuong_xa_cu": "20911",
+  "phuong_xa_moi": "20900"
+ },
+ {
+  "phuong_xa_cu": "20914",
+  "phuong_xa_moi": "20900"
+ },
+ {
+  "phuong_xa_cu": "20902",
+  "phuong_xa_moi": "20908"
+ },
+ {
+  "phuong_xa_cu": "20905",
+  "phuong_xa_moi": "20908"
+ },
+ {
+  "phuong_xa_cu": "20908",
+  "phuong_xa_moi": "20908"
+ },
+ {
+  "phuong_xa_cu": "20917",
+  "phuong_xa_moi": "20920"
+ },
+ {
+  "phuong_xa_cu": "20920",
+  "phuong_xa_moi": "20920"
+ },
+ {
+  "phuong_xa_cu": "20923",
+  "phuong_xa_moi": "20923"
+ },
+ {
+  "phuong_xa_cu": "20926",
+  "phuong_xa_moi": "20923"
+ },
+ {
+  "phuong_xa_cu": "20929",
+  "phuong_xa_moi": "20929"
+ },
+ {
+  "phuong_xa_cu": "20932",
+  "phuong_xa_moi": "20929"
+ },
+ {
+  "phuong_xa_cu": "20935",
+  "phuong_xa_moi": "20938"
+ },
+ {
+  "phuong_xa_cu": "20938",
+  "phuong_xa_moi": "20938"
+ },
+ {
+  "phuong_xa_cu": "20941",
+  "phuong_xa_moi": "20941"
+ },
+ {
+  "phuong_xa_cu": "20947",
+  "phuong_xa_moi": "20941"
+ },
+ {
+  "phuong_xa_cu": "20944",
+  "phuong_xa_moi": "20944"
+ },
+ {
+  "phuong_xa_cu": "20956",
+  "phuong_xa_moi": "20944"
+ },
+ {
+  "phuong_xa_cu": "20950",
+  "phuong_xa_moi": "20950"
+ },
+ {
+  "phuong_xa_cu": "20953",
+  "phuong_xa_moi": "20950"
+ },
+ {
+  "phuong_xa_cu": "20959",
+  "phuong_xa_moi": "20959"
+ },
+ {
+  "phuong_xa_cu": "20962",
+  "phuong_xa_moi": "20959"
+ },
+ {
+  "phuong_xa_cu": "20965",
+  "phuong_xa_moi": "20965"
+ },
+ {
+  "phuong_xa_cu": "20989",
+  "phuong_xa_moi": "20965"
+ },
+ {
+  "phuong_xa_cu": "20995",
+  "phuong_xa_moi": "20965"
+ },
+ {
+  "phuong_xa_cu": "20998",
+  "phuong_xa_moi": "20965"
+ },
+ {
+  "phuong_xa_cu": "21001",
+  "phuong_xa_moi": "20965"
+ },
+ {
+  "phuong_xa_cu": "20968",
+  "phuong_xa_moi": "20971"
+ },
+ {
+  "phuong_xa_cu": "20971",
+  "phuong_xa_moi": "20971"
+ },
+ {
+  "phuong_xa_cu": "20974",
+  "phuong_xa_moi": "20971"
+ },
+ {
+  "phuong_xa_cu": "20977",
+  "phuong_xa_moi": "20977"
+ },
+ {
+  "phuong_xa_cu": "20980",
+  "phuong_xa_moi": "20977"
+ },
+ {
+  "phuong_xa_cu": "20983",
+  "phuong_xa_moi": "20984"
+ },
+ {
+  "phuong_xa_cu": "20984",
+  "phuong_xa_moi": "20984"
+ },
+ {
+  "phuong_xa_cu": "20986",
+  "phuong_xa_moi": "20984"
+ },
+ {
+  "phuong_xa_cu": "20992",
+  "phuong_xa_moi": "20992"
+ },
+ {
+  "phuong_xa_cu": "21004",
+  "phuong_xa_moi": "21004"
+ },
+ {
+  "phuong_xa_cu": "21005",
+  "phuong_xa_moi": "21004"
+ },
+ {
+  "phuong_xa_cu": "21007",
+  "phuong_xa_moi": "21004"
+ },
+ {
+  "phuong_xa_cu": "25741",
+  "phuong_xa_moi": "25747"
+ },
+ {
+  "phuong_xa_cu": "25747",
+  "phuong_xa_moi": "25747"
+ },
+ {
+  "phuong_xa_cu": "25753",
+  "phuong_xa_moi": "25747"
+ },
+ {
+  "phuong_xa_cu": "25756",
+  "phuong_xa_moi": "25747"
+ },
+ {
+  "phuong_xa_cu": "25774",
+  "phuong_xa_moi": "25747"
+ },
+ {
+  "phuong_xa_cu": "25741",
+  "phuong_xa_moi": "25750"
+ },
+ {
+  "phuong_xa_cu": "25744",
+  "phuong_xa_moi": "25750"
+ },
+ {
+  "phuong_xa_cu": "25750",
+  "phuong_xa_moi": "25750"
+ },
+ {
+  "phuong_xa_cu": "25760",
+  "phuong_xa_moi": "25760"
+ },
+ {
+  "phuong_xa_cu": "25762",
+  "phuong_xa_moi": "25760"
+ },
+ {
+  "phuong_xa_cu": "25763",
+  "phuong_xa_moi": "25760"
+ },
+ {
+  "phuong_xa_cu": "25924",
+  "phuong_xa_moi": "25760"
+ },
+ {
+  "phuong_xa_cu": "25765",
+  "phuong_xa_moi": "25768"
+ },
+ {
+  "phuong_xa_cu": "25768",
+  "phuong_xa_moi": "25768"
+ },
+ {
+  "phuong_xa_cu": "25855",
+  "phuong_xa_moi": "25768"
+ },
+ {
+  "phuong_xa_cu": "25759",
+  "phuong_xa_moi": "25771"
+ },
+ {
+  "phuong_xa_cu": "25768",
+  "phuong_xa_moi": "25771"
+ },
+ {
+  "phuong_xa_cu": "25771",
+  "phuong_xa_moi": "25771"
+ },
+ {
+  "phuong_xa_cu": "25774",
+  "phuong_xa_moi": "25771"
+ },
+ {
+  "phuong_xa_cu": "25777",
+  "phuong_xa_moi": "25777"
+ },
+ {
+  "phuong_xa_cu": "25789",
+  "phuong_xa_moi": "25777"
+ },
+ {
+  "phuong_xa_cu": "25795",
+  "phuong_xa_moi": "25777"
+ },
+ {
+  "phuong_xa_cu": "25798",
+  "phuong_xa_moi": "25777"
+ },
+ {
+  "phuong_xa_cu": "25780",
+  "phuong_xa_moi": "25780"
+ },
+ {
+  "phuong_xa_cu": "25783",
+  "phuong_xa_moi": "25780"
+ },
+ {
+  "phuong_xa_cu": "25786",
+  "phuong_xa_moi": "25780"
+ },
+ {
+  "phuong_xa_cu": "25783",
+  "phuong_xa_moi": "25792"
+ },
+ {
+  "phuong_xa_cu": "25786",
+  "phuong_xa_moi": "25792"
+ },
+ {
+  "phuong_xa_cu": "25792",
+  "phuong_xa_moi": "25792"
+ },
+ {
+  "phuong_xa_cu": "25804",
+  "phuong_xa_moi": "25792"
+ },
+ {
+  "phuong_xa_cu": "25798",
+  "phuong_xa_moi": "25807"
+ },
+ {
+  "phuong_xa_cu": "25801",
+  "phuong_xa_moi": "25807"
+ },
+ {
+  "phuong_xa_cu": "25807",
+  "phuong_xa_moi": "25807"
+ },
+ {
+  "phuong_xa_cu": "25810",
+  "phuong_xa_moi": "25807"
+ },
+ {
+  "phuong_xa_cu": "25825",
+  "phuong_xa_moi": "25813"
+ },
+ {
+  "phuong_xa_cu": "25834",
+  "phuong_xa_moi": "25813"
+ },
+ {
+  "phuong_xa_cu": "25813",
+  "phuong_xa_moi": "25813"
+ },
+ {
+  "phuong_xa_cu": "25816",
+  "phuong_xa_moi": "25819"
+ },
+ {
+  "phuong_xa_cu": "25819",
+  "phuong_xa_moi": "25819"
+ },
+ {
+  "phuong_xa_cu": "25822",
+  "phuong_xa_moi": "25819"
+ },
+ {
+  "phuong_xa_cu": "25822",
+  "phuong_xa_moi": "25822"
+ },
+ {
+  "phuong_xa_cu": "25831",
+  "phuong_xa_moi": "25837"
+ },
+ {
+  "phuong_xa_cu": "25837",
+  "phuong_xa_moi": "25837"
+ },
+ {
+  "phuong_xa_cu": "25828",
+  "phuong_xa_moi": "25840"
+ },
+ {
+  "phuong_xa_cu": "25840",
+  "phuong_xa_moi": "25840"
+ },
+ {
+  "phuong_xa_cu": "25813",
+  "phuong_xa_moi": "25840"
+ },
+ {
+  "phuong_xa_cu": "25801",
+  "phuong_xa_moi": "25843"
+ },
+ {
+  "phuong_xa_cu": "25810",
+  "phuong_xa_moi": "25843"
+ },
+ {
+  "phuong_xa_cu": "25843",
+  "phuong_xa_moi": "25843"
+ },
+ {
+  "phuong_xa_cu": "25846",
+  "phuong_xa_moi": "25846"
+ },
+ {
+  "phuong_xa_cu": "25849",
+  "phuong_xa_moi": "25849"
+ },
+ {
+  "phuong_xa_cu": "25852",
+  "phuong_xa_moi": "25849"
+ },
+ {
+  "phuong_xa_cu": "25858",
+  "phuong_xa_moi": "25858"
+ },
+ {
+  "phuong_xa_cu": "25870",
+  "phuong_xa_moi": "25858"
+ },
+ {
+  "phuong_xa_cu": "25876",
+  "phuong_xa_moi": "25858"
+ },
+ {
+  "phuong_xa_cu": "25864",
+  "phuong_xa_moi": "25864"
+ },
+ {
+  "phuong_xa_cu": "25865",
+  "phuong_xa_moi": "25864"
+ },
+ {
+  "phuong_xa_cu": "25873",
+  "phuong_xa_moi": "25864"
+ },
+ {
+  "phuong_xa_cu": "25861",
+  "phuong_xa_moi": "25867"
+ },
+ {
+  "phuong_xa_cu": "25867",
+  "phuong_xa_moi": "25867"
+ },
+ {
+  "phuong_xa_cu": "25879",
+  "phuong_xa_moi": "25867"
+ },
+ {
+  "phuong_xa_cu": "25876",
+  "phuong_xa_moi": "25882"
+ },
+ {
+  "phuong_xa_cu": "25882",
+  "phuong_xa_moi": "25882"
+ },
+ {
+  "phuong_xa_cu": "25885",
+  "phuong_xa_moi": "25882"
+ },
+ {
+  "phuong_xa_cu": "25888",
+  "phuong_xa_moi": "25888"
+ },
+ {
+  "phuong_xa_cu": "25930",
+  "phuong_xa_moi": "25888"
+ },
+ {
+  "phuong_xa_cu": "25903",
+  "phuong_xa_moi": "25888"
+ },
+ {
+  "phuong_xa_cu": "25918",
+  "phuong_xa_moi": "25888"
+ },
+ {
+  "phuong_xa_cu": "25891",
+  "phuong_xa_moi": "25891"
+ },
+ {
+  "phuong_xa_cu": "25933",
+  "phuong_xa_moi": "25891"
+ },
+ {
+  "phuong_xa_cu": "25936",
+  "phuong_xa_moi": "25891"
+ },
+ {
+  "phuong_xa_cu": "25937",
+  "phuong_xa_moi": "25891"
+ },
+ {
+  "phuong_xa_cu": "25939",
+  "phuong_xa_moi": "25891"
+ },
+ {
+  "phuong_xa_cu": "25894",
+  "phuong_xa_moi": "25906"
+ },
+ {
+  "phuong_xa_cu": "25906",
+  "phuong_xa_moi": "25906"
+ },
+ {
+  "phuong_xa_cu": "25907",
+  "phuong_xa_moi": "25906"
+ },
+ {
+  "phuong_xa_cu": "25908",
+  "phuong_xa_moi": "25909"
+ },
+ {
+  "phuong_xa_cu": "25909",
+  "phuong_xa_moi": "25909"
+ },
+ {
+  "phuong_xa_cu": "25918",
+  "phuong_xa_moi": "25909"
+ },
+ {
+  "phuong_xa_cu": "25927",
+  "phuong_xa_moi": "25909"
+ },
+ {
+  "phuong_xa_cu": "25900",
+  "phuong_xa_moi": "25912"
+ },
+ {
+  "phuong_xa_cu": "25912",
+  "phuong_xa_moi": "25912"
+ },
+ {
+  "phuong_xa_cu": "25897",
+  "phuong_xa_moi": "25915"
+ },
+ {
+  "phuong_xa_cu": "25915",
+  "phuong_xa_moi": "25915"
+ },
+ {
+  "phuong_xa_cu": "25920",
+  "phuong_xa_moi": "25920"
+ },
+ {
+  "phuong_xa_cu": "25921",
+  "phuong_xa_moi": "25920"
+ },
+ {
+  "phuong_xa_cu": "25942",
+  "phuong_xa_moi": "25942"
+ },
+ {
+  "phuong_xa_cu": "25948",
+  "phuong_xa_moi": "25942"
+ },
+ {
+  "phuong_xa_cu": "25960",
+  "phuong_xa_moi": "25942"
+ },
+ {
+  "phuong_xa_cu": "25939",
+  "phuong_xa_moi": "25945"
+ },
+ {
+  "phuong_xa_cu": "25945",
+  "phuong_xa_moi": "25945"
+ },
+ {
+  "phuong_xa_cu": "25948",
+  "phuong_xa_moi": "25945"
+ },
+ {
+  "phuong_xa_cu": "25951",
+  "phuong_xa_moi": "25951"
+ },
+ {
+  "phuong_xa_cu": "25954",
+  "phuong_xa_moi": "25951"
+ },
+ {
+  "phuong_xa_cu": "25957",
+  "phuong_xa_moi": "25951"
+ },
+ {
+  "phuong_xa_cu": "25966",
+  "phuong_xa_moi": "25966"
+ },
+ {
+  "phuong_xa_cu": "25984",
+  "phuong_xa_moi": "25966"
+ },
+ {
+  "phuong_xa_cu": "25990",
+  "phuong_xa_moi": "25966"
+ },
+ {
+  "phuong_xa_cu": "25969",
+  "phuong_xa_moi": "25969"
+ },
+ {
+  "phuong_xa_cu": "25972",
+  "phuong_xa_moi": "25969"
+ },
+ {
+  "phuong_xa_cu": "25969",
+  "phuong_xa_moi": "25975"
+ },
+ {
+  "phuong_xa_cu": "25975",
+  "phuong_xa_moi": "25975"
+ },
+ {
+  "phuong_xa_cu": "25963",
+  "phuong_xa_moi": "25978"
+ },
+ {
+  "phuong_xa_cu": "25978",
+  "phuong_xa_moi": "25978"
+ },
+ {
+  "phuong_xa_cu": "25981",
+  "phuong_xa_moi": "25978"
+ },
+ {
+  "phuong_xa_cu": "25987",
+  "phuong_xa_moi": "25987"
+ },
+ {
+  "phuong_xa_cu": "25990",
+  "phuong_xa_moi": "25987"
+ },
+ {
+  "phuong_xa_cu": "26506",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26508",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26509",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26512",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26515",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26518",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26521",
+  "phuong_xa_moi": "26506"
+ },
+ {
+  "phuong_xa_cu": "26524",
+  "phuong_xa_moi": "26526"
+ },
+ {
+  "phuong_xa_cu": "26526",
+  "phuong_xa_moi": "26526"
+ },
+ {
+  "phuong_xa_cu": "26527",
+  "phuong_xa_moi": "26526"
+ },
+ {
+  "phuong_xa_cu": "26530",
+  "phuong_xa_moi": "26526"
+ },
+ {
+  "phuong_xa_cu": "26533",
+  "phuong_xa_moi": "26536"
+ },
+ {
+  "phuong_xa_cu": "26535",
+  "phuong_xa_moi": "26536"
+ },
+ {
+  "phuong_xa_cu": "26536",
+  "phuong_xa_moi": "26536"
+ },
+ {
+  "phuong_xa_cu": "26539",
+  "phuong_xa_moi": "26542"
+ },
+ {
+  "phuong_xa_cu": "26542",
+  "phuong_xa_moi": "26542"
+ },
+ {
+  "phuong_xa_cu": "26545",
+  "phuong_xa_moi": "26545"
+ },
+ {
+  "phuong_xa_cu": "26548",
+  "phuong_xa_moi": "26560"
+ },
+ {
+  "phuong_xa_cu": "26554",
+  "phuong_xa_moi": "26560"
+ },
+ {
+  "phuong_xa_cu": "26557",
+  "phuong_xa_moi": "26560"
+ },
+ {
+  "phuong_xa_cu": "26560",
+  "phuong_xa_moi": "26560"
+ },
+ {
+  "phuong_xa_cu": "26563",
+  "phuong_xa_moi": "26566"
+ },
+ {
+  "phuong_xa_cu": "26566",
+  "phuong_xa_moi": "26566"
+ },
+ {
+  "phuong_xa_cu": "26567",
+  "phuong_xa_moi": "26566"
+ },
+ {
+  "phuong_xa_cu": "26558",
+  "phuong_xa_moi": "26572"
+ },
+ {
+  "phuong_xa_cu": "26569",
+  "phuong_xa_moi": "26572"
+ },
+ {
+  "phuong_xa_cu": "26572",
+  "phuong_xa_moi": "26572"
+ },
+ {
+  "phuong_xa_cu": "26575",
+  "phuong_xa_moi": "26575"
+ },
+ {
+  "phuong_xa_cu": "26578",
+  "phuong_xa_moi": "26575"
+ },
+ {
+  "phuong_xa_cu": "26581",
+  "phuong_xa_moi": "26575"
+ },
+ {
+  "phuong_xa_cu": "26584",
+  "phuong_xa_moi": "26584"
+ },
+ {
+  "phuong_xa_cu": "26587",
+  "phuong_xa_moi": "26584"
+ },
+ {
+  "phuong_xa_cu": "26611",
+  "phuong_xa_moi": "26584"
+ },
+ {
+  "phuong_xa_cu": "26590",
+  "phuong_xa_moi": "26590"
+ },
+ {
+  "phuong_xa_cu": "26593",
+  "phuong_xa_moi": "26590"
+ },
+ {
+  "phuong_xa_cu": "26605",
+  "phuong_xa_moi": "26590"
+ },
+ {
+  "phuong_xa_cu": "26596",
+  "phuong_xa_moi": "26596"
+ },
+ {
+  "phuong_xa_cu": "26599",
+  "phuong_xa_moi": "26596"
+ },
+ {
+  "phuong_xa_cu": "26574",
+  "phuong_xa_moi": "26608"
+ },
+ {
+  "phuong_xa_cu": "26602",
+  "phuong_xa_moi": "26608"
+ },
+ {
+  "phuong_xa_cu": "26608",
+  "phuong_xa_moi": "26608"
+ },
+ {
+  "phuong_xa_cu": "26614",
+  "phuong_xa_moi": "26617"
+ },
+ {
+  "phuong_xa_cu": "26617",
+  "phuong_xa_moi": "26617"
+ },
+ {
+  "phuong_xa_cu": "26620",
+  "phuong_xa_moi": "26620"
+ },
+ {
+  "phuong_xa_cu": "26623",
+  "phuong_xa_moi": "26620"
+ },
+ {
+  "phuong_xa_cu": "26626",
+  "phuong_xa_moi": "26620"
+ },
+ {
+  "phuong_xa_cu": "26629",
+  "phuong_xa_moi": "26632"
+ },
+ {
+  "phuong_xa_cu": "26632",
+  "phuong_xa_moi": "26632"
+ },
+ {
+  "phuong_xa_cu": "26653",
+  "phuong_xa_moi": "26632"
+ },
+ {
+  "phuong_xa_cu": "26635",
+  "phuong_xa_moi": "26638"
+ },
+ {
+  "phuong_xa_cu": "26638",
+  "phuong_xa_moi": "26638"
+ },
+ {
+  "phuong_xa_cu": "26641",
+  "phuong_xa_moi": "26641"
+ },
+ {
+  "phuong_xa_cu": "26644",
+  "phuong_xa_moi": "26641"
+ },
+ {
+  "phuong_xa_cu": "26650",
+  "phuong_xa_moi": "26641"
+ },
+ {
+  "phuong_xa_cu": "26647",
+  "phuong_xa_moi": "26647"
+ },
+ {
+  "phuong_xa_cu": "26656",
+  "phuong_xa_moi": "26656"
+ },
+ {
+  "phuong_xa_cu": "26659",
+  "phuong_xa_moi": "26659"
+ },
+ {
+  "phuong_xa_cu": "26668",
+  "phuong_xa_moi": "26659"
+ },
+ {
+  "phuong_xa_cu": "26662",
+  "phuong_xa_moi": "26662"
+ },
+ {
+  "phuong_xa_cu": "26674",
+  "phuong_xa_moi": "26662"
+ },
+ {
+  "phuong_xa_cu": "26677",
+  "phuong_xa_moi": "26662"
+ },
+ {
+  "phuong_xa_cu": "26680",
+  "phuong_xa_moi": "26680"
+ },
+ {
+  "phuong_xa_cu": "26683",
+  "phuong_xa_moi": "26680"
+ },
+ {
+  "phuong_xa_cu": "26695",
+  "phuong_xa_moi": "26680"
+ },
+ {
+  "phuong_xa_cu": "26698",
+  "phuong_xa_moi": "26680"
+ },
+ {
+  "phuong_xa_cu": "26686",
+  "phuong_xa_moi": "26686"
+ },
+ {
+  "phuong_xa_cu": "26689",
+  "phuong_xa_moi": "26686"
+ },
+ {
+  "phuong_xa_cu": "26704",
+  "phuong_xa_moi": "26704"
+ },
+ {
+  "phuong_xa_cu": "26719",
+  "phuong_xa_moi": "26704"
+ },
+ {
+  "phuong_xa_cu": "26707",
+  "phuong_xa_moi": "26710"
+ },
+ {
+  "phuong_xa_cu": "26710",
+  "phuong_xa_moi": "26710"
+ },
+ {
+  "phuong_xa_cu": "26713",
+  "phuong_xa_moi": "26713"
+ },
+ {
+  "phuong_xa_cu": "26716",
+  "phuong_xa_moi": "26713"
+ },
+ {
+  "phuong_xa_cu": "26722",
+  "phuong_xa_moi": "26725"
+ },
+ {
+  "phuong_xa_cu": "26725",
+  "phuong_xa_moi": "26725"
+ },
+ {
+  "phuong_xa_cu": "26728",
+  "phuong_xa_moi": "26728"
+ },
+ {
+  "phuong_xa_cu": "26731",
+  "phuong_xa_moi": "26728"
+ },
+ {
+  "phuong_xa_cu": "26734",
+  "phuong_xa_moi": "26737"
+ },
+ {
+  "phuong_xa_cu": "26737",
+  "phuong_xa_moi": "26737"
+ },
+ {
+  "phuong_xa_cu": "26737",
+  "phuong_xa_moi": "26740"
+ },
+ {
+  "phuong_xa_cu": "26740",
+  "phuong_xa_moi": "26740"
+ },
+ {
+  "phuong_xa_cu": "26746",
+  "phuong_xa_moi": "26740"
+ },
+ {
+  "phuong_xa_cu": "26743",
+  "phuong_xa_moi": "26743"
+ },
+ {
+  "phuong_xa_cu": "26746",
+  "phuong_xa_moi": "26743"
+ },
+ {
+  "phuong_xa_cu": "26749",
+  "phuong_xa_moi": "26743"
+ },
+ {
+  "phuong_xa_cu": "26752",
+  "phuong_xa_moi": "26743"
+ },
+ {
+  "phuong_xa_cu": "26752",
+  "phuong_xa_moi": "26758"
+ },
+ {
+  "phuong_xa_cu": "26755",
+  "phuong_xa_moi": "26758"
+ },
+ {
+  "phuong_xa_cu": "26758",
+  "phuong_xa_moi": "26758"
+ },
+ {
+  "phuong_xa_cu": "26761",
+  "phuong_xa_moi": "26758"
+ },
+ {
+  "phuong_xa_cu": "26767",
+  "phuong_xa_moi": "26767"
+ },
+ {
+  "phuong_xa_cu": "26779",
+  "phuong_xa_moi": "26767"
+ },
+ {
+  "phuong_xa_cu": "26764",
+  "phuong_xa_moi": "26773"
+ },
+ {
+  "phuong_xa_cu": "26773",
+  "phuong_xa_moi": "26773"
+ },
+ {
+  "phuong_xa_cu": "26770",
+  "phuong_xa_moi": "26782"
+ },
+ {
+  "phuong_xa_cu": "26782",
+  "phuong_xa_moi": "26782"
+ },
+ {
+  "phuong_xa_cu": "26776",
+  "phuong_xa_moi": "26785"
+ },
+ {
+  "phuong_xa_cu": "26785",
+  "phuong_xa_moi": "26785"
+ },
+ {
+  "phuong_xa_cu": "26787",
+  "phuong_xa_moi": "26791"
+ },
+ {
+  "phuong_xa_cu": "26788",
+  "phuong_xa_moi": "26791"
+ },
+ {
+  "phuong_xa_cu": "26791",
+  "phuong_xa_moi": "26791"
+ },
+ {
+  "phuong_xa_cu": "26794",
+  "phuong_xa_moi": "26800"
+ },
+ {
+  "phuong_xa_cu": "26800",
+  "phuong_xa_moi": "26800"
+ },
+ {
+  "phuong_xa_cu": "26818",
+  "phuong_xa_moi": "26800"
+ },
+ {
+  "phuong_xa_cu": "26797",
+  "phuong_xa_moi": "26803"
+ },
+ {
+  "phuong_xa_cu": "26803",
+  "phuong_xa_moi": "26803"
+ },
+ {
+  "phuong_xa_cu": "26806",
+  "phuong_xa_moi": "26803"
+ },
+ {
+  "phuong_xa_cu": "26809",
+  "phuong_xa_moi": "26809"
+ },
+ {
+  "phuong_xa_cu": "26812",
+  "phuong_xa_moi": "26809"
+ },
+ {
+  "phuong_xa_cu": "26821",
+  "phuong_xa_moi": "26809"
+ },
+ {
+  "phuong_xa_cu": "26815",
+  "phuong_xa_moi": "26824"
+ },
+ {
+  "phuong_xa_cu": "26818",
+  "phuong_xa_moi": "26824"
+ },
+ {
+  "phuong_xa_cu": "26821",
+  "phuong_xa_moi": "26824"
+ },
+ {
+  "phuong_xa_cu": "26824",
+  "phuong_xa_moi": "26824"
+ },
+ {
+  "phuong_xa_cu": "26827",
+  "phuong_xa_moi": "26824"
+ },
+ {
+  "phuong_xa_cu": "26830",
+  "phuong_xa_moi": "26833"
+ },
+ {
+  "phuong_xa_cu": "26833",
+  "phuong_xa_moi": "26833"
+ },
+ {
+  "phuong_xa_cu": "26833",
+  "phuong_xa_moi": "26842"
+ },
+ {
+  "phuong_xa_cu": "26836",
+  "phuong_xa_moi": "26842"
+ },
+ {
+  "phuong_xa_cu": "26839",
+  "phuong_xa_moi": "26842"
+ },
+ {
+  "phuong_xa_cu": "26842",
+  "phuong_xa_moi": "26842"
+ },
+ {
+  "phuong_xa_cu": "26845",
+  "phuong_xa_moi": "26842"
+ },
+ {
+  "phuong_xa_cu": "26848",
+  "phuong_xa_moi": "26848"
+ },
+ {
+  "phuong_xa_cu": "26851",
+  "phuong_xa_moi": "26848"
+ },
+ {
+  "phuong_xa_cu": "26863",
+  "phuong_xa_moi": "26848"
+ },
+ {
+  "phuong_xa_cu": "26854",
+  "phuong_xa_moi": "26857"
+ },
+ {
+  "phuong_xa_cu": "26857",
+  "phuong_xa_moi": "26857"
+ },
+ {
+  "phuong_xa_cu": "26860",
+  "phuong_xa_moi": "26860"
+ },
+ {
+  "phuong_xa_cu": "26866",
+  "phuong_xa_moi": "26860"
+ },
+ {
+  "phuong_xa_cu": "26876",
+  "phuong_xa_moi": "26876"
+ },
+ {
+  "phuong_xa_cu": "26887",
+  "phuong_xa_moi": "26876"
+ },
+ {
+  "phuong_xa_cu": "26872",
+  "phuong_xa_moi": "26878"
+ },
+ {
+  "phuong_xa_cu": "26878",
+  "phuong_xa_moi": "26878"
+ },
+ {
+  "phuong_xa_cu": "26881",
+  "phuong_xa_moi": "26882"
+ },
+ {
+  "phuong_xa_cu": "26882",
+  "phuong_xa_moi": "26882"
+ },
+ {
+  "phuong_xa_cu": "26875",
+  "phuong_xa_moi": "26884"
+ },
+ {
+  "phuong_xa_cu": "26884",
+  "phuong_xa_moi": "26884"
+ },
+ {
+  "phuong_xa_cu": "26890",
+  "phuong_xa_moi": "26890"
+ },
+ {
+  "phuong_xa_cu": "26902",
+  "phuong_xa_moi": "26890"
+ },
+ {
+  "phuong_xa_cu": "26898",
+  "phuong_xa_moi": "26898"
+ },
+ {
+  "phuong_xa_cu": "26899",
+  "phuong_xa_moi": "26898"
+ },
+ {
+  "phuong_xa_cu": "26905",
+  "phuong_xa_moi": "26905"
+ },
+ {
+  "phuong_xa_cu": "26908",
+  "phuong_xa_moi": "26905"
+ },
+ {
+  "phuong_xa_cu": "26923",
+  "phuong_xa_moi": "26905"
+ },
+ {
+  "phuong_xa_cu": "26911",
+  "phuong_xa_moi": "26911"
+ },
+ {
+  "phuong_xa_cu": "26962",
+  "phuong_xa_moi": "26911"
+ },
+ {
+  "phuong_xa_cu": "26914",
+  "phuong_xa_moi": "26929"
+ },
+ {
+  "phuong_xa_cu": "26917",
+  "phuong_xa_moi": "26929"
+ },
+ {
+  "phuong_xa_cu": "26926",
+  "phuong_xa_moi": "26944"
+ },
+ {
+  "phuong_xa_cu": "26941",
+  "phuong_xa_moi": "26944"
+ },
+ {
+  "phuong_xa_cu": "26944",
+  "phuong_xa_moi": "26944"
+ },
+ {
+  "phuong_xa_cu": "26950",
+  "phuong_xa_moi": "26944"
+ },
+ {
+  "phuong_xa_cu": "26920",
+  "phuong_xa_moi": "26956"
+ },
+ {
+  "phuong_xa_cu": "26956",
+  "phuong_xa_moi": "26956"
+ },
+ {
+  "phuong_xa_cu": "26968",
+  "phuong_xa_moi": "26968"
+ },
+ {
+  "phuong_xa_cu": "26986",
+  "phuong_xa_moi": "26968"
+ },
+ {
+  "phuong_xa_cu": "26989",
+  "phuong_xa_moi": "26968"
+ },
+ {
+  "phuong_xa_cu": "26965",
+  "phuong_xa_moi": "26977"
+ },
+ {
+  "phuong_xa_cu": "26977",
+  "phuong_xa_moi": "26977"
+ },
+ {
+  "phuong_xa_cu": "26980",
+  "phuong_xa_moi": "26977"
+ },
+ {
+  "phuong_xa_cu": "26971",
+  "phuong_xa_moi": "26983"
+ },
+ {
+  "phuong_xa_cu": "26983",
+  "phuong_xa_moi": "26983"
+ },
+ {
+  "phuong_xa_cu": "26992",
+  "phuong_xa_moi": "26983"
+ },
+ {
+  "phuong_xa_cu": "26995",
+  "phuong_xa_moi": "26995"
+ },
+ {
+  "phuong_xa_cu": "26998",
+  "phuong_xa_moi": "26995"
+ },
+ {
+  "phuong_xa_cu": "27001",
+  "phuong_xa_moi": "26995"
+ },
+ {
+  "phuong_xa_cu": "26974",
+  "phuong_xa_moi": "27004"
+ },
+ {
+  "phuong_xa_cu": "27004",
+  "phuong_xa_moi": "27004"
+ },
+ {
+  "phuong_xa_cu": "27007",
+  "phuong_xa_moi": "27004"
+ },
+ {
+  "phuong_xa_cu": "27007",
+  "phuong_xa_moi": "27007"
+ },
+ {
+  "phuong_xa_cu": "27013",
+  "phuong_xa_moi": "27013"
+ },
+ {
+  "phuong_xa_cu": "27016",
+  "phuong_xa_moi": "27013"
+ },
+ {
+  "phuong_xa_cu": "27010",
+  "phuong_xa_moi": "27019"
+ },
+ {
+  "phuong_xa_cu": "27016",
+  "phuong_xa_moi": "27019"
+ },
+ {
+  "phuong_xa_cu": "27019",
+  "phuong_xa_moi": "27019"
+ },
+ {
+  "phuong_xa_cu": "27022",
+  "phuong_xa_moi": "27019"
+ },
+ {
+  "phuong_xa_cu": "27019",
+  "phuong_xa_moi": "27022"
+ },
+ {
+  "phuong_xa_cu": "27022",
+  "phuong_xa_moi": "27022"
+ },
+ {
+  "phuong_xa_cu": "27025",
+  "phuong_xa_moi": "27022"
+ },
+ {
+  "phuong_xa_cu": "27028",
+  "phuong_xa_moi": "27028"
+ },
+ {
+  "phuong_xa_cu": "27037",
+  "phuong_xa_moi": "27028"
+ },
+ {
+  "phuong_xa_cu": "27040",
+  "phuong_xa_moi": "27028"
+ },
+ {
+  "phuong_xa_cu": "27022",
+  "phuong_xa_moi": "27031"
+ },
+ {
+  "phuong_xa_cu": "27031",
+  "phuong_xa_moi": "27031"
+ },
+ {
+  "phuong_xa_cu": "27034",
+  "phuong_xa_moi": "27031"
+ },
+ {
+  "phuong_xa_cu": "27040",
+  "phuong_xa_moi": "27031"
+ },
+ {
+  "phuong_xa_cu": "27043",
+  "phuong_xa_moi": "27043"
+ },
+ {
+  "phuong_xa_cu": "27046",
+  "phuong_xa_moi": "27043"
+ },
+ {
+  "phuong_xa_cu": "27049",
+  "phuong_xa_moi": "27043"
+ },
+ {
+  "phuong_xa_cu": "27052",
+  "phuong_xa_moi": "27058"
+ },
+ {
+  "phuong_xa_cu": "27058",
+  "phuong_xa_moi": "27058"
+ },
+ {
+  "phuong_xa_cu": "27061",
+  "phuong_xa_moi": "27058"
+ },
+ {
+  "phuong_xa_cu": "27064",
+  "phuong_xa_moi": "27073"
+ },
+ {
+  "phuong_xa_cu": "27070",
+  "phuong_xa_moi": "27073"
+ },
+ {
+  "phuong_xa_cu": "27073",
+  "phuong_xa_moi": "27073"
+ },
+ {
+  "phuong_xa_cu": "27085",
+  "phuong_xa_moi": "27073"
+ },
+ {
+  "phuong_xa_cu": "27088",
+  "phuong_xa_moi": "27094"
+ },
+ {
+  "phuong_xa_cu": "27091",
+  "phuong_xa_moi": "27094"
+ },
+ {
+  "phuong_xa_cu": "27094",
+  "phuong_xa_moi": "27094"
+ },
+ {
+  "phuong_xa_cu": "27115",
+  "phuong_xa_moi": "27094"
+ },
+ {
+  "phuong_xa_cu": "27118",
+  "phuong_xa_moi": "27094"
+ },
+ {
+  "phuong_xa_cu": "27091",
+  "phuong_xa_moi": "27097"
+ },
+ {
+  "phuong_xa_cu": "27097",
+  "phuong_xa_moi": "27097"
+ },
+ {
+  "phuong_xa_cu": "27100",
+  "phuong_xa_moi": "27097"
+ },
+ {
+  "phuong_xa_cu": "27109",
+  "phuong_xa_moi": "27112"
+ },
+ {
+  "phuong_xa_cu": "27112",
+  "phuong_xa_moi": "27112"
+ },
+ {
+  "phuong_xa_cu": "27139",
+  "phuong_xa_moi": "27139"
+ },
+ {
+  "phuong_xa_cu": "27148",
+  "phuong_xa_moi": "27139"
+ },
+ {
+  "phuong_xa_cu": "27127",
+  "phuong_xa_moi": "27142"
+ },
+ {
+  "phuong_xa_cu": "27130",
+  "phuong_xa_moi": "27142"
+ },
+ {
+  "phuong_xa_cu": "27133",
+  "phuong_xa_moi": "27142"
+ },
+ {
+  "phuong_xa_cu": "27142",
+  "phuong_xa_moi": "27142"
+ },
+ {
+  "phuong_xa_cu": "27148",
+  "phuong_xa_moi": "27154"
+ },
+ {
+  "phuong_xa_cu": "27151",
+  "phuong_xa_moi": "27154"
+ },
+ {
+  "phuong_xa_cu": "27154",
+  "phuong_xa_moi": "27154"
+ },
+ {
+  "phuong_xa_cu": "27157",
+  "phuong_xa_moi": "27154"
+ },
+ {
+  "phuong_xa_cu": "27160",
+  "phuong_xa_moi": "27154"
+ },
+ {
+  "phuong_xa_cu": "27163",
+  "phuong_xa_moi": "27163"
+ },
+ {
+  "phuong_xa_cu": "27166",
+  "phuong_xa_moi": "27163"
+ },
+ {
+  "phuong_xa_cu": "27169",
+  "phuong_xa_moi": "27163"
+ },
+ {
+  "phuong_xa_cu": "27172",
+  "phuong_xa_moi": "27163"
+ },
+ {
+  "phuong_xa_cu": "27169",
+  "phuong_xa_moi": "27169"
+ },
+ {
+  "phuong_xa_cu": "27187",
+  "phuong_xa_moi": "27169"
+ },
+ {
+  "phuong_xa_cu": "27202",
+  "phuong_xa_moi": "27169"
+ },
+ {
+  "phuong_xa_cu": "27178",
+  "phuong_xa_moi": "27190"
+ },
+ {
+  "phuong_xa_cu": "27181",
+  "phuong_xa_moi": "27190"
+ },
+ {
+  "phuong_xa_cu": "27184",
+  "phuong_xa_moi": "27190"
+ },
+ {
+  "phuong_xa_cu": "27190",
+  "phuong_xa_moi": "27190"
+ },
+ {
+  "phuong_xa_cu": "27193",
+  "phuong_xa_moi": "27190"
+ },
+ {
+  "phuong_xa_cu": "27211",
+  "phuong_xa_moi": "27211"
+ },
+ {
+  "phuong_xa_cu": "27214",
+  "phuong_xa_moi": "27211"
+ },
+ {
+  "phuong_xa_cu": "27208",
+  "phuong_xa_moi": "27226"
+ },
+ {
+  "phuong_xa_cu": "27229",
+  "phuong_xa_moi": "27226"
+ },
+ {
+  "phuong_xa_cu": "27220",
+  "phuong_xa_moi": "27232"
+ },
+ {
+  "phuong_xa_cu": "27229",
+  "phuong_xa_moi": "27232"
+ },
+ {
+  "phuong_xa_cu": "27238",
+  "phuong_xa_moi": "27238"
+ },
+ {
+  "phuong_xa_cu": "27247",
+  "phuong_xa_moi": "27238"
+ },
+ {
+  "phuong_xa_cu": "27253",
+  "phuong_xa_moi": "27238"
+ },
+ {
+  "phuong_xa_cu": "27259",
+  "phuong_xa_moi": "27259"
+ },
+ {
+  "phuong_xa_cu": "27277",
+  "phuong_xa_moi": "27259"
+ },
+ {
+  "phuong_xa_cu": "27289",
+  "phuong_xa_moi": "27259"
+ },
+ {
+  "phuong_xa_cu": "27295",
+  "phuong_xa_moi": "27259"
+ },
+ {
+  "phuong_xa_cu": "27265",
+  "phuong_xa_moi": "27265"
+ },
+ {
+  "phuong_xa_cu": "27271",
+  "phuong_xa_moi": "27265"
+ },
+ {
+  "phuong_xa_cu": "27283",
+  "phuong_xa_moi": "27265"
+ },
+ {
+  "phuong_xa_cu": "27292",
+  "phuong_xa_moi": "27265"
+ },
+ {
+  "phuong_xa_cu": "27295",
+  "phuong_xa_moi": "27265"
+ },
+ {
+  "phuong_xa_cu": "27283",
+  "phuong_xa_moi": "27286"
+ },
+ {
+  "phuong_xa_cu": "27286",
+  "phuong_xa_moi": "27286"
+ },
+ {
+  "phuong_xa_cu": "27292",
+  "phuong_xa_moi": "27286"
+ },
+ {
+  "phuong_xa_cu": "27298",
+  "phuong_xa_moi": "27286"
+ },
+ {
+  "phuong_xa_cu": "27301",
+  "phuong_xa_moi": "27301"
+ },
+ {
+  "phuong_xa_cu": "27307",
+  "phuong_xa_moi": "27301"
+ },
+ {
+  "phuong_xa_cu": "27325",
+  "phuong_xa_moi": "27301"
+ },
+ {
+  "phuong_xa_cu": "27304",
+  "phuong_xa_moi": "27316"
+ },
+ {
+  "phuong_xa_cu": "27316",
+  "phuong_xa_moi": "27316"
+ },
+ {
+  "phuong_xa_cu": "27334",
+  "phuong_xa_moi": "27316"
+ },
+ {
+  "phuong_xa_cu": "27310",
+  "phuong_xa_moi": "27343"
+ },
+ {
+  "phuong_xa_cu": "27328",
+  "phuong_xa_moi": "27343"
+ },
+ {
+  "phuong_xa_cu": "27331",
+  "phuong_xa_moi": "27343"
+ },
+ {
+  "phuong_xa_cu": "27343",
+  "phuong_xa_moi": "27343"
+ },
+ {
+  "phuong_xa_cu": "27346",
+  "phuong_xa_moi": "27349"
+ },
+ {
+  "phuong_xa_cu": "27349",
+  "phuong_xa_moi": "27349"
+ },
+ {
+  "phuong_xa_cu": "27358",
+  "phuong_xa_moi": "27349"
+ },
+ {
+  "phuong_xa_cu": "27364",
+  "phuong_xa_moi": "27364"
+ },
+ {
+  "phuong_xa_cu": "27385",
+  "phuong_xa_moi": "27364"
+ },
+ {
+  "phuong_xa_cu": "27430",
+  "phuong_xa_moi": "27364"
+ },
+ {
+  "phuong_xa_cu": "27352",
+  "phuong_xa_moi": "27367"
+ },
+ {
+  "phuong_xa_cu": "27376",
+  "phuong_xa_moi": "27373"
+ },
+ {
+  "phuong_xa_cu": "27382",
+  "phuong_xa_moi": "27373"
+ },
+ {
+  "phuong_xa_cu": "27397",
+  "phuong_xa_moi": "27418"
+ },
+ {
+  "phuong_xa_cu": "27403",
+  "phuong_xa_moi": "27418"
+ },
+ {
+  "phuong_xa_cu": "27409",
+  "phuong_xa_moi": "27418"
+ },
+ {
+  "phuong_xa_cu": "27418",
+  "phuong_xa_moi": "27418"
+ },
+ {
+  "phuong_xa_cu": "27418",
+  "phuong_xa_moi": "27424"
+ },
+ {
+  "phuong_xa_cu": "27424",
+  "phuong_xa_moi": "27424"
+ },
+ {
+  "phuong_xa_cu": "27433",
+  "phuong_xa_moi": "27424"
+ },
+ {
+  "phuong_xa_cu": "27625",
+  "phuong_xa_moi": "27424"
+ },
+ {
+  "phuong_xa_cu": "27415",
+  "phuong_xa_moi": "27427"
+ },
+ {
+  "phuong_xa_cu": "27421",
+  "phuong_xa_moi": "27427"
+ },
+ {
+  "phuong_xa_cu": "27427",
+  "phuong_xa_moi": "27427"
+ },
+ {
+  "phuong_xa_cu": "27430",
+  "phuong_xa_moi": "27427"
+ },
+ {
+  "phuong_xa_cu": "27016",
+  "phuong_xa_moi": "27439"
+ },
+ {
+  "phuong_xa_cu": "27436",
+  "phuong_xa_moi": "27439"
+ },
+ {
+  "phuong_xa_cu": "27439",
+  "phuong_xa_moi": "27439"
+ },
+ {
+  "phuong_xa_cu": "27442",
+  "phuong_xa_moi": "27442"
+ },
+ {
+  "phuong_xa_cu": "27448",
+  "phuong_xa_moi": "27442"
+ },
+ {
+  "phuong_xa_cu": "27454",
+  "phuong_xa_moi": "27442"
+ },
+ {
+  "phuong_xa_cu": "27439",
+  "phuong_xa_moi": "27448"
+ },
+ {
+  "phuong_xa_cu": "27445",
+  "phuong_xa_moi": "27448"
+ },
+ {
+  "phuong_xa_cu": "27448",
+  "phuong_xa_moi": "27448"
+ },
+ {
+  "phuong_xa_cu": "27454",
+  "phuong_xa_moi": "27457"
+ },
+ {
+  "phuong_xa_cu": "27457",
+  "phuong_xa_moi": "27457"
+ },
+ {
+  "phuong_xa_cu": "27616",
+  "phuong_xa_moi": "27457"
+ },
+ {
+  "phuong_xa_cu": "27451",
+  "phuong_xa_moi": "27460"
+ },
+ {
+  "phuong_xa_cu": "27460",
+  "phuong_xa_moi": "27460"
+ },
+ {
+  "phuong_xa_cu": "27463",
+  "phuong_xa_moi": "27460"
+ },
+ {
+  "phuong_xa_cu": "27472",
+  "phuong_xa_moi": "27475"
+ },
+ {
+  "phuong_xa_cu": "27475",
+  "phuong_xa_moi": "27475"
+ },
+ {
+  "phuong_xa_cu": "27481",
+  "phuong_xa_moi": "27475"
+ },
+ {
+  "phuong_xa_cu": "27490",
+  "phuong_xa_moi": "27475"
+ },
+ {
+  "phuong_xa_cu": "27466",
+  "phuong_xa_moi": "27478"
+ },
+ {
+  "phuong_xa_cu": "27469",
+  "phuong_xa_moi": "27478"
+ },
+ {
+  "phuong_xa_cu": "27478",
+  "phuong_xa_moi": "27478"
+ },
+ {
+  "phuong_xa_cu": "27484",
+  "phuong_xa_moi": "27484"
+ },
+ {
+  "phuong_xa_cu": "27493",
+  "phuong_xa_moi": "27484"
+ },
+ {
+  "phuong_xa_cu": "27487",
+  "phuong_xa_moi": "27487"
+ },
+ {
+  "phuong_xa_cu": "27493",
+  "phuong_xa_moi": "27487"
+ },
+ {
+  "phuong_xa_cu": "27496",
+  "phuong_xa_moi": "27496"
+ },
+ {
+  "phuong_xa_cu": "27529",
+  "phuong_xa_moi": "27496"
+ },
+ {
+  "phuong_xa_cu": "27532",
+  "phuong_xa_moi": "27496"
+ },
+ {
+  "phuong_xa_cu": "27499",
+  "phuong_xa_moi": "27508"
+ },
+ {
+  "phuong_xa_cu": "27502",
+  "phuong_xa_moi": "27508"
+ },
+ {
+  "phuong_xa_cu": "27508",
+  "phuong_xa_moi": "27508"
+ },
+ {
+  "phuong_xa_cu": "27511",
+  "phuong_xa_moi": "27511"
+ },
+ {
+  "phuong_xa_cu": "27514",
+  "phuong_xa_moi": "27511"
+ },
+ {
+  "phuong_xa_cu": "27520",
+  "phuong_xa_moi": "27511"
+ },
+ {
+  "phuong_xa_cu": "27505",
+  "phuong_xa_moi": "27526"
+ },
+ {
+  "phuong_xa_cu": "27526",
+  "phuong_xa_moi": "27526"
+ },
+ {
+  "phuong_xa_cu": "27538",
+  "phuong_xa_moi": "27526"
+ },
+ {
+  "phuong_xa_cu": "27517",
+  "phuong_xa_moi": "27541"
+ },
+ {
+  "phuong_xa_cu": "27541",
+  "phuong_xa_moi": "27541"
+ },
+ {
+  "phuong_xa_cu": "27547",
+  "phuong_xa_moi": "27541"
+ },
+ {
+  "phuong_xa_cu": "27523",
+  "phuong_xa_moi": "27544"
+ },
+ {
+  "phuong_xa_cu": "27544",
+  "phuong_xa_moi": "27544"
+ },
+ {
+  "phuong_xa_cu": "27550",
+  "phuong_xa_moi": "27544"
+ },
+ {
+  "phuong_xa_cu": "27535",
+  "phuong_xa_moi": "27553"
+ },
+ {
+  "phuong_xa_cu": "27553",
+  "phuong_xa_moi": "27553"
+ },
+ {
+  "phuong_xa_cu": "27556",
+  "phuong_xa_moi": "27553"
+ },
+ {
+  "phuong_xa_cu": "27559",
+  "phuong_xa_moi": "27559"
+ },
+ {
+  "phuong_xa_cu": "27562",
+  "phuong_xa_moi": "27559"
+ },
+ {
+  "phuong_xa_cu": "27580",
+  "phuong_xa_moi": "27559"
+ },
+ {
+  "phuong_xa_cu": "27565",
+  "phuong_xa_moi": "27568"
+ },
+ {
+  "phuong_xa_cu": "27568",
+  "phuong_xa_moi": "27568"
+ },
+ {
+  "phuong_xa_cu": "27574",
+  "phuong_xa_moi": "27568"
+ },
+ {
+  "phuong_xa_cu": "27571",
+  "phuong_xa_moi": "27577"
+ },
+ {
+  "phuong_xa_cu": "27577",
+  "phuong_xa_moi": "27577"
+ },
+ {
+  "phuong_xa_cu": "27583",
+  "phuong_xa_moi": "27577"
+ },
+ {
+  "phuong_xa_cu": "27586",
+  "phuong_xa_moi": "27592"
+ },
+ {
+  "phuong_xa_cu": "27589",
+  "phuong_xa_moi": "27592"
+ },
+ {
+  "phuong_xa_cu": "27592",
+  "phuong_xa_moi": "27592"
+ },
+ {
+  "phuong_xa_cu": "27595",
+  "phuong_xa_moi": "27595"
+ },
+ {
+  "phuong_xa_cu": "27613",
+  "phuong_xa_moi": "27595"
+ },
+ {
+  "phuong_xa_cu": "27616",
+  "phuong_xa_moi": "27595"
+ },
+ {
+  "phuong_xa_cu": "27430",
+  "phuong_xa_moi": "27595"
+ },
+ {
+  "phuong_xa_cu": "27457",
+  "phuong_xa_moi": "27595"
+ },
+ {
+  "phuong_xa_cu": "27598",
+  "phuong_xa_moi": "27601"
+ },
+ {
+  "phuong_xa_cu": "27601",
+  "phuong_xa_moi": "27601"
+ },
+ {
+  "phuong_xa_cu": "27598",
+  "phuong_xa_moi": "27604"
+ },
+ {
+  "phuong_xa_cu": "27604",
+  "phuong_xa_moi": "27604"
+ },
+ {
+  "phuong_xa_cu": "27454",
+  "phuong_xa_moi": "27604"
+ },
+ {
+  "phuong_xa_cu": "27607",
+  "phuong_xa_moi": "27610"
+ },
+ {
+  "phuong_xa_cu": "27610",
+  "phuong_xa_moi": "27610"
+ },
+ {
+  "phuong_xa_cu": "27619",
+  "phuong_xa_moi": "27619"
+ },
+ {
+  "phuong_xa_cu": "27622",
+  "phuong_xa_moi": "27619"
+ },
+ {
+  "phuong_xa_cu": "27433",
+  "phuong_xa_moi": "27619"
+ },
+ {
+  "phuong_xa_cu": "27628",
+  "phuong_xa_moi": "27628"
+ },
+ {
+  "phuong_xa_cu": "27631",
+  "phuong_xa_moi": "27628"
+ },
+ {
+  "phuong_xa_cu": "27640",
+  "phuong_xa_moi": "27628"
+ },
+ {
+  "phuong_xa_cu": "27625",
+  "phuong_xa_moi": "27637"
+ },
+ {
+  "phuong_xa_cu": "27634",
+  "phuong_xa_moi": "27637"
+ },
+ {
+  "phuong_xa_cu": "27637",
+  "phuong_xa_moi": "27637"
+ },
+ {
+  "phuong_xa_cu": "27643",
+  "phuong_xa_moi": "27655"
+ },
+ {
+  "phuong_xa_cu": "27646",
+  "phuong_xa_moi": "27655"
+ },
+ {
+  "phuong_xa_cu": "27649",
+  "phuong_xa_moi": "27655"
+ },
+ {
+  "phuong_xa_cu": "27655",
+  "phuong_xa_moi": "27655"
+ },
+ {
+  "phuong_xa_cu": "27652",
+  "phuong_xa_moi": "27658"
+ },
+ {
+  "phuong_xa_cu": "27658",
+  "phuong_xa_moi": "27658"
+ },
+ {
+  "phuong_xa_cu": "27661",
+  "phuong_xa_moi": "27658"
+ },
+ {
+  "phuong_xa_cu": "27664",
+  "phuong_xa_moi": "27664"
+ },
+ {
+  "phuong_xa_cu": "27679",
+  "phuong_xa_moi": "27664"
+ },
+ {
+  "phuong_xa_cu": "27667",
+  "phuong_xa_moi": "27667"
+ },
+ {
+  "phuong_xa_cu": "27670",
+  "phuong_xa_moi": "27667"
+ },
+ {
+  "phuong_xa_cu": "27673",
+  "phuong_xa_moi": "27667"
+ },
+ {
+  "phuong_xa_cu": "27673",
+  "phuong_xa_moi": "27673"
+ },
+ {
+  "phuong_xa_cu": "27682",
+  "phuong_xa_moi": "27673"
+ },
+ {
+  "phuong_xa_cu": "27676",
+  "phuong_xa_moi": "27676"
+ }
+]
