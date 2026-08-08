@@ -1,7 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Group, Box, Text, SimpleGrid, NumberInput, Loader, Center, Alert, Stack } from "@mantine/core";
+import {
+  Group,
+  Box,
+  Text,
+  SimpleGrid,
+  NumberInput,
+  Loader,
+  Center,
+  Alert,
+  Stack,
+  SegmentedControl,
+} from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { AppInput } from "@/components/ui/AppInput";
@@ -11,10 +22,12 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { rentalPostsApi } from "@/features/rental-posts/api/rental-posts.api";
 import { danhMucApi } from "@/features/rental-posts/api/danh-muc.api";
 import type { RentalPostSummary } from "@/types/rental-post";
-import type { LoaiBatDongSan, QuanHuyen, TinhThanh } from "@/types/danh-muc";
+import type { LoaiBatDongSan, PhuongXaMoi, QuanHuyen, TinhThanh } from "@/types/danh-muc";
 import { PropertyCard } from "./PropertyCard";
 
 const SO_TIN_MOI_TRANG = 12;
+
+type CheDoDiaGioi = "cu" | "moi";
 
 export function RentalPostListView() {
   const [tuKhoaNhap, setTuKhoaNhap] = useState("");
@@ -22,7 +35,13 @@ export function RentalPostListView() {
 
   const [loaiBatDongSanId, setLoaiBatDongSanId] = useState<string | null>(null);
   const [tinhThanhId, setTinhThanhId] = useState<string | null>(null);
+
+  // Mode địa giới: "cu" = trước sáp nhập (lọc theo Quận/Huyện), "moi" = sau sáp nhập
+  // 07/2025 (không còn quận/huyện, lọc thẳng theo Xã/Phường mới).
+  const [cheDoDiaGioi, setCheDoDiaGioi] = useState<CheDoDiaGioi>("cu");
   const [quanHuyenId, setQuanHuyenId] = useState<string | null>(null);
+  const [phuongXaMoiId, setPhuongXaMoiId] = useState<string | null>(null);
+
   const [giaTu, setGiaTu] = useState<number | "">("");
   const [giaDen, setGiaDen] = useState<number | "">("");
   const [dienTichTu, setDienTichTu] = useState<number | "">("");
@@ -32,6 +51,7 @@ export function RentalPostListView() {
   const [danhSachLoai, setDanhSachLoai] = useState<LoaiBatDongSan[]>([]);
   const [danhSachTinh, setDanhSachTinh] = useState<TinhThanh[]>([]);
   const [danhSachQuan, setDanhSachQuan] = useState<QuanHuyen[]>([]);
+  const [danhSachXaMoi, setDanhSachXaMoi] = useState<PhuongXaMoi[]>([]);
 
   const [items, setItems] = useState<RentalPostSummary[]>([]);
   const [total, setTotal] = useState(0);
@@ -50,11 +70,29 @@ export function RentalPostListView() {
   }, []);
 
   useEffect(() => {
-    const danhSachQuanPromise = tinhThanhId
-      ? danhMucApi.quanHuyen(Number(tinhThanhId)).catch((): QuanHuyen[] => [])
-      : Promise.resolve<QuanHuyen[]>([]);
-    danhSachQuanPromise.then(setDanhSachQuan);
-  }, [tinhThanhId]);
+    if (!tinhThanhId) {
+      setDanhSachQuan([]);
+      setDanhSachXaMoi([]);
+      return;
+    }
+    if (cheDoDiaGioi === "cu") {
+      danhMucApi
+        .quanHuyen(Number(tinhThanhId))
+        .then(setDanhSachQuan)
+        .catch(() => setDanhSachQuan([]));
+    } else {
+      danhMucApi
+        .xaPhuongMoi(Number(tinhThanhId))
+        .then(setDanhSachXaMoi)
+        .catch(() => setDanhSachXaMoi([]));
+    }
+  }, [tinhThanhId, cheDoDiaGioi]);
+
+  function doiCheDoDiaGioi(cheDo: CheDoDiaGioi) {
+    setCheDoDiaGioi(cheDo);
+    setQuanHuyenId(null);
+    setPhuongXaMoiId(null);
+  }
 
   // Reset về trang 1 mỗi khi bộ lọc thay đổi — điều chỉnh trong lúc render theo
   // hướng dẫn của React thay vì dùng effect riêng (tránh cascading render).
@@ -62,7 +100,9 @@ export function RentalPostListView() {
     tuKhoa,
     loaiBatDongSanId,
     tinhThanhId,
+    cheDoDiaGioi,
     quanHuyenId,
+    phuongXaMoiId,
     giaTu,
     giaDen,
     dienTichTu,
@@ -87,7 +127,8 @@ export function RentalPostListView() {
           q: tuKhoa || undefined,
           loaiBatDongSanId: loaiBatDongSanId ? Number(loaiBatDongSanId) : undefined,
           tinhThanhId: tinhThanhId ? Number(tinhThanhId) : undefined,
-          quanHuyenId: quanHuyenId ? Number(quanHuyenId) : undefined,
+          quanHuyenId: cheDoDiaGioi === "cu" && quanHuyenId ? Number(quanHuyenId) : undefined,
+          phuongXaMoiId: cheDoDiaGioi === "moi" && phuongXaMoiId ? Number(phuongXaMoiId) : undefined,
           giaTu: giaTu === "" ? undefined : giaTu,
           giaDen: giaDen === "" ? undefined : giaDen,
           dienTichTu: dienTichTu === "" ? undefined : dienTichTu,
@@ -113,7 +154,19 @@ export function RentalPostListView() {
     return () => {
       daHuy = true;
     };
-  }, [page, tuKhoa, loaiBatDongSanId, tinhThanhId, quanHuyenId, giaTu, giaDen, dienTichTu, dienTichDen]);
+  }, [
+    page,
+    tuKhoa,
+    loaiBatDongSanId,
+    tinhThanhId,
+    cheDoDiaGioi,
+    quanHuyenId,
+    phuongXaMoiId,
+    giaTu,
+    giaDen,
+    dienTichTu,
+    dienTichDen,
+  ]);
 
   const tongSoTrang = Math.max(1, Math.ceil(total / SO_TIN_MOI_TRANG));
 
@@ -155,17 +208,48 @@ export function RentalPostListView() {
             onChange={(value) => {
               setTinhThanhId(value);
               setQuanHuyenId(null);
+              setPhuongXaMoiId(null);
             }}
             clearable
           />
-          <AppSelect
-            label="Quận/Huyện"
-            placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
-            data={danhSachQuan.map((quan) => ({ value: String(quan.id), label: quan.ten }))}
-            value={quanHuyenId}
-            onChange={setQuanHuyenId}
-            disabled={!tinhThanhId}
-            clearable
+          {cheDoDiaGioi === "cu" ? (
+            <AppSelect
+              label="Quận/Huyện"
+              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
+              data={danhSachQuan.map((quan) => ({ value: String(quan.id), label: quan.ten }))}
+              value={quanHuyenId}
+              onChange={setQuanHuyenId}
+              disabled={!tinhThanhId}
+              searchable
+              nothingFoundMessage="Không tìm thấy"
+              clearable
+            />
+          ) : (
+            <AppSelect
+              label="Xã/Phường (sau sáp nhập)"
+              placeholder={tinhThanhId ? "Tất cả" : "Chọn tỉnh/thành trước"}
+              data={danhSachXaMoi.map((xa) => ({ value: String(xa.id), label: xa.ten }))}
+              value={phuongXaMoiId}
+              onChange={setPhuongXaMoiId}
+              disabled={!tinhThanhId}
+              searchable
+              nothingFoundMessage="Không tìm thấy"
+              clearable
+            />
+          )}
+        </Group>
+        <Group gap={12} align="center">
+          <Text fz="sm" c="var(--color-text-muted)">
+            Địa giới hành chính
+          </Text>
+          <SegmentedControl
+            size="sm"
+            value={cheDoDiaGioi}
+            onChange={(value) => doiCheDoDiaGioi(value as CheDoDiaGioi)}
+            data={[
+              { label: "Trước sáp nhập (Tỉnh/Huyện/Xã)", value: "cu" },
+              { label: "Sau sáp nhập (Tỉnh/Xã)", value: "moi" },
+            ]}
           />
         </Group>
         <Group gap={12} align="flex-end">

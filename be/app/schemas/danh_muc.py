@@ -14,3 +14,8 @@ class TinhThanhTomTat(BaseModel):
 class QuanHuyenTomTat(BaseModel):
     id: int
     ten: str
+
+
+class PhuongXaMoiTomTat(BaseModel):
+    id: int
+    ten: str

@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/api/api-client";
 import { endpoints } from "@/lib/api/endpoints";
-import type { LoaiBatDongSan, QuanHuyen, TinhThanh } from "@/types/danh-muc";
+import type { LoaiBatDongSan, PhuongXaMoi, QuanHuyen, TinhThanh } from "@/types/danh-muc";
 
 export const danhMucApi = {
   loaiBatDongSan: () =>
@@ -8,4 +8,6 @@ export const danhMucApi = {
   tinhThanh: () => apiClient.get<TinhThanh[]>(endpoints.danhMuc.tinhThanh, { skipAuth: true }),
   quanHuyen: (tinhThanhId: number) =>
     apiClient.get<QuanHuyen[]>(endpoints.danhMuc.quanHuyen(tinhThanhId), { skipAuth: true }),
+  xaPhuongMoi: (tinhThanhId: number) =>
+    apiClient.get<PhuongXaMoi[]>(endpoints.danhMuc.xaPhuongMoi(tinhThanhId), { skipAuth: true }),
 };

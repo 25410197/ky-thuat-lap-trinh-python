@@ -77,6 +77,7 @@ export interface RentalPostListFilters {
   loaiBatDongSanId?: number;
   tinhThanhId?: number;
   quanHuyenId?: number;
+  phuongXaMoiId?: number;
   giaTu?: number;
   giaDen?: number;
   dienTichTu?: number;

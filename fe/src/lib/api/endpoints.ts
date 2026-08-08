@@ -14,6 +14,7 @@ export const endpoints = {
     loaiBatDongSan: "/loai-bat-dong-san",
     tinhThanh: "/tinh-thanh",
     quanHuyen: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/quan-huyen`,
+    xaPhuongMoi: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/xa-phuong-moi`,
   },
   favorites: {
     list: "/favorites",

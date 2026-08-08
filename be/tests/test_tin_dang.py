@@ -5,18 +5,20 @@ from sqlalchemy.orm import Session
 
 from app.db.session import SessionLocal
 from app.main import app
-from app.models import LoaiBatDongSan, NguoiDung, PhuongXa, TinDang
+from app.models import LoaiBatDongSan, NguoiDung, PhuongXa, QuanHuyen, TinDang
 from app.models.enums import TrangThaiTinDang
 
 client = TestClient(app)
 
 
-def _tao_tin_dang_voi_trang_thai(tieu_de: str, trang_thai: TrangThaiTinDang) -> int:
+def _tao_tin_dang_voi_trang_thai(
+    tieu_de: str, trang_thai: TrangThaiTinDang, phuong_xa_id: int | None = None
+) -> int:
     db: Session = SessionLocal()
     try:
         admin = db.query(NguoiDung).first()
         loai = db.query(LoaiBatDongSan).first()
-        phuong = db.query(PhuongXa).first()
+        phuong = db.get(PhuongXa, phuong_xa_id) if phuong_xa_id else db.query(PhuongXa).first()
 
         tin = TinDang(
             tieu_de=tieu_de,
@@ -154,6 +156,54 @@ def test_loc_theo_quan_huyen() -> None:
         assert item["quanHuyen"] == quan["ten"]
 
 
+def test_loc_theo_xa_phuong_moi() -> None:
+    db: Session = SessionLocal()
+    try:
+        # Lấy 1 phường/xã CŨ có ánh xạ sang ít nhất 1 xã/phường MỚI, và 1 phường/xã cũ
+        # thuộc tỉnh KHÁC để chắc chắn nó ánh xạ sang xã/phường mới khác (không trùng).
+        phuong_co_map = (
+            db.query(PhuongXa).filter(PhuongXa.xa_phuong_moi.any()).first()
+        )
+        xa_moi_cung_phe = phuong_co_map.xa_phuong_moi[0]
+
+        phuong_tinh_khac = (
+            db.query(PhuongXa)
+            .join(QuanHuyen)
+            .filter(
+                PhuongXa.xa_phuong_moi.any(),
+                QuanHuyen.tinh_thanh_id != phuong_co_map.quan_huyen.tinh_thanh_id,
+            )
+            .first()
+        )
+        xa_moi_khac_tinh = next(
+            x for x in phuong_tinh_khac.xa_phuong_moi if x.tinh_thanh_id != xa_moi_cung_phe.tinh_thanh_id
+        )
+
+        id_phuong_cu = phuong_co_map.id
+        id_xa_moi = xa_moi_cung_phe.id
+        id_xa_moi_khac_tinh = xa_moi_khac_tinh.id
+    finally:
+        db.close()
+
+    marker = f"KiemThuXaMoi-{uuid.uuid4().hex[:8]}"
+    id_tin = _tao_tin_dang_voi_trang_thai(marker, TrangThaiTinDang.DA_DUYET, phuong_xa_id=id_phuong_cu)
+    try:
+        dung_mode = client.get(
+            "/api/rental-posts", params={"phuong_xa_moi_id": id_xa_moi, "q": marker, "page_size": 50}
+        )
+        assert dung_mode.status_code == 200
+        assert [item["id"] for item in dung_mode.json()["items"]] == [id_tin]
+
+        sai_mode = client.get(
+            "/api/rental-posts",
+            params={"phuong_xa_moi_id": id_xa_moi_khac_tinh, "q": marker, "page_size": 50},
+        )
+        assert sai_mode.status_code == 200
+        assert sai_mode.json()["items"] == []
+    finally:
+        _xoa_tin_dang(id_tin)
+
+
 def test_danh_muc_loai_bat_dong_san_khong_rong() -> None:
     response = client.get("/api/loai-bat-dong-san")
 
@@ -170,6 +220,21 @@ def test_danh_muc_tinh_thanh_khong_rong() -> None:
 
 def test_danh_muc_quan_huyen_tinh_khong_ton_tai_tra_ve_404() -> None:
     response = client.get("/api/tinh-thanh/999999/quan-huyen")
+
+    assert response.status_code == 404
+
+
+def test_danh_muc_xa_phuong_moi_khong_rong() -> None:
+    tinh = client.get("/api/tinh-thanh").json()[0]
+
+    response = client.get(f"/api/tinh-thanh/{tinh['id']}/xa-phuong-moi")
+
+    assert response.status_code == 200
+    assert len(response.json()) > 0
+
+
+def test_danh_muc_xa_phuong_moi_tinh_khong_ton_tai_tra_ve_404() -> None:
+    response = client.get("/api/tinh-thanh/999999/xa-phuong-moi")
 
     assert response.status_code == 404
 

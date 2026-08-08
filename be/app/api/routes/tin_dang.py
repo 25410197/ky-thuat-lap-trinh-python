@@ -3,7 +3,18 @@ from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
 from app.api.dependencies import get_db, get_current_user
-from app.models import PhuongXa, QuanHuyen, TinDang, NguoiDung, LoaiBatDongSan, TinhThanh, TienIch, HinhAnhTinDang
+from app.models import (
+    PhuongXa,
+    PhuongXaMoi,
+    QuanHuyen,
+    TinDang,
+    NguoiDung,
+    LoaiBatDongSan,
+    TinhThanh,
+    TienIch,
+    HinhAnhTinDang,
+    phuong_xa_anh_xa,
+)
 from app.models.enums import TrangThaiTinDang, PhuongThucLienHe
 from app.schemas.tin_dang import DanhSachTinDang, TinDangTomTat, TinDangCuaToiResponse, DangTinRequest, TinDangChiTiet
 
@@ -17,7 +28,8 @@ def danh_sach_tin_dang(
     q: str | None = Query(None, description="Tìm theo tiêu đề hoặc địa chỉ"),
     loai_bat_dong_san_id: int | None = Query(None),
     tinh_thanh_id: int | None = Query(None),
-    quan_huyen_id: int | None = Query(None),
+    quan_huyen_id: int | None = Query(None, description="Lọc theo quận/huyện — địa giới CŨ (trước sáp nhập)"),
+    phuong_xa_moi_id: int | None = Query(None, description="Lọc theo xã/phường — địa giới MỚI (sau sáp nhập)"),
     gia_tu: float | None = Query(None, ge=0),
     gia_den: float | None = Query(None, ge=0),
     dien_tich_tu: float | None = Query(None, ge=0),
@@ -43,6 +55,14 @@ def danh_sach_tin_dang(
     if quan_huyen_id is not None:
         dieu_kien.append(
             TinDang.phuong_xa_id.in_(select(PhuongXa.id).where(PhuongXa.quan_huyen_id == quan_huyen_id))
+        )
+    elif phuong_xa_moi_id is not None:
+        dieu_kien.append(
+            TinDang.phuong_xa_id.in_(
+                select(phuong_xa_anh_xa.c.phuong_xa_id).where(
+                    phuong_xa_anh_xa.c.phuong_xa_moi_id == phuong_xa_moi_id
+                )
+            )
         )
     elif tinh_thanh_id is not None:
         dieu_kien.append(
