@@ -1,13 +1,19 @@
-"""Seed dữ liệu mẫu: admin, loại BĐS, tiện ích, tỉnh/quận/phường, tin đăng.
+"""Seed dữ liệu mẫu: admin, thành viên nhóm, loại BĐS, tiện ích, tỉnh/quận/phường, tin đăng.
 
 Dữ liệu hành chính (tỉnh/quận/huyện/phường/xã) là dữ liệu THẬT cho Hà Nội, Đà Nẵng,
 TP.HCM — cả cấu trúc trước và sau đợt sáp nhập 07/2025, lấy từ Provinces Open API và
 lưu sẵn trong app/scripts/data/ (xem app/scripts/data/README.md để biết nguồn + giới hạn).
 
 Chạy: python -m app.scripts.seed
-An toàn khi chạy lại nhiều lần cho dữ liệu tra cứu và admin (get-or-create). Riêng dữ liệu
-hành chính + tin đăng mẫu sẽ được XÓA VÀ TẠO LẠI mỗi lần chạy — vì đây là dữ liệu demo,
+An toàn khi chạy lại nhiều lần cho dữ liệu tra cứu, admin và thành viên (get-or-create). Riêng
+dữ liệu hành chính + tin đăng mẫu sẽ được XÓA VÀ TẠO LẠI mỗi lần chạy — vì đây là dữ liệu demo,
 không phải dữ liệu người dùng thật, và cần luôn khớp với dữ liệu nguồn mới nhất.
+
+Tài khoản thành viên demo (mật khẩu chung: Member@123):
+  - minhhai@example.com      (Nguyễn Minh Hải)
+  - hoaitien@example.com     (Trần Hoài Tiến)
+  - minhanh@example.com      (Lê Minh Anh)
+  - phuongtrinh@example.com  (Phạm Phương Trinh)
 """
 
 import json
@@ -69,6 +75,16 @@ TEN_LIEN_HE_MAU = ["Anh Minh", "Chị Lan", "Anh Tuấn", "Chị Hoa", "Anh Phú
 
 SO_TIN_DANG_CAN_SEED = 40
 
+# Tài khoản thành viên trong nhóm — dữ liệu demo để đăng nhập thử/test, không phải người dùng thật.
+MAT_KHAU_THANH_VIEN_MAC_DINH = "Member@123"
+
+THANH_VIEN_MAC_DINH = [
+    {"ho_ten": "Nguyễn Minh Hải", "email": "minhhai@example.com", "so_dien_thoai": "0912345671"},
+    {"ho_ten": "Trần Hoài Tiến", "email": "hoaitien@example.com", "so_dien_thoai": "0912345672"},
+    {"ho_ten": "Lê Minh Anh", "email": "minhanh@example.com", "so_dien_thoai": "0912345673"},
+    {"ho_ten": "Phạm Phương Trinh", "email": "phuongtrinh@example.com", "so_dien_thoai": "0912345674"},
+]
+
 
 def seed_admin(db: Session) -> NguoiDung:
     settings = get_settings()
@@ -87,6 +103,26 @@ def seed_admin(db: Session) -> NguoiDung:
     db.flush()
     print(f"  + Tạo admin: {admin.email}")
     return admin
+
+
+def seed_thanh_vien(db: Session) -> list[NguoiDung]:
+    ket_qua = []
+    for item in THANH_VIEN_MAC_DINH:
+        thanh_vien = db.query(NguoiDung).filter(NguoiDung.email == item["email"]).first()
+        if not thanh_vien:
+            thanh_vien = NguoiDung(
+                ho_ten=item["ho_ten"],
+                email=item["email"],
+                mat_khau_hash=hash_password(MAT_KHAU_THANH_VIEN_MAC_DINH),
+                so_dien_thoai=item["so_dien_thoai"],
+                vai_tro=VaiTroNguoiDung.NGUOI_DUNG,
+                trang_thai=TrangThaiNguoiDung.HOAT_DONG,
+            )
+            db.add(thanh_vien)
+            db.flush()
+            print(f"  + Tạo thành viên: {thanh_vien.ho_ten} ({thanh_vien.email})")
+        ket_qua.append(thanh_vien)
+    return ket_qua
 
 
 def seed_loai_bat_dong_san(db: Session) -> list[LoaiBatDongSan]:
@@ -222,11 +258,15 @@ def seed_dia_diem(db: Session) -> list[PhuongXa]:
 def seed_tin_dang(
     db: Session,
     admin: NguoiDung,
+    danh_sach_thanh_vien: list[NguoiDung],
     danh_sach_loai: list[LoaiBatDongSan],
     danh_sach_tien_ich: list[TienIch],
     danh_sach_phuong: list[PhuongXa],
 ) -> None:
     rng = random.Random(RANDOM_SEED)
+    # Phần lớn tin đăng thuộc về thành viên (chủ trọ tự đăng), một phần nhỏ do admin đăng hộ
+    # — giống thực tế hơn là dồn hết cho admin.
+    nguoi_dang_theo_trong_so = danh_sach_thanh_vien * 3 + [admin]
 
     for i in range(1, SO_TIN_DANG_CAN_SEED + 1):
         loai = rng.choice(danh_sach_loai)
@@ -235,6 +275,14 @@ def seed_tin_dang(
         gia_thue = rng.randrange(khoang["gia"][0], khoang["gia"][1], 100_000)
         dien_tich = rng.randint(*khoang["dien_tich"])
         so_nha = rng.randint(1, 200)
+        nguoi_dang = rng.choice(nguoi_dang_theo_trong_so)
+
+        if nguoi_dang is admin:
+            ten_lien_he = rng.choice(TEN_LIEN_HE_MAU)
+            so_dien_thoai_lien_he = f"09{rng.randint(10_000_000, 99_999_999)}"
+        else:
+            ten_lien_he = nguoi_dang.ho_ten
+            so_dien_thoai_lien_he = nguoi_dang.so_dien_thoai
 
         tin_dang = TinDang(
             tieu_de=f"{loai.ten} cho thuê tại {phuong.ten} #{i}",
@@ -247,9 +295,9 @@ def seed_tin_dang(
             dia_chi_chi_tiet=f"Số {so_nha} đường {phuong.ten}",
             loai_bat_dong_san_id=loai.id,
             phuong_xa_id=phuong.id,
-            nguoi_dang_id=admin.id,
-            ten_nguoi_lien_he=rng.choice(TEN_LIEN_HE_MAU),
-            so_dien_thoai_lien_he=f"09{rng.randint(10_000_000, 99_999_999)}",
+            nguoi_dang_id=nguoi_dang.id,
+            ten_nguoi_lien_he=ten_lien_he,
+            so_dien_thoai_lien_he=so_dien_thoai_lien_he,
             phuong_thuc_lien_he_uu_tien=rng.choice(list(PhuongThucLienHe)),
             trang_thai=TrangThaiTinDang.DA_DUYET if i <= 35 else TrangThaiTinDang.CHO_DUYET,
         )
@@ -276,6 +324,9 @@ def main() -> None:
         print("Seed admin...")
         admin = seed_admin(db)
 
+        print("Seed thành viên nhóm...")
+        danh_sach_thanh_vien = seed_thanh_vien(db)
+
         print("Seed loại bất động sản...")
         danh_sach_loai = seed_loai_bat_dong_san(db)
 
@@ -288,7 +339,7 @@ def main() -> None:
         danh_sach_phuong = seed_dia_diem(db)
 
         print("Seed tin đăng mẫu...")
-        seed_tin_dang(db, admin, danh_sach_loai, danh_sach_tien_ich, danh_sach_phuong)
+        seed_tin_dang(db, admin, danh_sach_thanh_vien, danh_sach_loai, danh_sach_tien_ich, danh_sach_phuong)
 
         db.commit()
         print("Hoàn tất seed dữ liệu.")
