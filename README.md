@@ -10,23 +10,16 @@ Khởi động backend, PostgreSQL, MinIO và tạo bucket mặc định:
 docker compose -f infra/compose.yaml up -d --build
 ```
 
-Lần đầu chạy (hoặc sau khi có migration mới), chạy migration để tạo bảng và seed dữ liệu mặc định (loại bất
-động sản, tiện ích):
+Container `be` tự chạy migration (`alembic upgrade head`) rồi seed dữ liệu mẫu (tài khoản admin, thành
+viên nhóm, loại bất động sản, tiện ích, tỉnh/quận/phường, ~40 tin đăng mẫu) mỗi lần khởi động — xem
+`be/entrypoint.sh`. Không cần chạy tay hai lệnh này nữa; script seed vẫn an toàn khi chạy lại nhiều lần
+(dữ liệu tra cứu/tài khoản dùng get-or-create, riêng tin đăng + tỉnh/quận/phường bị xóa và tạo lại mỗi lần).
 
-```bash
-docker compose -f infra/compose.yaml exec be alembic upgrade head
-```
-
-Seed dữ liệu mẫu (tài khoản admin, tỉnh/quận/phường, ~40 tin đăng mẫu):
-
-```bash
-docker compose -f infra/compose.yaml exec be python -m app.scripts.seed
-```
-
-Script seed có thể chạy lại nhiều lần an toàn (không tạo trùng dữ liệu). Sau khi seed xong:
+Sau khi container khởi động xong:
 
 - Tài khoản admin: email/mật khẩu lấy từ biến môi trường `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD`
   (mặc định `admin@example.com` / `Admin@123`, đổi trong `.env` nếu cần).
+- Tài khoản thành viên demo (mật khẩu chung `Member@123`): xem danh sách trong `be/app/scripts/seed.py`.
 - Kiểm tra API trả dữ liệu mẫu: http://localhost:8000/api/rental-posts
 
 Dừng toàn bộ stack:
