@@ -16,7 +16,7 @@ from app.models import (
     HinhAnhTinDang,
     phuong_xa_anh_xa,
 )
-from app.models.enums import TrangThaiTinDang, PhuongThucLienHe
+from app.models.enums import TrangThaiTinDang, PhuongThucLienHe, TrangThaiLoaiBatDongSan
 from app.schemas.tin_dang import (
     AnhThuVienChonResponse,
     DanhSachTinDang,
@@ -46,6 +46,28 @@ def _kiem_tra_chu_tin(tin: TinDang, nguoi_dung: NguoiDung) -> None:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Bạn không có quyền chỉnh sửa tin đăng này.",
         )
+
+
+def _lay_loai_bat_dong_san_hop_le(
+    db: Session, ten: str, loai_hien_tai_id: int | None = None
+) -> LoaiBatDongSan:
+    """Chỉ admin được thêm loại bất động sản (xem `danh_muc.py`) — người đăng tin chỉ được CHỌN
+    trong các loại đã có, không được tự tạo loại mới. Loại đang bị ẩn chỉ chấp nhận nếu đó vẫn là
+    loại đã lưu sẵn của chính tin đăng (giữ nguyên khi sửa tin), không cho chọn mới."""
+    loai_bds = db.query(LoaiBatDongSan).filter(LoaiBatDongSan.ten == ten).first()
+    if loai_bds is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Loại bất động sản không tồn tại.",
+        )
+
+    la_dang_dung_lai = loai_hien_tai_id is not None and loai_bds.id == loai_hien_tai_id
+    if loai_bds.trang_thai != TrangThaiLoaiBatDongSan.HOAT_DONG and not la_dang_dung_lai:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Loại bất động sản này đã bị ẩn, vui lòng chọn loại khác.",
+        )
+    return loai_bds
 
 
 def _tao_hinh_anh_tu_thu_vien(
@@ -234,11 +256,7 @@ def tao_tin_dang_moi(
     db: Session = Depends(get_db),
     nguoi_dung: NguoiDung = Depends(get_current_user)
 ):
-    loai_bds = db.query(LoaiBatDongSan).filter(LoaiBatDongSan.ten == du_lieu.propertyType).first()
-    if not loai_bds:
-        loai_bds = LoaiBatDongSan(ten=du_lieu.propertyType)
-        db.add(loai_bds)
-        db.flush()
+    loai_bds = _lay_loai_bat_dong_san_hop_le(db, du_lieu.propertyType)
 
     xa_moi = db.get(PhuongXaMoi, du_lieu.phuongXaMoiId)
     if xa_moi is None:
@@ -258,7 +276,7 @@ def tao_tin_dang_moi(
             db.add(ti)
             db.flush()
         danh_sach_tien_ich.append(ti)
-        
+
     phuong_thuc = PhuongThucLienHe.GOI_DIEN if du_lieu.contactMethod == "call" else PhuongThucLienHe.NHAN_TIN
     
     tin_moi = TinDang(
@@ -357,11 +375,9 @@ def cap_nhat_tin_dang(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
     _kiem_tra_chu_tin(tin, nguoi_dung)
 
-    loai_bds = db.query(LoaiBatDongSan).filter(LoaiBatDongSan.ten == du_lieu.propertyType).first()
-    if not loai_bds:
-        loai_bds = LoaiBatDongSan(ten=du_lieu.propertyType)
-        db.add(loai_bds)
-        db.flush()
+    loai_bds = _lay_loai_bat_dong_san_hop_le(
+        db, du_lieu.propertyType, loai_hien_tai_id=tin.loai_bat_dong_san_id
+    )
 
     xa_moi = db.get(PhuongXaMoi, du_lieu.phuongXaMoiId)
     if xa_moi is None:

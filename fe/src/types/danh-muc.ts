@@ -3,6 +3,22 @@ export interface LoaiBatDongSan {
   ten: string;
 }
 
+export type TrangThaiLoaiBatDongSan = "active" | "hidden";
+
+export interface LoaiBatDongSanQuanTri {
+  id: number;
+  ten: string;
+  status: TrangThaiLoaiBatDongSan;
+  inUse: boolean;
+}
+
+export interface DanhSachLoaiBatDongSanQuanTri {
+  items: LoaiBatDongSanQuanTri[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
 export interface TinhThanh {
   id: number;
   ten: string;

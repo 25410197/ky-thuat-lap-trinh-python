@@ -28,3 +28,8 @@ class PhuongThucLienHe(str, enum.Enum):
 class TrangThaiBaoCao(str, enum.Enum):
     CHO_XU_LY = "cho_xu_ly"
     DA_XU_LY = "da_xu_ly"
+
+
+class TrangThaiLoaiBatDongSan(str, enum.Enum):
+    HOAT_DONG = "hoat_dong"
+    AN = "an"
