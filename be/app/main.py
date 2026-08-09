@@ -10,6 +10,7 @@ from app.api.routes.thu_vien_anh import router as thu_vien_anh_router
 from app.api.routes.tin_dang import router as tin_dang_router
 from app.api.routes.bao_cao import router as bao_cao_router
 from app.api.routes.bao_cao_client import router as bao_cao_client_router
+from app.api.routes.tin_yeu_thich import router as tin_yeu_thich_router
 from app.core.config import get_settings
 
 
@@ -28,6 +29,7 @@ def create_app() -> FastAPI:
     application.include_router(auth_router, prefix="/api")
     application.include_router(danh_muc_router, prefix="/api")
     application.include_router(tin_dang_router, prefix="/api")
+    application.include_router(tin_yeu_thich_router, prefix="/api")
     application.include_router(thu_vien_anh_router, prefix="/api")
     application.include_router(nguoi_dung_router, prefix="/api")
     application.include_router(thong_ke_router, prefix="/api")

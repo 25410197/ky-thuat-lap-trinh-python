@@ -2,8 +2,22 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Box, Grid, Text, Group, Loader, Center, Alert, Badge, Textarea, Divider, CopyButton, ActionIcon, Tooltip } from "@mantine/core";
-import { IconAlertCircle, IconEye, IconLock, IconMapPin, IconPhone, IconRulerMeasure, IconAlertTriangle, IconCopy, IconCheck } from "@tabler/icons-react";
+import { notifications } from "@mantine/notifications";
+import {
+  IconAlertCircle,
+  IconEye,
+  IconLock,
+  IconMapPin,
+  IconPhone,
+  IconRulerMeasure,
+  IconAlertTriangle,
+  IconCopy,
+  IconCheck,
+  IconHeart,
+  IconHeartFilled,
+} from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { ReportPostModal } from "@/features/bao-cao/components/ReportPostModal";
 import { EmptyState } from "@/components/common/EmptyState";
@@ -13,9 +27,9 @@ import { rentalPostsApi } from "@/features/rental-posts/api/rental-posts.api";
 import { ApiError } from "@/lib/api/api-error";
 import { useAuthContext } from "@/features/auth/context/AuthContext";
 import { ROLES } from "@/constants/roles";
+import { useFavorites } from "@/features/favorites/context/FavoritesContext";
 import type { RentalPostDetail } from "@/types/rental-post";
 import styles from "@/styles/interactions.module.css";
-import { notifications } from "@mantine/notifications";
 
 const NHAN_PHUONG_THUC_LIEN_HE: Record<RentalPostDetail["phuongThucLienHeUuTien"], string> = {
   goi_dien: "Gọi điện",
@@ -23,7 +37,7 @@ const NHAN_PHUONG_THUC_LIEN_HE: Record<RentalPostDetail["phuongThucLienHeUuTien"
 };
 
 export function RentalPostDetailView({ id }: { id: string }) {
-  const { user } = useAuthContext();
+  const { user, isAuthenticated } = useAuthContext();
   const isAdmin = user?.role === ROLES.admin;
 
   const [post, setPost] = useState<RentalPostDetail | null>(null);
@@ -31,6 +45,10 @@ export function RentalPostDetailView({ id }: { id: string }) {
   const [khongTimThay, setKhongTimThay] = useState(false);
   const [loi, setLoi] = useState<string | null>(null);
   const [anhDangChon, setAnhDangChon] = useState(0);
+  const [dangXuLyYeuThich, setDangXuLyYeuThich] = useState(false);
+
+  const router = useRouter();
+  const { isFavorited, toggleFavorite } = useFavorites();
 
   // Admin — khóa tin
   const [lyDoKhoa, setLyDoKhoa] = useState("");
@@ -105,6 +123,23 @@ export function RentalPostDetailView({ id }: { id: string }) {
       setDangKhoa(false);
     }
   };
+
+  async function xuLyBamYeuThich() {
+    if (!isAuthenticated) {
+      router.push(ROUTES.dangNhap);
+      return;
+    }
+    if (!post || dangXuLyYeuThich) return;
+
+    setDangXuLyYeuThich(true);
+    try {
+      await toggleFavorite(post.id);
+    } catch {
+      notifications.show({ color: "red", message: "Không thể cập nhật yêu thích. Vui lòng thử lại." });
+    } finally {
+      setDangXuLyYeuThich(false);
+    }
+  }
 
   if (dangTai) {
     return (
@@ -311,15 +346,26 @@ export function RentalPostDetailView({ id }: { id: string }) {
               Đăng nhập để xem SĐT
             </AppButton>
           )}
-          {/* Chưa có API yêu thích — nối khi ticket favorites được làm */}
-          <AppButton variant="outline" fullWidth mt={12}>
-            Lưu vào yêu thích
+          <AppButton
+            variant="outline"
+            fullWidth
+            mt={12}
+            loading={dangXuLyYeuThich}
+            leftSection={
+              isFavorited(post.id) ? (
+                <IconHeartFilled size={18} color="#e0245e" />
+              ) : (
+                <IconHeart size={18} />
+              )
+            }
+            onClick={xuLyBamYeuThich}
+          >
+            {isFavorited(post.id) ? "Đã lưu vào yêu thích" : "Lưu vào yêu thích"}
           </AppButton>
 
           {user && user.id !== post.nguoiDangId.toString() && (
             <AppButton
-              variant="subtle"
-              color="red"
+              variant="danger"
               fullWidth
               mt={12}
               leftSection={<IconAlertTriangle size={18} />}

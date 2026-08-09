@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Box, Stack, Group, Text } from "@mantine/core";
-import { IconBuildingSkyscraper, IconMapPin, IconRulerMeasure } from "@tabler/icons-react";
+import { IconBuildingSkyscraper, IconHeart, IconHeartFilled, IconMapPin, IconRulerMeasure } from "@tabler/icons-react";
 import { ROUTES } from "@/constants/routes";
 import { formatCurrencyVnd } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
+import { useFavorites } from "@/features/favorites/context/FavoritesContext";
 import type { RentalPostSummary } from "@/types/rental-post";
 import styles from "@/styles/interactions.module.css";
 
@@ -14,10 +18,38 @@ interface PropertyCardProps {
     "id" | "tieuDe" | "giaThue" | "dienTich" | "loaiBatDongSan" | "phuongXa" | "quanHuyen" | "tinhThanh" | "anhDaiDien"
   >;
   badge?: string;
+  onFavoriteChange?: (id: number, daYeuThich: boolean) => void;
 }
 
-export function PropertyCard({ post, badge }: PropertyCardProps) {
+export function PropertyCard({ post, badge, onFavoriteChange }: PropertyCardProps) {
   const diaChi = `${post.phuongXa}, ${post.quanHuyen}, ${post.tinhThanh}`;
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+  const { isFavorited, toggleFavorite } = useFavorites();
+  const [dangXuLy, setDangXuLy] = useState(false);
+  const daYeuThich = isFavorited(post.id);
+
+  async function xuLyBamYeuThich(event: React.MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!isAuthenticated) {
+      router.push(ROUTES.dangNhap);
+      return;
+    }
+    if (dangXuLy) return;
+
+    setDangXuLy(true);
+    const trangThaiMoi = !daYeuThich;
+    try {
+      await toggleFavorite(post.id);
+      onFavoriteChange?.(post.id, trangThaiMoi);
+    } catch {
+      // Trạng thái đã được FavoritesContext tự hoàn tác khi lỗi.
+    } finally {
+      setDangXuLy(false);
+    }
+  }
 
   return (
     <Box
@@ -58,6 +90,20 @@ export function PropertyCard({ post, badge }: PropertyCardProps) {
             {badge}
           </Text>
         ) : null}
+        <Box
+          component="button"
+          type="button"
+          className={styles.favoriteButton}
+          onClick={xuLyBamYeuThich}
+          disabled={dangXuLy}
+          aria-label={daYeuThich ? "Bỏ lưu tin yêu thích" : "Lưu tin yêu thích"}
+        >
+          {daYeuThich ? (
+            <IconHeartFilled size={18} color="#e0245e" />
+          ) : (
+            <IconHeart size={18} stroke={1.75} />
+          )}
+        </Box>
       </Box>
       <Stack gap={12} p={16}>
         <Text fz="xl" fw={700} c="var(--color-gold)" style={{ fontFamily: "var(--font-heading)" }}>

@@ -115,3 +115,32 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.favoriteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-brand);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+.favoriteButton:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.08);
+}
+.favoriteButton:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
