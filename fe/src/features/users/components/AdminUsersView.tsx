@@ -1,5 +1,5 @@
 import { Text } from "@mantine/core";
-import { AdminUsersTable } from "./AdminUsersTable";
+import { RecentRegistrations } from "./RecentRegistrations";
 
 export function AdminUsersView() {
   return (
@@ -15,9 +15,10 @@ export function AdminUsersView() {
         Quản lý người dùng
       </Text>
       <Text mb={24} fz="sm" c="var(--color-text-muted)">
-        Xem, tìm kiếm và quản lý trạng thái tài khoản người dùng trên hệ thống.
+        Figma chỉ thiết kế khối "Đăng ký mới" cho màn quản trị — bảng danh sách đầy đủ người dùng
+        sẽ được thiết kế và nối API ở ticket tiếp theo.
       </Text>
-      <AdminUsersTable />
+      <RecentRegistrations />
     </div>
   );
 }
