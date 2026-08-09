@@ -24,20 +24,13 @@ import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { rentalPostsApi } from "../api/rental-posts.api";
 import { danhMucApi } from "../api/danh-muc.api";
-import type { PhuongXaMoi, TinhThanh } from "@/types/danh-muc";
+import type { LoaiBatDongSan, PhuongXaMoi, TinhThanh } from "@/types/danh-muc";
 import { ImageLibraryPickerModal } from "@/features/image-library/components/ImageLibraryPickerModal";
 import {
   rentalPostSchema,
   type RentalPostInput,
 } from "../schemas/rental-post.schema";
 
-const PROPERTY_TYPES = [
-  "Căn hộ",
-  "Nhà phố",
-  "Biệt thự",
-  "Phòng trọ",
-  "Văn phòng",
-];
 const SO_ANH_PHU_TOI_DA = 19;
 const AMENITIES = [
   "WiFi Miễn phí",
@@ -113,13 +106,23 @@ export function RentalPostForm({ postId }: { postId?: string }) {
 
   const [danhSachTinh, setDanhSachTinh] = useState<TinhThanh[]>([]);
   const [danhSachXaPhuong, setDanhSachXaPhuong] = useState<PhuongXaMoi[]>([]);
+  const [danhSachLoaiBds, setDanhSachLoaiBds] = useState<LoaiBatDongSan[]>([]);
 
   useEffect(() => {
     danhMucApi
       .tinhThanh()
       .then(setDanhSachTinh)
       .catch(() => setDanhSachTinh([]));
+    danhMucApi
+      .loaiBatDongSan()
+      .then(setDanhSachLoaiBds)
+      .catch(() => setDanhSachLoaiBds([]));
   }, []);
+
+  // Tin đang sửa có thể đang lưu 1 loại đã bị admin ẩn — vẫn phải hiện đúng tên đã lưu trong select.
+  const tuyChonLoaiBds = form.values.propertyType && !danhSachLoaiBds.some((loai) => loai.ten === form.values.propertyType)
+    ? [...danhSachLoaiBds.map((loai) => loai.ten), form.values.propertyType]
+    : danhSachLoaiBds.map((loai) => loai.ten);
 
   useEffect(() => {
     if (!postId) return;
@@ -211,7 +214,7 @@ export function RentalPostForm({ postId }: { postId?: string }) {
                   <AppSelect
                     label="Loại bất động sản"
                     placeholder="Chọn loại hình"
-                    data={PROPERTY_TYPES}
+                    data={tuyChonLoaiBds}
                     {...form.getInputProps("propertyType")}
                   />
                 </Grid.Col>

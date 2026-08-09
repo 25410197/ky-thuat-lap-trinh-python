@@ -15,6 +15,9 @@ export const endpoints = {
   },
   danhMuc: {
     loaiBatDongSan: "/loai-bat-dong-san",
+    loaiBatDongSanQuanTri: "/loai-bat-dong-san/quan-tri",
+    loaiBatDongSanDetail: (id: number) => `/loai-bat-dong-san/${id}`,
+    loaiBatDongSanTrangThai: (id: number) => `/loai-bat-dong-san/${id}/trang-thai`,
     tinhThanh: "/tinh-thanh",
     quanHuyen: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/quan-huyen`,
     xaPhuongMoi: (tinhThanhId: number) => `/tinh-thanh/${tinhThanhId}/xa-phuong-moi`,

@@ -13,4 +13,5 @@ export const ROUTES = {
   quanTriTinDang: "/quan-tri/tin-dang",
   quanTriNguoiDung: "/quan-tri/nguoi-dung",
   quanTriThongKe: "/quan-tri/thong-ke",
+  quanTriLoaiBatDongSan: "/quan-tri/loai-bat-dong-san",
 } as const;
