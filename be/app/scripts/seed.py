@@ -10,10 +10,14 @@ dữ liệu hành chính + tin đăng mẫu sẽ được XÓA VÀ TẠO LẠI m
 không phải dữ liệu người dùng thật, và cần luôn khớp với dữ liệu nguồn mới nhất.
 
 Tài khoản thành viên demo (mật khẩu chung: Member@123):
-  - minhhai@example.com      (Nguyễn Minh Hải)
-  - hoaitien@example.com     (Trần Hoài Tiến)
-  - minhanh@example.com      (Lê Minh Anh)
-  - phuongtrinh@example.com  (Phạm Phương Trinh)
+  - minhhai@example.com      (Tô Minh Hải)
+  - hoaitien@example.com     (Nguyễn Hoài Tiến)
+  - minhanh@example.com      (Nguyễn Minh Anh)
+  - phuongtrinh@example.com  (Trần Thị Phương Trinh)
+
+Ngoài ra seed thêm ~16 tài khoản người dùng demo (cùng mật khẩu Member@123, xem
+NGUOI_DUNG_DEMO_BO_SUNG) để trang quản trị người dùng có đủ dữ liệu test tìm kiếm/phân
+trang/khóa-mở khóa — trạng thái đa dạng (hoạt động, chờ xác minh, bị khóa).
 """
 
 import json
@@ -80,10 +84,31 @@ SO_TIN_DANG_CAN_SEED = 40
 MAT_KHAU_THANH_VIEN_MAC_DINH = "Member@123"
 
 THANH_VIEN_MAC_DINH = [
-    {"ho_ten": "Nguyễn Minh Hải", "email": "minhhai@example.com", "so_dien_thoai": "0912345671"},
-    {"ho_ten": "Trần Hoài Tiến", "email": "hoaitien@example.com", "so_dien_thoai": "0912345672"},
-    {"ho_ten": "Lê Minh Anh", "email": "minhanh@example.com", "so_dien_thoai": "0912345673"},
-    {"ho_ten": "Phạm Phương Trinh", "email": "phuongtrinh@example.com", "so_dien_thoai": "0912345674"},
+    {"ho_ten": "Tô Minh Hải", "email": "minhhai@example.com", "so_dien_thoai": "0912345671"},
+    {"ho_ten": "Nguyễn Hoài Tiến", "email": "hoaitien@example.com", "so_dien_thoai": "0912345672"},
+    {"ho_ten": "Nguyễn Minh Anh", "email": "minhanh@example.com", "so_dien_thoai": "0912345673"},
+    {"ho_ten": "Trần Thị Phương Trinh", "email": "phuongtrinh@example.com", "so_dien_thoai": "0912345674"},
+]
+
+# Người dùng demo bổ sung — chỉ để trang quản trị người dùng có đủ dữ liệu test (tìm kiếm,
+# phân trang, khóa/mở khóa). Không phải người dùng thật, không tham gia đăng tin mẫu.
+NGUOI_DUNG_DEMO_BO_SUNG = [
+    {"ho_ten": "Đặng Thị Hồng Nhung", "email": "hongnhung@example.com", "so_dien_thoai": "0912345675", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Vũ Anh Tuấn", "email": "anhtuan@example.com", "so_dien_thoai": "0912345676", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Phạm Gia Bảo", "email": "giabao@example.com", "so_dien_thoai": "0912345677", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Hoàng Thị Kim Ngân", "email": "kimngan@example.com", "so_dien_thoai": "0912345678", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Bùi Văn Long", "email": "vanlong@example.com", "so_dien_thoai": "0912345679", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Đỗ Thị Mai Anh", "email": "maianh@example.com", "so_dien_thoai": "0912345680", "trang_thai": TrangThaiNguoiDung.CHO_XAC_MINH},
+    {"ho_ten": "Ngô Quốc Huy", "email": "quochuy@example.com", "so_dien_thoai": "0912345681", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Dương Thị Thu Hà", "email": "thuha@example.com", "so_dien_thoai": "0912345682", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Lý Hoàng Nam", "email": "hoangnam@example.com", "so_dien_thoai": "0912345683", "trang_thai": TrangThaiNguoiDung.BI_KHOA},
+    {"ho_ten": "Trịnh Thị Bích Ngọc", "email": "bichngoc@example.com", "so_dien_thoai": "0912345684", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Phan Đức Thịnh", "email": "ducthinh@example.com", "so_dien_thoai": "0912345685", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Huỳnh Thị Ngọc Diễm", "email": "ngocdiem@example.com", "so_dien_thoai": "0912345686", "trang_thai": TrangThaiNguoiDung.CHO_XAC_MINH},
+    {"ho_ten": "Vương Minh Khôi", "email": "minhkhoi@example.com", "so_dien_thoai": "0912345687", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Lâm Thị Thanh Thảo", "email": "thanhthao@example.com", "so_dien_thoai": "0912345688", "trang_thai": TrangThaiNguoiDung.BI_KHOA},
+    {"ho_ten": "Đinh Văn Phát", "email": "vanphat@example.com", "so_dien_thoai": "0912345689", "trang_thai": TrangThaiNguoiDung.HOAT_DONG},
+    {"ho_ten": "Chu Thị Yến Nhi", "email": "yennhi@example.com", "so_dien_thoai": "0912345690", "trang_thai": TrangThaiNguoiDung.CHO_XAC_MINH},
 ]
 
 
@@ -107,10 +132,16 @@ def seed_admin(db: Session) -> NguoiDung:
 
 
 def seed_thanh_vien(db: Session) -> list[NguoiDung]:
+    """THANH_VIEN_MAC_DINH là roster thật của nhóm (không phải profile người dùng tự sửa),
+    nên họ tên/SĐT luôn được đồng bộ lại từ danh sách nguồn kể cả khi tài khoản đã tồn tại —
+    khác với trang_thai (có thể đã bị admin khóa/mở khóa tay) thì không đụng vào."""
     ket_qua = []
     for item in THANH_VIEN_MAC_DINH:
         thanh_vien = db.query(NguoiDung).filter(NguoiDung.email == item["email"]).first()
-        if not thanh_vien:
+        if thanh_vien:
+            thanh_vien.ho_ten = item["ho_ten"]
+            thanh_vien.so_dien_thoai = item["so_dien_thoai"]
+        else:
             thanh_vien = NguoiDung(
                 ho_ten=item["ho_ten"],
                 email=item["email"],
@@ -124,6 +155,26 @@ def seed_thanh_vien(db: Session) -> list[NguoiDung]:
             print(f"  + Tạo thành viên: {thanh_vien.ho_ten} ({thanh_vien.email})")
         ket_qua.append(thanh_vien)
     return ket_qua
+
+
+def seed_nguoi_dung_demo_bo_sung(db: Session) -> None:
+    """Get-or-create — không ghi đè trạng_thai nếu tài khoản đã tồn tại, vì admin có thể
+    đã khóa/mở khóa tài khoản này qua trang quản trị và không nên bị seed reset lại."""
+    for item in NGUOI_DUNG_DEMO_BO_SUNG:
+        da_ton_tai = db.query(NguoiDung).filter(NguoiDung.email == item["email"]).first()
+        if da_ton_tai:
+            continue
+        nguoi_dung = NguoiDung(
+            ho_ten=item["ho_ten"],
+            email=item["email"],
+            mat_khau_hash=hash_password(MAT_KHAU_THANH_VIEN_MAC_DINH),
+            so_dien_thoai=item["so_dien_thoai"],
+            vai_tro=VaiTroNguoiDung.NGUOI_DUNG,
+            trang_thai=item["trang_thai"],
+        )
+        db.add(nguoi_dung)
+        db.flush()
+        print(f"  + Tạo người dùng demo: {nguoi_dung.ho_ten} ({nguoi_dung.email})")
 
 
 def seed_loai_bat_dong_san(db: Session) -> list[LoaiBatDongSan]:
@@ -338,6 +389,9 @@ def main() -> None:
 
         print("Seed thành viên nhóm...")
         danh_sach_thanh_vien = seed_thanh_vien(db)
+
+        print("Seed người dùng demo bổ sung...")
+        seed_nguoi_dung_demo_bo_sung(db)
 
         print("Seed loại bất động sản...")
         danh_sach_loai = seed_loai_bat_dong_san(db)
