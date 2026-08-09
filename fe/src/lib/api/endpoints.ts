@@ -30,5 +30,6 @@ export const endpoints = {
   users: {
     list: "/users",
     detail: (id: string) => `/users/${id}`,
+    updateStatus: (id: string) => `/users/${id}/trang-thai`,
   },
 } as const;

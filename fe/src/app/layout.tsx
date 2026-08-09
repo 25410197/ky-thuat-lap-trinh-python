@@ -40,7 +40,10 @@ export default function RootLayout({
       className={`${inter.variable} ${workSans.variable} ${libreCaslonText.variable}`}
       style={{ height: "100%", WebkitFontSmoothing: "antialiased" }}
     >
-      <ColorSchemeScript defaultColorScheme="light" />
+      <head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </head>
+
       <body
         style={{
           minHeight: "100%",
