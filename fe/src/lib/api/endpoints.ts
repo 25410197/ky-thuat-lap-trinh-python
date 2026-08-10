@@ -12,6 +12,9 @@ export const endpoints = {
     edit: (id: string) => `/rental-posts/${id}/chinh-sua`,
     mine: "/rental-posts/me",
     choDuyet: "/rental-posts/cho-duyet",
+    chiTietTinDuyet: (id: number) => `/rental-posts/chi-tiet-tin-duyet/${id}`,
+    duyetTinDang: (id: number) => `/rental-posts/duyet-tin-dang/${id}`,
+    tuChoiTinDang: (id: number) => `/rental-posts/tu-choi-tin-dang/${id}`,
   },
   danhMuc: {
     loaiBatDongSan: "/loai-bat-dong-san",
