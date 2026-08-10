@@ -18,6 +18,7 @@ class TrangThaiTinDang(str, enum.Enum):
     BI_KHOA = "bi_khoa"
     AN = "an"
     DA_XOA = "da_xoa"
+    TU_CHOI = "tu_choi"
 
 
 class PhuongThucLienHe(str, enum.Enum):

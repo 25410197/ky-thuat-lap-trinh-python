@@ -18,6 +18,7 @@ import {
   Stack,
   Divider,
   Button,
+  Textarea,
 } from "@mantine/core";
 import {
   IconCheck,
@@ -32,6 +33,7 @@ import {
 } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
+import { AppModal } from "@/components/ui/AppModal";
 import { AppPagination } from "@/components/ui/AppPagination";
 import { AppButton } from "@/components/ui/AppButton";
 import { rentalPostsApi, type TinChoDuyet } from "../api/rental-posts.api";
@@ -46,6 +48,57 @@ function formatDate(dateStr: string): string {
     month: "long",
     year: "numeric",
   });
+}
+
+/** Modal nhập lý do từ chối */
+function RejectDialog({
+  opened,
+  tinTitle,
+  onConfirm,
+  onCancel,
+  loading,
+}: {
+  opened: boolean;
+  tinTitle: string;
+  onConfirm: (lyDo: string) => void;
+  onCancel: () => void;
+  loading: boolean;
+}) {
+  const [lyDo, setLyDo] = useState("");
+
+  // Reset khi mở lại
+  useEffect(() => {
+    if (opened) setLyDo("");
+  }, [opened]);
+
+  return (
+    <AppModal opened={opened} onClose={onCancel} title="Từ chối tin đăng" centered size="sm">
+      <Text size="sm" c="dimmed" mb={16}>
+        Tin đăng: <strong>&quot;{tinTitle}&quot;</strong>
+      </Text>
+      <Textarea
+        label="Lý do từ chối"
+        placeholder="Nhập lý do từ chối để thông báo cho người đăng..."
+        minRows={3}
+        autosize
+        value={lyDo}
+        onChange={(e) => setLyDo(e.currentTarget.value)}
+        mb={20}
+      />
+      <Group justify="flex-end" gap={12}>
+        <AppButton variant="ghost" onClick={onCancel} disabled={loading}>
+          Huỷ
+        </AppButton>
+        <Button
+          color="red"
+          onClick={() => onConfirm(lyDo)}
+          loading={loading}
+        >
+          Xác nhận từ chối
+        </Button>
+      </Group>
+    </AppModal>
+  );
 }
 
 /** Drawer hiển thị chi tiết một tin đăng để admin xem trước khi duyệt */
@@ -281,16 +334,16 @@ export function AdminApprovalQueueTable() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [acting, setActing] = useState(false);
 
   // Drawer state
   const [drawerItem, setDrawerItem] = useState<TinChoDuyet | null>(null);
-  const [acting, setActing] = useState(false);
 
-  // Confirm dialog state
-  const [pendingAction, setPendingAction] = useState<{
-    item: TinChoDuyet;
-    type: "approve" | "reject";
-  } | null>(null);
+  // Approve confirm dialog
+  const [approveTarget, setApproveTarget] = useState<TinChoDuyet | null>(null);
+
+  // Reject dialog (with reason input)
+  const [rejectTarget, setRejectTarget] = useState<TinChoDuyet | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -310,33 +363,45 @@ export function AdminApprovalQueueTable() {
       .finally(() => setLoading(false));
   }, [page]);
 
-  const resolveAction = async () => {
-    if (!pendingAction) return;
-    const { item, type } = pendingAction;
+  const handleApprove = async () => {
+    if (!approveTarget) return;
     setActing(true);
     try {
-      if (type === "approve") {
-        await rentalPostsApi.duyetTinDang(item.id);
-      } else {
-        await rentalPostsApi.tuChoiTinDang(item.id);
-      }
-      setItems((prev) => prev.filter((row) => row.id !== item.id));
+      await rentalPostsApi.duyetTinDang(approveTarget.id);
+      setItems((prev) => prev.filter((row) => row.id !== approveTarget.id));
       setTotal((prev) => prev - 1);
       setDrawerItem(null);
       notifications.show({
-        color: type === "approve" ? "green" : "red",
-        title: type === "approve" ? "Đã duyệt tin đăng" : "Đã từ chối tin đăng",
-        message: `"${item.tieuDe}"`,
+        color: "green",
+        title: "Đã duyệt tin đăng",
+        message: `"${approveTarget.tieuDe}"`,
       });
     } catch {
-      notifications.show({
-        color: "red",
-        title: "Lỗi",
-        message: type === "approve" ? "Không thể duyệt tin đăng." : "Không thể từ chối tin đăng.",
-      });
+      notifications.show({ color: "red", title: "Lỗi", message: "Không thể duyệt tin đăng." });
     } finally {
       setActing(false);
-      setPendingAction(null);
+      setApproveTarget(null);
+    }
+  };
+
+  const handleReject = async (lyDo: string) => {
+    if (!rejectTarget) return;
+    setActing(true);
+    try {
+      await rentalPostsApi.tuChoiTinDang(rejectTarget.id, lyDo || undefined);
+      setItems((prev) => prev.filter((row) => row.id !== rejectTarget.id));
+      setTotal((prev) => prev - 1);
+      setDrawerItem(null);
+      notifications.show({
+        color: "red",
+        title: "Đã từ chối tin đăng",
+        message: `"${rejectTarget.tieuDe}"`,
+      });
+    } catch {
+      notifications.show({ color: "red", title: "Lỗi", message: "Không thể từ chối tin đăng." });
+    } finally {
+      setActing(false);
+      setRejectTarget(null);
     }
   };
 
@@ -404,33 +469,21 @@ export function AdminApprovalQueueTable() {
                         style={{ flexShrink: 0, borderRadius: 2, overflow: "hidden" }}
                       >
                         {item.hinhAnh?.[0] && (
-                          <Image
-                            src={item.hinhAnh[0]}
-                            alt={item.tieuDe}
-                            w={48}
-                            h={48}
-                            fit="cover"
-                          />
+                          <Image src={item.hinhAnh[0]} alt={item.tieuDe} w={48} h={48} fit="cover" />
                         )}
                       </Box>
                       <div>
-                        <Text fw={600} c="var(--color-brand)">
-                          {item.tieuDe}
-                        </Text>
+                        <Text fw={600} c="var(--color-brand)">{item.tieuDe}</Text>
                       </div>
                     </Group>
                   </Table.Td>
                   <Table.Td>{item.nguoiDang}</Table.Td>
                   <Table.Td>{formatDate(item.ngayDang)}</Table.Td>
                   <Table.Td>
-                    <Badge variant="light" color="gray" radius="sm">
-                      {item.loaiBatDongSan}
-                    </Badge>
+                    <Badge variant="light" color="gray" radius="sm">{item.loaiBatDongSan}</Badge>
                   </Table.Td>
                   <Table.Td>
-                    <Badge variant="light" color="yellow" radius="sm">
-                      Chờ phê duyệt
-                    </Badge>
+                    <Badge variant="light" color="yellow" radius="sm">Chờ phê duyệt</Badge>
                   </Table.Td>
                   <Table.Td>
                     <Group gap={8} justify="flex-end">
@@ -438,7 +491,7 @@ export function AdminApprovalQueueTable() {
                         variant="subtle"
                         color="green"
                         aria-label="Duyệt tin đăng"
-                        onClick={() => setPendingAction({ item, type: "approve" })}
+                        onClick={() => setApproveTarget(item)}
                       >
                         <IconCheck size={18} stroke={1.75} />
                       </ActionIcon>
@@ -446,7 +499,7 @@ export function AdminApprovalQueueTable() {
                         variant="subtle"
                         color="red"
                         aria-label="Từ chối tin đăng"
-                        onClick={() => setPendingAction({ item, type: "reject" })}
+                        onClick={() => setRejectTarget(item)}
                       >
                         <IconX size={18} stroke={1.75} />
                       </ActionIcon>
@@ -482,19 +535,28 @@ export function AdminApprovalQueueTable() {
         opened={drawerItem !== null}
         onClose={() => setDrawerItem(null)}
         acting={acting}
-        onApprove={() => drawerItem && setPendingAction({ item: drawerItem, type: "approve" })}
-        onReject={() => drawerItem && setPendingAction({ item: drawerItem, type: "reject" })}
+        onApprove={() => drawerItem && setApproveTarget(drawerItem)}
+        onReject={() => drawerItem && setRejectTarget(drawerItem)}
       />
 
-      {/* Confirm dialog */}
+      {/* Confirm duyệt tin */}
       <ConfirmDialog
-        opened={pendingAction !== null}
-        title={pendingAction?.type === "approve" ? "Duyệt tin đăng?" : "Từ chối tin đăng?"}
-        description={`"${pendingAction?.item.tieuDe}"`}
-        confirmLabel={pendingAction?.type === "approve" ? "Duyệt" : "Từ chối"}
-        danger={pendingAction?.type === "reject"}
-        onConfirm={resolveAction}
-        onCancel={() => setPendingAction(null)}
+        opened={approveTarget !== null}
+        title="Duyệt tin đăng?"
+        description={`"${approveTarget?.tieuDe}"`}
+        confirmLabel="Duyệt"
+        loading={acting}
+        onConfirm={handleApprove}
+        onCancel={() => setApproveTarget(null)}
+      />
+
+      {/* Modal từ chối có nhập lý do */}
+      <RejectDialog
+        opened={rejectTarget !== null}
+        tinTitle={rejectTarget?.tieuDe ?? ""}
+        loading={acting}
+        onConfirm={handleReject}
+        onCancel={() => setRejectTarget(null)}
       />
     </>
   );

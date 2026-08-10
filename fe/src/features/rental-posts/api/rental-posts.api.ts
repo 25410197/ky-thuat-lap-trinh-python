@@ -77,6 +77,11 @@ export const rentalPostsApi = {
     apiClient.get<RentalPostDetail>(endpoints.rentalPosts.chiTietTinDuyet(id)),
   duyetTinDang: (id: number) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.duyetTinDang(id), {}),
-  tuChoiTinDang: (id: number) =>
-    apiClient.post<{ message: string }>(endpoints.rentalPosts.tuChoiTinDang(id), {}),
+  tuChoiTinDang: (id: number, lyDo?: string) => {
+    const params = lyDo ? `?ly_do=${encodeURIComponent(lyDo)}` : "";
+    return apiClient.post<{ message: string }>(
+      `${endpoints.rentalPosts.tuChoiTinDang(id)}${params}`,
+      {}
+    );
+  },
 };

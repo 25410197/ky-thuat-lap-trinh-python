@@ -34,9 +34,10 @@ router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
 _TRANG_THAI_SANG_STATUS_EN = {
     TrangThaiTinDang.CHO_DUYET: "pending",
     TrangThaiTinDang.DA_DUYET: "published",
-    TrangThaiTinDang.BI_KHOA: "rejected",
+    TrangThaiTinDang.BI_KHOA: "locked",
     TrangThaiTinDang.AN: "archived",
     TrangThaiTinDang.DA_XOA: "deleted",
+    TrangThaiTinDang.TU_CHOI: "rejected",
 }
 
 
@@ -540,6 +541,7 @@ def duyet_tin_dang(
 def tu_choi_tin_dang(
     tin_dang_id: int,
     db: Session = Depends(get_db),
+    ly_do: str | None = Query(None)
 ):
     tin = db.get(TinDang, tin_dang_id)
     if tin is None:
@@ -551,7 +553,8 @@ def tu_choi_tin_dang(
             detail="Tin đăng không ở trạng thái chờ duyệt.",
         )
 
-    tin.trang_thai = TrangThaiTinDang.BI_KHOA
+    tin.trang_thai = TrangThaiTinDang.TU_CHOI
+    tin.ly_do_khoa = ly_do
     db.commit()
     return {"message": "Từ chối tin đăng thành công!"}
 
