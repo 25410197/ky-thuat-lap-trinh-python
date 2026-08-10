@@ -4,6 +4,7 @@ import type { RentalPost, RentalPostDetail, RentalPostListFilters, RentalPostLis
 import type { RentalPostInput } from "../schemas/rental-post.schema";
 
 export interface TinChoDuyet {
+  id: number;
   tieuDe: string;
   nguoiDang: string;
   hinhAnh: string[];
@@ -72,4 +73,10 @@ export const rentalPostsApi = {
     apiClient.get<DanhSachChoDuyetResponse>(
       `${endpoints.rentalPosts.choDuyet}?page=${page}&page_size=${pageSize}`
     ),
+  chiTietTinDuyet: (id: number) =>
+    apiClient.get<RentalPostDetail>(endpoints.rentalPosts.chiTietTinDuyet(id)),
+  duyetTinDang: (id: number) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.duyetTinDang(id), {}),
+  tuChoiTinDang: (id: number) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.tuChoiTinDang(id), {}),
 };

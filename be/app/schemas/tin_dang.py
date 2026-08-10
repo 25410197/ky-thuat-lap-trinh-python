@@ -116,6 +116,7 @@ class TinDangChiTiet(BaseModel):
 
 class TinChoDuyetTomTat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
+    id: int
     tieu_de: Annotated[str, Field(alias="tieuDe")]
     nguoi_dang: Annotated[str, Field(alias="nguoiDang")]
     hinh_anh: Annotated[list[str], Field(alias="hinhAnh")]

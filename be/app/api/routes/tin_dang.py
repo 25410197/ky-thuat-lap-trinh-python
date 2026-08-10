@@ -453,6 +453,7 @@ def danh_sach_tin_dang_cho_duyet(
 
     items = [
         TinChoDuyetTomTat(
+            id=tin.id,
             tieu_de=tin.tieu_de,
             loai_bat_dong_san=tin.loai_bat_dong_san.ten,
             hinh_anh=[
@@ -468,6 +469,91 @@ def danh_sach_tin_dang_cho_duyet(
     ]
 
     return DanhSachTinChoDuyet(items=items, total=total, page=page, page_size=page_size)
+
+@router.get("/chi-tiet-tin-duyet/{tin_dang_id}", status_code=200)
+def chi_tiet_tin_dang_cho_duyet(
+    tin_dang_id: int,
+    db: Session = Depends(get_db)
+) -> TinDangChiTiet:    
+    tin = (
+        db.query(TinDang)
+        .options(
+            joinedload(TinDang.loai_bat_dong_san),
+            joinedload(TinDang.phuong_xa)
+            .joinedload(PhuongXa.quan_huyen)
+            .joinedload(QuanHuyen.tinh_thanh),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
+            joinedload(TinDang.tien_ich)
+        )
+        .filter(TinDang.id == tin_dang_id)
+        .first()
+    )
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    if tin.trang_thai != TrangThaiTinDang.CHO_DUYET:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Tin đăng không ở trạng thái chờ duyệt.",
+        )
+
+    anh_sap_xep = sorted(tin.hinh_anh, key=lambda a: (not a.la_anh_dai_dien, a.thu_tu_hien_thi))
+    return TinDangChiTiet(
+        id=tin.id,
+        tieu_de=tin.tieu_de,
+        mo_ta=tin.mo_ta,
+        gia_thue=float(tin.gia_thue),
+        dien_tich=float(tin.dien_tich),
+        dia_chi_chi_tiet=tin.dia_chi_chi_tiet,
+        loai_bat_dong_san=tin.loai_bat_dong_san.ten,
+        phuong_xa=tin.phuong_xa.ten,
+        quan_huyen=tin.phuong_xa.quan_huyen.ten,
+        tinh_thanh=tin.phuong_xa.quan_huyen.tinh_thanh.ten,
+        hinh_anh=[anh.anh_thu_vien.duong_dan_anh for anh in anh_sap_xep],
+        tien_ich=[tien_ich.ten for tien_ich in tin.tien_ich],
+        ten_nguoi_lien_he=tin.ten_nguoi_lien_he,
+        so_dien_thoai_lien_he=tin.so_dien_thoai_lien_he,
+        phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
+        luot_xem=tin.luot_xem,
+        ngay_dang=tin.ngay_dang,
+    )
+
+@router.post("/duyet-tin-dang/{tin_dang_id}", status_code=200)
+def duyet_tin_dang(
+    tin_dang_id: int,
+    db: Session = Depends(get_db)
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    
+    if tin.trang_thai != TrangThaiTinDang.CHO_DUYET:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Tin đăng không ở trạng thái chờ duyệt.",
+        )
+
+    tin.trang_thai = TrangThaiTinDang.DA_DUYET
+    db.commit()
+    return {"message": "Duyệt tin đăng thành công!"}
+
+@router.post("/tu-choi-tin-dang/{tin_dang_id}", status_code=200)
+def tu_choi_tin_dang(
+    tin_dang_id: int,
+    db: Session = Depends(get_db),
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    
+    if tin.trang_thai != TrangThaiTinDang.CHO_DUYET:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Tin đăng không ở trạng thái chờ duyệt.",
+        )
+
+    tin.trang_thai = TrangThaiTinDang.BI_KHOA
+    db.commit()
+    return {"message": "Từ chối tin đăng thành công!"}
 
 
 @router.get("/{tin_dang_id}", response_model=TinDangChiTiet)
@@ -511,4 +597,4 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
         luot_xem=tin.luot_xem,
         ngay_dang=tin.ngay_dang,
-    )
+    )
