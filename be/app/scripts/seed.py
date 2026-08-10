@@ -337,6 +337,11 @@ def seed_tin_dang(
             ten_lien_he = nguoi_dang.ho_ten
             so_dien_thoai_lien_he = nguoi_dang.so_dien_thoai
 
+        # 3 tin đầu: is_blocked=True (để demo trang quản trị tin bị khóa)
+        # Tin cuối cùng: is_deleted=True (demo soft-delete)
+        is_blocked = i <= 3
+        is_deleted = i == SO_TIN_DANG_CAN_SEED
+
         tin_dang = TinDang(
             tieu_de=f"{loai.ten} cho thuê tại {phuong.ten} #{i}",
             mo_ta=(
@@ -353,6 +358,9 @@ def seed_tin_dang(
             so_dien_thoai_lien_he=so_dien_thoai_lien_he,
             phuong_thuc_lien_he_uu_tien=rng.choice(list(PhuongThucLienHe)),
             trang_thai=TrangThaiTinDang.DA_DUYET if i <= 35 else TrangThaiTinDang.CHO_DUYET,
+            is_blocked=is_blocked,
+            is_deleted=is_deleted,
+            ly_do_khoa="Vi phạm nội dung cho thuê" if is_blocked else None,
         )
         tin_dang.tien_ich = rng.sample(danh_sach_tien_ich, k=rng.randint(2, 3))
         db.add(tin_dang)

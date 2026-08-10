@@ -75,6 +75,10 @@ export const rentalPostsApi = {
     ),
   chiTietTinDuyet: (id: number) =>
     apiClient.get<RentalPostDetail>(endpoints.rentalPosts.chiTietTinDuyet(id)),
+  tinBiKhoa: (page = 1, pageSize = 12) =>
+    apiClient.get<DanhSachChoDuyetResponse>(
+      `${endpoints.rentalPosts.tinBiKhoa}?page=${page}&page_size=${pageSize}`
+    ),
   duyetTinDang: (id: number) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.duyetTinDang(id), {}),
   tuChoiTinDang: (id: number, lyDo?: string) => {
@@ -84,4 +88,8 @@ export const rentalPostsApi = {
       {}
     );
   },
+  moKhoaTin: (id: number) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.moKhoaTin(id), {}),
+  khoaTinDang: (id: number, lyDo: string) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.khoaTinDang(id), { ly_do: lyDo }),
 };

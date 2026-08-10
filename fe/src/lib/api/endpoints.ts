@@ -13,8 +13,11 @@ export const endpoints = {
     mine: "/rental-posts/me",
     choDuyet: "/rental-posts/cho-duyet",
     chiTietTinDuyet: (id: number) => `/rental-posts/chi-tiet-tin-duyet/${id}`,
+    tinBiKhoa: "/rental-posts/tin-bi-khoa",
     duyetTinDang: (id: number) => `/rental-posts/duyet-tin-dang/${id}`,
     tuChoiTinDang: (id: number) => `/rental-posts/tu-choi-tin-dang/${id}`,
+    moKhoaTin: (id: number) => `/rental-posts/mo-khoa-tin/${id}`,
+    khoaTinDang: (id: number) => `/rental-posts/khoa-tin-dang/${id}`,
   },
   danhMuc: {
     loaiBatDongSan: "/loai-bat-dong-san",

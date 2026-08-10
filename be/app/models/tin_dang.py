@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, Enum, ForeignKey, Numeric, String, Text, func, Integer
+from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, Numeric, String, Text, func, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -40,6 +40,8 @@ class TinDang(Base):
         nullable=False,
     )
     ly_do_khoa: Mapped[str | None] = mapped_column(String(255))
+    is_blocked: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    is_deleted: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     luot_xem: Mapped[int] = mapped_column(default=0, nullable=False)
 
     ngay_dang: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

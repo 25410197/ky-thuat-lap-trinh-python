@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
@@ -34,7 +34,6 @@ router = APIRouter(prefix="/rental-posts", tags=["tin-dang"])
 _TRANG_THAI_SANG_STATUS_EN = {
     TrangThaiTinDang.CHO_DUYET: "pending",
     TrangThaiTinDang.DA_DUYET: "published",
-    TrangThaiTinDang.BI_KHOA: "locked",
     TrangThaiTinDang.AN: "archived",
     TrangThaiTinDang.DA_XOA: "deleted",
     TrangThaiTinDang.TU_CHOI: "rejected",
@@ -123,7 +122,7 @@ def danh_sach_tin_dang(
     dien_tich_den: float | None = Query(None, ge=0),
     db: Session = Depends(get_db),
 ) -> DanhSachTinDang:
-    dieu_kien = [TinDang.trang_thai == TrangThaiTinDang.DA_DUYET]
+    dieu_kien = [TinDang.trang_thai == TrangThaiTinDang.DA_DUYET, TinDang.is_blocked == False, TinDang.is_deleted == False]
 
     if q:
         tu_khoa = f"%{q.strip()}%"
@@ -295,7 +294,9 @@ def tao_tin_dang_moi(
         so_dien_thoai_lien_he=du_lieu.contactPhone,
         phuong_thuc_lien_he_uu_tien=phuong_thuc,
         tien_ich=danh_sach_tien_ich,
-        trang_thai=TrangThaiTinDang.CHO_DUYET
+        trang_thai=TrangThaiTinDang.CHO_DUYET,
+        is_blocked=False,
+        is_deleted = False
     )
     db.add(tin_moi)
     db.flush()
@@ -518,6 +519,67 @@ def chi_tiet_tin_dang_cho_duyet(
         ngay_dang=tin.ngay_dang,
     )
 
+@router.get("/tin-bi-khoa", response_model=DanhSachTinChoDuyet)
+def danh_sach_tin_bi_khoa(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(12, ge=1, le=50),
+    db: Session = Depends(get_db)) -> DanhSachTinChoDuyet:
+
+    filter = (TinDang.is_blocked == True) & (TinDang.is_deleted == False)
+    total = db.query(func.count(TinDang.id)).filter(filter).scalar() or 0
+
+    rows = (
+        db.query(TinDang)
+        .options(
+            joinedload(TinDang.nguoi_dang),
+            joinedload(TinDang.loai_bat_dong_san),
+            joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
+        )
+        .filter(filter)
+        .order_by(TinDang.ngay_dang)
+        .offset((page - 1) * page_size)
+        .limit(page_size)
+        .all()
+    )
+
+    items = [
+        TinChoDuyetTomTat(
+            id=tin.id,
+            tieu_de=tin.tieu_de,
+            loai_bat_dong_san=tin.loai_bat_dong_san.ten,
+            hinh_anh=[
+                anh.anh_thu_vien.duong_dan_anh
+                for anh in sorted(tin.hinh_anh, key=lambda a: (not a.la_anh_dai_dien, a.thu_tu_hien_thi))
+                if anh.anh_thu_vien
+            ],
+            ngay_dang=tin.ngay_dang,
+            trang_thai=tin.trang_thai.value,
+            nguoi_dang=tin.nguoi_dang.ho_ten,
+        )
+        for tin in rows
+    ]
+
+    return DanhSachTinChoDuyet(items=items, total=total, page=page, page_size=page_size)
+
+@router.post("/mo-khoa-tin/{tin_dang_id}", status_code=200)
+def mo_khoa_tin(
+    tin_dang_id: int,
+    db: Session = Depends(get_db)
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    
+    if not tin.is_blocked:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Tin đăng không ở trạng thái bị khóa.",
+        )
+    tin.is_blocked = False
+    tin.ly_do_khoa = None
+    db.commit()
+    return {"message": "Mở khóa tin đăng thành công!"}
+
 @router.post("/duyet-tin-dang/{tin_dang_id}", status_code=200)
 def duyet_tin_dang(
     tin_dang_id: int,
@@ -558,6 +620,19 @@ def tu_choi_tin_dang(
     db.commit()
     return {"message": "Từ chối tin đăng thành công!"}
 
+@router.post("/khoa-tin-dang/{tin_dang_id}", status_code=200)
+def khoa_tin_dang(
+    tin_dang_id: int,
+    db: Session = Depends(get_db),
+    ly_do: str = Body(..., embed=True)
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    tin.is_blocked = True
+    tin.ly_do_khoa = ly_do
+    db.commit()
+    return {"message": "Khoá tin đăng thành công!"}
 
 @router.get("/{tin_dang_id}", response_model=TinDangChiTiet)
 def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDangChiTiet:
@@ -571,7 +646,7 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
             joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
             joinedload(TinDang.tien_ich),
         )
-        .filter(TinDang.id == tin_dang_id, TinDang.trang_thai == TrangThaiTinDang.DA_DUYET)
+        .filter(TinDang.id == tin_dang_id)
         .first()
     )
     if tin is None:
@@ -600,4 +675,5 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
         luot_xem=tin.luot_xem,
         ngay_dang=tin.ngay_dang,
+        is_blocked=tin.is_blocked
     )
