@@ -35,4 +35,7 @@ export const endpoints = {
     detail: (id: string) => `/users/${id}`,
     updateStatus: (id: string) => `/users/${id}/trang-thai`,
   },
+  thongKe: {
+    tongQuan: "/thong-ke/tong-quan",
+  },
 } as const;
