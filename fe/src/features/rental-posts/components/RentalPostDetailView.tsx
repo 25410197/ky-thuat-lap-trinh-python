@@ -117,7 +117,7 @@ export function RentalPostDetailView({ id }: { id: string }) {
           <Group gap={8} mb={24}>
             {post.hinhAnh.map((anh, index) => (
               <Box
-                key={anh}
+                key={index}
                 component="button"
                 onClick={() => setAnhDangChon(index)}
                 w={72}
