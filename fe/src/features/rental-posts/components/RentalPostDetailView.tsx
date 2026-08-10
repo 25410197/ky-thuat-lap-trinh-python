@@ -2,16 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Box, Grid, Text, Group, Loader, Center, Alert, Badge } from "@mantine/core";
-import { IconAlertCircle, IconEye, IconMapPin, IconPhone, IconRulerMeasure } from "@tabler/icons-react";
+import { Box, Grid, Text, Group, Loader, Center, Alert, Badge, Textarea, Divider } from "@mantine/core";
+import { IconAlertCircle, IconEye, IconLock, IconMapPin, IconPhone, IconRulerMeasure } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { EmptyState } from "@/components/common/EmptyState";
 import { ROUTES } from "@/constants/routes";
 import { formatCurrencyVnd } from "@/lib/utils";
 import { rentalPostsApi } from "@/features/rental-posts/api/rental-posts.api";
 import { ApiError } from "@/lib/api/api-error";
+import { useAuthContext } from "@/features/auth/context/AuthContext";
+import { ROLES } from "@/constants/roles";
 import type { RentalPostDetail } from "@/types/rental-post";
 import styles from "@/styles/interactions.module.css";
+import { notifications } from "@mantine/notifications";
 
 const NHAN_PHUONG_THUC_LIEN_HE: Record<RentalPostDetail["phuongThucLienHeUuTien"], string> = {
   goi_dien: "Gọi điện",
@@ -19,11 +22,18 @@ const NHAN_PHUONG_THUC_LIEN_HE: Record<RentalPostDetail["phuongThucLienHeUuTien"
 };
 
 export function RentalPostDetailView({ id }: { id: string }) {
+  const { user } = useAuthContext();
+  const isAdmin = user?.role === ROLES.admin;
+
   const [post, setPost] = useState<RentalPostDetail | null>(null);
   const [dangTai, setDangTai] = useState(true);
   const [khongTimThay, setKhongTimThay] = useState(false);
   const [loi, setLoi] = useState<string | null>(null);
   const [anhDangChon, setAnhDangChon] = useState(0);
+
+  // Admin — khóa tin
+  const [lyDoKhoa, setLyDoKhoa] = useState("");
+  const [dangKhoa, setDangKhoa] = useState(false);
 
   useEffect(() => {
     let daHuy = false;
@@ -57,6 +67,40 @@ export function RentalPostDetailView({ id }: { id: string }) {
       daHuy = true;
     };
   }, [id]);
+
+  const handleKhoaTin = async () => {
+    if (!post) return;
+    const lyDoTrimed = lyDoKhoa.trim();
+    if (!lyDoTrimed) {
+      notifications.show({
+        color: "orange",
+        title: "Thiếu thông tin",
+        message: "Vui lòng nhập lý do khóa tin trước khi thực hiện.",
+      });
+      return;
+    }
+    setDangKhoa(true);
+    try {
+      await rentalPostsApi.khoaTinDang(post.id, lyDoTrimed);
+      notifications.show({
+        color: "green",
+        title: "Thành công",
+        message: "Tin đăng đã được khóa.",
+      });
+      setLyDoKhoa("");
+      // Reload lại post để cập nhật trạng thái
+      const updated = await rentalPostsApi.detail(String(post.id));
+      setPost(updated);
+    } catch {
+      notifications.show({
+        color: "red",
+        title: "Lỗi",
+        message: "Không thể khóa tin đăng. Vui lòng thử lại.",
+      });
+    } finally {
+      setDangKhoa(false);
+    }
+  };
 
   if (dangTai) {
     return (
@@ -243,6 +287,47 @@ export function RentalPostDetailView({ id }: { id: string }) {
           <AppButton variant="outline" fullWidth mt={12}>
             Lưu vào yêu thích
           </AppButton>
+
+          {/* Admin: Khóa tin đăng */}
+          {isAdmin && (
+            <>
+              <Divider
+                mt={24}
+                mb={16}
+                label={<Text fz="xs" fw={600} c="red">Quản trị viên</Text>}
+                labelPosition="center"
+              />
+              <Text fz="sm" fw={600} c="red" mb={8}>
+                Khóa tin đăng
+              </Text>
+              <Textarea
+                placeholder="Nhập lý do khóa tin (bắt buộc)..."
+                minRows={3}
+                autosize
+                value={lyDoKhoa}
+                onChange={(e) => setLyDoKhoa(e.currentTarget.value)}
+                disabled={dangKhoa || post.isBlocked}
+              />
+              {post.isBlocked ? (
+                <Alert color="orange" mt={12} icon={<IconLock size={16} />}>
+                  Tin đăng này đã bị khóa.
+                </Alert>
+              ) : (
+                <AppButton
+                  variant="primary"
+                  fullWidth
+                  mt={12}
+                  color="red"
+                  leftSection={<IconLock size={16} />}
+                  loading={dangKhoa}
+                  disabled={!lyDoKhoa.trim()}
+                  onClick={handleKhoaTin}
+                >
+                  Khóa tin đăng
+                </AppButton>
+              )}
+            </>
+          )}
         </Box>
       </Grid.Col>
     </Grid>

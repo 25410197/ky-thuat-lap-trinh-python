@@ -75,8 +75,21 @@ export const rentalPostsApi = {
     ),
   chiTietTinDuyet: (id: number) =>
     apiClient.get<RentalPostDetail>(endpoints.rentalPosts.chiTietTinDuyet(id)),
+  tinBiKhoa: (page = 1, pageSize = 12) =>
+    apiClient.get<DanhSachChoDuyetResponse>(
+      `${endpoints.rentalPosts.tinBiKhoa}?page=${page}&page_size=${pageSize}`
+    ),
   duyetTinDang: (id: number) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.duyetTinDang(id), {}),
-  tuChoiTinDang: (id: number) =>
-    apiClient.post<{ message: string }>(endpoints.rentalPosts.tuChoiTinDang(id), {}),
+  tuChoiTinDang: (id: number, lyDo?: string) => {
+    const params = lyDo ? `?ly_do=${encodeURIComponent(lyDo)}` : "";
+    return apiClient.post<{ message: string }>(
+      `${endpoints.rentalPosts.tuChoiTinDang(id)}${params}`,
+      {}
+    );
+  },
+  moKhoaTin: (id: number) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.moKhoaTin(id), {}),
+  khoaTinDang: (id: number, lyDo: string) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.khoaTinDang(id), { ly_do: lyDo }),
 };

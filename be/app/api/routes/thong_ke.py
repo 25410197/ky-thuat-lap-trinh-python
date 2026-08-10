@@ -9,7 +9,7 @@ from app.schemas.thong_ke import ThongKeTheoLoai, ThongKeTheoTinhThanh, ThongKeT
 
 router = APIRouter(prefix="/thong-ke", tags=["thong-ke"])
 
-_TRANG_THAI_KHONG_HOP_LE = (TrangThaiTinDang.DA_XOA, TrangThaiTinDang.BI_KHOA)
+_TRANG_THAI_KHONG_HOP_LE = (TrangThaiTinDang.DA_XOA)
 
 
 @router.get("/tong-quan", response_model=ThongKeTongQuanResponse)

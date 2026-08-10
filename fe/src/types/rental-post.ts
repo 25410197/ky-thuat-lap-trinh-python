@@ -68,6 +68,7 @@ export interface RentalPostDetail {
   phuongThucLienHeUuTien: "goi_dien" | "nhan_tin";
   luotXem: number;
   ngayDang: string;
+  isBlocked: boolean;
 }
 
 export interface RentalPostListFilters {

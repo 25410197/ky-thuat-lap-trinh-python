@@ -113,6 +113,7 @@ class TinDangChiTiet(BaseModel):
     phuong_thuc_lien_he_uu_tien: Annotated[str, Field(alias="phuongThucLienHeUuTien")]
     luot_xem: Annotated[int, Field(alias="luotXem")]
     ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
+    is_blocked: Annotated[bool, Field(alias="isBlocked")]
 
 class TinChoDuyetTomTat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
