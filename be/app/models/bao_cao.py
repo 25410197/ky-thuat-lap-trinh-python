@@ -21,6 +21,7 @@ class BaoCao(Base):
         nullable=False,
     )
     nguoi_xu_ly_id: Mapped[int | None] = mapped_column(ForeignKey("nguoi_dung.id"))
+    ghi_chu_xu_ly: Mapped[str | None] = mapped_column(Text)
     ngay_bao_cao: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     ngay_xu_ly: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 

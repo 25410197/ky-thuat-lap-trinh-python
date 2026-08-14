@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
 
-from app.api.dependencies import get_db, get_current_user
+from app.api.dependencies import get_db, get_current_user, get_current_user_optional
 from app.models import (
     AnhThuVien,
     PhuongXa,
@@ -635,7 +635,11 @@ def khoa_tin_dang(
     return {"message": "Khoá tin đăng thành công!"}
 
 @router.get("/{tin_dang_id}", response_model=TinDangChiTiet)
-def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDangChiTiet:
+def chi_tiet_tin_dang(
+    tin_dang_id: int, 
+    db: Session = Depends(get_db),
+    nguoi_dung: NguoiDung | None = Depends(get_current_user_optional)
+) -> TinDangChiTiet:
     tin = (
         db.query(TinDang)
         .options(
@@ -649,13 +653,28 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         .filter(TinDang.id == tin_dang_id)
         .first()
     )
-    if tin is None:
+    if tin is None or tin.is_deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng")
+
+    if tin.is_blocked:
+        la_chu_tin = nguoi_dung is not None and tin.nguoi_dang_id == nguoi_dung.id
+        la_admin = nguoi_dung is not None and getattr(nguoi_dung, "vai_tro", None) == "QUAN_TRI"
+        
+        from app.models.enums import VaiTroNguoiDung
+        la_admin = nguoi_dung is not None and nguoi_dung.vai_tro == VaiTroNguoiDung.QUAN_TRI
+        
+        if not (la_chu_tin or la_admin):
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng")
 
     tin.luot_xem += 1
     db.commit()
 
     anh_sap_xep = sorted(tin.hinh_anh, key=lambda anh: (not anh.la_anh_dai_dien, anh.thu_tu_hien_thi))
+
+    # Ẩn sđt nếu chưa đăng nhập
+    sdt = tin.so_dien_thoai_lien_he
+    if sdt and nguoi_dung is None:
+        sdt = sdt[:3] + "***" + sdt[-2:] if len(sdt) >= 5 else "***"
 
     return TinDangChiTiet(
         id=tin.id,
@@ -671,9 +690,10 @@ def chi_tiet_tin_dang(tin_dang_id: int, db: Session = Depends(get_db)) -> TinDan
         hinh_anh=[anh.anh_thu_vien.duong_dan_anh for anh in anh_sap_xep],
         tien_ich=[tien_ich.ten for tien_ich in tin.tien_ich],
         ten_nguoi_lien_he=tin.ten_nguoi_lien_he,
-        so_dien_thoai_lien_he=tin.so_dien_thoai_lien_he,
+        so_dien_thoai_lien_he=sdt or "",
         phuong_thuc_lien_he_uu_tien=tin.phuong_thuc_lien_he_uu_tien.value,
         luot_xem=tin.luot_xem,
         ngay_dang=tin.ngay_dang,
-        is_blocked=tin.is_blocked
+        is_blocked=tin.is_blocked,
+        nguoi_dang_id=tin.nguoi_dang_id
     )

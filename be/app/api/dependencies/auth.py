@@ -40,6 +40,25 @@ def get_current_user(
     return nguoi_dung
 
 
+def get_current_user_optional(
+    credentials: HTTPAuthorizationCredentials | None = Depends(_bearer_scheme),
+    db: Session = Depends(get_db),
+) -> NguoiDung | None:
+    if credentials is None:
+        return None
+
+    try:
+        payload = decode_access_token(credentials.credentials)
+        nguoi_dung_id = int(payload["sub"])
+    except (PyJWTError, KeyError, ValueError):
+        return None
+
+    nguoi_dung = db.get(NguoiDung, nguoi_dung_id)
+    if nguoi_dung is None or nguoi_dung.trang_thai == TrangThaiNguoiDung.BI_KHOA:
+        return None
+
+    return nguoi_dung
+
 def get_current_admin_user(nguoi_dung: NguoiDung = Depends(get_current_user)) -> NguoiDung:
     """Chỉ cho qua nếu người dùng hiện tại là quản trị viên — dùng cho các route admin-only."""
     if nguoi_dung.vai_tro != VaiTroNguoiDung.QUAN_TRI:

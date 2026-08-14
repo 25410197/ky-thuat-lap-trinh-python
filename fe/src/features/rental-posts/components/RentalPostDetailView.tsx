@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Box, Grid, Text, Group, Loader, Center, Alert, Badge, Textarea, Divider } from "@mantine/core";
-import { IconAlertCircle, IconEye, IconLock, IconMapPin, IconPhone, IconRulerMeasure } from "@tabler/icons-react";
+import { Box, Grid, Text, Group, Loader, Center, Alert, Badge, Textarea, Divider, CopyButton, ActionIcon, Tooltip } from "@mantine/core";
+import { IconAlertCircle, IconEye, IconLock, IconMapPin, IconPhone, IconRulerMeasure, IconAlertTriangle, IconCopy, IconCheck } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
+import { ReportPostModal } from "@/features/bao-cao/components/ReportPostModal";
 import { EmptyState } from "@/components/common/EmptyState";
 import { ROUTES } from "@/constants/routes";
 import { formatCurrencyVnd } from "@/lib/utils";
@@ -34,6 +35,9 @@ export function RentalPostDetailView({ id }: { id: string }) {
   // Admin — khóa tin
   const [lyDoKhoa, setLyDoKhoa] = useState("");
   const [dangKhoa, setDangKhoa] = useState(false);
+
+  // Report
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   useEffect(() => {
     let daHuy = false;
@@ -273,20 +277,57 @@ export function RentalPostDetailView({ id }: { id: string }) {
             </Text>
           </Box>
 
-          <AppButton
-            component="a"
-            href={`tel:${post.soDienThoaiLienHe}`}
-            variant="primary"
-            fullWidth
-            mt={24}
-            leftSection={<IconPhone size={18} />}
-          >
-            Gọi {post.soDienThoaiLienHe}
-          </AppButton>
+          {user ? (
+            <Group mt={24} gap={8} wrap="nowrap">
+              <AppButton
+                component="a"
+                href={`tel:${post.soDienThoaiLienHe}`}
+                variant="primary"
+                fullWidth
+                leftSection={<IconPhone size={18} />}
+                style={{ flex: 1 }}
+              >
+                Gọi {post.soDienThoaiLienHe}
+              </AppButton>
+              <CopyButton value={post.soDienThoaiLienHe} timeout={2000}>
+                {({ copied, copy }) => (
+                  <Tooltip label={copied ? 'Đã sao chép' : 'Sao chép số'} withArrow position="top">
+                    <ActionIcon color={copied ? 'teal' : 'gray'} variant="light" onClick={copy} size={42}>
+                      {copied ? <IconCheck size={20} /> : <IconCopy size={20} />}
+                    </ActionIcon>
+                  </Tooltip>
+                )}
+              </CopyButton>
+            </Group>
+          ) : (
+            <AppButton
+              component={Link}
+              href={`/dang-nhap?redirect=/chi-tiet-tin-dang/${post.id}`}
+              variant="primary"
+              fullWidth
+              mt={24}
+              leftSection={<IconLock size={18} />}
+            >
+              Đăng nhập để xem SĐT
+            </AppButton>
+          )}
           {/* Chưa có API yêu thích — nối khi ticket favorites được làm */}
           <AppButton variant="outline" fullWidth mt={12}>
             Lưu vào yêu thích
           </AppButton>
+
+          {user && user.id !== post.nguoiDangId.toString() && (
+            <AppButton
+              variant="subtle"
+              color="red"
+              fullWidth
+              mt={12}
+              leftSection={<IconAlertTriangle size={18} />}
+              onClick={() => setIsReportModalOpen(true)}
+            >
+              Báo cáo vi phạm
+            </AppButton>
+          )}
 
           {/* Admin: Khóa tin đăng */}
           {isAdmin && (
@@ -330,6 +371,12 @@ export function RentalPostDetailView({ id }: { id: string }) {
           )}
         </Box>
       </Grid.Col>
+      <ReportPostModal
+        opened={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+        tinDangId={post.id}
+        tieuDe={post.tieuDe}
+      />
     </Grid>
   );
 }

@@ -12,6 +12,7 @@ import {
   IconSettings,
   IconLogout,
   IconBuildingCommunity,
+  IconFlag,
 } from "@tabler/icons-react";
 import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/hooks/useAuth";
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
   { label: "Quản lý tin đăng", href: ROUTES.quanTriTinDang, icon: IconList },
   { label: "Quản lý người dùng", href: ROUTES.quanTriNguoiDung, icon: IconUsers },
   { label: "Loại bất động sản", href: ROUTES.quanTriLoaiBatDongSan, icon: IconBuildingCommunity },
+  { label: "Báo cáo vi phạm", href: ROUTES.quanTriBaoCao, icon: IconFlag },
   { label: "Thống kê thị trường", href: ROUTES.quanTriThongKe, icon: IconChartBar },
 ];
 

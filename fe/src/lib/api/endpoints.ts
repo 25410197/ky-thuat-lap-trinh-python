@@ -7,7 +7,9 @@ export const endpoints = {
   },
   rentalPosts: {
     list: "/rental-posts",
-    detail: (id: string) => `/rental-posts/${id}`,
+    detail: (id: string | number) => `/rental-posts/${id}`,
+    chinhSua: (id: string | number) => `/rental-posts/${id}/chinh-sua`,
+    report: (id: string | number) => `/bao-cao/${id}`,
     update: (id: string) => `/rental-posts/${id}`,
     edit: (id: string) => `/rental-posts/${id}/chinh-sua`,
     mine: "/rental-posts/me",
@@ -43,5 +45,10 @@ export const endpoints = {
   },
   thongKe: {
     tongQuan: "/thong-ke/tong-quan",
+  },
+  baoCao: {
+    list: "/admin/bao-cao",
+    detail: (id: number) => `/admin/bao-cao/${id}`,
+    process: (id: number) => `/admin/bao-cao/${id}/xu-ly`,
   },
 } as const;

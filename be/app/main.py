@@ -8,6 +8,8 @@ from app.api.routes.nguoi_dung import router as nguoi_dung_router
 from app.api.routes.thong_ke import router as thong_ke_router
 from app.api.routes.thu_vien_anh import router as thu_vien_anh_router
 from app.api.routes.tin_dang import router as tin_dang_router
+from app.api.routes.bao_cao import router as bao_cao_router
+from app.api.routes.bao_cao_client import router as bao_cao_client_router
 from app.core.config import get_settings
 
 
@@ -29,6 +31,8 @@ def create_app() -> FastAPI:
     application.include_router(thu_vien_anh_router, prefix="/api")
     application.include_router(nguoi_dung_router, prefix="/api")
     application.include_router(thong_ke_router, prefix="/api")
+    application.include_router(bao_cao_router, prefix="/api/admin")
+    application.include_router(bao_cao_client_router, prefix="/api")
 
     return application
 

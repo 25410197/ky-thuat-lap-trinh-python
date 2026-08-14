@@ -107,7 +107,7 @@ export function AdminLockedPostsTable() {
             <Table.Th>Ngày đăng</Table.Th>
             <Table.Th>Loại</Table.Th>
             <Table.Th>Trạng thái</Table.Th>
-            <Table.Th>Hành động</Table.Th>
+            <Table.Th ta="center">Hành động</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -159,7 +159,7 @@ export function AdminLockedPostsTable() {
                 <Table.Td>
                   <Badge variant="light" color="red" radius="sm">Bị khóa</Badge>
                 </Table.Td>
-                <Table.Td>
+                <Table.Td ta="center">
                   <Tooltip label="Mở khóa tin đăng này" withArrow>
                     <Button
                       size="xs"

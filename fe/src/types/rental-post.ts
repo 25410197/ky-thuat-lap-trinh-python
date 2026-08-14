@@ -69,6 +69,7 @@ export interface RentalPostDetail {
   luotXem: number;
   ngayDang: string;
   isBlocked: boolean;
+  nguoiDangId: number;
 }
 
 export interface RentalPostListFilters {
