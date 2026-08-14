@@ -434,7 +434,7 @@ export function AdminApprovalQueueTable() {
               <Table.Th>Ngày gửi</Table.Th>
               <Table.Th>Loại</Table.Th>
               <Table.Th>Trạng thái</Table.Th>
-              <Table.Th ta="right">Hành động</Table.Th>
+              <Table.Th ta="center">Hành động</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -486,7 +486,7 @@ export function AdminApprovalQueueTable() {
                     <Badge variant="light" color="yellow" radius="sm">Chờ phê duyệt</Badge>
                   </Table.Td>
                   <Table.Td>
-                    <Group gap={8} justify="flex-end">
+                    <Group gap={8} justify="center">
                       <ActionIcon
                         variant="subtle"
                         color="green"
