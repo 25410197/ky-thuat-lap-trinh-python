@@ -9,8 +9,6 @@ from app.schemas.thong_ke import ThongKeTheoLoai, ThongKeTheoTinhThanh, ThongKeT
 
 router = APIRouter(prefix="/thong-ke", tags=["thong-ke"])
 
-_TRANG_THAI_KHONG_HOP_LE = (TrangThaiTinDang.DA_XOA)
-
 
 @router.get("/tong-quan", response_model=ThongKeTongQuanResponse)
 def thong_ke_tong_quan(
@@ -28,20 +26,21 @@ def thong_ke_tong_quan(
     """
     tong_so_tin_dang = (
         db.query(func.count(TinDang.id))
-        .filter(TinDang.trang_thai.notin_(_TRANG_THAI_KHONG_HOP_LE))
+        .filter(TinDang.is_deleted == False)
         .scalar()
         or 0
     )
 
     tong_so_tin_da_duyet = (
         db.query(func.count(TinDang.id))
-        .filter(TinDang.trang_thai == TrangThaiTinDang.DA_DUYET)
+        .filter(TinDang.trang_thai == TrangThaiTinDang.DA_DUYET, TinDang.is_deleted == False)
         .scalar()
         or 0
     )
 
     dieu_kien_duyet_hop_le = (
         TinDang.trang_thai == TrangThaiTinDang.DA_DUYET,
+        TinDang.is_deleted == False,
         TinDang.gia_thue > 0,
         TinDang.dien_tich > 0,
     )

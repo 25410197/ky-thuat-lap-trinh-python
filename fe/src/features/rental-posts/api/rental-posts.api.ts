@@ -92,4 +92,5 @@ export const rentalPostsApi = {
     apiClient.post<{ message: string }>(endpoints.rentalPosts.moKhoaTin(id), {}),
   khoaTinDang: (id: number, lyDo: string) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.khoaTinDang(id), { ly_do: lyDo }),
+  xoa: (id: string) => apiClient.delete<{ message: string }>(endpoints.rentalPosts.xoa(id)),
 };

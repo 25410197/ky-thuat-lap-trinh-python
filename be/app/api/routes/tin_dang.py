@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, joinedload
@@ -35,9 +37,14 @@ _TRANG_THAI_SANG_STATUS_EN = {
     TrangThaiTinDang.CHO_DUYET: "pending",
     TrangThaiTinDang.DA_DUYET: "published",
     TrangThaiTinDang.AN: "archived",
-    TrangThaiTinDang.DA_XOA: "deleted",
     TrangThaiTinDang.TU_CHOI: "rejected",
 }
+
+
+def _trang_thai_sang_status_en(tin: TinDang) -> str:
+    if tin.is_deleted:
+        return "deleted"
+    return _TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending")
 
 
 def _kiem_tra_chu_tin(tin: TinDang, nguoi_dung: NguoiDung) -> None:
@@ -224,7 +231,7 @@ def danh_sach_tin_dang_cua_toi(
 
     ket_qua = []
     for tin in rows:
-        status_en = _TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending")
+        status_en = _trang_thai_sang_status_en(tin)
 
         anh_dai_dien = next(
             (anh.anh_thu_vien.duong_dan_anh for anh in tin.hinh_anh if anh.la_anh_dai_dien), None
@@ -325,7 +332,7 @@ def lay_tin_dang_de_sua(
         .filter(TinDang.id == tin_dang_id)
         .first()
     )
-    if tin is None:
+    if tin is None or tin.is_deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
     _kiem_tra_chu_tin(tin, nguoi_dung)
 
@@ -361,7 +368,7 @@ def lay_tin_dang_de_sua(
         contactMethod="call" if tin.phuong_thuc_lien_he_uu_tien == PhuongThucLienHe.GOI_DIEN else "zalo",
         bedrooms=tin.phong_ngu,
         bathrooms=tin.phong_tam,
-        status=_TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending"),
+        status=_trang_thai_sang_status_en(tin),
     )
 
 
@@ -373,7 +380,7 @@ def cap_nhat_tin_dang(
     nguoi_dung: NguoiDung = Depends(get_current_user),
 ):
     tin = db.get(TinDang, tin_dang_id)
-    if tin is None:
+    if tin is None or tin.is_deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
     _kiem_tra_chu_tin(tin, nguoi_dung)
 
@@ -428,6 +435,26 @@ def cap_nhat_tin_dang(
 
     return {"message": "Cập nhật tin đăng thành công!", "id": tin.id}
 
+
+
+@router.delete("/{tin_dang_id}", status_code=200)
+def xoa_tin_dang(
+    tin_dang_id: int,
+    db: Session = Depends(get_db),
+    nguoi_dung: NguoiDung = Depends(get_current_user),
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None or tin.is_deleted:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    _kiem_tra_chu_tin(tin, nguoi_dung)
+
+    # Xóa mềm: chỉ đánh dấu is_deleted/deleted_at, không xóa khỏi database và không đổi trang_thai
+    # (giữ nguyên trạng thái duyệt gốc) — giữ nguyên dữ liệu cho báo cáo/thống kê sau này.
+    tin.is_deleted = True
+    tin.deleted_at = datetime.now(timezone.utc)
+    db.commit()
+
+    return {"message": "Xóa tin đăng thành công!"}
 
 
 @router.get("/cho-duyet", response_model=DanhSachTinChoDuyet)

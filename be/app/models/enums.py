@@ -16,7 +16,6 @@ class TrangThaiTinDang(str, enum.Enum):
     CHO_DUYET = "cho_duyet"
     DA_DUYET = "da_duyet"
     AN = "an"
-    DA_XOA = "da_xoa"
     TU_CHOI = "tu_choi"
 
 

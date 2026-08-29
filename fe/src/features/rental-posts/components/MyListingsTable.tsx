@@ -33,13 +33,26 @@ export function MyListingsTable() {
   const deletingPost = posts.find((post) => post.id === deletingId) ?? null;
   const handleDelete = () => {
     if (!deletingPost) return;
-    setPosts((prev) => prev.filter((post) => post.id !== deletingPost.id));
-    notifications.show({
-      color: "green",
-      title: "Đã xoá tin đăng (demo)",
-      message: `"${deletingPost.title}" đã được xoá.`,
-    });
-    setDeletingId(null);
+    rentalPostsApi
+      .xoa(deletingPost.id)
+      .then(() => {
+        setPosts((prev) =>
+          prev.map((post) =>
+            post.id === deletingPost.id ? { ...post, status: "deleted" } : post
+          )
+        );
+        notifications.show({
+          color: "green",
+          title: "Đã xoá tin đăng",
+          message: `"${deletingPost.title}" đã được xoá.`,
+        });
+      })
+      .catch(() => {
+        notifications.show({ color: "red", message: "Xoá tin đăng thất bại, vui lòng thử lại." });
+      })
+      .finally(() => {
+        setDeletingId(null);
+      });
   };
 
   if (loading) {
@@ -93,25 +106,31 @@ export function MyListingsTable() {
               </Table.Td>
               <Table.Td>{formatDateVi(post.createdAt)}</Table.Td>
               <Table.Td>
-                <Group gap={8} justify="flex-end">
-                  <ActionIcon
-                    component={Link}
-                    href={ROUTES.suaTinDang(post.id)}
-                    variant="subtle"
-                    color="brand"
-                    aria-label="Sửa tin đăng"
-                  >
-                    <IconPencil size={18} stroke={1.75} />
-                  </ActionIcon>
-                  <ActionIcon
-                    variant="subtle"
-                    color="red"
-                    aria-label="Xoá tin đăng"
-                    onClick={() => setDeletingId(post.id)}
-                  >
-                    <IconTrash size={18} stroke={1.75} />
-                  </ActionIcon>
-                </Group>
+                {post.status === "deleted" ? (
+                  <Text ta="right" size="sm" c="dimmed">
+                    —
+                  </Text>
+                ) : (
+                  <Group gap={8} justify="flex-end">
+                    <ActionIcon
+                      component={Link}
+                      href={ROUTES.suaTinDang(post.id)}
+                      variant="subtle"
+                      color="brand"
+                      aria-label="Sửa tin đăng"
+                    >
+                      <IconPencil size={18} stroke={1.75} />
+                    </ActionIcon>
+                    <ActionIcon
+                      variant="subtle"
+                      color="red"
+                      aria-label="Xoá tin đăng"
+                      onClick={() => setDeletingId(post.id)}
+                    >
+                      <IconTrash size={18} stroke={1.75} />
+                    </ActionIcon>
+                  </Group>
+                )}
               </Table.Td>
             </Table.Tr>
           ))}
