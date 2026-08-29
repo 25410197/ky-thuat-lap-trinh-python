@@ -1,5 +1,6 @@
 import { Table, Box, Group, Text, Skeleton, Badge } from "@mantine/core";
 import { IconTrophy } from "@tabler/icons-react";
+import { formatCurrencyVnd } from "@/lib/utils";
 import type { ThongKeTheoTinhThanh } from "../api/thong-ke.api";
 
 interface MarketPerformanceTableProps {
@@ -34,6 +35,7 @@ export function MarketPerformanceTable({
           <Table.Tr>
             <Table.Th>Tỉnh/thành</Table.Th>
             <Table.Th ta="right">Số lượng tin đăng</Table.Th>
+            <Table.Th ta="right">Giá thuê TB</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -46,11 +48,14 @@ export function MarketPerformanceTable({
                 <Table.Td>
                   <Skeleton h={16} w={60} ml="auto" />
                 </Table.Td>
+                <Table.Td>
+                  <Skeleton h={16} w={80} ml="auto" />
+                </Table.Td>
               </Table.Tr>
             ))
           ) : theoTinhThanh.length === 0 ? (
             <Table.Tr>
-              <Table.Td colSpan={2}>
+              <Table.Td colSpan={3}>
                 <Text c="dimmed" ta="center" py={32}>
                   Chưa có dữ liệu tin đăng đã duyệt.
                 </Text>
@@ -71,6 +76,9 @@ export function MarketPerformanceTable({
                 </Table.Td>
                 <Table.Td ta="right" c="var(--color-brand-muted)">
                   {row.soLuong}
+                </Table.Td>
+                <Table.Td ta="right" c="var(--color-brand-muted)">
+                  {formatCurrencyVnd(row.giaThueTrungBinh)}
                 </Table.Td>
               </Table.Tr>
             ))
