@@ -1,34 +1,68 @@
 "use client";
 
-import { SimpleGrid, Paper, Text, Group, Box, Grid, Stack } from "@mantine/core";
-import { IconAlertTriangle, IconUsers, IconClipboardList, IconFlag } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { SimpleGrid, Paper, Text, Group, Box, Grid, Stack, Skeleton } from "@mantine/core";
+import { IconUsers, IconClipboardList, IconFlag, IconMapPin, IconCoin } from "@tabler/icons-react";
+import { ErrorState } from "@/components/common/ErrorState";
+import { ROUTES } from "@/constants/routes";
+import { formatCurrencyVnd } from "@/lib/utils";
+import { fetchAdminOverviewStats, type AdminOverviewStats } from "../api/analytics.api";
 
-// Số liệu lấy đúng từ Figma (màn "Quản trị hệ thống - Tiếng Việt") — sẽ nối API thống kê thật ở ticket sau.
-const STATS = [
-  {
-    label: "Tổng người dùng",
-    value: "12,842",
-    note: "+12% so với tháng trước",
-    noteColor: "#047857",
-    icon: IconUsers,
-  },
-  {
-    label: "Danh sách chờ duyệt",
-    value: "48",
-    note: "Thời gian chờ TB: 4.2 giờ",
-    noteColor: "var(--color-danger)",
-    icon: IconClipboardList,
-  },
-  {
-    label: "Báo cáo đang xử lý",
-    value: "15",
-    note: "3 Ưu tiên khẩn cấp",
-    noteColor: "var(--color-brand-muted)",
-    icon: IconFlag,
-  },
-];
+interface StatCardDef {
+  label: string;
+  value: string;
+  note: string;
+  icon: typeof IconUsers;
+  href: string;
+}
+
+function buildStats(data: AdminOverviewStats): StatCardDef[] {
+  return [
+    {
+      label: "Tổng người dùng",
+      value: data.tongNguoiDung.toLocaleString("vi-VN"),
+      note: "Xem danh sách người dùng",
+      icon: IconUsers,
+      href: ROUTES.quanTriNguoiDung,
+    },
+    {
+      label: "Danh sách chờ duyệt",
+      value: data.choDuyet.toLocaleString("vi-VN"),
+      note: "Xem hàng đợi phê duyệt",
+      icon: IconClipboardList,
+      href: ROUTES.quanTriTinDang,
+    },
+    {
+      label: "Báo cáo đang xử lý",
+      value: data.baoCaoChoXuLy.toLocaleString("vi-VN"),
+      note: "Xem báo cáo vi phạm",
+      icon: IconFlag,
+      href: ROUTES.quanTriBaoCao,
+    },
+  ];
+}
 
 export function AdminOverviewView() {
+  const [data, setData] = useState<AdminOverviewStats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const load = () => {
+    setLoading(true);
+    setError(false);
+    fetchAdminOverviewStats()
+      .then(setData)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const stats = data ? buildStats(data) : [];
+
   return (
     <div>
       <Text
@@ -41,64 +75,151 @@ export function AdminOverviewView() {
       >
         Tổng quan
       </Text>
-      <SimpleGrid cols={{ base: 1, sm: 3 }}>
-        {STATS.map((stat) => (
-          <Paper key={stat.label} radius="md" withBorder p="lg">
-            <Group justify="space-between" align="flex-start">
-              <div>
-                <Text size="xs" fw={600} tt="uppercase" c="dimmed">
-                  {stat.label}
-                </Text>
-                <Text mt={4} fw={700} fz={28} c="var(--color-brand)" style={{ fontFamily: "var(--font-heading)" }}>
-                  {stat.value}
-                </Text>
-              </div>
-              <stat.icon size={22} color="var(--color-brand-muted)" stroke={1.5} />
-            </Group>
-            <Text mt={12} size="sm" c={stat.noteColor}>
-              {stat.note}
-            </Text>
-          </Paper>
-        ))}
-      </SimpleGrid>
 
-      <Grid mt={32} gap={24}>
-        <Grid.Col span={{ base: 12, lg: 8 }}>
-          <Box p={24} bg="var(--color-brand)" c="var(--color-surface)" style={{ borderRadius: "var(--radius-card)" }}>
-            <Text fz="xl" style={{ fontFamily: "var(--font-heading)" }}>
-              Tình trạng hệ thống
-            </Text>
-            <Text mt={8} fz={36} fw={700}>
-              99.8%
-            </Text>
-            <Text mt={4} fz="sm" c="rgba(255,255,255,0.8)">
-              Tất cả hệ thống hoạt động tốt
-            </Text>
-          </Box>
-        </Grid.Col>
-        <Grid.Col span={{ base: 12, lg: 4 }}>
-          <Box p={24} bg="var(--color-surface-muted)" style={{ borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}>
-            <Text mb={12} fz="xs" fw={700} tt="uppercase" c="var(--color-brand-muted)" style={{ letterSpacing: "0.08em" }}>
-              Cảnh báo hệ thống khẩn cấp
-            </Text>
-            <Stack gap={12} fz="sm" c="var(--color-brand)">
-              <Group gap={8} align="flex-start" wrap="nowrap">
-                <IconAlertTriangle size={18} color="var(--color-danger)" stroke={1.75} style={{ flexShrink: 0, marginTop: 2 }} />
-                <span>API Endpoint /v1/listings-meta đang phản hồi chậm (trung bình 850ms).</span>
-              </Group>
-              <Group gap={8} align="flex-start" wrap="nowrap">
-                <IconAlertTriangle
-                  size={18}
-                  color="var(--color-brand-muted)"
-                  stroke={1.75}
-                  style={{ flexShrink: 0, marginTop: 2 }}
-                />
-                <span>Bảo trì cơ sở dữ liệu định kỳ sau 14 giờ (02:00 UTC).</span>
-              </Group>
-            </Stack>
-          </Box>
-        </Grid.Col>
-      </Grid>
+      {error ? (
+        <ErrorState
+          title="Không tải được số liệu tổng quan"
+          description="Không thể tải dữ liệu từ máy chủ. Vui lòng thử lại."
+          onRetry={load}
+        />
+      ) : (
+        <>
+          <SimpleGrid cols={{ base: 1, sm: 3 }}>
+            {loading
+              ? Array.from({ length: 3 }).map((_, i) => (
+                  <Paper key={i} radius="md" withBorder p="lg">
+                    <Group justify="space-between" align="flex-start">
+                      <Stack gap={8} style={{ flex: 1 }}>
+                        <Skeleton h={12} w="60%" />
+                        <Skeleton h={28} w="40%" />
+                      </Stack>
+                      <Skeleton h={22} w={22} radius="sm" />
+                    </Group>
+                    <Skeleton h={14} w="70%" mt={12} />
+                  </Paper>
+                ))
+              : stats.map((stat) => (
+                  <Paper
+                    key={stat.label}
+                    component={Link}
+                    href={stat.href}
+                    radius="md"
+                    withBorder
+                    p="lg"
+                    style={{ textDecoration: "none", cursor: "pointer" }}
+                  >
+                    <Group justify="space-between" align="flex-start">
+                      <div>
+                        <Text size="xs" fw={600} tt="uppercase" c="dimmed">
+                          {stat.label}
+                        </Text>
+                        <Text
+                          mt={4}
+                          fw={700}
+                          fz={28}
+                          c="var(--color-brand)"
+                          style={{ fontFamily: "var(--font-heading)" }}
+                        >
+                          {stat.value}
+                        </Text>
+                      </div>
+                      <stat.icon size={22} color="var(--color-brand-muted)" stroke={1.5} />
+                    </Group>
+                    <Text mt={12} size="sm" c="var(--color-gold)">
+                      {stat.note}
+                    </Text>
+                  </Paper>
+                ))}
+          </SimpleGrid>
+
+          <Grid mt={32} gap={24}>
+            <Grid.Col span={12}>
+              <Box
+                p={24}
+                bg="var(--color-surface-muted)"
+                style={{ borderRadius: "var(--radius-card)", border: "1px solid var(--color-border)" }}
+              >
+                <Text
+                  mb={16}
+                  fz="xs"
+                  fw={700}
+                  tt="uppercase"
+                  c="var(--color-brand-muted)"
+                  style={{ letterSpacing: "0.08em" }}
+                >
+                  Thống kê nhanh
+                </Text>
+                {loading ? (
+                  <Group gap={40}>
+                    <Skeleton h={40} w={160} />
+                    <Skeleton h={40} w={160} />
+                  </Group>
+                ) : data ? (
+                  <Group gap={40} wrap="wrap">
+                    <Group gap={10} align="flex-start" wrap="nowrap">
+                      <IconCoin size={20} color="var(--color-gold)" stroke={1.75} style={{ marginTop: 2 }} />
+                      <div>
+                        <Text fz="xs" c="dimmed">
+                          Giá thuê trung bình toàn hệ thống
+                        </Text>
+                        <Text fz="lg" fw={700} c="var(--color-brand)">
+                          {formatCurrencyVnd(data.tongQuan.giaThueTrungBinh)}
+                          <Text component="span" fz="xs" fw={400} c="dimmed">
+                            {" "}
+                            /tháng
+                          </Text>
+                        </Text>
+                      </div>
+                    </Group>
+                    {data.tongQuan.khuVucNhieuTinNhat ? (
+                      <Group gap={10} align="flex-start" wrap="nowrap">
+                        <IconMapPin
+                          size={20}
+                          color="var(--color-gold)"
+                          stroke={1.75}
+                          style={{ marginTop: 2 }}
+                        />
+                        <div>
+                          <Text fz="xs" c="dimmed">
+                            Khu vực nhiều tin đăng nhất
+                          </Text>
+                          <Text fz="lg" fw={700} c="var(--color-brand)">
+                            {data.tongQuan.khuVucNhieuTinNhat.tinhThanh}
+                            <Text component="span" fz="xs" fw={400} c="dimmed">
+                              {" "}
+                              ({data.tongQuan.khuVucNhieuTinNhat.soLuong} tin)
+                            </Text>
+                          </Text>
+                        </div>
+                      </Group>
+                    ) : null}
+                    <Group gap={10} align="flex-start" wrap="nowrap">
+                      <IconClipboardList
+                        size={20}
+                        color="var(--color-gold)"
+                        stroke={1.75}
+                        style={{ marginTop: 2 }}
+                      />
+                      <div>
+                        <Text fz="xs" c="dimmed">
+                          Tin đăng đang hoạt động
+                        </Text>
+                        <Text fz="lg" fw={700} c="var(--color-brand)">
+                          {data.tongQuan.tongSoTinDaDuyet.toLocaleString("vi-VN")}
+                          <Text component="span" fz="xs" fw={400} c="dimmed">
+                            {" "}
+                            / {data.tongQuan.tongSoTinDang.toLocaleString("vi-VN")} tổng số tin
+                          </Text>
+                        </Text>
+                      </div>
+                    </Group>
+                  </Group>
+                ) : null}
+              </Box>
+            </Grid.Col>
+          </Grid>
+        </>
+      )}
     </div>
   );
 }

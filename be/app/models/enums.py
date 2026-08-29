@@ -33,3 +33,9 @@ class TrangThaiBaoCao(str, enum.Enum):
 class TrangThaiLoaiBatDongSan(str, enum.Enum):
     HOAT_DONG = "hoat_dong"
     AN = "an"
+
+
+class TrangThaiBaiViet(str, enum.Enum):
+    NHAP = "nhap"
+    DA_DANG = "da_dang"
+    AN = "an"

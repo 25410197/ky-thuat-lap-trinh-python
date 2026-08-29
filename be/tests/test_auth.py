@@ -145,3 +145,89 @@ def test_admin_dependency_tu_choi_nguoi_dung_thuong() -> None:
         get_current_admin_user(nguoi_dung=nguoi_dung)
 
     assert exc_info.value.status_code == 403
+
+
+def _dang_ky_va_lay_token(email: str) -> str:
+    response = client.post(
+        "/api/auth/register",
+        json={"fullName": "Người Dùng", "email": email, "password": "matkhau123"},
+    )
+    return response.json()["accessToken"]
+
+
+def test_cap_nhat_ho_so_thanh_cong() -> None:
+    email = _email_ngau_nhien()
+    try:
+        token = _dang_ky_va_lay_token(email)
+
+        response = client.patch(
+            "/api/auth/me",
+            json={"fullName": "Tên Mới", "phone": "0901234567"},
+            headers={"Authorization": f"Bearer {token}"},
+        )
+
+        assert response.status_code == 200
+        body = response.json()
+        assert body["fullName"] == "Tên Mới"
+        assert body["phone"] == "0901234567"
+
+        db = SessionLocal()
+        try:
+            nguoi_dung = db.query(NguoiDung).filter(NguoiDung.email == email).first()
+            assert nguoi_dung is not None
+            assert nguoi_dung.ho_ten == "Tên Mới"
+            assert nguoi_dung.so_dien_thoai == "0901234567"
+        finally:
+            db.close()
+    finally:
+        _xoa_nguoi_dung(email)
+
+
+def test_cap_nhat_ho_so_can_dang_nhap() -> None:
+    response = client.patch("/api/auth/me", json={"fullName": "Tên Mới"})
+
+    assert response.status_code == 401
+
+
+def test_doi_mat_khau_thanh_cong() -> None:
+    email = _email_ngau_nhien()
+    try:
+        token = _dang_ky_va_lay_token(email)
+
+        response = client.post(
+            "/api/auth/doi-mat-khau",
+            json={"currentPassword": "matkhau123", "newPassword": "matkhaumoi456"},
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        assert response.status_code == 204
+
+        db = SessionLocal()
+        try:
+            nguoi_dung = db.query(NguoiDung).filter(NguoiDung.email == email).first()
+            assert nguoi_dung is not None
+            assert verify_password("matkhaumoi456", nguoi_dung.mat_khau_hash)
+        finally:
+            db.close()
+
+        dang_nhap_lai = client.post(
+            "/api/auth/login", json={"email": email, "password": "matkhaumoi456"}
+        )
+        assert dang_nhap_lai.status_code == 200
+    finally:
+        _xoa_nguoi_dung(email)
+
+
+def test_doi_mat_khau_sai_mat_khau_hien_tai_bi_tu_choi() -> None:
+    email = _email_ngau_nhien()
+    try:
+        token = _dang_ky_va_lay_token(email)
+
+        response = client.post(
+            "/api/auth/doi-mat-khau",
+            json={"currentPassword": "saimatkhau", "newPassword": "matkhaumoi456"},
+            headers={"Authorization": f"Bearer {token}"},
+        )
+
+        assert response.status_code == 400
+    finally:
+        _xoa_nguoi_dung(email)

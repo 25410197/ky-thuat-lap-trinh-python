@@ -22,6 +22,7 @@ trang/khóa-mở khóa — trạng thái đa dạng (hoạt động, chờ xác 
 
 import json
 import random
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from sqlalchemy.orm import Session
@@ -31,6 +32,7 @@ from app.core.security import hash_password
 from app.db.session import SessionLocal
 from app.models import (
     AnhThuVien,
+    BaiViet,
     BaoCao,
     HinhAnhTinDang,
     LoaiBatDongSan,
@@ -47,6 +49,7 @@ from app.models import (
 )
 from app.models.enums import (
     PhuongThucLienHe,
+    TrangThaiBaiViet,
     TrangThaiNguoiDung,
     TrangThaiTinDang,
     VaiTroNguoiDung,
@@ -54,6 +57,14 @@ from app.models.enums import (
 
 RANDOM_SEED = 42
 DATA_DIR = Path(__file__).parent / "data"
+
+# ~20 id ảnh nhà/căn hộ/nội thất/kiến trúc THẬT trên picsum.photos — chọn tay, xem trực tiếp
+# từng ảnh trước khi đưa vào đây (không lấy id ngẫu nhiên). Mục đích: ảnh đại diện tin đăng
+# luôn liên quan tới bất động sản, không còn ra đàn guitar/xe cổ/quả mâm xôi như trước.
+PICSUM_ID_NHA_O = [
+    42, 49, 57, 76, 122, 142, 146, 188, 206, 236, 257, 283, 288, 299, 311, 322, 369, 397, 398,
+    405, 428, 437, 445,
+]
 
 LOAI_BAT_DONG_SAN_MAC_DINH = [
     {"ten": "Phòng trọ", "mo_ta": "Phòng cho thuê trong nhà trọ, khép kín hoặc chung chủ"},
@@ -79,6 +90,76 @@ KHOANG_GIA_DIEN_TICH = {
 TEN_LIEN_HE_MAU = ["Anh Minh", "Chị Lan", "Anh Tuấn", "Chị Hoa", "Anh Phúc", "Chị Ngọc"]
 
 SO_TIN_DANG_CAN_SEED = 40
+
+# Bài viết tin tức thị trường mẫu — nội dung thật (không lorem), get-or-create theo slug.
+BAI_VIET_MAU = [
+    {
+        "tieu_de": "Giá thuê căn hộ tại các thành phố lớn tăng nhẹ trong quý gần đây",
+        "slug": "gia-thue-can-ho-tang-nhe-quy-gan-day",
+        "tom_tat": "Giá thuê căn hộ ở Hà Nội, TP.HCM và Đà Nẵng nhích lên do nhu cầu ở thực tăng, trong khi phòng trọ và nhà nguyên căn khá ổn định.",
+        "noi_dung_html": (
+            "<p>Theo tổng hợp từ các tin đăng trên hệ thống, giá thuê căn hộ tại ba thành phố lớn "
+            "— Hà Nội, TP. Hồ Chí Minh và Đà Nẵng — có xu hướng tăng nhẹ so với giai đoạn trước. "
+            "Nguyên nhân chính đến từ nhu cầu thuê ở thực của người đi làm và sinh viên quay lại "
+            "thành phố sau kỳ nghỉ dài.</p>"
+            "<h2>Vì sao giá căn hộ tăng nhanh hơn các loại hình khác</h2>"
+            "<p>Khác với phòng trọ và nhà nguyên căn vốn có nguồn cung phân tán ở nhiều khu vực, "
+            "căn hộ chung cư tập trung ở một số dự án nhất định nên nhạy hơn với biến động cung cầu. "
+            "Khi tỷ lệ lấp đầy tại các dự án gần trung tâm hoặc gần khu công nghiệp tăng, chủ nhà có "
+            "xu hướng điều chỉnh giá thuê theo mặt bằng chung của khu vực.</p>"
+            "<ul>"
+            "<li>Căn hộ gần trung tâm, gần trường học: nhu cầu ổn định quanh năm.</li>"
+            "<li>Căn hộ gần khu công nghiệp: tăng theo mùa tuyển dụng.</li>"
+            "<li>Phòng trọ, nhà nguyên căn: giá ít biến động hơn do nguồn cung đa dạng.</li>"
+            "</ul>"
+            "<p>Người thuê nên theo dõi biến động giá theo khu vực cụ thể thay vì chỉ nhìn mặt bằng "
+            "chung toàn thành phố, vì chênh lệch giữa các quận/huyện có thể khá lớn.</p>"
+        ),
+    },
+    {
+        "tieu_de": "5 kinh nghiệm tìm phòng trọ cho sinh viên mới nhập học",
+        "slug": "kinh-nghiem-tim-phong-tro-cho-sinh-vien",
+        "tom_tat": "Tổng hợp 5 kinh nghiệm thực tế giúp sinh viên năm nhất tìm phòng trọ phù hợp, an toàn và đúng ngân sách.",
+        "noi_dung_html": (
+            "<p>Đầu năm học là thời điểm nhu cầu tìm phòng trọ tăng mạnh, đặc biệt quanh khu vực "
+            "các trường đại học. Dưới đây là một số kinh nghiệm giúp sinh viên, nhất là tân sinh viên, "
+            "tìm được phòng phù hợp mà không mất quá nhiều thời gian.</p>"
+            "<h2>Xác định ngân sách trước khi tìm</h2>"
+            "<p>Nên dành tối đa 30–35% chi phí sinh hoạt hàng tháng cho tiền phòng, để còn khoản dự "
+            "phòng cho ăn uống, đi lại và học tập. Dùng bộ lọc giá trên trang tìm kiếm để không mất "
+            "thời gian xem những phòng vượt ngân sách.</p>"
+            "<h2>Ưu tiên khoảng cách tới trường hơn diện tích</h2>"
+            "<p>Một phòng nhỏ hơn nhưng gần trường thường tiết kiệm hơn về lâu dài so với phòng rộng "
+            "nhưng xa, vì chi phí đi lại và thời gian di chuyển cộng dồn mỗi ngày là không nhỏ.</p>"
+            "<ul>"
+            "<li>Xem kỹ ảnh thật và mô tả tiện ích trước khi liên hệ.</li>"
+            "<li>Hỏi rõ tiền điện nước, wifi có tính riêng hay đã gồm trong giá thuê.</li>"
+            "<li>Đến xem phòng trực tiếp, tránh chuyển tiền cọc khi chưa xem nhà.</li>"
+            "<li>Đọc kỹ điều khoản hợp đồng, đặc biệt điều kiện hoàn cọc.</li>"
+            "<li>Ưu tiên phòng có người quen từng ở hoặc đánh giá tốt.</li>"
+            "</ul>"
+        ),
+    },
+    {
+        "tieu_de": "So sánh chi phí thuê nhà giữa khu vực trung tâm và ngoại thành",
+        "slug": "so-sanh-chi-phi-thue-nha-trung-tam-va-ngoai-thanh",
+        "tom_tat": "Chênh lệch giá thuê giữa khu trung tâm và ngoại thành có thể lên tới 40–50%, nhưng cần cân nhắc thêm chi phí đi lại.",
+        "noi_dung_html": (
+            "<p>Một câu hỏi phổ biến của người đi thuê là nên chọn nhà ở trung tâm với giá cao, hay "
+            "chấp nhận ở xa hơn để tiết kiệm chi phí thuê. Bài viết này tổng hợp một số điểm cần cân "
+            "nhắc dựa trên dữ liệu tin đăng thực tế trên hệ thống.</p>"
+            "<h2>Chênh lệch giá theo khoảng cách tới trung tâm</h2>"
+            "<p>Nhìn chung, giá thuê ở các quận trung tâm cao hơn khu vực ngoại thành từ 40% đến 50% "
+            "với cùng diện tích và loại hình. Tuy nhiên khoảng cách xa hơn đồng nghĩa với chi phí xăng "
+            "xe, thời gian di chuyển và đôi khi cả chi phí gửi xe tăng thêm.</p>"
+            "<h2>Khi nào nên chọn ngoại thành</h2>"
+            "<p>Nếu công việc cho phép làm việc linh hoạt hoặc gần các khu công nghiệp ở ngoại thành, "
+            "việc thuê nhà xa trung tâm sẽ hợp lý hơn về tổng chi phí sinh hoạt. Ngược lại, nếu di "
+            "chuyển hàng ngày vào trung tâm là bắt buộc, phần tiết kiệm từ giá thuê có thể bị bù trừ "
+            "bởi chi phí và thời gian đi lại.</p>"
+        ),
+    },
+]
 
 # Tài khoản thành viên trong nhóm — dữ liệu demo để đăng nhập thử/test, không phải người dùng thật.
 MAT_KHAU_THANH_VIEN_MAC_DINH = "Member@123"
@@ -203,6 +284,24 @@ def seed_tien_ich(db: Session) -> list[TienIch]:
     return ket_qua
 
 
+def seed_bai_viet(db: Session, admin: NguoiDung) -> None:
+    for i, item in enumerate(BAI_VIET_MAU):
+        bai_viet = db.query(BaiViet).filter(BaiViet.slug == item["slug"]).first()
+        if bai_viet:
+            continue
+        bai_viet = BaiViet(
+            tieu_de=item["tieu_de"],
+            slug=item["slug"],
+            tom_tat=item["tom_tat"],
+            noi_dung_html=item["noi_dung_html"],
+            trang_thai=TrangThaiBaiViet.DA_DANG,
+            nguoi_tao_id=admin.id,
+            ngay_dang=datetime.now(timezone.utc) - timedelta(days=(len(BAI_VIET_MAU) - i) * 2),
+        )
+        db.add(bai_viet)
+        print(f"  + Tạo bài viết: {bai_viet.tieu_de}")
+
+
 def _doc_json(ten_file: str):
     with open(DATA_DIR / ten_file, encoding="utf-8") as f:
         return json.load(f)
@@ -219,7 +318,13 @@ def _xoa_du_lieu_cu(db: Session) -> None:
     db.query(BaoCao).delete()
     db.query(TinYeuThich).delete()
     db.query(HinhAnhTinDang).delete()
-    db.query(AnhThuVien).delete()
+    # Không xóa ảnh đang làm ảnh bìa bài viết (bai_viet.anh_bia_id) — bài viết không bị
+    # reset mỗi lần seed nên ảnh bìa của nó phải giữ nguyên, tránh lỗi khóa ngoại.
+    db.query(AnhThuVien).filter(
+        ~AnhThuVien.id.in_(
+            db.query(BaiViet.anh_bia_id).filter(BaiViet.anh_bia_id.isnot(None))
+        )
+    ).delete(synchronize_session=False)
     db.execute(tin_dang_tien_ich.delete())
     db.query(TinDang).delete()
     db.execute(phuong_xa_anh_xa.delete())
@@ -367,7 +472,7 @@ def seed_tin_dang(
         db.flush()
 
         for thu_tu in range(2):
-            url = f"https://picsum.photos/seed/tin-dang-{tin_dang.id}-{thu_tu}/800/600"
+            url = f"https://picsum.photos/id/{rng.choice(PICSUM_ID_NHA_O)}/800/600"
             anh_thu_vien = AnhThuVien(
                 nguoi_dung_id=nguoi_dang.id,
                 ten_doi_tuong=f"tin-dang-{tin_dang.id}-{thu_tu}.jpg",
@@ -414,6 +519,9 @@ def main() -> None:
 
         print("Seed tin đăng mẫu...")
         seed_tin_dang(db, admin, danh_sach_thanh_vien, danh_sach_loai, danh_sach_tien_ich, danh_sach_phuong)
+
+        print("Seed bài viết tin tức thị trường...")
+        seed_bai_viet(db, admin)
 
         db.commit()
         print("Hoàn tất seed dữ liệu.")

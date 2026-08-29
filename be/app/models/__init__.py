@@ -1,6 +1,7 @@
 """Domain models package."""
 
 from app.models.anh_thu_vien import AnhThuVien
+from app.models.bai_viet import BaiViet
 from app.models.bao_cao import BaoCao
 from app.models.dia_diem import PhuongXa, PhuongXaMoi, QuanHuyen, TinhThanh, phuong_xa_anh_xa
 from app.models.hinh_anh_tin_dang import HinhAnhTinDang
@@ -12,6 +13,7 @@ from app.models.tin_yeu_thich import TinYeuThich
 
 __all__ = [
     "AnhThuVien",
+    "BaiViet",
     "BaoCao",
     "HinhAnhTinDang",
     "LoaiBatDongSan",

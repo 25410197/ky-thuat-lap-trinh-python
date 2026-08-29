@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes.auth import router as auth_router
+from app.api.routes.bai_viet import router as bai_viet_router
+from app.api.routes.bai_viet_client import router as bai_viet_client_router
 from app.api.routes.danh_muc import router as danh_muc_router
 from app.api.routes.health import router as health_router
 from app.api.routes.nguoi_dung import router as nguoi_dung_router
@@ -35,6 +37,8 @@ def create_app() -> FastAPI:
     application.include_router(thong_ke_router, prefix="/api")
     application.include_router(bao_cao_router, prefix="/api/admin")
     application.include_router(bao_cao_client_router, prefix="/api")
+    application.include_router(bai_viet_router, prefix="/api/admin")
+    application.include_router(bai_viet_client_router, prefix="/api")
 
     return application
 

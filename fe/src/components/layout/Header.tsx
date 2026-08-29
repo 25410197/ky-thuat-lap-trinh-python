@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Group, Container, ActionIcon, Box, Text, Avatar, Menu, UnstyledButton } from "@mantine/core";
-import { IconHeart, IconSearch, IconChevronDown, IconList, IconLayoutDashboard, IconLogout, IconPhoto } from "@tabler/icons-react";
+import { IconHeart, IconSearch, IconChevronDown, IconList, IconLayoutDashboard, IconLogout, IconPhoto, IconSettings } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { ROUTES } from "@/constants/routes";
 import { ROLES } from "@/constants/roles";
@@ -12,8 +12,8 @@ import styles from "@/styles/interactions.module.css";
 
 const NAV_LINKS = [
   { label: "Bất động sản", href: ROUTES.danhSachNhaChoThue },
-  { label: "Thông tin thị trường", href: "/thong-tin-thi-truong" },
-  { label: "Trợ giúp", href: "/tro-giup" },
+  { label: "Thông tin thị trường", href: ROUTES.thongTinThiTruong },
+  { label: "Trợ giúp", href: ROUTES.troGiup },
 ];
 
 function layTenHienThi(hoTen: string): string {
@@ -101,6 +101,9 @@ export function Header() {
                   </Menu.Item>
                   <Menu.Item component={Link} href={ROUTES.yeuThich} leftSection={<IconHeart size={16} />}>
                     Tin yêu thích
+                  </Menu.Item>
+                  <Menu.Item component={Link} href={ROUTES.taiKhoan} leftSection={<IconSettings size={16} />}>
+                    Cài đặt tài khoản
                   </Menu.Item>
                   {user.role === ROLES.admin ? (
                     <Menu.Item
