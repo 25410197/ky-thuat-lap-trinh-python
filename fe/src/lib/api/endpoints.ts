@@ -4,6 +4,8 @@ export const endpoints = {
     login: "/auth/login",
     register: "/auth/register",
     me: "/auth/me",
+    updateProfile: "/auth/me",
+    changePassword: "/auth/doi-mat-khau",
   },
   rentalPosts: {
     list: "/rental-posts",
@@ -52,5 +54,12 @@ export const endpoints = {
     list: "/admin/bao-cao",
     detail: (id: number) => `/admin/bao-cao/${id}`,
     process: (id: number) => `/admin/bao-cao/${id}/xu-ly`,
+  },
+  tinTuc: {
+    list: "/tin-tuc",
+    detail: (slug: string) => `/tin-tuc/${slug}`,
+    adminList: "/admin/tin-tuc",
+    adminDetail: (id: number) => `/admin/tin-tuc/${id}`,
+    adminTrangThai: (id: number) => `/admin/tin-tuc/${id}/trang-thai`,
   },
 } as const;

@@ -12,6 +12,7 @@ interface AuthContextValue {
   login: (payload: LoginPayload) => Promise<AuthUser>;
   register: (payload: RegisterPayload) => Promise<AuthUser>;
   logout: () => void;
+  updateUser: (updated: AuthUser) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -48,8 +49,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
+  const updateUser = useCallback((updated: AuthUser) => setUser(updated), []);
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: Boolean(user), login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, isLoading, isAuthenticated: Boolean(user), login, register, logout, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

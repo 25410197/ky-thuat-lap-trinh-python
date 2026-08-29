@@ -5,6 +5,7 @@ const ROUTE_PREFIX_ROLES: Array<{ prefix: string; roles: Role[] }> = [
   { prefix: "/tin-dang-cua-toi", roles: [ROLES.user, ROLES.admin] },
   { prefix: "/dang-tin", roles: [ROLES.user, ROLES.admin] },
   { prefix: "/yeu-thich", roles: [ROLES.user, ROLES.admin] },
+  { prefix: "/tai-khoan", roles: [ROLES.user, ROLES.admin] },
 ];
 
 export function canAccessRoute(pathname: string, role: Role): boolean {

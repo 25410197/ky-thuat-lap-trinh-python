@@ -1,63 +1,72 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Box, Flex, Text, SimpleGrid } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { Box, Flex, Text, SimpleGrid, Skeleton } from "@mantine/core";
+import { IconSearch, IconBuildingSkyscraper, IconMapPin, IconCoin } from "@tabler/icons-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { PropertyCard } from "@/features/rental-posts/components/PropertyCard";
+import { rentalPostsApi } from "@/features/rental-posts/api/rental-posts.api";
+import { thongKeApi, type ThongKeTongQuan } from "@/features/reports/api/thong-ke.api";
 import { ROUTES } from "@/constants/routes";
+import { formatCurrencyVnd } from "@/lib/utils";
+import type { RentalPostSummary } from "@/types/rental-post";
 import styles from "@/styles/interactions.module.css";
 
-const FEATURED_POSTS = [
-  {
-    id: -1,
-    tieuDe: "Căn hộ Skyline Loft",
-    giaThue: 4250,
-    dienTich: 167,
-    loaiBatDongSan: "Căn hộ",
-    phuongXa: "Phường Bến Nghé",
-    quanHuyen: "Quận 1",
-    tinhThanh: "Thành phố Hồ Chí Minh",
-    anhDaiDien: null,
-    badge: "Nổi bật",
-  },
-  {
-    id: -2,
-    tieuDe: "Dinh thự Willow Creek",
-    giaThue: 8900,
-    dienTich: 390,
-    loaiBatDongSan: "Nhà nguyên căn",
-    phuongXa: "Phường Dịch Vọng",
-    quanHuyen: "Quận Cầu Giấy",
-    tinhThanh: "Hà Nội",
-    anhDaiDien: null,
-    badge: "Mới",
-  },
-  {
-    id: -3,
-    tieuDe: "Căn hộ Studio Urban Nest",
-    giaThue: 1800,
-    dienTich: 60,
-    loaiBatDongSan: "Phòng trọ",
-    phuongXa: "Phường Thanh Khê Tây",
-    quanHuyen: "Quận Thanh Khê",
-    tinhThanh: "Đà Nẵng",
-    anhDaiDien: null,
-  },
-  {
-    id: -4,
-    tieuDe: "Căn hộ Penthouse Beacon Harbor",
-    giaThue: 12000,
-    dienTich: 325,
-    loaiBatDongSan: "Căn hộ",
-    phuongXa: "Phường Bình Thọ",
-    quanHuyen: "Thành phố Thủ Đức",
-    tinhThanh: "Thành phố Hồ Chí Minh",
-    anhDaiDien: null,
-  },
-];
+const SO_TIN_NOI_BAT = 4;
+const SO_MS_7_NGAY = 7 * 24 * 60 * 60 * 1000;
+
+function laTinMoi(ngayDang: string): boolean {
+  return Date.now() - new Date(ngayDang).getTime() <= SO_MS_7_NGAY;
+}
 
 export function HomeView() {
+  const [tinDangs, setTinDangs] = useState<RentalPostSummary[]>([]);
+  const [dangTaiTin, setDangTaiTin] = useState(true);
+  const [tongQuan, setTongQuan] = useState<ThongKeTongQuan | null>(null);
+
+  useEffect(() => {
+    let daHuy = false;
+
+    rentalPostsApi
+      .list({ page: 1, pageSize: SO_TIN_NOI_BAT })
+      .then((ket_qua) => {
+        if (daHuy) return;
+        setTinDangs(ket_qua.items);
+      })
+      .catch(() => {
+        if (daHuy) return;
+        setTinDangs([]);
+      })
+      .finally(() => {
+        if (daHuy) return;
+        setDangTaiTin(false);
+      });
+
+    return () => {
+      daHuy = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let daHuy = false;
+
+    thongKeApi
+      .tongQuan()
+      .then((ket_qua) => {
+        if (!daHuy) setTongQuan(ket_qua);
+      })
+      .catch(() => {
+        if (!daHuy) setTongQuan(null);
+      });
+
+    return () => {
+      daHuy = true;
+    };
+  }, []);
+
+  const hienKhoiTinDang = dangTaiTin || tinDangs.length > 0;
+
   return (
     <>
       <Flex
@@ -119,32 +128,88 @@ export function HomeView() {
         </Flex>
       </Flex>
 
-      <Box px={32} py={80}>
-        <Flex align="flex-end" justify="space-between" mb={32} wrap="wrap" gap={16}>
-          <div>
-            <Text mb={8} size="sm" fw={700} tt="uppercase" style={{ letterSpacing: "0.08em" }} c="var(--color-gold)">
-              Lựa chọn dành cho bạn
-            </Text>
-            <Text
-              component="h2"
-              fz={30}
-              fw={700}
-              c="var(--color-brand)"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              Bất động sản nổi bật
-            </Text>
-          </div>
-          <Text component={Link} href={ROUTES.danhSachNhaChoThue} size="sm" fw={600} className={styles.goldLink}>
-            Xem tất cả →
-          </Text>
+      {tongQuan ? (
+        <Flex
+          wrap="wrap"
+          justify="center"
+          gap={{ base: 24, sm: 56 }}
+          px={32}
+          py={32}
+          bg="var(--color-surface)"
+          style={{ borderBottom: "1px solid var(--color-border)" }}
+        >
+          <Flex align="center" gap={12}>
+            <IconBuildingSkyscraper size={28} stroke={1.5} color="var(--color-gold)" />
+            <div>
+              <Text fz={22} fw={700} c="var(--color-brand)" style={{ fontFamily: "var(--font-heading)" }}>
+                {tongQuan.tongSoTinDaDuyet}
+              </Text>
+              <Text fz="sm" c="var(--color-text-muted)">
+                Tin đăng đang hoạt động
+              </Text>
+            </div>
+          </Flex>
+          <Flex align="center" gap={12}>
+            <IconMapPin size={28} stroke={1.5} color="var(--color-gold)" />
+            <div>
+              <Text fz={22} fw={700} c="var(--color-brand)" style={{ fontFamily: "var(--font-heading)" }}>
+                {tongQuan.theoTinhThanh.length}
+              </Text>
+              <Text fz="sm" c="var(--color-text-muted)">
+                Tỉnh/thành có tin đăng
+              </Text>
+            </div>
+          </Flex>
+          <Flex align="center" gap={12}>
+            <IconCoin size={28} stroke={1.5} color="var(--color-gold)" />
+            <div>
+              <Text fz={22} fw={700} c="var(--color-brand)" style={{ fontFamily: "var(--font-heading)" }}>
+                {formatCurrencyVnd(tongQuan.giaThueTrungBinh)}
+              </Text>
+              <Text fz="sm" c="var(--color-text-muted)">
+                Giá thuê trung bình / tháng
+              </Text>
+            </div>
+          </Flex>
         </Flex>
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing={24}>
-          {FEATURED_POSTS.map((post) => (
-            <PropertyCard key={post.id} post={post} badge={post.badge} />
-          ))}
-        </SimpleGrid>
-      </Box>
+      ) : null}
+
+      {hienKhoiTinDang ? (
+        <Box px={32} py={80}>
+          <Flex align="flex-end" justify="space-between" mb={32} wrap="wrap" gap={16}>
+            <div>
+              <Text mb={8} size="sm" fw={700} tt="uppercase" style={{ letterSpacing: "0.08em" }} c="var(--color-gold)">
+                Vừa cập nhật
+              </Text>
+              <Text
+                component="h2"
+                fz={30}
+                fw={700}
+                c="var(--color-brand)"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                Tin đăng mới nhất
+              </Text>
+            </div>
+            <Text component={Link} href={ROUTES.danhSachNhaChoThue} size="sm" fw={600} className={styles.goldLink}>
+              Xem tất cả →
+            </Text>
+          </Flex>
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing={24}>
+            {dangTaiTin
+              ? Array.from({ length: SO_TIN_NOI_BAT }).map((_, chiSo) => (
+                  <Skeleton key={chiSo} height={340} radius="var(--radius-card)" />
+                ))
+              : tinDangs.map((post) => (
+                  <PropertyCard
+                    key={post.id}
+                    post={post}
+                    badge={laTinMoi(post.ngayDang) ? "Mới" : undefined}
+                  />
+                ))}
+          </SimpleGrid>
+        </Box>
+      ) : null}
 
       <Flex
         direction={{ base: "column", sm: "row" }}

@@ -13,6 +13,7 @@ import {
   IconLogout,
   IconBuildingCommunity,
   IconFlag,
+  IconNews,
 } from "@tabler/icons-react";
 import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/hooks/useAuth";
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { label: "Quản lý người dùng", href: ROUTES.quanTriNguoiDung, icon: IconUsers },
   { label: "Loại bất động sản", href: ROUTES.quanTriLoaiBatDongSan, icon: IconBuildingCommunity },
   { label: "Báo cáo vi phạm", href: ROUTES.quanTriBaoCao, icon: IconFlag },
+  { label: "Tin tức thị trường", href: ROUTES.quanTriTinTuc, icon: IconNews },
   { label: "Thống kê thị trường", href: ROUTES.quanTriThongKe, icon: IconChartBar },
 ];
 
@@ -82,7 +84,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
           </div>
 
           <Stack gap={4} component="nav" pt={16} style={{ borderTop: "1px solid var(--color-border)" }}>
-            <Flex component={Link} href="/quan-tri/cai-dat" align="center" gap={12} className={styles.adminNavLink}>
+            <Flex component={Link} href={ROUTES.taiKhoan} align="center" gap={12} className={styles.adminNavLink}>
               <IconSettings size={20} stroke={1.75} />
               Cài đặt
             </Flex>
