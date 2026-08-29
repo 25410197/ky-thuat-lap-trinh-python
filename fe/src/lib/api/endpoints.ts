@@ -46,6 +46,7 @@ export const endpoints = {
   },
   thongKe: {
     tongQuan: "/thong-ke/tong-quan",
+    soSanhKhuVuc: "/thong-ke/so-sanh-khu-vuc",
   },
   baoCao: {
     list: "/admin/bao-cao",
