@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge, Box, Center, Group, Skeleton, Table, Text, Tooltip, Tabs } from "@mantine/core";
+import { Badge, Box, Button, Center, Group, Modal, Skeleton, Table, Tabs, Text, TextInput, Textarea, Tooltip } from "@mantine/core";
 import { ActionIcon } from "@mantine/core";
-import { IconEye } from "@tabler/icons-react";
+import { IconEye, IconLock } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { AppPagination } from "@/components/ui/AppPagination";
 import { baoCaoApi } from "@/lib/api/bao-cao";
@@ -33,6 +33,13 @@ export function AdminReportListView() {
   const [total, setTotal] = useState(0);
   const [statusTab, setStatusTab] = useState<string | null>("cho_xu_ly");
 
+  // State cho Modal khóa tin nhanh
+  const [selectedReport, setSelectedReport] = useState<BaoCaoTomTat | null>(null);
+  const [quickLockOpened, setQuickLockOpened] = useState(false);
+  const [lockReason, setLockReason] = useState("");
+  const [processNote, setProcessNote] = useState("");
+  const [submittingLock, setSubmittingLock] = useState(false);
+
   const load = () => {
     setLoading(true);
     baoCaoApi
@@ -55,6 +62,37 @@ export function AdminReportListView() {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, statusTab]);
+
+  const handleOpenQuickLock = (report: BaoCaoTomTat) => {
+    setSelectedReport(report);
+    setLockReason(`Vi phạm quy định tin đăng: ${report.lyDo}`);
+    setProcessNote("Đã xác minh báo cáo và khóa tin đăng nhanh.");
+    setQuickLockOpened(true);
+  };
+
+  const handleConfirmQuickLock = async () => {
+    if (!selectedReport) return;
+    if (!lockReason.trim()) {
+      notifications.show({ color: "red", message: "Vui lòng nhập lý do khóa tin." });
+      return;
+    }
+    setSubmittingLock(true);
+    try {
+      await baoCaoApi.process(selectedReport.id, {
+        action: "RESOLVED",
+        ghiChuXuLy: processNote.trim() || "Khóa tin đăng nhanh theo báo cáo vi phạm",
+        khoaTin: true,
+        lyDoKhoa: lockReason.trim(),
+      });
+      notifications.show({ color: "green", message: "Đã khóa tin đăng và duyệt báo cáo thành công!" });
+      setQuickLockOpened(false);
+      load();
+    } catch (e: any) {
+      notifications.show({ color: "red", message: e.message || "Có lỗi xảy ra khi khóa tin." });
+    } finally {
+      setSubmittingLock(false);
+    }
+  };
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
@@ -157,6 +195,19 @@ export function AdminReportListView() {
                         <IconEye size={18} stroke={1.75} />
                       </ActionIcon>
                     </Tooltip>
+
+                    {item.trangThai === "cho_xu_ly" && !item.tinDang.isBlocked && (
+                      <Tooltip label="Khóa tin nhanh">
+                        <ActionIcon
+                          variant="subtle"
+                          color="red"
+                          aria-label="Khóa tin nhanh"
+                          onClick={() => handleOpenQuickLock(item)}
+                        >
+                          <IconLock size={18} stroke={1.75} />
+                        </ActionIcon>
+                      </Tooltip>
+                    )}
                   </Group>
                 </Table.Td>
               </Table.Tr>
@@ -171,6 +222,52 @@ export function AdminReportListView() {
         </Text>
         {totalPages > 1 && <AppPagination total={totalPages} value={page} onChange={setPage} />}
       </Group>
+
+      {/* Modal khóa tin đăng nhanh */}
+      <Modal
+        opened={quickLockOpened}
+        onClose={() => !submittingLock && setQuickLockOpened(false)}
+        title={<Text fw={600} c="red">Khóa tin đăng nhanh & Duyệt báo cáo</Text>}
+      >
+        {selectedReport && (
+          <Box>
+            <Text size="sm" mb="xs">
+              <b>Tin đăng:</b> {selectedReport.tinDang.tieuDe} (ID: {selectedReport.tinDang.id})
+            </Text>
+            <Text size="sm" mb="md" c="dimmed">
+              <b>Lý do báo cáo:</b> {selectedReport.lyDo}
+            </Text>
+
+            <TextInput
+              label="Lý do khóa tin"
+              placeholder="Ví dụ: Tin đăng sai sự thật..."
+              required
+              mb="md"
+              value={lockReason}
+              onChange={(e) => setLockReason(e.currentTarget.value)}
+            />
+
+            <Textarea
+              label="Ghi chú xử lý"
+              placeholder="Ghi chú thêm về xử lý này..."
+              mb="xl"
+              minRows={2}
+              value={processNote}
+              onChange={(e) => setProcessNote(e.currentTarget.value)}
+            />
+
+            <Group justify="flex-end">
+              <Button variant="default" onClick={() => setQuickLockOpened(false)} disabled={submittingLock}>
+                Hủy
+              </Button>
+              <Button color="red" loading={submittingLock} onClick={handleConfirmQuickLock}>
+                Xác nhận khóa tin
+              </Button>
+            </Group>
+          </Box>
+        )}
+      </Modal>
     </Box>
   );
 }
+

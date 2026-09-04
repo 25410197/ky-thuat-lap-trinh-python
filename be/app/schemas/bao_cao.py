@@ -15,6 +15,9 @@ class TinDangNganGach(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     id: int
     tieu_de: Annotated[str, Field(alias="tieuDe")]
+    is_blocked: Annotated[bool, Field(default=False, alias="isBlocked")]
+    trang_thai: Annotated[str | None, Field(default=None, alias="trangThai")]
+
 
 
 class BaoCaoTomTat(BaseModel):

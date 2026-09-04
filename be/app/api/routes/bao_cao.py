@@ -56,6 +56,8 @@ def lay_danh_sach_bao_cao(
                 tinDang=TinDangNganGach(
                     id=item.tin_dang.id,
                     tieuDe=item.tin_dang.tieu_de,
+                    isBlocked=item.tin_dang.is_blocked,
+                    trangThai=item.tin_dang.trang_thai.value if item.tin_dang.trang_thai else None,
                 ),
             )
         )
@@ -100,6 +102,8 @@ def lay_chi_tiet_bao_cao(
         tinDang=TinDangNganGach(
             id=item.tin_dang.id,
             tieuDe=item.tin_dang.tieu_de,
+            isBlocked=item.tin_dang.is_blocked,
+            trangThai=item.tin_dang.trang_thai.value if item.tin_dang.trang_thai else None,
         ),
         nguoiXuLy=nguoi_xu_ly,
         ngayXuLy=item.ngay_xu_ly,

@@ -7,6 +7,8 @@ export interface NguoiDungTomTat {
 export interface TinDangNganGach {
   id: number;
   tieuDe: string;
+  isBlocked?: boolean;
+  trangThai?: string;
 }
 
 export interface BaoCaoTomTat {

@@ -8,6 +8,7 @@ import type { BaoCaoChiTiet } from "@/schemas/bao-cao";
 import { formatDateVi } from "@/lib/utils";
 import { IconCheck, IconX, IconBan } from "@tabler/icons-react";
 import Link from "next/link";
+import { ROUTES } from "@/constants/routes";
 
 const STATUS_COLOR: Record<string, string> = {
   cho_xu_ly: "orange",
@@ -45,11 +46,19 @@ export function AdminReportDetailView({ id }: { id: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const openActionModal = (type: "RESOLVED" | "REJECTED") => {
+  const openActionModal = (type: "RESOLVED" | "REJECTED", shouldBlockPost: boolean = false) => {
     setActionType(type);
-    setNote("");
-    setBlockPost(false);
-    setBlockReason("");
+    setBlockPost(shouldBlockPost);
+    if (type === "RESOLVED" && shouldBlockPost) {
+      setBlockReason(`Vi phạm quy định tin đăng: ${data?.lyDo || ""}`);
+      setNote("Đã xác minh báo cáo và khóa tin đăng.");
+    } else if (type === "RESOLVED" && !shouldBlockPost) {
+      setBlockReason("");
+      setNote("Đã xử lý báo cáo (không khóa tin đăng).");
+    } else {
+      setBlockReason("");
+      setNote("Báo cáo không đủ căn cứ hoặc không hợp lệ.");
+    }
     setModalOpened(true);
   };
 
@@ -64,9 +73,9 @@ export function AdminReportDetailView({ id }: { id: number }) {
     try {
       await baoCaoApi.process(id, {
         action: actionType,
-        ghiChuXuLy: note,
+        ghiChuXuLy: note.trim(),
         khoaTin: blockPost,
-        lyDoKhoa: blockReason || null,
+        lyDoKhoa: blockPost ? blockReason.trim() : null,
       });
       notifications.show({ color: "green", message: "Xử lý báo cáo thành công!" });
       setModalOpened(false);
@@ -104,18 +113,28 @@ export function AdminReportDetailView({ id }: { id: number }) {
         </Box>
         {data.trangThai === "cho_xu_ly" && (
           <Group>
+            {!data.tinDang.isBlocked && (
+              <Button
+                color="red"
+                leftSection={<IconBan size={18} />}
+                onClick={() => openActionModal("RESOLVED", true)}
+              >
+                Khóa tin & Duyệt báo cáo
+              </Button>
+            )}
             <Button
               color="green"
+              variant="light"
               leftSection={<IconCheck size={18} />}
-              onClick={() => openActionModal("RESOLVED")}
+              onClick={() => openActionModal("RESOLVED", false)}
             >
-              Đánh dấu Đã xử lý
+              Duyệt không khóa tin
             </Button>
             <Button
-              color="red"
-              variant="light"
+              color="gray"
+              variant="subtle"
               leftSection={<IconX size={18} />}
-              onClick={() => openActionModal("REJECTED")}
+              onClick={() => openActionModal("REJECTED", false)}
             >
               Từ chối báo cáo
             </Button>
@@ -136,9 +155,17 @@ export function AdminReportDetailView({ id }: { id: number }) {
             <Text fw={600} mb={8} c="dimmed">Tin đăng bị báo cáo</Text>
             <Text size="sm"><b>ID:</b> {data.tinDang.id}</Text>
             <Text size="sm"><b>Tiêu đề:</b> {data.tinDang.tieuDe}</Text>
+            <Group gap="xs" mt={4}>
+              <Text size="sm"><b>Trạng thái:</b></Text>
+              {data.tinDang.isBlocked ? (
+                <Badge color="red" variant="light" radius="sm">Đã bị khóa</Badge>
+              ) : (
+                <Badge color="green" variant="light" radius="sm">Đang hiển thị</Badge>
+              )}
+            </Group>
             <Button
               component={Link}
-              href={`/cho-thue/${data.tinDang.id}`}
+              href={ROUTES.chiTietTinDang(data.tinDang.id.toString())}
               target="_blank"
               variant="light"
               size="xs"
@@ -161,49 +188,79 @@ export function AdminReportDetailView({ id }: { id: number }) {
 
       <Modal
         opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        title={<Text fw={600}>{actionType === "RESOLVED" ? "Đánh dấu Đã xử lý báo cáo" : "Từ chối báo cáo"}</Text>}
+        onClose={() => !submitting && setModalOpened(false)}
+        title={
+          <Text fw={600} c={actionType === "RESOLVED" ? (blockPost ? "red" : "green") : "gray"}>
+            {actionType === "RESOLVED"
+              ? blockPost
+                ? "Khóa tin đăng & Duyệt báo cáo"
+                : "Duyệt báo cáo (Không khóa tin)"
+              : "Từ chối báo cáo"}
+          </Text>
+        }
       >
-        <Textarea
-          label="Ghi chú xử lý"
-          placeholder="Nhập ghi chú cho hành động này..."
-          value={note}
-          onChange={(e) => setNote(e.currentTarget.value)}
-          minRows={3}
-          data-autofocus
-        />
+        <Box>
+          <Text size="sm" mb="xs">
+            <b>Tin đăng:</b> {data.tinDang.tieuDe} (ID: {data.tinDang.id})
+          </Text>
+          <Text size="sm" mb="md" c="dimmed">
+            <b>Lý do báo cáo:</b> {data.lyDo}
+          </Text>
 
-        {actionType === "RESOLVED" && (
-          <Box mt={16}>
-            <Checkbox
-              label="Khóa tin đăng này ngay lập tức"
-              checked={blockPost}
-              onChange={(e) => setBlockPost(e.currentTarget.checked)}
-              color="red"
-            />
-            {blockPost && (
-              <TextInput
-                mt={8}
-                label="Lý do khóa tin"
-                placeholder="Ví dụ: Tin đăng sai sự thật..."
-                required
-                value={blockReason}
-                onChange={(e) => setBlockReason(e.currentTarget.value)}
+          {actionType === "RESOLVED" && (
+            <Box mb="md">
+              <Checkbox
+                label="Khóa tin đăng này ngay lập tức"
+                checked={blockPost}
+                onChange={(e) => {
+                  const checked = e.currentTarget.checked;
+                  setBlockPost(checked);
+                  if (checked && !blockReason) {
+                    setBlockReason(`Vi phạm quy định tin đăng: ${data.lyDo}`);
+                  }
+                }}
+                color="red"
               />
-            )}
-          </Box>
-        )}
+            </Box>
+          )}
 
-        <Group justify="flex-end" mt={24}>
-          <Button variant="default" onClick={() => setModalOpened(false)}>Hủy</Button>
-          <Button
-            color={actionType === "RESOLVED" ? "green" : "red"}
-            loading={submitting}
-            onClick={handleSubmit}
-          >
-            Xác nhận {actionType === "RESOLVED" ? "Đã xử lý" : "Từ chối"}
-          </Button>
-        </Group>
+          {blockPost && (
+            <TextInput
+              label="Lý do khóa tin"
+              placeholder="Ví dụ: Tin đăng sai sự thật..."
+              required
+              mb="md"
+              value={blockReason}
+              onChange={(e) => setBlockReason(e.currentTarget.value)}
+            />
+          )}
+
+          <Textarea
+            label="Ghi chú xử lý"
+            placeholder="Nhập ghi chú cho hành động này..."
+            value={note}
+            onChange={(e) => setNote(e.currentTarget.value)}
+            minRows={3}
+            mb="xl"
+          />
+
+          <Group justify="flex-end">
+            <Button variant="default" onClick={() => setModalOpened(false)} disabled={submitting}>
+              Hủy
+            </Button>
+            <Button
+              color={actionType === "RESOLVED" ? (blockPost ? "red" : "green") : "gray"}
+              loading={submitting}
+              onClick={handleSubmit}
+            >
+              {actionType === "RESOLVED"
+                ? blockPost
+                  ? "Xác nhận khóa tin"
+                  : "Xác nhận đã xử lý"
+                : "Xác nhận từ chối"}
+            </Button>
+          </Group>
+        </Box>
       </Modal>
     </Box>
   );

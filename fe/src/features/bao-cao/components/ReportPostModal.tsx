@@ -54,9 +54,14 @@ export function ReportPostModal({ opened, onClose, tinDangId, tieuDe }: ReportPo
       form.reset();
       onClose();
     } catch (error: any) {
+      const errorMessage =
+        error?.message ||
+        error?.response?.data?.detail ||
+        "Không thể gửi báo cáo. Vui lòng thử lại sau.";
+
       notifications.show({
-        title: "Lỗi",
-        message: error.response?.data?.detail || "Không thể gửi báo cáo. Vui lòng thử lại sau.",
+        title: "Báo cáo thất bại",
+        message: errorMessage,
         color: "red",
         icon: <IconX size={16} />,
       });
