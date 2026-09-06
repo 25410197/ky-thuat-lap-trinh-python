@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -28,36 +28,21 @@ def gui_bao_cao(
     if tin_dang.trang_thai != TrangThaiTinDang.DA_DUYET:
         raise HTTPException(status_code=400, detail="Không thể báo cáo tin đăng này do trạng thái không hợp lệ")
 
-    # Anti-spam logic
-    gioi_han_thoi_gian = datetime.now(timezone.utc) - timedelta(hours=24)
-    
+    # Anti-spam: chỉ chặn khi báo cáo trước của người này VẪN đang chờ xử lý.
+    # Báo cáo đã được admin xử lý xong (DA_XU_LY/TU_CHOI) thì cho báo cáo lại ngay, không giới hạn thời gian.
     bao_cao_gan_nhat = (
         db.query(BaoCao)
         .filter(BaoCao.tin_dang_id == tin_dang_id, BaoCao.nguoi_bao_cao_id == nguoi_dung.id)
         .order_by(BaoCao.ngay_bao_cao.desc())
         .first()
     )
-    
-    if bao_cao_gan_nhat:
-        if bao_cao_gan_nhat.trang_thai == TrangThaiBaoCao.CHO_XU_LY:
-            raise HTTPException(
-                status_code=400, 
-                detail="Bạn đã gửi báo cáo cho tin đăng này và đang chờ quản trị viên xử lý."
-            )
-        
-        # Datetime comparison needs careful handling of timezone-aware datetimes.
-        # SQLAlchemy may return naive datetimes if using SQLite or certain configs.
-        # Ensure we compare properly.
-        ngay_bao_cao_dt = bao_cao_gan_nhat.ngay_bao_cao
-        if ngay_bao_cao_dt.tzinfo is None:
-            ngay_bao_cao_dt = ngay_bao_cao_dt.replace(tzinfo=timezone.utc)
-            
-        if ngay_bao_cao_dt > gioi_han_thoi_gian:
-            raise HTTPException(
-                status_code=400, 
-                detail="Bạn đã báo cáo tin đăng này gần đây. Vui lòng thử lại sau 24 giờ."
-            )
-            
+
+    if bao_cao_gan_nhat and bao_cao_gan_nhat.trang_thai == TrangThaiBaoCao.CHO_XU_LY:
+        raise HTTPException(
+            status_code=400,
+            detail="Bạn đã gửi báo cáo cho tin đăng này và đang chờ quản trị viên xử lý."
+        )
+
     bao_cao_moi = BaoCao(
         tin_dang_id=tin_dang_id,
         nguoi_bao_cao_id=nguoi_dung.id,

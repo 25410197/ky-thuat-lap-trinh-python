@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Stack, Text, Alert, Anchor } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { zodResolver } from "mantine-form-zod-resolver";
+import { zod4Resolver } from "mantine-form-zod-resolver";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppButton } from "@/components/ui/AppButton";
 import { useAuth } from "@/hooks/useAuth";
@@ -21,7 +21,7 @@ export function RegisterForm() {
 
   const form = useForm<RegisterInput>({
     initialValues: { fullName: "", email: "", password: "", confirmPassword: "" },
-    validate: zodResolver(registerSchema),
+    validate: zod4Resolver(registerSchema),
   });
 
   const handleSubmit = form.onSubmit(async (values) => {

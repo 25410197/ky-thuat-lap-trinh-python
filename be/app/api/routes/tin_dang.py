@@ -44,6 +44,8 @@ _TRANG_THAI_SANG_STATUS_EN = {
 def _trang_thai_sang_status_en(tin: TinDang) -> str:
     if tin.is_deleted:
         return "deleted"
+    if tin.is_blocked:
+        return "blocked"
     return _TRANG_THAI_SANG_STATUS_EN.get(tin.trang_thai, "pending")
 
 
@@ -215,7 +217,8 @@ def danh_sach_tin_dang_cua_toi(
     db: Session = Depends(get_db),
     nguoi_dung: NguoiDung = Depends(get_current_user)
 ) -> list[TinDangCuaToiResponse]:
-    # Lấy tất cả tin do người dùng này đăng
+    # Lấy tất cả tin do người dùng này đăng — trừ tin đã xóa mềm (chỉ giữ trong DB cho thống kê,
+    # không hiện lại ở đây).
     rows = (
         db.query(TinDang)
         .options(
@@ -224,7 +227,7 @@ def danh_sach_tin_dang_cua_toi(
             .joinedload(QuanHuyen.tinh_thanh),
             joinedload(TinDang.hinh_anh).joinedload(HinhAnhTinDang.anh_thu_vien),
         )
-        .filter(TinDang.nguoi_dang_id == nguoi_dung.id)
+        .filter(TinDang.nguoi_dang_id == nguoi_dung.id, TinDang.is_deleted == False)
         .order_by(TinDang.ngay_dang.desc())
         .all()
     )
@@ -683,13 +686,14 @@ def chi_tiet_tin_dang(
     if tin is None or tin.is_deleted:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng")
 
-    if tin.is_blocked:
-        la_chu_tin = nguoi_dung is not None and tin.nguoi_dang_id == nguoi_dung.id
-        la_admin = nguoi_dung is not None and getattr(nguoi_dung, "vai_tro", None) == "QUAN_TRI"
-        
+    # Tin bị khóa hoặc chưa/không còn công khai (chờ duyệt, bị từ chối, đã ẩn) chỉ chủ tin/admin xem được —
+    # tránh lộ nội dung cho thành viên khác hoặc khách vãng lai truy cập thẳng bằng ID.
+    if tin.is_blocked or tin.trang_thai != TrangThaiTinDang.DA_DUYET:
         from app.models.enums import VaiTroNguoiDung
+
+        la_chu_tin = nguoi_dung is not None and tin.nguoi_dang_id == nguoi_dung.id
         la_admin = nguoi_dung is not None and nguoi_dung.vai_tro == VaiTroNguoiDung.QUAN_TRI
-        
+
         if not (la_chu_tin or la_admin):
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng")
 

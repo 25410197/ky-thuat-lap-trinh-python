@@ -36,11 +36,7 @@ export function MyListingsTable() {
     rentalPostsApi
       .xoa(deletingPost.id)
       .then(() => {
-        setPosts((prev) =>
-          prev.map((post) =>
-            post.id === deletingPost.id ? { ...post, status: "deleted" } : post
-          )
-        );
+        setPosts((prev) => prev.filter((post) => post.id !== deletingPost.id));
         notifications.show({
           color: "green",
           title: "Đã xoá tin đăng",
@@ -106,31 +102,25 @@ export function MyListingsTable() {
               </Table.Td>
               <Table.Td>{formatDateVi(post.createdAt)}</Table.Td>
               <Table.Td>
-                {post.status === "deleted" ? (
-                  <Text ta="right" size="sm" c="dimmed">
-                    —
-                  </Text>
-                ) : (
-                  <Group gap={8} justify="flex-end">
-                    <ActionIcon
-                      component={Link}
-                      href={ROUTES.suaTinDang(post.id)}
-                      variant="subtle"
-                      color="brand"
-                      aria-label="Sửa tin đăng"
-                    >
-                      <IconPencil size={18} stroke={1.75} />
-                    </ActionIcon>
-                    <ActionIcon
-                      variant="subtle"
-                      color="red"
-                      aria-label="Xoá tin đăng"
-                      onClick={() => setDeletingId(post.id)}
-                    >
-                      <IconTrash size={18} stroke={1.75} />
-                    </ActionIcon>
-                  </Group>
-                )}
+                <Group gap={8} justify="flex-end">
+                  <ActionIcon
+                    component={Link}
+                    href={ROUTES.suaTinDang(post.id)}
+                    variant="subtle"
+                    color="brand"
+                    aria-label="Sửa tin đăng"
+                  >
+                    <IconPencil size={18} stroke={1.75} />
+                  </ActionIcon>
+                  <ActionIcon
+                    variant="subtle"
+                    color="red"
+                    aria-label="Xoá tin đăng"
+                    onClick={() => setDeletingId(post.id)}
+                  >
+                    <IconTrash size={18} stroke={1.75} />
+                  </ActionIcon>
+                </Group>
               </Table.Td>
             </Table.Tr>
           ))}

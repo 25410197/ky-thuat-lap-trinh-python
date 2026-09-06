@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Paper, Stack, Text, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { zodResolver } from "mantine-form-zod-resolver";
+import { zod4Resolver } from "mantine-form-zod-resolver";
 import { notifications } from "@mantine/notifications";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppButton } from "@/components/ui/AppButton";
@@ -22,7 +22,7 @@ export function ChangePasswordForm() {
 
   const form = useForm<ChangePasswordInput>({
     initialValues: INITIAL_VALUES,
-    validate: zodResolver(changePasswordSchema),
+    validate: zod4Resolver(changePasswordSchema),
   });
 
   const handleSubmit = form.onSubmit(async (values) => {

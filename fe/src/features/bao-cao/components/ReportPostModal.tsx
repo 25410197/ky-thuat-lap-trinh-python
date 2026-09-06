@@ -5,6 +5,7 @@ import { Modal, Select, Textarea, Button, Group, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { baoCaoApi } from "@/lib/api/bao-cao";
+import { ApiError } from "@/lib/api/api-error";
 import { IconAlertTriangle, IconCheck, IconX } from "@tabler/icons-react";
 
 interface ReportPostModalProps {
@@ -53,10 +54,10 @@ export function ReportPostModal({ opened, onClose, tinDangId, tieuDe }: ReportPo
       
       form.reset();
       onClose();
-    } catch (error: any) {
+    } catch (error) {
       notifications.show({
         title: "Lỗi",
-        message: error.response?.data?.detail || "Không thể gửi báo cáo. Vui lòng thử lại sau.",
+        message: error instanceof ApiError ? error.message : "Không thể gửi báo cáo. Vui lòng thử lại sau.",
         color: "red",
         icon: <IconX size={16} />,
       });

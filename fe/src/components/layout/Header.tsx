@@ -65,7 +65,13 @@ export function Header() {
           </Group>
 
           <Group gap={16}>
-            <ActionIcon variant="subtle" color="brand" aria-label="Tìm kiếm">
+            <ActionIcon
+              component={Link}
+              href={ROUTES.danhSachNhaChoThue}
+              variant="subtle"
+              color="brand"
+              aria-label="Tìm kiếm"
+            >
               <IconSearch size={20} />
             </ActionIcon>
             <Box component={Link} href={ROUTES.yeuThich} aria-label="Yêu thích" className={styles.mutedLink}>

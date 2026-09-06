@@ -45,7 +45,7 @@ export const rentalPostsApi = {
       skipAuth: true,
     }),
   detail: (id: string) =>
-    apiClient.get<RentalPostDetail>(endpoints.rentalPosts.detail(id), { skipAuth: true }),
+    apiClient.get<RentalPostDetail>(endpoints.rentalPosts.detail(id)),
   mine: () => {
     return apiClient.get<RentalPost[]>(endpoints.rentalPosts.mine);
   },

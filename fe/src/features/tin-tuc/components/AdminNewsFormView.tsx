@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Center, Group, Loader, Stack, Text, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { zodResolver } from "mantine-form-zod-resolver";
+import { zod4Resolver } from "mantine-form-zod-resolver";
 import { notifications } from "@mantine/notifications";
 import { IconPhoto, IconX } from "@tabler/icons-react";
 import { AppInput } from "@/components/ui/AppInput";
@@ -43,7 +43,7 @@ export function AdminNewsFormView({ id }: { id?: number }) {
 
   const form = useForm<NewsFormInput>({
     initialValues: { title: "", slug: "", excerpt: "", contentHtml: "" },
-    validate: zodResolver(newsFormSchema),
+    validate: zod4Resolver(newsFormSchema),
   });
 
   useEffect(() => {

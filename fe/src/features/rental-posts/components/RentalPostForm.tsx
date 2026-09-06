@@ -131,6 +131,7 @@ export function RentalPostForm({ postId }: { postId?: string }) {
       .then((tinCu) => {
         const { status: _status, ...values } = tinCu as RentalPostInput & { status?: string };
         form.setValues(values);
+        form.setInitialValues(values);
       })
       .catch(() => {
         notifications.show({ color: "red", message: "Không tải được dữ liệu tin đăng để chỉnh sửa!" });
