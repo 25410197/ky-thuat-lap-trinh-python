@@ -44,6 +44,7 @@ class TinDangCuaToiResponse(BaseModel):
     status: str
     ownerId: str
     createdAt: str
+    blockReason: str | None
 
 class DangTinRequest(BaseModel):
     title: str

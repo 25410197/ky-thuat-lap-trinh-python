@@ -14,6 +14,7 @@ export interface RentalPost {
   status: RentalPostStatus;
   ownerId: string;
   createdAt: string;
+  blockReason?: string | null;
 }
 
 export interface RentalPostFilters {

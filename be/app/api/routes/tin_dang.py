@@ -255,7 +255,8 @@ def danh_sach_tin_dang_cua_toi(
             coverImageUrl=anh_dai_dien,
             status=status_en,
             ownerId=str(tin.nguoi_dang_id),
-            createdAt=tin.ngay_dang.isoformat()
+            createdAt=tin.ngay_dang.isoformat(),
+            blockReason=tin.ly_do_khoa
         ))
         
     return ket_qua
@@ -651,6 +652,36 @@ def tu_choi_tin_dang(
     tin.ly_do_khoa = ly_do
     db.commit()
     return {"message": "Từ chối tin đăng thành công!"}
+
+@router.post("/gui-duyet-lai/{tin_dang_id}", status_code=200)
+def gui_duyet_lai_tin_dang(
+    tin_dang_id: int,
+    db: Session = Depends(get_db),
+    nguoi_dung: NguoiDung = Depends(get_current_user),
+):
+    tin = db.get(TinDang, tin_dang_id)
+    if tin is None or tin.is_deleted:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Không tìm thấy tin đăng.")
+    
+    _kiem_tra_chu_tin(tin, nguoi_dung)
+
+    if tin.is_blocked:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Tin đăng đang bị khóa bởi quản trị viên, không thể gửi duyệt lại.",
+        )
+
+    if tin.trang_thai != TrangThaiTinDang.TU_CHOI:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Chỉ có thể gửi duyệt lại tin đăng ở trạng thái bị từ chối.",
+        )
+
+    tin.trang_thai = TrangThaiTinDang.CHO_DUYET
+    tin.ly_do_khoa = None
+    tin.ngay_dang = datetime.now(timezone.utc)
+    db.commit()
+    return {"message": "Gửi duyệt lại tin đăng thành công!"}
 
 @router.post("/khoa-tin-dang/{tin_dang_id}", status_code=200)
 def khoa_tin_dang(
