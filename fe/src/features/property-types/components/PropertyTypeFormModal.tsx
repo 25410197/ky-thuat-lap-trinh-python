@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { zodResolver } from "mantine-form-zod-resolver";
+import { zod4Resolver } from "mantine-form-zod-resolver";
 import { notifications } from "@mantine/notifications";
 import { AppModal } from "@/components/ui/AppModal";
 import { AppInput } from "@/components/ui/AppInput";
@@ -26,7 +26,7 @@ export function PropertyTypeFormModal({ opened, editing, onClose, onSaved }: Pro
 
   const form = useForm<PropertyTypeInput>({
     initialValues: { name: "" },
-    validate: zodResolver(propertyTypeSchema),
+    validate: zod4Resolver(propertyTypeSchema),
   });
 
   useEffect(() => {

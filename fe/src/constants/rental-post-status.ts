@@ -4,6 +4,7 @@ export const RENTAL_POST_STATUS = {
   published: "published",
   rejected: "rejected",
   archived: "archived",
+  blocked: "blocked",
   deleted: "deleted",
 } as const;
 
@@ -15,6 +16,7 @@ export const RENTAL_POST_STATUS_LABEL_VI: Record<RentalPostStatus, string> = {
   published: "Đã đăng",
   rejected: "Bị từ chối",
   archived: "Đã ẩn",
+  blocked: "Bị khóa",
   deleted: "Đã xoá",
 };
 
@@ -24,5 +26,6 @@ export const RENTAL_POST_STATUS_COLOR: Record<RentalPostStatus, string> = {
   published: "green",
   rejected: "red",
   archived: "dark",
+  blocked: "red",
   deleted: "gray",
 };
