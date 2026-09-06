@@ -5,9 +5,11 @@ import { AppInput } from "@/components/ui/AppInput";
 import { AppSelect } from "@/components/ui/AppSelect";
 import styles from "@/styles/interactions.module.css";
 import {
+  Alert,
   Box,
   Checkbox,
   Grid,
+  Group,
   NumberInput,
   Radio,
   SimpleGrid,
@@ -18,12 +20,13 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import { IconPhoto, IconTrash } from "@tabler/icons-react";
+import { IconAlertCircle, IconPhoto, IconTrash } from "@tabler/icons-react";
 import { Image } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { rentalPostsApi } from "../api/rental-posts.api";
 import { danhMucApi } from "../api/danh-muc.api";
+import { imageLibraryApi } from "@/features/image-library/api/image-library.api";
 import type { LoaiBatDongSan, PhuongXaMoi, TinhThanh } from "@/types/danh-muc";
 import { ImageLibraryPickerModal } from "@/features/image-library/components/ImageLibraryPickerModal";
 import {
@@ -69,6 +72,9 @@ export function RentalPostForm({ postId }: { postId?: string }) {
   const isEditMode = Boolean(postId);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingTinCu, setIsLoadingTinCu] = useState(isEditMode);
+  const [isCanceling, setIsCanceling] = useState(false);
+  const [hasPendingEdit, setHasPendingEdit] = useState(false);
+  const [isFillingSample, setIsFillingSample] = useState(false);
   const router = useRouter();
   const form = useForm<RentalPostInput>({
     initialValues: {
@@ -129,9 +135,10 @@ export function RentalPostForm({ postId }: { postId?: string }) {
     rentalPostsApi
       .getForEdit(postId)
       .then((tinCu) => {
-        const { status: _status, ...values } = tinCu as RentalPostInput & { status?: string };
+        const { status: _status, hasPendingEdit: coBanChoDuyet, ...values } = tinCu;
         form.setValues(values);
         form.setInitialValues(values);
+        setHasPendingEdit(coBanChoDuyet);
       })
       .catch(() => {
         notifications.show({ color: "red", message: "Không tải được dữ liệu tin đăng để chỉnh sửa!" });
@@ -169,15 +176,93 @@ export function RentalPostForm({ postId }: { postId?: string }) {
     );
   };
 
+  const handleFillSampleData = async () => {
+    if (danhSachTinh.length === 0 || danhSachLoaiBds.length === 0) {
+      notifications.show({ color: "orange", message: "Đang tải danh mục, vui lòng thử lại sau vài giây." });
+      return;
+    }
+    setIsFillingSample(true);
+    try {
+      const tinh = danhSachTinh[Math.floor(Math.random() * danhSachTinh.length)];
+      const loai = danhSachLoaiBds[Math.floor(Math.random() * danhSachLoaiBds.length)];
+      const xaPhuongList = await danhMucApi.xaPhuongMoi(tinh.id);
+      const xaPhuong = xaPhuongList[0];
+
+      let coverImage: RentalPostInput["coverImage"] = null;
+      let galleryImages: RentalPostInput["galleryImages"] = [];
+      try {
+        const anhList = await imageLibraryApi.list({ page: 1, pageSize: 6 });
+        if (anhList.items.length > 0) {
+          coverImage = { id: anhList.items[0].id, url: anhList.items[0].url };
+          galleryImages = anhList.items.slice(1, 4).map((anh) => ({ id: anh.id, url: anh.url }));
+        }
+      } catch {
+        // Thư viện ảnh chưa tải được — bỏ qua, để trống cho user tự chọn.
+      }
+
+      form.setValues({
+        title: "Căn hộ cao cấp đầy đủ nội thất, view đẹp, gần trung tâm",
+        propertyType: loai.ten,
+        areaM2: 45,
+        priceVnd: 8000000,
+        provinceId: String(tinh.id),
+        wardId: xaPhuong ? String(xaPhuong.id) : "",
+        address: "123 Đường Nguyễn Văn Trỗi",
+        description:
+          "Căn hộ mới sửa chữa, đầy đủ nội thất cơ bản, an ninh 24/7, gần chợ và trường học, thuận tiện di chuyển vào trung tâm thành phố.",
+        coverImage,
+        galleryImages,
+        amenities: ["WiFi Miễn phí", "Chỗ đậu xe"],
+        contactName: "Nguyễn Văn A",
+        contactPhone: "0901234567",
+        contactMethod: "call",
+        bedrooms: 2,
+        bathrooms: 1,
+      });
+
+      notifications.show({
+        color: coverImage ? "teal" : "orange",
+        message: coverImage
+          ? "Đã điền dữ liệu mẫu."
+          : "Đã điền dữ liệu mẫu — thư viện ảnh của bạn đang trống, vui lòng tự chọn ảnh chính.",
+      });
+    } catch {
+      notifications.show({ color: "red", message: "Không điền được dữ liệu mẫu, vui lòng thử lại." });
+    } finally {
+      setIsFillingSample(false);
+    }
+  };
+
+  const handleCancelPendingEdit = () => {
+    if (!postId) return;
+    setIsCanceling(true);
+    rentalPostsApi
+      .huyBanChoDuyet(postId)
+      .then(() => {
+        notifications.show({
+          color: "green",
+          title: "Đã hủy bản chỉnh sửa",
+          message: "Tin đăng công khai vẫn giữ nguyên nội dung hiện tại.",
+        });
+        router.push("/tin-dang-cua-toi");
+      })
+      .catch(() => {
+        notifications.show({ color: "red", message: "Hủy bản chỉnh sửa thất bại, vui lòng thử lại." });
+      })
+      .finally(() => {
+        setIsCanceling(false);
+      });
+  };
+
   const handleSubmit = form.onSubmit((values) => {
     setIsLoading(true);
     const luuTin = isEditMode && postId ? rentalPostsApi.update(postId, values) : rentalPostsApi.create(values);
     luuTin
-      .then(() => {
+      .then((ketQua) => {
         notifications.show({
           color: "green",
-          title: isEditMode ? "Cập nhật tin đăng thành công!" : "Đăng tin thành công!",
-          message: "Tin của bạn đang chờ quản trị viên duyệt.",
+          title: isEditMode ? "Đã lưu chỉnh sửa" : "Đăng tin thành công!",
+          message: isEditMode ? ketQua.message : "Tin của bạn đang chờ quản trị viên duyệt.",
         });
         router.push("/tin-dang-cua-toi");
       })
@@ -201,6 +286,25 @@ export function RentalPostForm({ postId }: { postId?: string }) {
       <Grid gap={{ base: 32, lg: 24 }}>
         <Grid.Col span={{ base: 12, lg: 8 }}>
           <Stack gap={40}>
+            {isEditMode && hasPendingEdit ? (
+              <Alert color="orange" icon={<IconAlertCircle size={18} />} title="Đang có bản chỉnh sửa chờ duyệt">
+                Bạn đang xem/sửa tiếp bản chỉnh sửa chưa được duyệt. Tin đăng công khai (người khác
+                đang thấy) vẫn giữ nguyên nội dung cũ cho đến khi quản trị viên duyệt bản sửa này.
+              </Alert>
+            ) : null}
+            {!isEditMode ? (
+              <Group justify="flex-end">
+                <AppButton
+                  type="button"
+                  variant="outline"
+                  size="xs"
+                  loading={isFillingSample}
+                  onClick={handleFillSampleData}
+                >
+                  Điền dữ liệu mẫu
+                </AppButton>
+              </Group>
+            ) : null}
             <FormSection title="Thông tin cơ bản">
               <Grid gap={16}>
                 <Grid.Col span={12}>
@@ -555,6 +659,18 @@ export function RentalPostForm({ postId }: { postId?: string }) {
               >
                 Hủy bỏ
               </AppButton>
+              {isEditMode && hasPendingEdit ? (
+                <AppButton
+                  variant="outline"
+                  color="red"
+                  size="md"
+                  fullWidth
+                  loading={isCanceling}
+                  onClick={handleCancelPendingEdit}
+                >
+                  Hủy bản chỉnh sửa đang chờ duyệt
+                </AppButton>
+              ) : null}
             </Stack>
           </Stack>
         </Grid.Col>

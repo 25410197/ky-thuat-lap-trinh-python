@@ -9,6 +9,7 @@ from app.models.loai_bat_dong_san import LoaiBatDongSan
 from app.models.nguoi_dung import NguoiDung
 from app.models.tien_ich import TienIch, tin_dang_tien_ich
 from app.models.tin_dang import TinDang
+from app.models.tin_dang_ban_cho import TinDangBanCho
 from app.models.tin_yeu_thich import TinYeuThich
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "QuanHuyen",
     "TienIch",
     "TinDang",
+    "TinDangBanCho",
     "TinYeuThich",
     "TinhThanh",
     "phuong_xa_anh_xa",

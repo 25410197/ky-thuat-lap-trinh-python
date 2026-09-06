@@ -11,6 +11,7 @@ export interface TinChoDuyet {
   ngayDang: string;
   loaiBatDongSan: string;
   trangThai: string;
+  laChinhSua: boolean;
 }
 
 export interface DanhSachChoDuyetResponse {
@@ -59,7 +60,9 @@ export const rentalPostsApi = {
     });
   },
   getForEdit: (id: string) =>
-    apiClient.get<RentalPostInput & { status: string }>(endpoints.rentalPosts.edit(id)),
+    apiClient.get<RentalPostInput & { status: string; hasPendingEdit: boolean }>(
+      endpoints.rentalPosts.edit(id)
+    ),
   update: (id: string, data: RentalPostInput) => {
     const { provinceId: _provinceId, wardId, coverImage, galleryImages, ...rest } = data;
     return apiClient.put<{ message: string; id: number }>(endpoints.rentalPosts.update(id), {
@@ -90,6 +93,8 @@ export const rentalPostsApi = {
   },
   moKhoaTin: (id: number) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.moKhoaTin(id), {}),
+  huyBanChoDuyet: (id: string | number) =>
+    apiClient.post<{ message: string }>(endpoints.rentalPosts.huyBanChoDuyet(id), {}),
   khoaTinDang: (id: number, lyDo: string) =>
     apiClient.post<{ message: string }>(endpoints.rentalPosts.khoaTinDang(id), { ly_do: lyDo }),
   guiDuyetLai: (id: string | number) =>

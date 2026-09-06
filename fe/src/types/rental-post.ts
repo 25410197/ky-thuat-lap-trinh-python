@@ -15,6 +15,7 @@ export interface RentalPost {
   ownerId: string;
   createdAt: string;
   blockReason?: string | null;
+  hasPendingEdit: boolean;
 }
 
 export interface RentalPostFilters {
@@ -71,6 +72,7 @@ export interface RentalPostDetail {
   ngayDang: string;
   isBlocked: boolean;
   nguoiDangId: number;
+  laChinhSua: boolean;
 }
 
 export interface RentalPostListFilters {

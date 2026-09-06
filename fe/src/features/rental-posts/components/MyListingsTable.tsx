@@ -5,7 +5,7 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { ROUTES } from "@/constants/routes";
 import { formatCurrencyVnd, formatDateVi } from "@/lib/utils";
 import type { RentalPost } from "@/types/rental-post";
-import { ActionIcon, Anchor, Group, Table, Text, Tooltip } from "@mantine/core";
+import { ActionIcon, Anchor, Badge, Group, Table, Text, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconPencil, IconRotateClockwise, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
@@ -133,7 +133,14 @@ export function MyListingsTable() {
               </Table.Td>
               <Table.Td>{formatCurrencyVnd(post.priceVnd)}</Table.Td>
               <Table.Td>
-                <RentalPostStatusBadge status={post.status} />
+                <Group gap={6}>
+                  <RentalPostStatusBadge status={post.status} />
+                  {post.hasPendingEdit ? (
+                    <Badge color="orange" variant="light" radius="sm">
+                      Đang chờ duyệt bản sửa
+                    </Badge>
+                  ) : null}
+                </Group>
                 {(post.status === "rejected" || post.status === "blocked") && post.blockReason && (
                   <Text
                     size="xs"

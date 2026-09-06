@@ -45,6 +45,7 @@ class TinDangCuaToiResponse(BaseModel):
     ownerId: str
     createdAt: str
     blockReason: str | None
+    hasPendingEdit: bool = False
 
 class DangTinRequest(BaseModel):
     title: str
@@ -92,6 +93,7 @@ class TinDangSuaResponse(BaseModel):
     bedrooms: int
     bathrooms: int
     status: str
+    hasPendingEdit: bool = False
 
 
 class TinDangChiTiet(BaseModel):
@@ -116,6 +118,7 @@ class TinDangChiTiet(BaseModel):
     ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
     is_blocked: Annotated[bool, Field(default=False, alias="isBlocked")]
     nguoi_dang_id: Annotated[int, Field(alias="nguoiDangId")]
+    la_chinh_sua: Annotated[bool, Field(alias="laChinhSua")] = False
 
 class TinChoDuyetTomTat(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
@@ -126,6 +129,7 @@ class TinChoDuyetTomTat(BaseModel):
     ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
     loai_bat_dong_san: Annotated[str, Field(alias="loaiBatDongSan")]
     trang_thai: Annotated[str, Field(alias="trangThai")]
+    la_chinh_sua: Annotated[bool, Field(alias="laChinhSua")] = False
 
 class DanhSachTinChoDuyet(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
