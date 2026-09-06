@@ -161,7 +161,7 @@ export function AdminReportDetailView({ id }: { id: number }) {
             <Text size="sm"><b>Tiêu đề:</b> {data.tinDang.tieuDe}</Text>
             <Button
               component={Link}
-              href={`/cho-thue/${data.tinDang.id}`}
+              href={`/chi-tiet-tin-dang/${data.tinDang.id}`}
               target="_blank"
               variant="light"
               size="xs"
