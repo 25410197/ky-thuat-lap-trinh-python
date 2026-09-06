@@ -433,6 +433,7 @@ export function AdminApprovalQueueTable() {
               <Table.Th>Chủ sở hữu</Table.Th>
               <Table.Th>Ngày gửi</Table.Th>
               <Table.Th>Loại</Table.Th>
+              <Table.Th>Yêu cầu</Table.Th>
               <Table.Th>Trạng thái</Table.Th>
               <Table.Th ta="center">Hành động</Table.Th>
             </Table.Tr>
@@ -445,13 +446,14 @@ export function AdminApprovalQueueTable() {
                   <Table.Td><Skeleton h={16} w={120} radius="sm" /></Table.Td>
                   <Table.Td><Skeleton h={16} w={100} radius="sm" /></Table.Td>
                   <Table.Td><Skeleton h={22} w={80} radius="sm" /></Table.Td>
+                  <Table.Td><Skeleton h={22} w={80} radius="sm" /></Table.Td>
                   <Table.Td><Skeleton h={22} w={90} radius="sm" /></Table.Td>
                   <Table.Td><Skeleton h={28} w={90} radius="sm" ml="auto" /></Table.Td>
                 </Table.Tr>
               ))
             ) : items.length === 0 ? (
               <Table.Tr>
-                <Table.Td colSpan={6}>
+                <Table.Td colSpan={7}>
                   <Center py={32}>
                     <Text c="dimmed">Không có tin đăng nào đang chờ duyệt.</Text>
                   </Center>
@@ -481,6 +483,11 @@ export function AdminApprovalQueueTable() {
                   <Table.Td>{formatDate(item.ngayDang)}</Table.Td>
                   <Table.Td>
                     <Badge variant="light" color="gray" radius="sm">{item.loaiBatDongSan}</Badge>
+                  </Table.Td>
+                  <Table.Td>
+                    <Badge variant="light" color={item.laChinhSua ? "blue" : "gray"} radius="sm">
+                      {item.laChinhSua ? "Chỉnh sửa" : "Tin mới"}
+                    </Badge>
                   </Table.Td>
                   <Table.Td>
                     <Badge variant="light" color="yellow" radius="sm">Chờ phê duyệt</Badge>
