@@ -150,7 +150,7 @@ export function MyListingsTable() {
               <Table.Td>{formatDateVi(post.createdAt)}</Table.Td>
               <Table.Td>
                 <Group gap={8} justify="flex-end">
-                  {post.status === "rejected" && (
+                  {(post.status === "rejected" || post.status === "blocked") && (
                     <Tooltip label="Gửi duyệt lại">
                       <ActionIcon
                         variant="subtle"

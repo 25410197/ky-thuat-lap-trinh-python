@@ -629,6 +629,8 @@ def duyet_tin_dang(
         )
 
     tin.trang_thai = TrangThaiTinDang.DA_DUYET
+    tin.is_blocked = False
+    tin.ly_do_khoa = None
     db.commit()
     return {"message": "Duyệt tin đăng thành công!"}
 
@@ -665,13 +667,7 @@ def gui_duyet_lai_tin_dang(
     
     _kiem_tra_chu_tin(tin, nguoi_dung)
 
-    if tin.is_blocked:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Tin đăng đang bị khóa bởi quản trị viên, không thể gửi duyệt lại.",
-        )
-
-    if tin.trang_thai != TrangThaiTinDang.TU_CHOI:
+    if tin.trang_thai != TrangThaiTinDang.TU_CHOI and not tin.is_blocked:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Chỉ có thể gửi duyệt lại tin đăng ở trạng thái bị từ chối.",
