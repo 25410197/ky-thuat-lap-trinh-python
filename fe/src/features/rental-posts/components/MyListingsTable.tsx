@@ -5,9 +5,9 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { ROUTES } from "@/constants/routes";
 import { formatCurrencyVnd, formatDateVi } from "@/lib/utils";
 import type { RentalPost } from "@/types/rental-post";
-import { ActionIcon, Anchor, Group, Table, Text } from "@mantine/core";
+import { ActionIcon, Anchor, Group, Table, Text, Tooltip } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { IconPencil, IconRotateClockwise, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { RentalPostStatusBadge } from "./RentalPostStatusBadge";
@@ -17,6 +17,9 @@ export function MyListingsTable() {
   const [posts, setPosts] = useState<RentalPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [resubmittingPost, setResubmittingPost] = useState<RentalPost | null>(null);
+  const [resubmitting, setResubmitting] = useState(false);
+
   useEffect(() => {
     rentalPostsApi
       .mine()
@@ -30,7 +33,9 @@ export function MyListingsTable() {
         setLoading(false);
       });
   }, []);
+
   const deletingPost = posts.find((post) => post.id === deletingId) ?? null;
+
   const handleDelete = () => {
     if (!deletingPost) return;
     rentalPostsApi
@@ -48,6 +53,36 @@ export function MyListingsTable() {
       })
       .finally(() => {
         setDeletingId(null);
+      });
+  };
+
+  const handleResubmit = () => {
+    if (!resubmittingPost) return;
+    setResubmitting(true);
+    rentalPostsApi
+      .guiDuyetLai(resubmittingPost.id)
+      .then(() => {
+        setPosts((prev) =>
+          prev.map((post) =>
+            post.id === resubmittingPost.id ? { ...post, status: "pending" } : post
+          )
+        );
+        notifications.show({
+          color: "green",
+          title: "Đã gửi duyệt lại",
+          message: `Tin đăng "${resubmittingPost.title}" đã được gửi lại cho quản trị viên kiểm duyệt.`,
+        });
+      })
+      .catch((err: any) => {
+        notifications.show({
+          color: "red",
+          title: "Gửi duyệt lại thất bại",
+          message: err?.message || "Có lỗi xảy ra khi gửi duyệt lại tin đăng.",
+        });
+      })
+      .finally(() => {
+        setResubmitting(false);
+        setResubmittingPost(null);
       });
   };
 
@@ -99,10 +134,34 @@ export function MyListingsTable() {
               <Table.Td>{formatCurrencyVnd(post.priceVnd)}</Table.Td>
               <Table.Td>
                 <RentalPostStatusBadge status={post.status} />
+                {(post.status === "rejected" || post.status === "blocked") && post.blockReason && (
+                  <Text
+                    size="xs"
+                    c="red.7"
+                    mt={4}
+                    style={{ maxWidth: 220, wordBreak: "break-word" }}
+                    title={post.blockReason}
+                  >
+                    <Text span fw={600}>Lý do: </Text>
+                    {post.blockReason}
+                  </Text>
+                )}
               </Table.Td>
               <Table.Td>{formatDateVi(post.createdAt)}</Table.Td>
               <Table.Td>
                 <Group gap={8} justify="flex-end">
+                  {post.status === "rejected" && (
+                    <Tooltip label="Gửi duyệt lại">
+                      <ActionIcon
+                        variant="subtle"
+                        color="orange"
+                        aria-label="Gửi duyệt lại"
+                        onClick={() => setResubmittingPost(post)}
+                      >
+                        <IconRotateClockwise size={18} stroke={1.75} />
+                      </ActionIcon>
+                    </Tooltip>
+                  )}
                   <ActionIcon
                     component={Link}
                     href={ROUTES.suaTinDang(post.id)}
@@ -136,6 +195,17 @@ export function MyListingsTable() {
         onConfirm={handleDelete}
         onCancel={() => setDeletingId(null)}
       />
+
+      <ConfirmDialog
+        opened={resubmittingPost !== null}
+        title="Gửi duyệt lại tin đăng?"
+        description={`Bạn có muốn gửi lại tin đăng "${resubmittingPost?.title}" để quản trị viên kiểm duyệt không?`}
+        confirmLabel="Gửi duyệt lại"
+        loading={resubmitting}
+        onConfirm={handleResubmit}
+        onCancel={() => setResubmittingPost(null)}
+      />
     </>
   );
 }
+

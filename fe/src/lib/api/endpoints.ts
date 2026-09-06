@@ -22,6 +22,7 @@ export const endpoints = {
     tuChoiTinDang: (id: number) => `/rental-posts/tu-choi-tin-dang/${id}`,
     moKhoaTin: (id: number) => `/rental-posts/mo-khoa-tin/${id}`,
     khoaTinDang: (id: number) => `/rental-posts/khoa-tin-dang/${id}`,
+    guiDuyetLai: (id: string | number) => `/rental-posts/gui-duyet-lai/${id}`,
     xoa: (id: string | number) => `/rental-posts/${id}`,
   },
   danhMuc: {

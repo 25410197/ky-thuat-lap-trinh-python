@@ -44,6 +44,7 @@ class TinDangCuaToiResponse(BaseModel):
     status: str
     ownerId: str
     createdAt: str
+    blockReason: str | None
 
 class DangTinRequest(BaseModel):
     title: str
@@ -113,7 +114,7 @@ class TinDangChiTiet(BaseModel):
     phuong_thuc_lien_he_uu_tien: Annotated[str, Field(alias="phuongThucLienHeUuTien")]
     luot_xem: Annotated[int, Field(alias="luotXem")]
     ngay_dang: Annotated[datetime, Field(alias="ngayDang")]
-    is_blocked: Annotated[bool, Field(alias="isBlocked")]
+    is_blocked: Annotated[bool, Field(default=False, alias="isBlocked")]
     nguoi_dang_id: Annotated[int, Field(alias="nguoiDangId")]
 
 class TinChoDuyetTomTat(BaseModel):
