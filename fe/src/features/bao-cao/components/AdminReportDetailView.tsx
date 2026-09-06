@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge, Box, Button, Checkbox, Group, Modal, Skeleton, Text, Textarea, TextInput } from "@mantine/core";
+import { Badge, Box, Button, Group, Modal, Skeleton, Text, Textarea, TextInput } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { baoCaoApi } from "@/lib/api/bao-cao";
 import type { BaoCaoChiTiet } from "@/schemas/bao-cao";
@@ -25,12 +25,15 @@ export function AdminReportDetailView({ id }: { id: number }) {
   const [data, setData] = useState<BaoCaoChiTiet | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const [modalOpened, setModalOpened] = useState(false);
-  const [actionType, setActionType] = useState<"RESOLVED" | "REJECTED" | null>(null);
-  const [note, setNote] = useState("");
-  const [blockPost, setBlockPost] = useState(false);
+  // Block confirm modal state (for "Đánh dấu Đã xử lý")
+  const [blockModalOpened, setBlockModalOpened] = useState(false);
   const [blockReason, setBlockReason] = useState("");
-  const [submitting, setSubmitting] = useState(false);
+  const [blockSubmitting, setBlockSubmitting] = useState(false);
+
+  // Reject modal state (for "Từ chối báo cáo")
+  const [rejectModalOpened, setRejectModalOpened] = useState(false);
+  const [rejectNote, setRejectNote] = useState("");
+  const [rejectSubmitting, setRejectSubmitting] = useState(false);
 
   const load = () => {
     setLoading(true);
@@ -45,36 +48,56 @@ export function AdminReportDetailView({ id }: { id: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const openActionModal = (type: "RESOLVED" | "REJECTED") => {
-    setActionType(type);
-    setNote("");
-    setBlockPost(false);
+  const openBlockConfirm = () => {
     setBlockReason("");
-    setModalOpened(true);
+    setBlockModalOpened(true);
   };
 
-  const handleSubmit = async () => {
-    if (!actionType) return;
-    if (blockPost && !blockReason.trim()) {
+  const openRejectModal = () => {
+    setRejectNote("");
+    setRejectModalOpened(true);
+  };
+
+  const handleBlockSubmit = async () => {
+    if (!blockReason.trim()) {
       notifications.show({ color: "red", message: "Vui lòng nhập lý do khóa tin." });
       return;
     }
 
-    setSubmitting(true);
+    setBlockSubmitting(true);
     try {
       await baoCaoApi.process(id, {
-        action: actionType,
-        ghiChuXuLy: note,
-        khoaTin: blockPost,
-        lyDoKhoa: blockReason || null,
+        action: "RESOLVED",
+        ghiChuXuLy: "",
+        khoaTin: true,
+        lyDoKhoa: blockReason,
       });
-      notifications.show({ color: "green", message: "Xử lý báo cáo thành công!" });
-      setModalOpened(false);
+      notifications.show({ color: "green", message: "Xử lý báo cáo và khóa tin thành công!" });
+      setBlockModalOpened(false);
       load();
     } catch (e: any) {
       notifications.show({ color: "red", message: e.message || "Có lỗi xảy ra" });
     } finally {
-      setSubmitting(false);
+      setBlockSubmitting(false);
+    }
+  };
+
+  const handleRejectSubmit = async () => {
+    setRejectSubmitting(true);
+    try {
+      await baoCaoApi.process(id, {
+        action: "REJECTED",
+        ghiChuXuLy: rejectNote,
+        khoaTin: false,
+        lyDoKhoa: null,
+      });
+      notifications.show({ color: "green", message: "Đã từ chối báo cáo!" });
+      setRejectModalOpened(false);
+      load();
+    } catch (e: any) {
+      notifications.show({ color: "red", message: e.message || "Có lỗi xảy ra" });
+    } finally {
+      setRejectSubmitting(false);
     }
   };
 
@@ -105,17 +128,17 @@ export function AdminReportDetailView({ id }: { id: number }) {
         {data.trangThai === "cho_xu_ly" && (
           <Group>
             <Button
-              color="green"
-              leftSection={<IconCheck size={18} />}
-              onClick={() => openActionModal("RESOLVED")}
+              color="red"
+              leftSection={<IconBan size={18} />}
+              onClick={openBlockConfirm}
             >
-              Đánh dấu Đã xử lý
+              Khóa tin đăng
             </Button>
             <Button
               color="red"
               variant="light"
               leftSection={<IconX size={18} />}
-              onClick={() => openActionModal("REJECTED")}
+              onClick={openRejectModal}
             >
               Từ chối báo cáo
             </Button>
@@ -159,52 +182,62 @@ export function AdminReportDetailView({ id }: { id: number }) {
         )}
       </Box>
 
+      {/* Block confirm modal — shown when "Đánh dấu Đã xử lý" is clicked */}
       <Modal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        title={<Text fw={600}>{actionType === "RESOLVED" ? "Đánh dấu Đã xử lý báo cáo" : "Từ chối báo cáo"}</Text>}
+        opened={blockModalOpened}
+        onClose={() => setBlockModalOpened(false)}
+        title={<Text fw={600}>Khóa tin đăng</Text>}
+      >
+        <Text size="sm" c="dimmed" mb={16}>
+          Báo cáo sẽ được đánh dấu đã xử lý và tin đăng sẽ bị khóa ngay lập tức.
+        </Text>
+        <TextInput
+          label="Lý do khóa tin"
+          placeholder="Ví dụ: Tin đăng sai sự thật..."
+          required
+          value={blockReason}
+          onChange={(e) => setBlockReason(e.currentTarget.value)}
+          data-autofocus
+        />
+        <Group justify="flex-end" mt={24}>
+          <Button variant="default" onClick={() => setBlockModalOpened(false)}>Hủy</Button>
+          <Button
+            color="red"
+            leftSection={<IconBan size={16} />}
+            loading={blockSubmitting}
+            onClick={handleBlockSubmit}
+          >
+            Xác nhận khóa tin
+          </Button>
+        </Group>
+      </Modal>
+
+      {/* Reject modal — shown when "Từ chối báo cáo" is clicked */}
+      <Modal
+        opened={rejectModalOpened}
+        onClose={() => setRejectModalOpened(false)}
+        title={<Text fw={600}>Từ chối báo cáo</Text>}
       >
         <Textarea
           label="Ghi chú xử lý"
           placeholder="Nhập ghi chú cho hành động này..."
-          value={note}
-          onChange={(e) => setNote(e.currentTarget.value)}
+          value={rejectNote}
+          onChange={(e) => setRejectNote(e.currentTarget.value)}
           minRows={3}
           data-autofocus
         />
-
-        {actionType === "RESOLVED" && (
-          <Box mt={16}>
-            <Checkbox
-              label="Khóa tin đăng này ngay lập tức"
-              checked={blockPost}
-              onChange={(e) => setBlockPost(e.currentTarget.checked)}
-              color="red"
-            />
-            {blockPost && (
-              <TextInput
-                mt={8}
-                label="Lý do khóa tin"
-                placeholder="Ví dụ: Tin đăng sai sự thật..."
-                required
-                value={blockReason}
-                onChange={(e) => setBlockReason(e.currentTarget.value)}
-              />
-            )}
-          </Box>
-        )}
-
         <Group justify="flex-end" mt={24}>
-          <Button variant="default" onClick={() => setModalOpened(false)}>Hủy</Button>
+          <Button variant="default" onClick={() => setRejectModalOpened(false)}>Hủy</Button>
           <Button
-            color={actionType === "RESOLVED" ? "green" : "red"}
-            loading={submitting}
-            onClick={handleSubmit}
+            color="red"
+            loading={rejectSubmitting}
+            onClick={handleRejectSubmit}
           >
-            Xác nhận {actionType === "RESOLVED" ? "Đã xử lý" : "Từ chối"}
+            Xác nhận Từ chối
           </Button>
         </Group>
       </Modal>
     </Box>
   );
 }
+
