@@ -9,7 +9,7 @@
 |---|---|---|
 | Source code / Input-Dataset | — | ✅ Đã có (repo + seed data) |
 | Report (docx) | Dưới 20 trang | 🟡 Bản nháp xong (outputs/BaoCao_UrbanLease.docx, 18 trang) |
-| Khai báo sử dụng AI | prompt, md, skill | ⬜ Chưa làm |
+| Khai báo sử dụng AI | prompt, md, skill | ✅ Đã có (docs/khai-bao-su-dung-ai.md) |
 | Slide | 10 trang | ✅ Đã có (outputs/Slide_UrbanLease.pptx, 10 trang) |
 | Demo | Trực tiếp hoặc video | 🟡 Đã có kịch bản (outputs/kich-ban-demo.md, 10 phút) — chưa quay |
 | Git | Lịch sử commit | ✅ Đã có (41 commit, 4 thành viên) |
@@ -71,12 +71,14 @@ Cấu trúc report thực tế đã viết (18 trang):
 
 ## 3. Khai báo sử dụng AI (prompt, md, skill)
 
-- [ ] Liệt kê công cụ AI đã dùng trong quá trình làm đồ án (vd Claude Code / Cowork, ChatGPT...)
-- [ ] Liệt kê các file `.md` trong `docs/` được soạn có hỗ trợ AI (7 file hiện có trong `docs/`)
-- [ ] Trích 1 vài prompt tiêu biểu đã dùng (vd: sinh docs yêu cầu tính năng, review code, viết seed
+> ✅ Đã hoàn thành: `docs/khai-bao-su-dung-ai.md`
+
+- [x] Liệt kê công cụ AI đã dùng trong quá trình làm đồ án (vd Claude Code / Cowork, ChatGPT...)
+- [x] Liệt kê các file `.md` trong `docs/` được soạn có hỗ trợ AI (7 file hiện có trong `docs/`)
+- [x] Trích 1 vài prompt tiêu biểu đã dùng (vd: sinh docs yêu cầu tính năng, review code, viết seed
       script...) — kèm mục đích dùng
-- [ ] Nêu rõ phần nào do người viết, phần nào AI hỗ trợ (tránh khai gộp chung)
-- [ ] Format gợi ý: bảng "Mục đích | Công cụ | Prompt rút gọn | Output dùng ở đâu"
+- [x] Nêu rõ phần nào do người viết, phần nào AI hỗ trợ (tránh khai gộp chung)
+- [x] Format gợi ý: bảng "Mục đích | Công cụ | Prompt rút gọn | Output dùng ở đâu"
 
 ## 4. Slide thuyết trình (10 trang)
 

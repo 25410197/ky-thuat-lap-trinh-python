@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge, Box, Center, Group, Skeleton, Table, Text, Tooltip, Tabs } from "@mantine/core";
+import { Badge, Box, Center, Group, Skeleton, Table, Text, Tooltip, Tabs, Modal, Textarea, Button, TextInput } from "@mantine/core";
 import { ActionIcon } from "@mantine/core";
-import { IconEye } from "@tabler/icons-react";
+import { IconEye, IconX, IconBan } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { AppPagination } from "@/components/ui/AppPagination";
 import { baoCaoApi } from "@/lib/api/bao-cao";
@@ -32,6 +32,74 @@ export function AdminReportListView() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [statusTab, setStatusTab] = useState<string | null>("cho_xu_ly");
+
+  // Block modal state
+  const [blockModalOpened, setBlockModalOpened] = useState(false);
+  const [blockReason, setBlockReason] = useState("");
+  const [blockSubmitting, setBlockSubmitting] = useState(false);
+
+  // Reject modal state
+  const [rejectModalOpened, setRejectModalOpened] = useState(false);
+  const [selectedReportId, setSelectedReportId] = useState<number | null>(null);
+  const [rejectNote, setRejectNote] = useState("");
+  const [rejectSubmitting, setRejectSubmitting] = useState(false);
+
+  const openBlockModal = (id: number) => {
+    setSelectedReportId(id);
+    setBlockReason("");
+    setBlockModalOpened(true);
+  };
+
+  const openRejectModal = (id: number) => {
+    setSelectedReportId(id);
+    setRejectNote("");
+    setRejectModalOpened(true);
+  };
+
+  const handleBlockSubmit = async () => {
+    if (!selectedReportId) return;
+    if (!blockReason.trim()) {
+      notifications.show({ color: "red", message: "Vui lòng nhập lý do khóa tin." });
+      return;
+    }
+
+    setBlockSubmitting(true);
+    try {
+      await baoCaoApi.process(selectedReportId, {
+        action: "RESOLVED",
+        ghiChuXuLy: "",
+        khoaTin: true,
+        lyDoKhoa: blockReason,
+      });
+      notifications.show({ color: "green", message: "Xử lý báo cáo và khóa tin thành công!" });
+      setBlockModalOpened(false);
+      load();
+    } catch (e: any) {
+      notifications.show({ color: "red", message: e.message || "Có lỗi xảy ra" });
+    } finally {
+      setBlockSubmitting(false);
+    }
+  };
+
+  const handleRejectSubmit = async () => {
+    if (!selectedReportId) return;
+    setRejectSubmitting(true);
+    try {
+      await baoCaoApi.process(selectedReportId, {
+        action: "REJECTED",
+        ghiChuXuLy: rejectNote,
+        khoaTin: false,
+        lyDoKhoa: null,
+      });
+      notifications.show({ color: "green", message: "Đã từ chối báo cáo!" });
+      setRejectModalOpened(false);
+      load();
+    } catch (e: any) {
+      notifications.show({ color: "red", message: e.message || "Có lỗi xảy ra" });
+    } finally {
+      setRejectSubmitting(false);
+    }
+  };
 
   const load = () => {
     setLoading(true);
@@ -157,6 +225,30 @@ export function AdminReportListView() {
                         <IconEye size={18} stroke={1.75} />
                       </ActionIcon>
                     </Tooltip>
+                    {item.trangThai === "cho_xu_ly" && (
+                      <>
+                        <Tooltip label="Khóa tin đăng">
+                          <ActionIcon
+                            variant="subtle"
+                            color="red"
+                            aria-label="Khóa tin đăng"
+                            onClick={() => openBlockModal(item.id)}
+                          >
+                            <IconBan size={18} stroke={1.75} />
+                          </ActionIcon>
+                        </Tooltip>
+                        <Tooltip label="Từ chối báo cáo">
+                          <ActionIcon
+                            variant="subtle"
+                            color="gray"
+                            aria-label="Từ chối báo cáo"
+                            onClick={() => openRejectModal(item.id)}
+                          >
+                            <IconX size={18} stroke={1.75} />
+                          </ActionIcon>
+                        </Tooltip>
+                      </>
+                    )}
                   </Group>
                 </Table.Td>
               </Table.Tr>
@@ -171,6 +263,62 @@ export function AdminReportListView() {
         </Text>
         {totalPages > 1 && <AppPagination total={totalPages} value={page} onChange={setPage} />}
       </Group>
+
+      {/* Block confirm modal */}
+      <Modal
+        opened={blockModalOpened}
+        onClose={() => setBlockModalOpened(false)}
+        title={<Text fw={600}>Khóa tin đăng</Text>}
+      >
+        <Text size="sm" c="dimmed" mb={16}>
+          Báo cáo sẽ được đánh dấu đã xử lý và tin đăng sẽ bị khóa ngay lập tức.
+        </Text>
+        <TextInput
+          label="Lý do khóa tin"
+          placeholder="Ví dụ: Tin đăng sai sự thật..."
+          required
+          value={blockReason}
+          onChange={(e) => setBlockReason(e.currentTarget.value)}
+          data-autofocus
+        />
+        <Group justify="flex-end" mt={24}>
+          <Button variant="default" onClick={() => setBlockModalOpened(false)}>Hủy</Button>
+          <Button
+            color="red"
+            leftSection={<IconBan size={16} />}
+            loading={blockSubmitting}
+            onClick={handleBlockSubmit}
+          >
+            Xác nhận khóa tin
+          </Button>
+        </Group>
+      </Modal>
+
+      {/* Reject modal */}
+      <Modal
+        opened={rejectModalOpened}
+        onClose={() => setRejectModalOpened(false)}
+        title={<Text fw={600}>Từ chối báo cáo</Text>}
+      >
+        <Textarea
+          label="Ghi chú xử lý"
+          placeholder="Nhập ghi chú cho hành động này..."
+          value={rejectNote}
+          onChange={(e) => setRejectNote(e.currentTarget.value)}
+          minRows={3}
+          data-autofocus
+        />
+        <Group justify="flex-end" mt={24}>
+          <Button variant="default" onClick={() => setRejectModalOpened(false)}>Hủy</Button>
+          <Button
+            color="red"
+            loading={rejectSubmitting}
+            onClick={handleRejectSubmit}
+          >
+            Xác nhận Từ chối
+          </Button>
+        </Group>
+      </Modal>
     </Box>
   );
 }
