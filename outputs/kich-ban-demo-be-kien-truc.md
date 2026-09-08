@@ -266,11 +266,10 @@ stateDiagram-v2
 > app — mỗi lần thao tác trên giao diện, mình sẽ nói rõ API nào chạy phía sau để các bạn thấy rõ
 > Backend đứng sau UI như thế nào."
 
-### 4a — Đăng nhập, Tin đăng, Danh mục, Thư viện ảnh — 2:30 (Hải)
+### 4a — Đăng nhập, Đăng ký, Tin đăng, Danh mục, Thư viện ảnh — 2:30 (Hải)
 
-1. Trang **`/dang-nhap`** — đăng nhập bằng tài khoản thường.
-   > "Form này gọi `POST /api/auth/login`, backend trả về JWT lưu ở trình duyệt để gọi các API
-   > cần xác thực sau đó."
+1. Trang **`/dang-ky`** — điền form đăng ký tài khoản (có thể dùng autofill cho nhanh), chuyển qua **`/dang-nhap`** để đăng nhập bằng tài khoản vừa tạo.
+   > "Form đăng ký gọi `POST /api/auth/register`, còn đăng nhập gọi `POST /api/auth/login`, backend trả về JWT lưu ở trình duyệt để gọi các API cần xác thực sau đó."
 2. Trang **`/danh-sach-nha-cho-thue`** — gõ từ khóa tìm kiếm, mở bộ lọc chọn khoảng giá/diện
    tích/khu vực, bấm áp dụng — danh sách lọc lại ngay.
    > "Mỗi lần đổi bộ lọc là 1 lần gọi `GET /api/rental-posts` với query param tương ứng."
