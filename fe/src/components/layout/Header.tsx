@@ -74,9 +74,16 @@ export function Header() {
             >
               <IconSearch size={20} />
             </ActionIcon>
-            <Box component={Link} href={ROUTES.yeuThich} aria-label="Yêu thích" className={styles.mutedLink}>
+            <ActionIcon
+              component={Link}
+              href={ROUTES.yeuThich}
+              variant="subtle"
+              color="gray"
+              aria-label="Yêu thích"
+              className={styles.mutedLink}
+            >
               <IconHeart size={20} />
-            </Box>
+            </ActionIcon>
             <AppButton component={Link} href={ROUTES.dangTin} size="sm">
               Đăng tin
             </AppButton>
