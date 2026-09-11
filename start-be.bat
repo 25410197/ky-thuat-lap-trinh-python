@@ -7,15 +7,10 @@ if not exist "%ROOT%be\.venv\Scripts\activate.bat" (
     goto :error
 )
 
-if not exist "%ROOT%fe\node_modules" (
-    echo [LOI] Chua cai dependency FE. Chay "npm install" trong thu muc fe truoc.
-    goto :error
-)
-
 echo ============================================
-echo  Khoi dong FE (Next.js) trong cua so rieng...
+echo  Cai dat thu vien va khoi dong FE (Next.js)...
 echo ============================================
-start "FE - Next.js" cmd /k "cd /d "%ROOT%fe" && npm run dev"
+start "FE - Next.js" cmd /k "cd /d "%ROOT%fe" && npm install && npm run dev"
 
 cd /d "%ROOT%be"
 call .venv\Scripts\activate.bat
@@ -23,6 +18,11 @@ if errorlevel 1 (
     echo [LOI] Khong kich hoat duoc virtual environment.
     goto :error
 )
+
+echo ============================================
+echo  Cai dat thu vien phu thuoc (Backend)...
+echo ============================================
+pip install -r requirements.txt
 
 echo ============================================
 echo  Chay FastAPI server (Ctrl+C de dung)
